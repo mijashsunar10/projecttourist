@@ -27,6 +27,11 @@ Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
 
+// HomeCOntrolller
+
+// HomeCOntrolller
+
+// TrekController
 Route::get('/contact',[TrekController::class,'contact'])->name('contact');
 
 Route::get('/',[TrekController::class,'index'])->name('index');
@@ -36,6 +41,15 @@ Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
+
+Route::get('/faq',[TrekController::class,'faq'])->name('faq');
+
+
+Route::get('/faq',[TrekController::class,'faq'])->name('faq');
+
+// TrekCOntroller
+
+
 
 
 require __DIR__.'/auth.php';

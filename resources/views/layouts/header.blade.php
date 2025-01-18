@@ -435,7 +435,7 @@
               </a>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('faq')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                    Frequently Asked Questions
                   </div>      

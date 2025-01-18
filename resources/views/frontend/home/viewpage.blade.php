@@ -109,7 +109,7 @@
 
 
 <!-- Message Box -->
-<div class="fixed bottom-4 left-4">
+<div class="fixed bottom-4 left-4 z-10">
   <!-- Message Button -->
   <button id="emailButton" onclick="toggleEmailBox()" 
           class="w-16 h-16 bg-green-500 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition" 
@@ -141,6 +141,5 @@
   </form>
 </div>
 
-<div style="height: 100vh; background-color: aliceblue;"></div>
 
 <script src="{{asset('frontend/js/header.js')}}"></script>
