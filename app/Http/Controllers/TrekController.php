@@ -14,4 +14,13 @@ class TrekController extends Controller
     {
         return view('frontend.contact.contact');
     }
+
+    public function blog()
+    {
+        return view('frontend.media.blog');
+    }
+    public function news()
+    {
+        return view('frontend.media.news');
+    }
 }

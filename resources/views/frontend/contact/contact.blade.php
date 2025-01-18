@@ -8,7 +8,7 @@
 
     <div class="mt-10 flex flex-col lg:flex-row items-center justify-center px-6 py-12 lg:py-18 max-w-7xl mx-auto">
       <!-- Photo Section -->
-      <div class="w-full lg:w-1/2 flex lg:items-center justify-center justify-start mb-8 lg:mb-0">
+      <div class="w-full lg:w-1/2 flex lg:items-center justify-center lg:justify-start mb-8 lg:mb-0">
           <div class="w-[500px] h-[500px] rounded-full overflow-hidden shadow-lg animate-image ml-[-1rem]">
               <img src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg"
                   alt="Profile Image" class="w-full h-full object-cover ">

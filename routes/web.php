@@ -30,4 +30,10 @@ Route::get('/new2', function () {
 Route::get('/contact',[TrekController::class,'contact'])->name('contact');
 
 Route::get('/',[TrekController::class,'index'])->name('index');
+
+Route::get('/blog',[TrekController::class,'blog'])->name('blog');
+
+Route::get('/news',[TrekController::class,'news'])->name('news');
+
+
 require __DIR__.'/auth.php';
