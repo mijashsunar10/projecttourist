@@ -10,12 +10,12 @@
    
             <div class="w-full max-w-7xl h-full">
                 <!-- Header -->
-                <div class="bg-blue-400 text-white text-center my-6 py-6 rounded-t-lg">
+                <div class="bg-[#0B6285] text-white text-center my-6 py-6 rounded-t-lg">
                     <h1 class="text-4xl font-bold">Trekking in Nepal – FAQs</h1>
                     <p class="mt-2 text-lg">Have some Queries? We have the answers to your FAQs.</p>
                 </div>
                 <!-- FAQ Section -->
-                <div id="faq-container" class="bg-gray-100 shadow-lg rounded-b-lg"></div>
+                <div id="faq-container" class="bg-transaparent shadow-lg rounded-b-lg"></div>
             </div>
 
            
@@ -68,7 +68,7 @@
                     faqHTML += `
                         <div class="border-b border-blue-200 mb-4 last:mb-0">
                             <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-gray-100 hover:bg-gray-200 focus:outline-none"
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white hover:bg-blue-100 focus:outline-none"
                                 onclick="toggleAnswer('answer${index}')"
                             >
                                 ${faq.question}
@@ -76,7 +76,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="hidden px-4 pb-4 bg-gray-200 text-orange-700" id="answer${index}">
+                             <hr id="hr${index}" class="  hidden border-black border-opacity-50 mx-0">
+                            <div class="hidden px-4 pb-4 bg-white text-orange-700" id="answer${index}">
                                 <p>${faq.answer}</p>
                             </div>
                         </div>
@@ -104,6 +105,9 @@
             renderFAQs();
         </script>
 </section>
+
+
+
 
 
 @section('pagecontent')

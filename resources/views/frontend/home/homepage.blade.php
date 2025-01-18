@@ -9,4 +9,6 @@
 
 @include('frontend.home.smallphoto')
 
+@include('frontend.home.featurecard')
+
 @section('pagecontent')
