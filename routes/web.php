@@ -35,5 +35,7 @@ Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 
 Route::get('/news',[TrekController::class,'news'])->name('news');
 
+Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
+
 
 require __DIR__.'/auth.php';

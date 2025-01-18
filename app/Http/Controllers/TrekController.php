@@ -23,4 +23,8 @@ class TrekController extends Controller
     {
         return view('frontend.media.news');
     }
+    public function testimonials()
+    {
+        return view('frontend.media.testimonials');
+    }
 }

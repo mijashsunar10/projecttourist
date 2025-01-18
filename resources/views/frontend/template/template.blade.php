@@ -44,6 +44,27 @@
             }
             
             /*  contact */
+
+            /* testimonials */
+
+            .card-flip {
+            perspective: 1000px;
+            }
+            .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            }
+            .card-flip:hover .card-inner {
+            transform: rotateY(180deg);
+            }
+            .card-front,
+            .card-back {
+            backface-visibility: hidden;
+            }
+            .card-back {
+            transform: rotateY(180deg);
+            }
+            /* testimonials */
     </style>
 </head>
 <body>
