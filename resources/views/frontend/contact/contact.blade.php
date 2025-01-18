@@ -2,6 +2,5 @@
 
 @section('pagecontent')
 
-@include('frontend.home.viewpage')
 
 @section('pagecontent')

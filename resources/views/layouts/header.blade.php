@@ -1,15 +1,4 @@
-<style>
-    .dropdowmn-menu li
-        {
-            color: black;
-        }
 
-          
-
-        .block {
-        display: block;
-        }
-</style>
 
 
 <nav id="navbar" class="bg-transparent fixed w-full z-10 shadow-sm top-0 transition-all duration-300">
@@ -917,4 +906,4 @@
     </ul>
   </div>
 
-  <script src="{{asset('frontend/js/indexbody.js')}}"></script>
+ 

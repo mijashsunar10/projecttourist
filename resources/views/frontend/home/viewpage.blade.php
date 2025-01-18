@@ -66,7 +66,7 @@
   class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center transition-opacity duration-300 opacity-0 transform scale-90">
   <div 
       class="relative bg-cover bg-center rounded-2xl shadow-xl w-11/12 max-w-3xl p-6 md:p-12 text-gray-700 animate-fade-in"
-      style="background-image:  url('mountain.png')">
+      style="background-image: url('{{ asset('frontend/images/mountain.png') }}')">
   <div class="absolute inset-0 bg-black bg-opacity-70 rounded-2xl"></div>
 
   <!-- Close Button -->

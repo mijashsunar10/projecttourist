@@ -174,6 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
           el.classList.add("text-white");
           el.classList.remove("text-gray-900");
         });
+        navbar.querySelectorAll("ul,li, a").forEach((el) => {
+          el.classList.add("text-gray-900");
+         el.classList.remove("text-white");
+        });
 
         // Revert logo name colors
         logoName.innerHTML = `

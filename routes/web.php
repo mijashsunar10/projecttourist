@@ -23,5 +23,8 @@ Route::get('/new', function () {
 Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
+Route::get('/contact', function () {
+    return view('frontend.contact.contact');
+});
 
 require __DIR__.'/auth.php';
