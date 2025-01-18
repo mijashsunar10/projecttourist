@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrekController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.home.homepage');
-});
+// Route::get('/', function () {
+//     return view('frontend.home.homepage');
+// })->name('index');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,8 +26,8 @@ Route::get('/new', function () {
 Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
-Route::get('/contact', function () {
-    return view('frontend.contact.contact');
-});
 
+Route::get('/contact',[TrekController::class,'contact'])->name('contact');
+
+Route::get('/',[TrekController::class,'index'])->name('index');
 require __DIR__.'/auth.php';

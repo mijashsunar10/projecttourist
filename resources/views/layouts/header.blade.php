@@ -10,8 +10,10 @@
           <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;">
             <!-- <span class="text-amber-900 text-xl font-bold block">DAWN IN NEPAL</span> -->
             <!-- <span class="text-yellow-500 text-md font-bold block">ADVENTURES P.LTD</span> -->
-            <span class="text-white xl:text-2xl text-lg font-bold block">DAWN IN NEPAL</span>
-            <span class="text-white xl:text-lg  text-sm font-bold block">ADVENTURES P.LTD</span>
+            <a href="{{route('index')}}">
+              <span class="text-white xl:text-2xl text-lg font-bold block">DAWN IN NEPAL</span>
+              <span class="text-white xl:text-lg  text-sm font-bold block">ADVENTURES P.LTD</span>
+          </a>
           </div>
         </div>
 
@@ -19,15 +21,29 @@
   
         <!-- Navbar Items -->
         <ul class="hidden lg:flex space-x-0 xl:space-x-4"> 
+
+
+          <li class="relative group">
+            <a href="{{route('index')}}">
+            <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+              Home
+            </button>
+           </a>
+            
+          </li>
           <!-- Navbar Item 1 -->
           <li class="relative group">
+            
             <!-- <button class="flex items-center text-gray-900 font-bold px-3 py-2 hover:text-orange-400 focus:outline-none"> -->
-            <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-              Trekking
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+
+              <a href="">
+              <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                Trekking
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </a>
             <!-- Dropdown Menu -->
             <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
               <li class="relative group">
@@ -441,7 +457,7 @@
 
           <!-- Navbar Item 2 -->
           <li class="relative group">
-            <a href="">
+            <a href="{{route('contact')}}">
             <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
               Contact
              
@@ -467,14 +483,7 @@
            </a>
             
           </li>
-          <li class="relative group">
-            <a href="">
-            <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-
-            </button>
-           </a>
-            
-          </li>
+          
           <!-- Add more navbar items as needed -->
         </ul>
   
