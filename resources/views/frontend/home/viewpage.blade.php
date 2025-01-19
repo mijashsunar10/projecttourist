@@ -6,7 +6,7 @@
   
     <div class="relative flex flex-col items-center justify-center h-full text-center text-white">
       <div>
-        <h1 id="typing-text" class=" text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold xl:mb-6 lg:mb-4 mb-3  text-white" style="font-family: 'Playwrite Australia SA';">
+        <h1 id="typing-text" class="notranslate text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold xl:mb-6 lg:mb-4 mb-3  text-white" style="font-family: 'Playwrite Australia SA';">
           <!-- Add heading text here -->
         </h1>
       </div>

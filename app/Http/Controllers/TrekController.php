@@ -31,4 +31,18 @@ class TrekController extends Controller
     {
         return view('frontend.media.faq');
     }
+
+    public function region()
+    {
+        return view('frontend.trekking.region');
+    }
+
+    public function trekinfo()
+    {
+        return view('frontend.trekking.trekinfo');
+    }
+    public function trekmain()
+    {
+        return view('frontend.trekking.main');
+    }
 }

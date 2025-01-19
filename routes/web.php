@@ -47,6 +47,14 @@ Route::get('/faq',[TrekController::class,'faq'])->name('faq');
 
 Route::get('/faq',[TrekController::class,'faq'])->name('faq');
 
+Route::get('/region',[TrekController::class,'region'])->name('region');
+
+Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
+
+Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
+
+
+
 // TrekCOntroller
 
 

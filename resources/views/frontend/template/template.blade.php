@@ -66,6 +66,7 @@
             }
             /* testimonials */
     </style>
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -77,7 +78,14 @@
     </section>
     <section id="footer"></section>
 
-    <script src="{{asset('frontend/js/indexbody.js')}}"></script>
     
+    <script src="{{asset('frontend/js/indexbody.js')}}"></script>
+    <script src="{{asset('frontend/js/gt.min.js')}}" data-gt-widget-id="43217984"></script>
+
+    
+
+
+
+ 
 </body>
 </html>

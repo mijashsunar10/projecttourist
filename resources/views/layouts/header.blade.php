@@ -11,8 +11,9 @@
             <!-- <span class="text-amber-900 text-xl font-bold block">DAWN IN NEPAL</span> -->
             <!-- <span class="text-yellow-500 text-md font-bold block">ADVENTURES P.LTD</span> -->
             <a href="{{route('index')}}">
-              <span class="text-white xl:text-2xl text-lg font-bold block">DAWN IN NEPAL</span>
-              <span class="text-white xl:text-lg  text-sm font-bold block">ADVENTURES P.LTD</span>
+
+              <span class="notranslate text-white xl:text-2xl text-lg font-bold block">DAWN IN NEPAL</span>
+              <span class="notranslate text-white xl:text-lg  text-sm font-bold block">ADVENTURES P.LTD</span>
           </a>
           </div>
         </div>
@@ -36,7 +37,7 @@
             
             <!-- <button class="flex items-center text-gray-900 font-bold px-3 py-2 hover:text-orange-400 focus:outline-none"> -->
 
-              <a href="">
+              <a href="{{route('region')}}">
               <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
                 Trekking
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -355,6 +356,8 @@
              
             </ul>
           </li>
+
+          
           
           <li class="relative group">
             <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
@@ -485,6 +488,16 @@
            </a>
             
           </li>
+
+          <li class="relative group">
+            <div class="language-selector text-gray-800 pl-1 py-2 rounded-md text-sm">
+              <div id="gt-mordadam-43217984"></div>
+          </div>
+        </li>
+
+       
+
+          
           
           <!-- Add more navbar items as needed -->
         </ul>
@@ -917,4 +930,15 @@
     </ul>
   </div>
 
- 
+  <script type="text/javascript">
+    window.gtranslateSettings = window.gtranslateSettings || {};
+    window.gtranslateSettings["43217984"] = {
+        default_language: "en",
+        languages: ["en", "ja", "zh-CN", "ko", "fr", "de", "es", "it", "ar"],
+        wrapper_selector: "#gt-mordadam-43217984",
+        native_language_names: 1,
+        flag_style: "2d",
+        flag_size: 24,
+        horizontal_position: "inline",
+    };
+</script>
