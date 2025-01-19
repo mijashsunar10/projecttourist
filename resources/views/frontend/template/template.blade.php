@@ -76,7 +76,9 @@
     <section id="pagecontent">
         @yield('pagecontent')
     </section>
-    <section id="footer"></section>
+    <section id="footer">
+        @include('layouts.footer')
+    </section>
 
     
     <script src="{{asset('frontend/js/indexbody.js')}}"></script>

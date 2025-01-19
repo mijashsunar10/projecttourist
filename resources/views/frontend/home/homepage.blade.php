@@ -13,4 +13,6 @@
 
 @include('frontend.home.description')
 
+@include('frontend.home.accrediation')
+
 @section('pagecontent')
