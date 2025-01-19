@@ -53,6 +53,8 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
+Route::get('customize',[TrekController::class,'customize'])->name('customize');
+
 
 
 // TrekCOntroller

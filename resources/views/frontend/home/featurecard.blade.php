@@ -13,7 +13,7 @@
                 <!-- Cards (repeat for all items) -->
                 <a href="#" class="flex-shrink-0 snap-center w-full sm:w-1/2 md:w-1/3 transition-transform duration-700 ease-in-out transform hover:scale-105">
                     <div class="service_card1 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl">
-                        <img src="{{asset('frontend/images/featurecard/image copy.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <img src="{{asset('frontend/images/featurecard/image.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-gray-700">Annapurna Base Camp Trek</h3>
                             <p class="text-gray-500 mb-4">Duration: 11 Days</p>
@@ -29,7 +29,7 @@
                 </a>
                 <a href="#" class="flex-shrink-0 snap-center w-full sm:w-1/2 md:w-1/3 transition-transform duration-700 ease-in-out transform hover:scale-105">
                     <div class="service_card1 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl">
-                        <img src="{{asset('frontend/images/featurecard/image copy.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <img src="{{asset('frontend/images/featurecard/image.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-gray-700">Annapurna Base Camp Trek</h3>
                             <p class="text-gray-500 mb-4">Duration: 11 Days</p>
@@ -45,7 +45,7 @@
                 </a>
                 <a href="#" class="flex-shrink-0 snap-center w-full sm:w-1/2 md:w-1/3 transition-transform duration-700 ease-in-out transform hover:scale-105">
                     <div class="service_card1 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl">
-                        <img src="{{asset('frontend/images/featurecard/image copy.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <img src="{{asset('frontend/images/featurecard/image.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-gray-700">Annapurna Base Camp Trek</h3>
                             <p class="text-gray-500 mb-4">Duration: 11 Days</p>
@@ -61,7 +61,7 @@
                 </a>
                 <a href="#" class="flex-shrink-0 snap-center w-full sm:w-1/2 md:w-1/3 transition-transform duration-700 ease-in-out transform hover:scale-105">
                     <div class="service_card1 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl">
-                        <img src="{{asset('frontend/images/featurecard/image copy.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <img src="{{asset('frontend/images/featurecard/image.png')}}" alt="Trek Image" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-gray-700">Annapurna Base Camp Trek</h3>
                             <p class="text-gray-500 mb-4">Duration: 11 Days</p>

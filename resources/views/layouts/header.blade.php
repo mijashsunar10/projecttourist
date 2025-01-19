@@ -48,7 +48,7 @@
             <!-- Dropdown Menu -->
             <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center" style="color: black !important;">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center" style="color: black !important;">
                   <div class="w-56">
                   Annapurna Region  
                 </div>
@@ -59,16 +59,16 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"   style="border-top: 3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Circuit</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghorepani Poon Hill</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Base Camp Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mardi Himal Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> Poon Hill Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khopra Ridge Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Circuit</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghorepani Poon Hill</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Base Camp Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mardi Himal Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> Poon Hill Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khopra Ridge Trek</a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-56">
                   Ganesh Himal Region
                 </div>
@@ -79,14 +79,14 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ganesh Himal Base Camp Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ruby Valley Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sing La Pass Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pangsang Pass Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ganesh Himal Base Camp Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ruby Valley Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sing La Pass Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pangsang Pass Trek</a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                     Everest Region
                 </div>
@@ -97,14 +97,14 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Base Camp Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Three Passes Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Panorama Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Jiri to Everest Base Camp Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Base Camp Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Three Passes Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Panorama Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Jiri to Everest Base Camp Trek</a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                     Langtang Region
                 </div>
@@ -115,14 +115,14 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Valley Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Gosainkunda Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage Trail</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Circuit Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Valley Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Gosainkunda Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage Trail</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Circuit Trek</a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                     Mansalu Region
                 </div>
@@ -133,14 +133,14 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Circuit Trek</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tsum Valley Trek</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Base Camp Trek</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu and Annapurna Circuit Trek</a></li>
+                    <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Circuit Trek</a></li>
+                    <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tsum Valley Trek</a></li>
+                    <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Base Camp Trek</a></li>
+                    <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu and Annapurna Circuit Trek</a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                     West Region
                 </div>
@@ -151,14 +151,14 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dolpo Region Treks</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Rara Lake Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khaptad National Park Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Api and Saipal Himal Trek </a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dolpo Region Treks</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Rara Lake Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khaptad National Park Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Api and Saipal Himal Trek </a></li>
                 </ul>
               </li>
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('trekinfo')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                     Rural Region
                 </div>
@@ -169,10 +169,10 @@
                 
                 <!-- Submenu -->
                 <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top:3px solid brown;">
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Chepang Hill Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dhorpatan Trek</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage Trail</a></li>
-                  <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghale Gaun Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Chepang Hill Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dhorpatan Trek</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage Trail</a></li>
+                  <li><a href="{{route('trekmain')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghale Gaun Trek</a></li>
                 </ul>
               </li>
               
@@ -180,12 +180,14 @@
             </ul>
           </li>
           <li class="relative group">
-            <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-              Tours
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+            <a href="{{route('region')}}">
+              <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                Tours
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+          </a>
             <!-- Dropdown Menu -->
             <ul class="dropdown-menu absolute left-0 mt-2 w-52 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
               <li class="relative group">
@@ -444,6 +446,7 @@
                   </div>      
               </a>
               </li>
+              
               <li class="relative group">
                 <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
@@ -451,7 +454,13 @@
                   </div>      
               </a>
               </li>
-              
+              <li class="relative group">
+                <a href="{{route('customize')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Customize Trek
+                  </div>      
+              </a>
+              </li>
              
               
              
@@ -490,7 +499,7 @@
           </li>
 
           <li class="relative group">
-            <div class="language-selector text-gray-800 pl-1 py-2 rounded-md text-sm">
+            <div class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">
               <div id="gt-mordadam-43217984"></div>
           </div>
         </li>

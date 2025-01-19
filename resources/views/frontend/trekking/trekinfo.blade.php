@@ -18,7 +18,7 @@
     <a href="{{route('trekmain')}}">
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
             <h2 class="text-xl font-bold text-black ">Kesch Trek in Graubünden</h2>
             <!-- <h3 class="mb-2 text-lg font-medium text-gray-600">$2000/Rs.20000</h3> -->
@@ -78,7 +78,7 @@
     <a href="{{route('trekmain')}}">
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
             <h2 class="text-xl font-bold text-black ">Kesch Trek in Graubünden</h2>
             <!-- <h3 class="mb-2 text-lg font-medium text-gray-600">$2000/Rs.20000</h3> -->
@@ -138,7 +138,7 @@
     <a href="{{route('trekmain')}}">
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
             <h2 class="text-xl font-bold text-black ">Kesch Trek in Graubünden</h2>
             <!-- <h3 class="mb-2 text-lg font-medium text-gray-600">$2000/Rs.20000</h3> -->
@@ -198,7 +198,7 @@
     <a href="{{route('trekmain')}}">
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
             <h2 class="text-xl font-bold text-black ">Kesch Trek in Graubünden</h2>
             <!-- <h3 class="mb-2 text-lg font-medium text-gray-600">$2000/Rs.20000</h3> -->
@@ -260,7 +260,7 @@
 
     <a href="{{route('trekmain')}}">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-        <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+        <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
         <div class="p-6">
             <h2 class="text-xl font-bold text-black mb-2">Kesch Trek in Graubünden</h2>
             <!-- <p class="text-md text-gray-500 flex items-center mb-1">
@@ -313,7 +313,7 @@
 
     <a href="{{route('trekmain')}}">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-300 card">
-        <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+        <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
         <div class="p-6">
         <h2 class="text-xl font-bold text-black mb-2">Kesch Trek in Graubünden</h2>
         <!-- <p class="text-md text-gray-500 flex items-center mb-1">
@@ -366,7 +366,7 @@
 
     <a href="{{route('trekmain')}}">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-300 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image copy 3.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
             <h2 class="text-xl font-bold text-black mb-2">Kesch Trek in Graubünden</h2>
             <!-- <p class="text-md text-gray-500 flex items-center mb-1">
