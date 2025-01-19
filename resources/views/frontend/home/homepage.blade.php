@@ -11,4 +11,6 @@
 
 @include('frontend.home.featurecard')
 
+@include('frontend.home.description')
+
 @section('pagecontent')
