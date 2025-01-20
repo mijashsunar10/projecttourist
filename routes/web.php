@@ -23,9 +23,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/new', function () {
     return view('frontend.home.new');
 });
-Route::get('/testtrekking', function () {
-    return view('frontend.trekking.testtrekking');
-});
+
 Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
