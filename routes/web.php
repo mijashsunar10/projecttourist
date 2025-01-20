@@ -39,6 +39,8 @@ Route::get('/',[TrekController::class,'index'])->name('index');
 
 Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 
+Route::get('/gallery',[TrekController::class,'gallery'])->name('gallery');
+
 Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
