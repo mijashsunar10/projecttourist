@@ -1,6 +1,4 @@
-@extends('frontend.template.template')
 
-@section('pagecontent')
 
 
 <section class="bg-[#283655] text-black font-sans mt-16 xl:mt-20 ">
