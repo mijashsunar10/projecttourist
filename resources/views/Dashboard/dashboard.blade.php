@@ -44,6 +44,7 @@
                 class="w-6 h-6 bg-gray-200 rounded-full mr-2"
               ></span>
               Trekking 
+              something
             </a>
             
           </li>
