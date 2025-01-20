@@ -125,10 +125,10 @@
     <!-- End of Trip Highlights -->
 
     <!-- Itinerary Section -->
-    <div class="container mx-auto py-16 px-16 bg-white shadow-md rounded-lg  mt-8" id="itinerary"
+    <div class="container mx-auto py-16 px-16 bg-gray-200 shadow-md rounded-lg  mt-8" id="itinerary"
         style="max-width: 90%;">
         <h2 class="text-3xl font-bold text-blue-700 mb-8">Itinerary Overview</h2>
-        <div id="faq-container" class="bg-gray-100 shadow-lg rounded-b-lg"></div>
+        <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg"></div>
     </div>
     <!-- End of Itinerary Section -->
 
@@ -198,17 +198,18 @@
 
             faqs.forEach((faq, index) => {
                 faqHTML += `
-                <div class="border-b border-orange-200 mb-4 last:mb-0">
+                <div class="border-b  mb-4 last:mb-0">
                     <button
-                        class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-gray-800 bg-blue-100 hover:bg-blue-200 focus:outline-none"
+                        class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white  focus:outline-none shadow-md"
                         onclick="toggleAnswer('answer${index}')"
+                        aria-expanded="false"
                     >
                         ${faq.question}
                         <svg id="icon${index}" class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div class="hidden px-4 pb-4 bg-gray-100 text-gray-800" id="answer${index}">
+                    <div class="hidden px-4 pb-4 bg-white text-black" id="answer${index}">
                         <p>${faq.answer}</p>
                     </div>
                 </div>
