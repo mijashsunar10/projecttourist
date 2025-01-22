@@ -9,6 +9,8 @@
             <img src="{{ asset('images/regions/' . $region->image) }}" alt="{{ $region->name }}" class="w-full h-48 object-cover">
             <h2 class="text-lg font-bold mt-2">{{ $region->name }}</h2>
             <p>Trips: {{ $region->trips_count }}</p>
+            <a href="{{ route('regionsshow', $region->id) }}" class="text-blue-500 hover:underline">View Details</a>
+            <br>
             <a href="{{ route('regionsedit', $region->id) }}" class="text-blue-500">Edit</a>
             <form action="{{ route('regionsdestroy', $region->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                 @csrf

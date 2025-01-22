@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Region;  
+use App\Models\Region;
+use App\Models\Trip;
+  
 
 class RegionController extends Controller
 {
     public function index()
     {
-        $regions = Region::all();
+        $regions = Region::withCount('trips')->get();
         return view('frontend.region.index',compact('regions'));
     }
     public function regionscreate()
@@ -83,6 +85,12 @@ class RegionController extends Controller
 
         $region->delete();
         return redirect()->route('regionsindex');
+    }
+
+    public function regionshow($id)
+    {
+        $region = Region::with('trips')->findOrFail($id);
+        return view('frontend.trips.index', compact('region'));
     }
 
 

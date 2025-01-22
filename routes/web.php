@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
+use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -73,8 +74,18 @@ Route::controller(RegionController::class)->group(function () {
     Route::get('/regions/{id}/edit','regionsedit')->name('regionsedit');
     Route::post('/regions/{id}/update', 'regionsupdate')->name('regionsupdate');
     Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
+
+    Route::get('/regions/{id}',  'regionshow')->name('regionsshow');
     // Route::get('/editnews/{slug}', 'edit')->name('editnews');
+   
 });
+
+Route::controller(TripController::class)->group(function () {
+    Route::get('/regions/{region_id}/trips/create', 'tripscreate')->name('tripscreate');
+    Route::post('/regions/{region_id}/trips',  'tripsstore')->name('tripsstore');
+});
+
+
 
 
 
