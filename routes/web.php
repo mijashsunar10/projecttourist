@@ -1,6 +1,7 @@
-<?php
+    <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,11 +54,27 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
-Route::get('customize',[TrekController::class,'customize'])->name('customize');
+Route::get('/customize',[TrekController::class,'customize'])->name('customize');
+
+Route::get('/gallery',[TrekController::class,'gallery'])->name('gallery');
 
 
+Route::get('/regions', [RegionController::class, 'index'])->name('regionsindex');
 
+Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name('regionscreate');
+
+Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
 // TrekCOntroller
+
+Route::controller(RegionController::class)->group(function () {
+    Route::get('/regions', 'index')->name('regionsindex');
+    Route::get('/regions/create', 'regionscreate')->name('regionscreate');
+    Route::post('/regionsstore', 'regionsstore')->name('regionsstore');
+    Route::get('/regions/{id}/edit','regionsedit')->name('regionsedit');
+    Route::post('/regions/{id}/update', 'regionsupdate')->name('regionsupdate');
+    Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
+    // Route::get('/editnews/{slug}', 'edit')->name('editnews');
+});
 
 
 

@@ -187,7 +187,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-          </a>
+            </a>
             <!-- Dropdown Menu -->
             <ul class="dropdown-menu absolute left-0 mt-2 w-52 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
               <li class="relative group">
@@ -448,7 +448,7 @@
               </li>
               
               <li class="relative group">
-                <a href="#" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                <a href="{{route('gallery')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                   <div class="w-52">
                    Gallery
                   </div>      
@@ -461,11 +461,7 @@
                   </div>      
               </a>
               </li>
-             
-              
-             
-              
-             
+
             </ul>
           </li>
 

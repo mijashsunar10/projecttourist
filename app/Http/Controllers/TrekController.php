@@ -49,4 +49,8 @@ class TrekController extends Controller
     {
         return view('frontend.customize.customize');
     }
+    public function gallery()
+    {
+        return view('frontend.media.gallery');
+    }
 }

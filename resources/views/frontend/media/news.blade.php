@@ -2,11 +2,11 @@
 
 @section('pagecontent')
 
-<div class="bg-gradient-to-br from-blue-100 via-green-100 to-gray-100 p-6 min-h-screen">
+<div class="bg-gray-100 p-6 min-h-screen">
 
     <!-- Header Section -->
-    <div class="text-center mb-12 mt-20">
-      <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-700">
+    <div class="text-center mb-12 mt-20 ">
+      <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-800 to-blue-800">
         🏔️ Latest Mountain Trekking News
       </h1>
       <p class="text-lg font-semibold text-gray-700 mt-3">
@@ -15,7 +15,7 @@
     </div>
   
     <!-- News Cards Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="news-container">
+    <div class=" shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 box-shadow" id="news-container">
       <!-- News cards will be inserted dynamically -->
     </div>
   
@@ -73,7 +73,8 @@
     function renderNewsCards() {
       newsData.forEach(news => {
         const newsHTML = `
-          <div class="rounded-2xl overflow-hidden bg-gradient-to-tr from-green-200 via-blue-200 to-gray-200 shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+         
+          <div class="rounded-2xl overflow-hidden bg-gray-100 shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
             <img src="${news.image}" alt="${news.title}" class="w-full h-48 object-cover">
             <div class="p-6">
               <p class="text-sm text-gray-600 mb-2">
@@ -85,7 +86,7 @@
               <p class="text-gray-700 mt-3">
                 ${news.description.substring(0, 100)}...
               </p>
-              <a href="${news.link}" class="inline-block mt-4 text-white bg-gradient-to-r from-green-600 to-blue-600 hover:from-blue-600 hover:to-green-600 px-6 py-3 rounded-full font-semibold shadow-md transform hover:-translate-y-1 transition-all">
+              <a href="${news.link}" class="inline-block mt-4 text-white bg-[#0B6285] hover:from-blue-600 hover:to-green-600 px-6 py-3 rounded-full font-semibold shadow-md transform hover:-translate-y-1 transition-all">
                 Read More
               </a>
             </div>
@@ -99,7 +100,7 @@
     renderNewsCards();
   </script>
 
-
+{{-- // <div class="rounded-2xl overflow-hidden bg-gradient-to-tr from-green-200 via-blue-200 to-gray-200 shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300"> --}}
 @section('pagecontent')
 
 
