@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrekController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -34,6 +35,9 @@ Route::get('/new2', function () {
 
 // TrekController
 Route::get('/contact',[TrekController::class,'contact'])->name('contact');
+
+Route::post('/contact/send', [ContactController::class, 'submitContactForm'])->name('contact.send');
+
 
 Route::get('/',[TrekController::class,'index'])->name('index');
 
