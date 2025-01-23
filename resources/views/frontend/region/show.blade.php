@@ -17,12 +17,12 @@
                     <h2 class="text-xl font-bold mt-2">{{ $trip->name }}</h2>
                     <p>{{ $trip->description }}</p>
                     <p>Price: ${{ $trip->price }}</p>
-                    {{-- <a href="{{ route('trips.edit', $trip->id) }}" class="text-blue-500 hover:underline">Edit</a>
-                    <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline-block">
+                    <a href="{{ route('tripsedit', $trip->id) }}" class="text-blue-500 hover:underline">Edit</a>
+                   <form action="{{ route('tripsdestroy', $trip->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline-block">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline">Delete</button>
-                    </form> --}}
+                    </form> 
                 </div>
             @endforeach
         @endif
