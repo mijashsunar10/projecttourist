@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrekController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::get('/',[TrekController::class,'index'])->name('index');
 
 Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 
-Route::get('/news',[TrekController::class,'news'])->name('news');
+// Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
@@ -59,7 +60,17 @@ Route::get('customize',[TrekController::class,'customize'])->name('customize');
 
 // TrekCOntroller
 
+//News Controller
 
+
+Route::controller(NewsController::class)->group(function () {
+    Route::get('/news', 'index')->name('news');
+    Route::get('/addnews', 'create')->name('create');
+    Route::post('/storenews', 'store')->name('savenews');
+    Route::get('/editnews/{slug}', 'edit')->name('editnews');
+    Route::put('/update/{slug}', 'update')->name('updatenews');
+    Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
+});
 
 
 require __DIR__.'/auth.php';
