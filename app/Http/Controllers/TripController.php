@@ -111,6 +111,12 @@ class TripController extends Controller
 
         return redirect()->route('regionsshow', $trip->region_id)->with('success', 'Trip deleted successfully.');
     }
-    
+
+            public function tripShow($trip_id)
+        {
+            $trip = Trip::with('images')->findOrFail($trip_id);
+            return view('frontend.trips.show', compact('trip'));
+        }
+            
 
 }

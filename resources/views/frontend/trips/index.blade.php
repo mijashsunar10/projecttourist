@@ -13,7 +13,7 @@
             @foreach ($region->trips as $trip)
                 <div class="border rounded p-4">
                     @if($trip->image)
-                        <img src="{{ asset('images/trips/' . $trip->image) }}" alt="{{ $trip->name }}" class="w-full h-32 object-cover rounded">
+                        <img src="{{ asset('images/trips/' . $trip->image) }}" alt="{{ $trip->name }}" class="w-full h-32 object-contain rounded">
                     @endif
                     <h2 class="text-xl font-bold mt-2">{{ $trip->name }}</h2>
                     <p>{{ $trip->description }}</p>
@@ -24,6 +24,10 @@
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline">Delete</button>
                     </form> 
+                    <a href="{{ route('tripshow', $trip->id) }}" 
+                        class="text-blue-500 hover:underline">
+                         View Descriptions
+                     </a>
                 </div>
             @endforeach
         @endif

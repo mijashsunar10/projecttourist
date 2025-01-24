@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\TripDescriptionController;
+use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -86,8 +88,24 @@ Route::controller(TripController::class)->group(function () {
     Route::get('/trips/{id}/edit',  'tripsedit')->name('tripsedit');
     Route::put('/trips/{id}', 'tripsupdate')->name('tripsupdate');
     Route::delete('/trips/{id}',  'tripsdestroy')->name('tripsdestroy');
+    Route::get('/trips/{id}', 'tripShow')->name('tripshow');
 
 });
+
+    Route::controller(TripDescriptionController::class)->group(function()
+    {
+        Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
+
+    //     Route::get('/trips/{trip_id}/descriptions',  'index')->name('trip_descriptionsindex');
+        
+    //     Route::get('/trips/{trip_id}/descriptions/create', 'create')->name('trip_descriptionscreate');
+
+    //     Route::post('/trips/{trip_id}/descriptions', 'store')->name('trip_descriptionsstore');
+    });
+
+
+
+
 
 
 
