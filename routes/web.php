@@ -94,13 +94,10 @@ Route::controller(TripController::class)->group(function () {
 
     Route::controller(TripDescriptionController::class)->group(function()
     {
-        Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
 
-    //     Route::get('/trips/{trip_id}/descriptions',  'index')->name('trip_descriptionsindex');
-        
-    //     Route::get('/trips/{trip_id}/descriptions/create', 'create')->name('trip_descriptionscreate');
-
-    //     Route::post('/trips/{trip_id}/descriptions', 'store')->name('trip_descriptionsstore');
+     Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
+    Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
+    Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
     });
 
 
