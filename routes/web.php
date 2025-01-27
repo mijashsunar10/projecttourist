@@ -5,6 +5,7 @@ use App\Http\Controllers\TrekController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\CustomizeController;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -63,6 +64,8 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
 Route::get('customize',[TrekController::class,'customize'])->name('customize');
+Route::post('/contact/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
+
 
 
 
