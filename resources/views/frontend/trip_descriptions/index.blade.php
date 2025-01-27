@@ -46,5 +46,22 @@
             </div>
         @endforeach
     @endif
+
+   
 </div>
+
+<div class="mt-6">
+    <h2 class="text-xl font-bold">Trip Highlights</h2>
+    <a href="{{route('tripHighlightscreate')}}">TripHighlight Create</a>
+    <ul class="list-disc pl-6 space-y-2">
+        @forelse ($trip->highlights as $highlight)
+            <li>{{ $highlight->highlight }}</li>
+        @empty
+            <li>No highlights available.</li>
+        @endforelse
+    </ul>
+
+    {{-- <a href="{{ route('tripHighlights.edit', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block">Edit Highlights</a> --}}
+</div>
+
 @endsection

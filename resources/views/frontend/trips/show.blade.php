@@ -42,7 +42,40 @@
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">Upload Images</button>
     </form>
 </div>
+{{-- <div class="mt-6">
+    <h2 class="text-xl font-bold">Trip Highlights</h2>
+    <ul class="list-disc pl-6 space-y-2">
+        @forelse ($trip->highlights as $highlight)
+            <li>{{ $highlight->highlight }}</li>
+        @empty
+            <li>No highlights available.</li>
+        @endforelse
+    </ul>
 
+    <!-- Add Highlights Button -->
+  
+    <a href="{{ route('tripHighlightsedit', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block">Edit Highlights</a>
+</div> --}}
+<div class="mt-6">
+    <h2 class="text-xl font-bold">Trip Highlights</h2>
+    <ul class="list-disc pl-6 space-y-2">
+        @forelse ($trip->highlights as $highlight)
+            <li class="flex items-center space-x-2">
+                <span>{{ $highlight->highlight }}</span>
+                <form action="{{ route('tripHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-3 py-2 rounded text-sm">Delete</button>
+                </form>
+            </li>
+        @empty
+            <li>No highlights available.</li>
+        @endforelse
+    </ul>
+
+    <a href="{{ route('tripHighlightsedit', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block">Edit Highlights</a>
+    <a href="{{ route('tripHighlightscreate', $trip->id) }}" class="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block">Add Highlights</a>
+</div>
 <script>
     function previewImages(event) {
         const imagePreview = document.getElementById('imagePreview');

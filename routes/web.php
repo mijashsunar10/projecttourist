@@ -5,6 +5,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
+use App\Http\Controllers\TripHighlightController;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
 
@@ -98,6 +99,15 @@ Route::controller(TripController::class)->group(function () {
      Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
     Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
     Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
+    });
+
+    Route::prefix('trips/{trip_id}/highlights')->group(function () {
+        Route::get('/create', [TripHighlightController::class, 'create'])->name('tripHighlightscreate');
+        Route::post('/', [TripHighlightController::class, 'store'])->name('tripHighlightsstore');
+        Route::get('/edit', [TripHighlightController::class, 'edit'])->name('tripHighlightsedit');
+        Route::post('/update', [TripHighlightController::class, 'update'])->name('tripHighlightsupdate');
+        Route::delete('/delete', [TripHighlightController::class, 'destroy'])->name('tripHighlightsdestroy');
+
     });
 
 
