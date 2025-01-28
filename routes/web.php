@@ -1,5 +1,6 @@
     <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
@@ -43,7 +44,7 @@ Route::get('/',[TrekController::class,'index'])->name('index');
 
 Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 
-Route::get('/news',[TrekController::class,'news'])->name('news');
+// Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
@@ -108,6 +109,15 @@ Route::controller(TripController::class)->group(function () {
         Route::post('/update', [TripHighlightController::class, 'update'])->name('tripHighlightsupdate');
         Route::delete('/delete', [TripHighlightController::class, 'destroy'])->name('tripHighlightsdestroy');
 
+    });
+
+    Route::controller(NewsController::class)->group(function () {
+        Route::get('/news', 'index')->name('news');
+        Route::get('/addnews', 'create')->name('createnews');
+        Route::post('/storenews', 'store')->name('savenews');
+        Route::get('/editnews/{slug}', 'edit')->name('editnews');
+        Route::put('/update/{slug}', 'update')->name('updatenews');
+        Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
     });
 
 
