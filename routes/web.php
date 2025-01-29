@@ -6,6 +6,8 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CustomizeController;
+use App\Http\Controllers\GalleryController;
+
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -51,11 +53,11 @@ Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
-// Route::get('/faq',[TrekController::class,'faq'])->name('faq');
-
 Route::resource('faqs', FaqController::class);
 
-// Route::get('/faq',[TrekController::class,'faq'])->name('faq');
+Route::resource('gallery', GalleryController::class);
+
+
 
 Route::get('/region',[TrekController::class,'region'])->name('region');
 

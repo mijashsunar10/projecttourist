@@ -537,11 +537,6 @@
                             </a>
                         </li>
 
-
-
-
-
-
                     </ul>
                 </li>
 
@@ -593,7 +588,7 @@
                         </li>
 
                         <li class="relative group">
-                            <a href="#"
+                            <a href="{{ route('gallery.index') }}"
                                 class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                                 <div class="w-52">
                                     Gallery
