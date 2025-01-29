@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Http\Requests\UpdateNewsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -36,7 +35,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-
+       
         $rules = [
             'title' => 'required',
             'description' => 'required',
@@ -47,7 +46,7 @@ class NewsController extends Controller
 
         if ($validator->fails()) {
 
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator)->withInput(); 
         }
 
         $news = new News();
@@ -72,8 +71,8 @@ class NewsController extends Controller
 
         return redirect()->route('news')->with('success', 'News added successfully');
     }
-
-
+    
+    
     /**
      * Display the specified resource.
      */
@@ -137,10 +136,6 @@ class NewsController extends Controller
 
         return redirect()->route('news')->with('success', 'News updated successfully');
     }
-
-
-
-
 
     /**
      * Remove the specified resource from storage.

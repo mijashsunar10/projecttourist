@@ -26,7 +26,7 @@
             
             <div>
                 <label class="block text-gray-700 font-medium mb-2">News Title</label>
-                <input type="text" placeholder="Enter article title" name="title"
+                <input type="text" placeholder="Enter article title" name="title" value="{{ old('title') }}"
                     class="w-full border border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500">
                     @error('title')
                     <span class="text-red-500">{{ $message }}</span>
@@ -36,8 +36,8 @@
             <!-- Descritpion -->
             <div>
                 <label class="block text-gray-700 font-medium mb-2">Description</label>
-                <textarea placeholder="Enter article description" rows="4" name="description"
-                    class="w-full border border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <textarea placeholder="Enter article description" rows="4" name="description" 
+                    class="w-full border border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
                     @error('description')  
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -45,7 +45,7 @@
 
             <!-- Featured Image Upload -->
             <div id="drop-area" class="border border-dashed border-gray-400 rounded-md p-6 text-center cursor-pointer max-h-80">
-                <input type="file" id="fileInput" class="hidden" accept="image/*" name="image">
+                <input type="file" id="fileInput" class="hidden" accept="image/*" name="image" value="{{ old('image') }}">
                 <div id="preview" class="flex justify-center items-center text-gray-500">
                     <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V10a4 4 0 018 0v6m5 0a2 2 0 01-2 2H6a2 2 0 01-2-2m5 0h6"></path>
@@ -112,7 +112,7 @@
             if (file && file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    preview.innerHTML = `<img src="${e.target.result}" class="w-full h-auto max-h-40 rounded-md object-contain" alt="Preview">`;
+                    preview.innerHTML = `<img src="${e.target.result}" class="w-full h-auto max-h-40 rounded-md object-contain" alt="Preview" name="image">`;
                 };
                 reader.readAsDataURL(file);
             } else {
