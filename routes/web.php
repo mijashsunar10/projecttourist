@@ -1,6 +1,7 @@
     <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -61,7 +62,6 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
-Route::get('/customize',[TrekController::class,'customize'])->name('customize');
 
 Route::get('/gallery',[TrekController::class,'gallery'])->name('gallery');
 
@@ -130,6 +130,8 @@ Route::controller(TripController::class)->group(function () {
     
 
 
+    Route::get('/customize',[TrekController::class,'customize'])->name('customize');    
+    Route::post('/contact/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
 
 
 
