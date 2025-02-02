@@ -1,6 +1,7 @@
     <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
@@ -125,7 +126,8 @@ Route::controller(TripController::class)->group(function () {
     Route::post('/contact/send', [ContactController::class, 'submitContactForm'])->name('contact.send');
 
 
-
+    Route::resource('/faqs', FaqController::class);
+    
 
 
 
