@@ -1,5 +1,6 @@
     <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
@@ -38,7 +39,7 @@ Route::get('/new2', function () {
 // HomeCOntrolller
 
 // TrekController
-Route::get('/contact',[TrekController::class,'contact'])->name('contact');
+
 
 Route::get('/',[TrekController::class,'index'])->name('index');
 
@@ -119,6 +120,9 @@ Route::controller(TripController::class)->group(function () {
         Route::put('/update/{slug}', 'update')->name('updatenews');
         Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
     });
+
+    Route::get('/contact',[TrekController::class,'contact'])->name('contact');
+    Route::post('/contact/send', [ContactController::class, 'submitContactForm'])->name('contact.send');
 
 
 

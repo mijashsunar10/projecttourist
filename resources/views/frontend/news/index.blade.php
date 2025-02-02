@@ -12,6 +12,12 @@
         <p class="text-lg font-semibold text-gray-700 mt-3">
             Get inspired by thrilling adventures, trekking tips, and breathtaking destinations.
         </p>
+        <a href="{{ route('createnews') }}">
+            <button 
+            class="bg-blue-600 text-white m-2 px-6 py-3 rounded-md shadow hover:bg-blue-700 transition-all">
+            Add News Changes    
+            </button>
+        </a>
     </div>
 
     <!-- News Cards Section -->
@@ -20,12 +26,7 @@
     </div>
 
     <div class="container mx-auto">
-        <a href="{{ route('createnews') }}">
-            <button 
-            class="bg-blue-600 text-black px-6 py-3 rounded-md shadow hover:bg-blue-700 transition-all">
-            Add News Changes    
-            </button>
-        </a>
+       
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @if($news->isNotEmpty())
             @foreach($news as $new)
@@ -44,15 +45,19 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <a href="{{ route('editnews',$new->slug) }}" class="px-3 py-2 bg-green-500 text-white">Edit</a>
+                <div class="flex ">
+                    <div class="p-2">
+                        <a href="{{ route('editnews',$new->slug) }}" class="bg-blue-500 py-2 px-4 rounded-lg text-white">Edit</a>
+                    </div>
+                    <div>
+                        <form action="{{ route('deletenews', $new->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this news?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 py-2 px-3 rounded-lg text-white">Delete</button>
+                        </form>
+                        
+                    </div>
                 </div>
-
-                <form action="{{ route('deletenews', $new->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this news?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-500 py-2 px-3 rounded-lg text-white">Delete</button>
-                </form>
             </div>
             @endforeach
             @endif
