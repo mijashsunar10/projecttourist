@@ -9,12 +9,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormMail extends Mailable
+class ContactFormMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
     public $data;
+
     /**
-     * Pass the form data to the email.
+     * Create a new message instance.
      *
      * @param array $data
      */
@@ -22,6 +24,7 @@ class ContactFormMail extends Mailable
     {
         $this->data = $data;
     }
+
     /**
      * Get the message envelope.
      */
@@ -31,6 +34,7 @@ class ContactFormMail extends Mailable
             subject: 'New Contact Form Submission',
         );
     }
+
     /**
      * Get the message content definition.
      */
@@ -43,6 +47,7 @@ class ContactFormMail extends Mailable
             ]
         );
     }
+
     /**
      * Get the attachments for the message.
      */

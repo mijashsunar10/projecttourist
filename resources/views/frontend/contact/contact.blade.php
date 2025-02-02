@@ -147,46 +147,46 @@
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form's default action
+    e.preventDefault(); // Prevent the form's default action
 
-            const form = e.target;
-            const formData = new FormData(form);
-            const flashMessage = document.getElementById('flashMessage');
-            const flashMessageText = document.getElementById('flashMessageText');
-            const loadingIndicator = document.getElementById('loadingIndicator');
+    const form = e.target;
+    const formData = new FormData(form);
+    const flashMessage = document.getElementById('flashMessage');
+    const flashMessageText = document.getElementById('flashMessageText');
+    const loadingIndicator = document.getElementById('loadingIndicator');
 
-            // Show loading indicator
-            loadingIndicator.classList.remove('hidden');
+    // Show loading indicator
+    loadingIndicator.classList.remove('hidden');
 
-            fetch('{{ route('contact.send') }}', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json',
-                },
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    form.reset(); // Clear the form inputs
+    fetch('{{ route('contact.send') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json',
+        },
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            form.reset(); // Clear the form inputs
 
-                    // Show flash message
-                    flashMessageText.textContent = data.message;
-                    flashMessage.classList.remove('hidden');
-                    setTimeout(() => {
-                        flashMessage.classList.add('hidden'); // Hide the message after 4 seconds
-                    }, 4000);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            })
-            .finally(() => {
-                // Hide loading indicator
-                loadingIndicator.classList.add('hidden');
-            });
-        });
+            // Show flash message
+            flashMessageText.textContent = data.message;
+            flashMessage.classList.remove('hidden');
+            setTimeout(() => {
+                flashMessage.classList.add('hidden'); // Hide the message after 4 seconds
+            }, 4000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    })
+    .finally(() => {
+        // Hide loading indicator
+        loadingIndicator.classList.add('hidden');
+    });
+});
     </script>
 @section('pagecontent')
