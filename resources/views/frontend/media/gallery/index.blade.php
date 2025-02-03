@@ -6,6 +6,12 @@
         <h1 class="text-4xl font-bold text-gray-800">🏔️ Gallery</h1>
         <p class="text-lg text-gray-600 mt-2">Explore photos and videos from our amazing adventures.</p>
     </div>
+  <div class="relative">
+    <!-- Add Items Button (Positioned to the far right) -->
+    <a href="{{route('gallery.create')}}"><button class="absolute top-0 right-0 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow">
+      Add Items
+    </button></a>
+  </div>
 
     <!-- Tabs for Photos and Videos -->
     <div class="flex justify-center mb-6">
@@ -32,7 +38,7 @@
     <!-- Gallery Container -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gallery-container">
         @foreach ($photos as $photo)
-            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white hover-effect cursor-pointer p-2"
+            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white cursor-pointer p-2 transition transform duration-300 hover:scale-105"
                 data-type="photo" data-date="{{ $photo->date }}">
                 <img src="{{ asset('storage/' . $photo->file_path) }}" alt="{{ $photo->title }}"
                     class="w-full h-64 object-contain open-fullscreen">
@@ -57,10 +63,10 @@
         @endforeach
 
         @foreach ($videos as $video)
-            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white hover-effect cursor-pointer p-2 hidden"
+            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white cursor-pointer p-2 transition transform duration-300 hover:scale-105"
                 data-type="video" data-date="{{ $video->date }}">
                 <video src="{{ asset('storage/' . $video->file_path) }}"
-                    class="w-full h-48 object-cover open-fullscreen" muted></video>
+                    class="w-full h-64 object-contain open-fullscreen" muted></video>
                 <div class="p-2">
                     <h2 class="text-lg font-bold text-gray-800">{{ $video->title }}</h2>
                     <p class="text-sm text-gray-600">Date: {{ $video->date }}</p>
@@ -239,9 +245,21 @@
                     }
                 }
             });
+            // Video autoplay on hover functionality
+            // This will play the video when the mouse hovers over it and pause/reset when the mouse leaves.
+            document.querySelectorAll('.gallery-item video').forEach((video) => {
+                video.addEventListener('mouseenter', () => {
+                    video.play();
+                });
+                video.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0; // Optional: Reset the video to the beginning
+                });
+            });
+        
 
-            // Initialize gallery array
-            updateGalleryArray();
+        // Initialize gallery array
+        updateGalleryArray();
         });
     </script>
 </body>
