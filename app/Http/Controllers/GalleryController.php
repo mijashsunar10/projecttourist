@@ -36,7 +36,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|in:photo,video',
-            'file' => 'required|file|mimes:jpeg,png,jpg,heic,mp4,mov|max:100048000', // 20MB
+            'file' => 'required|file|mimes:jpeg,png,jpg,HEIC,mp4,mov|max:100048000', // 20MB
         ]);
 
         $file = $request->file('file');
