@@ -23,6 +23,11 @@ class Trip extends Model
     {
         return $this->hasMany(TripHighlight::class);
     }
+
+    public function itineraries()
+    {
+        return $this->hasMany(Itinerary::class);
+    }
     
     
 }

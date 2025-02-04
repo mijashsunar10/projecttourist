@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Itinerary;
 use App\Models\region;
 use App\Models\Trip;
 use Illuminate\Http\Request;
@@ -115,7 +116,8 @@ class TripController extends Controller
             public function tripShow($trip_id)
         {
             $trip = Trip::with('images')->findOrFail($trip_id);
-            return view('frontend.trips.show', compact('trip'));
+            $itineraries = Itinerary::where('trip_id', $trip_id)->get();
+            return view('frontend.trips.show', compact('trip', 'itineraries'));
         }
             
 

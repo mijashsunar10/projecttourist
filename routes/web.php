@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
@@ -114,6 +115,14 @@ Route::controller(TripController::class)->group(function () {
 
     });
 
+    Route::prefix('trips/{trip_id}/itinerary')->group(function () {
+        Route::get('/create', [ItineraryController::class, 'create'])->name('itinerarycreate');
+        Route::post('/', [ItineraryController::class, 'store'])->name('itinerarystore');
+        Route::get('/{itinerary_id}/edit', [ItineraryController::class, 'edit'])->name('itineraryedit');
+        Route::post('/{itinerary_id}/update', [ItineraryController::class, 'update'])->name('itineraryupdate');
+        Route::delete('/delete', [ItineraryController::class, 'destroy'])->name('itinerarydestroy');
+    });
+    
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index')->name('news');
         Route::get('/addnews', 'create')->name('createnews');

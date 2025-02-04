@@ -1,7 +1,9 @@
 @extends('frontend.template.template')
 
 @section('pagecontent')
-<div class="container mx-auto mt-10">
+
+<div class="container mx-auto mt-20">
+    <a href="{{route('regionsshow',$trip->region_id)}}"><button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Go back to trip</button></a>
     <h1 class="text-2xl font-bold mb-4">{{ $trip->name }}</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -94,4 +96,78 @@
         });
     }
 </script>
+
+
+<div class="mt-6">
+    <section class="bg-gray-200 min-h-screen">
+        <div class="flex items-center justify-center mt-20">
+            <div class="w-full max-w-6xl">
+                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                    <h1 class="text-4xl font-bold">Trekking in Nepal – Iterinanary Overview</h1>
+                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
+                    <a href="{{ route('itinerarycreate', $trip->id) }}">
+                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
+                    </a>
+                </div>
+                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                    @foreach ($itineraries as $itinerary)
+                        <div class="border-b mb-4 last:mb-0">
+                            <button
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                {{ $itinerary->question }}
+                                <svg id="icon{{ $itinerary->id }}"
+                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                <p>{{ $itinerary->answer }}</p>
+                                {{-- <div class="mt-1">
+                                    <a href="{{ route('itineraryedit', $trip->id) }}" class="text-blue-500">
+                                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                    </a>
+                                    <form action="{{ route('itinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                    </form>
+                                </div> --}}
+
+                                <div class="mt-2">
+                                    <a href="{{ route('itineraryedit', [$trip->id, $itinerary->id]) }}" class="text-blue-500">
+                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                    </a>
+                                    <form action="{{ route('itinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
+</div>
 @endsection
