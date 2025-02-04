@@ -1,5 +1,6 @@
     <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/admindashboard',[AdminController::class,'dashboard'])->middleware(['auth', 'verified'])->name('admindashboard');
 
 Route::get('/new', function () {
     return view('frontend.home.new');
@@ -68,7 +71,7 @@ Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 Route::get('/gallery',[TrekController::class,'gallery'])->name('gallery');
 
 
-Route::get('/regions', [RegionController::class, 'index'])->name('regionsindex');
+
 
 Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name('regionscreate');
 
@@ -76,18 +79,20 @@ Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('r
 // TrekCOntroller
 
 Route::controller(RegionController::class)->group(function () {
-    Route::get('/regions', 'index')->name('regionsindex');
-    Route::get('/regions/create', 'regionscreate')->name('regionscreate');
-    Route::post('/regionsstore', 'regionsstore')->name('regionsstore');
-    Route::get('/regions/{id}/edit','regionsedit')->name('regionsedit');
-    Route::post('/regions/{id}/update', 'regionsupdate')->name('regionsupdate');
-    Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
+    Route::get('/regions', 'index')->middleware(['auth', 'verified'])->name('regionsindex');
+    Route::get('/regions/create', 'regionscreate')->middleware(['auth', 'verified'])->name('regionscreate');
+    Route::post('/regionsstore', 'regionsstore')->middleware(['auth', 'verified'])->name('regionsstore');
+    Route::get('/regions/{id}/edit','regionsedit')->middleware(['auth', 'verified'])->name('regionsedit');
+    Route::post('/regions/{id}/update', 'regionsupdate')->middleware(['auth', 'verified'])->name('regionsupdate');
+    Route::post('/regions/{id}/delete',  'regionsdestroy')->middleware(['auth', 'verified'])->name('regionsdestroy');
 
-    Route::get('/regions/{id}',  'regionshow')->name('regionsshow');
+    Route::get('/regions/{id}',  'regionshow')->middleware(['auth', 'verified'])->name('regionsshow');
     // Route::get('/editnews/{slug}', 'edit')->name('editnews');
    
 });
 
+Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
+Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
 Route::controller(TripController::class)->group(function () {
     Route::get('/regions/{region_id}/trips/create', 'tripscreate')->name('tripscreate');
     Route::post('/regions/{region_id}/trips',  'tripsstore')->name('tripsstore');

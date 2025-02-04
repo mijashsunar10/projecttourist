@@ -14,6 +14,12 @@ class RegionController extends Controller
         $regions = Region::withCount('trips')->get();
         return view('frontend.region.index',compact('regions'));
     }
+
+    public function userindex()
+    {
+        $regions = Region::withCount('trips')->get();
+        return view('frontend.trekking.region1',compact('regions'));
+    }
     public function regionscreate()
     {
         return view('frontend.region.create');
@@ -91,6 +97,14 @@ class RegionController extends Controller
     {
         $region = Region::with('trips')->findOrFail($id);
         return view('frontend.trips.index', compact('region'));
+    }
+
+    public function userregionshow($id)
+    {
+        
+        $region = Region::with('trips')->findOrFail($id);
+        return view('frontend.trips.index1', compact('region'));
+
     }
 
 
