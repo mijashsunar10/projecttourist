@@ -6,12 +6,13 @@
         <h1 class="text-4xl font-bold text-gray-800">🏔️ Gallery</h1>
         <p class="text-lg text-gray-600 mt-2">Explore photos and videos from our amazing adventures.</p>
     </div>
-  <div class="relative">
-    <!-- Add Items Button (Positioned to the far right) -->
-    <a href="{{route('gallery.create')}}"><button class="absolute top-0 right-0 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow">
-      Add Items
-    </button></a>
-  </div>
+    <div class="relative">
+        <!-- Add Items Button (Positioned to the far right) -->
+        <a href="{{ route('gallery.create') }}"><button
+                class="absolute top-0 right-0 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow">
+                Add Items
+            </button></a>
+    </div>
 
     <!-- Tabs for Photos and Videos -->
     <div class="flex justify-center mb-6">
@@ -36,51 +37,64 @@
     </div>
 
     <!-- Gallery Container -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gallery-container">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-container">
+        <!-- Photo Items -->
         @foreach ($photos as $photo)
-            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white cursor-pointer p-2 transition transform duration-300 hover:scale-105"
+            <div class="gallery-item rounded-xl overflow-hidden shadow-xl bg-white cursor-pointer transition transform duration-300 hover:scale-105"
                 data-type="photo" data-date="{{ $photo->date }}">
-                <img src="{{ asset('storage/' . $photo->file_path) }}" alt="{{ $photo->title }}"
-                    class="w-full h-64 object-contain open-fullscreen">
-                <div class="p-2">
-                    <h2 class="text-lg font-bold text-gray-800">{{ $photo->title }}</h2>
-                    <p class="text-sm text-gray-600">Date: {{ $photo->date }}</p>
-                    <!-- Edit & Delete Buttons -->
+                <div class="overflow-hidden rounded-t-xl">
+                    <img src="{{ asset('storage/' . $photo->file_path) }}" alt="{{ $photo->title }}"
+                        class="w-full h-64 object-cover transition duration-300 hover:opacity-90 open-fullscreen" />
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-bold text-gray-800">{{ $photo->title }}</h2>
+                    <p class="text-sm text-gray-600 mt-1">Date: {{ $photo->date }}</p>
                     <div class="mt-4 flex space-x-2">
                         <a href="{{ route('gallery.edit', $photo->id) }}">
-                            <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                            <button
+                                class="text-white font-bold px-3 py-1 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                                Edit
+                            </button>
                         </a>
                         <form action="{{ route('gallery.destroy', $photo->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            @csrf
-                            @method('DELETE')
+                            @csrf @method('DELETE')
                             <button type="submit"
-                                class="text-white font-bold px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                class="text-white font-bold px-3 py-1 bg-red-600 rounded-lg hover:bg-red-700 transition">
+                                Delete
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         @endforeach
 
+        <!-- Video Items -->
         @foreach ($videos as $video)
-            <div class="gallery-item rounded-lg overflow-hidden shadow-md bg-white cursor-pointer p-2 transition transform duration-300 hover:scale-105"
+            <div class="gallery-item rounded-xl overflow-hidden shadow-xl bg-white cursor-pointer transition transform duration-300 hover:scale-105"
                 data-type="video" data-date="{{ $video->date }}">
-                <video src="{{ asset('storage/' . $video->file_path) }}"
-                    class="w-full h-64 object-contain open-fullscreen" muted></video>
-                <div class="p-2">
-                    <h2 class="text-lg font-bold text-gray-800">{{ $video->title }}</h2>
-                    <p class="text-sm text-gray-600">Date: {{ $video->date }}</p>
-                    <!-- Edit & Delete Buttons -->
+                <div class="overflow-hidden rounded-t-xl">
+                    <video src="{{ asset('storage/' . $video->file_path) }}"
+                        class="w-full h-64 object-cover transition duration-300 hover:opacity-90 open-fullscreen"
+                        muted></video>
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-bold text-gray-800">{{ $video->title }}</h2>
+                    <p class="text-sm text-gray-600 mt-1">Date: {{ $video->date }}</p>
                     <div class="mt-4 flex space-x-2">
                         <a href="{{ route('gallery.edit', $video->id) }}">
-                            <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                            <button
+                                class="text-white font-bold px-3 py-1 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                                Edit
+                            </button>
                         </a>
                         <form action="{{ route('gallery.destroy', $video->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            @csrf
-                            @method('DELETE')
+                            @csrf @method('DELETE')
                             <button type="submit"
-                                class="text-white font-bold px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                class="text-white font-bold px-3 py-1 bg-red-600 rounded-lg hover:bg-red-700 transition">
+                                Delete
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -256,10 +270,10 @@
                     video.currentTime = 0; // Optional: Reset the video to the beginning
                 });
             });
-        
 
-        // Initialize gallery array
-        updateGalleryArray();
+
+            // Initialize gallery array
+            updateGalleryArray();
         });
     </script>
 </body>
