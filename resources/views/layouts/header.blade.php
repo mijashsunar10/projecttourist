@@ -261,32 +261,27 @@
                     </ul>
                 </li>
                 <li class="relative group">
-                    <a href="{{ route('region') }}">
-                        <button
-                            class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-                            Tours 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu absolute left-0 mt-2 w-52 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
+                    <button
+                        class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                        Tours & Adventures
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Combined Dropdown Menu -->
+                    <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                         style="border-top: 4px solid orange;">
+                        <!-- Tours Section -->
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    One Day Tours
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-52">One Day Tours</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
@@ -296,22 +291,17 @@
                                         Sightseeing</a></li>
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
                                         Day Tour</a></li>
-
                             </ul>
                         </li>
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-56">
-                                    Multi Day Tours
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-56">Multi Day Tours</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Nepal
@@ -320,23 +310,18 @@
                                         class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Valley
                                         Cultural Tour</a></li>
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
-                                        and Buddhist Circuit Tour </a></li>
-
+                                        and Buddhist Circuit Tour</a></li>
                             </ul>
                         </li>
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Day Hikes
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-52">Day Hikes</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
@@ -344,22 +329,17 @@
                                 <li><a href="#"
                                         class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Day Hikes</a>
                                 </li>
-
                             </ul>
                         </li>
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Wildlife Reserve
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-52">Wildlife Reserve</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Bardia
@@ -368,41 +348,19 @@
                                         National Park</a></li>
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Koshi
                                         Tappu Wildlife Reserve</a></li>
-
                             </ul>
                         </li>
 
-
-
-
-
-                    </ul>
-                </li>
-                <li class="relative group">
-                    <button
-                        class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-                        Adventures
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                        style="border-top: 4px solid orange;">
+                        <!-- Adventures Section -->
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-56">
-                                    Rafting
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-56">Rafting</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Trisuli
@@ -413,22 +371,17 @@
                                         River Rafting</a></li>
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lower
                                         Seti River Rafting</a></li>
-
                             </ul>
                         </li>
                         <li class="relative group">
                             <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-56">
-                                    Bungee
-                                </div>
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                                <div class="w-56">Bungee</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-
-                            <!-- Submenu -->
                             <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                                 style="border-top:3px solid brown;">
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kushma
@@ -437,56 +390,23 @@
                                         Resort</a></li>
                                 <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
                                         Bungee Jump</a></li>
-
                             </ul>
                         </li>
-                        <li class="relative group">
-                            <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Paragliding in Pokhara
-                                </div>
-                            </a>
+                        <li><a href="#"
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Paragliding
+                                in Pokhara</a></li>
+                        <li><a href="#"
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">ZeepFlyer</a>
                         </li>
-
-                        <li class="relative group">
-                            <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    ZeepFlyer
-                                </div>
-                            </a>
-                        </li>
-                        <li class="relative group">
-                            <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Ultralight Flight
-                                </div>
-                            </a>
-                        </li>
-                        <li class="relative group">
-                            <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Heli Ride Tour
-                                </div>
-                            </a>
-                        </li>
-                        <li class="relative group">
-                            <a href="#"
-                                class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                                <div class="w-52">
-                                    Hot Air Baloon Ride
-                                </div>
-                            </a>
-                        </li>
-
-
-
-
-
-
+                        <li><a href="#"
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Ultralight
+                                Flight</a></li>
+                        <li><a href="#"
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Heli
+                                Ride Tour</a></li>
+                        <li><a href="#"
+                                class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Hot
+                                Air Balloon Ride</a></li>
                     </ul>
                 </li>
 
@@ -644,7 +564,7 @@
                 </li>
 
                 <li class="relative group">
-                    <div  class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">
+                    <div class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">
                         <div id="gt-mordadam-43217984"></div>
                     </div>
                 </li>
@@ -669,7 +589,7 @@
 
 
 </nav>
-  
+
 <!-- Top Right Controls Container -->
 <div class="fixed top-4 right-4 z-30 flex items-center space-x-2 lg:hidden">
     <!-- Language Selector -->
@@ -678,19 +598,17 @@
     </div>
 
     <!-- Close Button (hidden by default) -->
-    <button id="closeMobileMenu" 
-            class="text-white bg-blue-900 p-2 rounded-md focus:outline-none hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
-             stroke="currentColor" stroke-width="2">
+    <button id="closeMobileMenu" class="text-white bg-blue-900 p-2 rounded-md focus:outline-none hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
 
     <!-- Hamburger Button (visible by default) -->
-    <button id="mobileMenuButton" 
-            class="text-white bg-blue-900 p-2 rounded-md focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
-             stroke="currentColor" stroke-width="2">
+    <button id="mobileMenuButton" class="text-white bg-blue-900 p-2 rounded-md focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
     </button>
@@ -938,17 +856,17 @@
 
             </ul>
         </li>
-
         <li>
             <button class="w-full flex justify-between items-center px-4 py-2 font-bold hover:bg-blue-800"
-                onclick="toggleDropdown('tourDropdown')">
-                Tours
+                onclick="toggleDropdown('toursAdventuresDropdown')">
+                Tours & Adventures
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
-            <ul id="tourDropdown" class="hidden pl-6 space-y-1">
+            <ul id="toursAdventuresDropdown" class="hidden pl-6 space-y-1">
+                <!-- Tours Section -->
                 <li>
                     <button
                         class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
@@ -962,7 +880,6 @@
                         </span>
                     </button>
                     <ul id="onedayDropdown" class="hidden pl-6 space-y-1">
-
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Pokhara Valley
                                 Sightseeing</a></li>
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Kathmandu Valley
@@ -971,7 +888,7 @@
                                 Tour</a></li>
                     </ul>
                 </li>
-                <!-- ganesh himal -->
+
                 <li>
                     <button
                         class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
@@ -990,8 +907,7 @@
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Kathmandu Valley
                                 Cultural Tour</a></li>
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Lumbini and
-                                Buddhist Circuit Tour </a></li>
-
+                                Buddhist Circuit Tour</a></li>
                     </ul>
                 </li>
 
@@ -1014,6 +930,7 @@
                                 Hikes</a></li>
                     </ul>
                 </li>
+
                 <li>
                     <button
                         class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
@@ -1036,18 +953,7 @@
                     </ul>
                 </li>
 
-            </ul>
-        </li>
-        <li>
-            <button class="w-full flex justify-between items-center px-4 py-2 font-bold hover:bg-blue-800"
-                onclick="toggleDropdown('adventubrownropdown')">
-                Adventures
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
-            <ul id="adventubrownropdown" class="hidden pl-6 space-y-1">
+                <!-- Adventures Section -->
                 <li>
                     <button
                         class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
@@ -1061,7 +967,6 @@
                         </span>
                     </button>
                     <ul id="raftingDropdown" class="hidden pl-6 space-y-1">
-
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Trisuli River
                                 Rafting</a></li>
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Kali Gandaki
@@ -1072,7 +977,7 @@
                                 Rafting</a></li>
                     </ul>
                 </li>
-                <!-- ganesh himal -->
+
                 <li>
                     <button
                         class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
@@ -1092,49 +997,21 @@
                                 Resort</a></li>
                         <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800">Pokhara Bungee
                                 Jump</a></li>
-
                     </ul>
                 </li>
 
-                <li>
-                    <button
-                        class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
-                        onclick="toggleDropdown('dayhikeDropdown')">
-                        Paragliding in Pokhara
-                    </button>
-                </li>
-                <li>
-                    <button
-                        class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
-                        onclick="toggleDropdown('dayhikeDropdown')">
-                        ZeepFlyer
-                    </button>
-                </li>
-                <li>
-                    <button
-                        class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
-                        onclick="toggleDropdown('dayhikeDropdown')">
-                        Ultralight Flight
-                    </button>
-                </li>
-
-                <li>
-                    <button
-                        class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
-                        onclick="toggleDropdown('dayhikeDropdown')">
-                        Heli Ride Tour
-                    </button>
-                </li>
-
-                <li>
-                    <button
-                        class="w-full flex justify-between items-center px-4 py-2 text-md text-gray-300 hover:bg-blue-800 font-semibold"
-                        onclick="toggleDropdown('dayhikeDropdown')">
-                        Hot Air Baloon Ride
-                    </button>
-                </li>
-
-
+                <!-- Adventure Activities without dropdowns -->
+                <li><a href="#"
+                        class="block px-4 py-2 text-gray-300 hover:bg-blue-800 font-semibold">Paragliding in
+                        Pokhara</a></li>
+                <li><a href="#"
+                        class="block px-4 py-2 text-gray-300 hover:bg-blue-800 font-semibold">ZeepFlyer</a></li>
+                <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800 font-semibold">Ultralight
+                        Flight</a></li>
+                <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800 font-semibold">Heli Ride
+                        Tour</a></li>
+                <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-blue-800 font-semibold">Hot Air
+                        Balloon Ride</a></li>
             </ul>
         </li>
         <li>
