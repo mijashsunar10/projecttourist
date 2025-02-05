@@ -18,7 +18,7 @@
    
     <a href="{{route('trekmain')}}">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
-            <img class="w-full h-52 object-cover" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
+            <img class="w-full h-52 object-contain" src="{{asset('frontend/images/featurecard/image.png')}}" alt="Kesch Trek in Graubünden">
             <div class="p-6">
                 <h2 class="text-xl font-bold text-[#0b3e85]">Kesch Trek in Graubünden</h2>
                

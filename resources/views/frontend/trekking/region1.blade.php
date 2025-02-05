@@ -26,7 +26,7 @@
         <a href="{{ route('userregionsshow', $region->id) }}">
             <!-- Everest Region -->
             <div class="relative overflow-hidden rounded-lg shadow-lg group h-96">
-              <img src="{{ asset('images/regions/' . $region->image) }}" alt="{{ $region->name }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-125 group-hover:brightness-75 brightness-50">
+              <img src="{{ asset('images/regions/' . $region->image) }}" alt="{{ $region->name }}" class="w-full h-full object-contain transform transition-transform duration-500 group-hover:scale-125 group-hover:brightness-75 brightness-50">
               <div class="absolute inset-0 flex flex-col items-center justify-center text-white font-bold space-y-2 text-center p-3">
                 <span class="text-lg block"> {{ $region->trips_count }} Trips</span>
                 <span class="text-2xl uppercase">{{ $region->name }}</span>

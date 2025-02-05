@@ -28,6 +28,11 @@ class Trip extends Model
     {
         return $this->hasMany(Itinerary::class);
     }
+
+    public function tripfacts()
+    {
+        return $this->hasMany(TripFact::class);
+    }
     
     
 }

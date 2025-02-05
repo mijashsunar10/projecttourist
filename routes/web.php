@@ -12,6 +12,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
+use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripHighlightController;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +94,8 @@ Route::controller(RegionController::class)->group(function () {
 
 Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
 Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
+
+
 Route::controller(TripController::class)->group(function () {
     Route::get('/regions/{region_id}/trips/create', 'tripscreate')->name('tripscreate');
     Route::post('/regions/{region_id}/trips',  'tripsstore')->name('tripsstore');
@@ -110,7 +113,7 @@ Route::controller(TripController::class)->group(function () {
     Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
     Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
     });
-
+        
     Route::prefix('trips/{trip_id}/highlights')->group(function () {
         Route::get('/create', [TripHighlightController::class, 'create'])->name('tripHighlightscreate');
         Route::post('/', [TripHighlightController::class, 'store'])->name('tripHighlightsstore');
@@ -127,6 +130,13 @@ Route::controller(TripController::class)->group(function () {
         Route::post('/{itinerary_id}/update', [ItineraryController::class, 'update'])->name('itineraryupdate');
         Route::delete('/delete', [ItineraryController::class, 'destroy'])->name('itinerarydestroy');
     });
+
+
+    Route::get('trips/{trip_id}/trip-facts/create', [TripFactController::class, 'create'])->name('tripfactcreate');
+Route::post('trips/{trip_id}/trip-facts/store', [TripFactController::class, 'store'])->name('tripfactstore');
+Route::get('trips/{trip_id}/trip-facts/{fact_id}/edit', [TripFactController::class, 'edit'])->name('tripfactedit');
+Route::post('trips/{trip_id}/trip-facts/{fact_id}/update', [TripFactController::class, 'update'])->name('tripfactupdate');
+Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class, 'destroy'])->name('tripfactdestroy');     
     
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index')->name('news');

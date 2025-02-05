@@ -8,23 +8,27 @@
 
 
      <div class="flex align-items-center justify-center">
-        <h1 class="text-3xl font-bold text-black mt-20 mb-8">{{$region->name+-}}</h1>
+        <h1 class="text-3xl font-bold text-black mt-20 mb-8">{{$region->name}}</h1>
      </div>
 
-  <div class=" content grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10  max-w-[90%] mx-auto">
+  {{-- <div class=" content grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10  max-w-[90%] mx-auto"> --}}
+  <div class=" max-w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
    
 
     @if($region->trips->isEmpty())
     <p class="text-gray-500">No trips available for this region.</p>
-@else
+    @else
     @foreach ($region->trips as $trip)
     <a href="{{route('trekmain')}}">
         
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card">
+        {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform duration-500 card"> --}}
+        <div class="gallery-item rounded-xl overflow-hidden shadow-xl bg-white cursor-pointer transition transform duration-300 hover:scale-105">
+            <div class="overflow-hidden rounded-t-xl">
             @if($trip->image)
-            <img class="w-full h-52 object-cover" src="{{ asset('images/trips/' . $trip->image) }}" alt="{{ $trip->name }}">
+            <img class="w-full h-64 object-cover transition duration-300 hover:opacity-90 " src="{{ asset('images/trips/' . $trip->image) }}" alt="{{ $trip->name }}">
             @endif
+        </div>
             <div class="p-6">
                 <h2 class="text-xl font-bold text-[#0b3e85]">{{ $trip->name }}</h2>
                
