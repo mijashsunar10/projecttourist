@@ -76,7 +76,7 @@
         background: white;
         border-radius: 50%;
         animation: fall linear infinite;
-        opacity: 0.8;
+        opacity: 1;
         filter: blur(1px);
     }
 

@@ -19,16 +19,16 @@
         <!-- News cards will be inserted dynamically -->
     </div>
 
-    <div class="container mx-auto">
+    <div class="container mx-auto ">
         <a href="{{ route('create') }}">
-            <button>create</button>
+            <button class="px-3 py-2 bg-blue-500 text-white rounded-lg mb-4 place-items-end">create</button>
         </a>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-w-40 ">
             @if($news->isNotEmpty())
             @foreach($news as $new)
             <!-- Card 1 -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-2xl">
-                <img class="w-full h-80 object-contain" src="{{ asset('uploads/news/'.$new->image)}}" alt="Web Development">
+                <img class="w-full h-60 object-contain" src="{{ asset('uploads/news/'.$new->image)}}" alt="Web Development">
                 <div class="p-5">
                     <span class="text-blue-600 font-semibold text-sm">Technology</span>
                     <h3 class="text-xl font-bold mt-2 hover:text-blue-500 transition-colors">{{ $new->title }}</h3>
@@ -41,15 +41,19 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <a href="{{ route('editnews',$new->slug) }}" class="px-3 py-2 bg-green-500 text-white">Edit</a>
+                @if(Auth::check() && Auth::user()->role == 'admin')
+                <div class="w-full p-2">
+                    <a href="{{ route('editnews',$new->slug) }}" class="pw-full px-2 py-1 bg-gray-50 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">Edit</a>
                 </div>
 
                 <form action="{{ route('deletenews', $new->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this news?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="bg-red-500 py-2 px-3 rounded-lg text-white">Delete</button>
+                    <div class="p-2">
+                        <button type="submit" class="w-full px-2 py-1 bg-gray-50 text-red-600 font-medium rounded-lg hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">Delete</button>
+                    </div>
                 </form>
+                @endif
             </div>
             @endforeach
             @endif

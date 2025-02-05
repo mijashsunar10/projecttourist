@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 // })->name('index');
 
 
+Route::get('/default', function () {
+    return view('welcome');
+})->name('default');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -79,7 +82,7 @@ Route::controller(BlogController::class)->group(function () {
     Route::get('/blogs', 'index')->name('blogs.index');
     Route::get('/blogs/create', 'create')->name('blogs.create');
     Route::post('/blogs', 'store')->name('blogs.store');
-    Route::get('/blogs/{slug}/edit', 'edit')->name('blogs.edit');
+    Route::get('/blogs/{slug}/edit', 'edit')->middleware('auth')->name('blogs.edit');
     Route::put('/blogs/{slug}/update', 'update')->name('blogs.update');
     Route::delete('/blogs/{id}/destroy', 'destroy')->name('blogs.destroy');
     Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');

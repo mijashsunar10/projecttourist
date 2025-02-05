@@ -480,7 +480,7 @@
             
           </li>
           <li class="relative group">
-            <a href="">
+            <a href="{{ route('register')  }}">
             <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
               Login
              <div class="px-1">

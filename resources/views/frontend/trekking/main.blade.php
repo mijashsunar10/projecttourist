@@ -66,6 +66,8 @@
         alt="Small Image 4"
         class="h-24 w-36 sm:h-32 sm:w-48 md:h-40 md:w-60 object-cover rounded-lg cursor-pointer small-image"
         />
+        
+        
         <img
         src="{{asset('frontend/images/trekking/image copy.png')}}"
         alt="Small Image 4"

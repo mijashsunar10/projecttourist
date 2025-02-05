@@ -53,6 +53,7 @@
                                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
                             </button>
                         </a>
+                        @if(Auth::check() && Auth::user()->role == 'admin')
                         <a href="{{ route('blogs.edit', [$blog->id, $blog->slug]) }}">
                             <button class="w-full px-4 py-2 bg-gray-50 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
                                 Edit Blog
@@ -66,7 +67,9 @@
                                 Delete
                                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
                             </button>
+
                         </form>
+                        @endif
                     </div>
                 </div>
             </article>
