@@ -79,18 +79,32 @@ Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name(
 Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
 // TrekCOntroller
 
-Route::controller(RegionController::class)->group(function () {
-    Route::get('/regions', 'index')->middleware(['auth', 'verified'])->name('regionsindex');
-    Route::get('/regions/create', 'regionscreate')->middleware(['auth', 'verified'])->name('regionscreate');
-    Route::post('/regionsstore', 'regionsstore')->middleware(['auth', 'verified'])->name('regionsstore');
-    Route::get('/regions/{id}/edit','regionsedit')->middleware(['auth', 'verified'])->name('regionsedit');
-    Route::post('/regions/{id}/update', 'regionsupdate')->middleware(['auth', 'verified'])->name('regionsupdate');
-    Route::post('/regions/{id}/delete',  'regionsdestroy')->middleware(['auth', 'verified'])->name('regionsdestroy');
+// Route::controller(RegionController::class)->group(function () {
+//     Route::get('/regions', 'index')->middleware(['auth', 'verified'])->name('regionsindex');
+//     Route::get('/regions/create', 'regionscreate')->middleware(['auth', 'verified'])->name('regionscreate');
+//     Route::post('/regionsstore', 'regionsstore')->middleware(['auth', 'verified'])->name('regionsstore');
+//     Route::get('/regions/{id}/edit','regionsedit')->middleware(['auth', 'verified'])->name('regionsedit');
+//     Route::post('/regions/{id}/update', 'regionsupdate')->middleware(['auth', 'verified'])->name('regionsupdate');
+//     Route::post('/regions/{id}/delete',  'regionsdestroy')->middleware(['auth', 'verified'])->name('regionsdestroy');
 
-    Route::get('/regions/{id}',  'regionshow')->middleware(['auth', 'verified'])->name('regionsshow');
-    // Route::get('/editnews/{slug}', 'edit')->name('editnews');
+//     Route::get('/regions/{id}',  'regionshow')->middleware(['auth', 'verified'])->name('regionsshow');
+//     // Route::get('/editnews/{slug}', 'edit')->name('editnews');
    
+// });
+
+Route::controller(RegionController::class)->group(function () {
+    Route::get('/regions', 'index')->name('regionsindex'); // Public
+    Route::get('/regions/{id}',  'regionshow')->name('regionsshow'); // Public
+
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/regions/create', 'regionscreate')->name('regionscreate');
+        Route::post('/regionsstore', 'regionsstore')->name('regionsstore');
+        Route::get('/regions/{id}/edit','regionsedit')->name('regionsedit');
+        Route::post('/regions/{id}/update', 'regionsupdate')->name('regionsupdate');
+        Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
+    });
 });
+
 
 Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
 Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
@@ -113,8 +127,9 @@ Route::controller(TripController::class)->group(function () {
     Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
     Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
     });
-        
+
     Route::prefix('trips/{trip_id}/highlights')->group(function () {
+        Route::get('/', [TripHighlightController::class, 'index'])->name('tripHighlightsindex'); // This now redirects to trip show
         Route::get('/create', [TripHighlightController::class, 'create'])->name('tripHighlightscreate');
         Route::post('/', [TripHighlightController::class, 'store'])->name('tripHighlightsstore');
         Route::get('/edit', [TripHighlightController::class, 'edit'])->name('tripHighlightsedit');
@@ -156,7 +171,7 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
 
 
     Route::get('/customize',[TrekController::class,'customize'])->name('customize');    
-    Route::post('/contact/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
+    Route::post('/customize/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
 
 
     Route::controller(BlogController::class)->group(function () {

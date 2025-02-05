@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Region;
 use App\Models\Trip;
+use Illuminate\Support\Facades\Auth;
   
 
 class RegionController extends Controller
 {
     public function index()
     {
-        $regions = Region::withCount('trips')->get();
-        return view('frontend.region.index',compact('regions'));
+        // if( Auth::check() ){
+        // $regions = Region::withCount('trips')->get();
+        // return view('frontend.region.index',compact('regions'));
+        // }
+        // else
+        // {
+            $regions = Region::withCount('trips')->get();
+            return view('frontend.trekking.region1',compact('regions'));
+
+        // }
     }
 
     public function userindex()
@@ -99,13 +108,12 @@ class RegionController extends Controller
         return view('frontend.trips.index', compact('region'));
     }
 
-    public function userregionshow($id)
-    {
-        
-        $region = Region::with('trips')->findOrFail($id);
-        return view('frontend.trips.index1', compact('region'));
+    // public function userregionshow($id)
+    // {
+    //     $region = Region::with('trips')->findOrFail($id);
+    //     return view('frontend.trips.index1', compact('region'));
 
-    }
+    // }
 
 
 }

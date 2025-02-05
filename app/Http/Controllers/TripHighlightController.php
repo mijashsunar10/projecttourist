@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class TripHighlightController extends Controller
 {
     public function create($trip_id)
-    {
+    {   
         $trip = Trip::findOrFail($trip_id);
         return view('frontend.trip_highlights.create', compact('trip'));
     }

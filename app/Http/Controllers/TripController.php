@@ -8,6 +8,7 @@ use App\Models\Trip;
 use App\Models\TripFact;
 use App\Models\TripHighlight;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TripController extends Controller
 {
@@ -117,11 +118,17 @@ class TripController extends Controller
 
             public function tripShow($trip_id)
         {
+         if( Auth::check() ){
             $trip = Trip::with('images')->findOrFail($trip_id);
             $itineraries = Itinerary::where('trip_id', $trip_id)->get();
             $highlights = TripHighlight::where('trip_id', $trip_id)->get();
             $tripFacts = TripFact::where('trip_id', $trip_id)->get();
+            
             return view('frontend.trips.show', compact('trip', 'itineraries','highlights','tripFacts'));
+         }
+
+         
+       
         }
 
 
