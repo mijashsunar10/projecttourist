@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -69,7 +70,7 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
 
-Route::get('/gallery',[TrekController::class,'gallery'])->name('gallery');
+Route::get('/gallerys',[TrekController::class,'gallery'])->name('gallerys');
 
 
 
@@ -106,8 +107,8 @@ Route::controller(RegionController::class)->group(function () {
 });
 
 
-Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
-Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
+// Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
+// Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
 
 
 Route::controller(TripController::class)->group(function () {
@@ -182,7 +183,10 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
         Route::put('/blogs/{slug}/update', 'update')->name('blogs.update');
         Route::delete('/blogs/{id}/destroy', 'destroy')->name('blogs.destroy');
         Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
-    });    
+    });  
+    
+    
+    Route::resource('gallery', GalleryController::class);
 
 
 require __DIR__.'/auth.php';
