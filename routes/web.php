@@ -66,7 +66,7 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 
 Route::get('customize',[TrekController::class,'customize'])->name('customize');
-Route::post('/contact/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
+Route::post('/customize/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
 
 
 

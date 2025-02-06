@@ -2,6 +2,22 @@
 
 <body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-6">
     <!-- Header Section -->
+{{-- 
+    @if ($errors->any())
+
+        <div class="alert alert-danger" role="alert">
+
+            <ul>
+
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+
+            </ul>
+
+        </div>
+
+    @endif --}}
     <div class="text-center mb-12 animate-fade-in-down">
         <h1 class="text-4xl font-bold text-gray-800 mb-2">
             <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">

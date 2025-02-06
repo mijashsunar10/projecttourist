@@ -533,31 +533,19 @@
 
                 <!-- Navbar Item 2 -->
                 <li class="relative group">
-                    <a href="{{ route('contact') }}">
+                    <a href="">
                         <button
                             class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-                            Contact
-
+                            Company
                         </button>
                     </a>
 
                 </li>
                 <li class="relative group">
-                    <a href="">
+                    <a href="{{ route('contact') }}">
                         <button
                             class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-                            Login
-                            <div class="px-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
-                                    height="20" fill="currentColor">
-                                    <!-- Head -->
-                                    <circle cx="12" cy="8" r="4" />
-                                    <!-- Body -->
-                                    <path d="M12 14c-5 0-8 3-8 6v1h16v-1c0-3-3-6-8-6z" />
-                                </svg>
-                            </div>
-
-
+                            Contact
                         </button>
                     </a>
 
@@ -1128,14 +1116,17 @@
         <li>
             <button class="w-full flex justify-between items-center px-4 py-2 font-bold hover:bg-blue-800"
                 onclick="toggleDropdown('mediaDropdown')">
-                Login
-
+                Company 
             </button>
 
         </li>
-
-
-
+        <li><a href="{{ route('contact') }}">
+            <button class="w-full flex justify-between items-center px-4 py-2 font-bold hover:bg-blue-800"
+                onclick="toggleDropdown('mediaDropdown')">
+                Contact  
+q            </button>
+        </a>
+        </li>
     </ul>
 </div>
 
