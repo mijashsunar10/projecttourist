@@ -146,3 +146,75 @@
     </div>
 </div>
 @endsection--}}
+
+ <li class="relative group">
+            <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+              Media
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <!-- Dropdown Menu -->
+            <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
+              
+              <li class="relative group">
+                <a href="{{route('blog')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Blogs
+                  </div>      
+              </a>
+              </li>
+              
+              <li class="relative group">
+                <a href="{{route('news')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   News
+                  </div>      
+              </a>
+              </li>
+              <li class="relative group">
+                <a href="{{route('testimonials')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Testimonials
+                  </div>      
+              </a>
+              </li>
+              <li class="relative group">
+                <a href="{{route('faq')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Frequently Asked Questions
+                  </div>      
+              </a>
+              </li>
+              <li class="relative group">
+                <a href="{{route('faqs.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   faqs
+                  </div>      
+              </a>
+              </li>
+              
+              <li class="relative group">
+                <a href="{{route('gallerys')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Gallery old
+                  </div>      
+              </a>
+              </li>
+              <li class="relative group">
+                <a href="{{route('gallery.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Gallery
+                  </div>      
+              </a>
+              </li>
+              <li class="relative group">
+                <a href="{{route('customize')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                  <div class="w-52">
+                   Customize Trek
+                  </div>      
+              </a>
+              </li>
+
+            </ul>
+          </li>

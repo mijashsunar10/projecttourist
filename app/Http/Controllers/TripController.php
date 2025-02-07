@@ -122,14 +122,14 @@ class TripController extends Controller
 
             public function tripShow($trip_id)
         {
-         if( Auth::check() ){
+        
             $trip = Trip::with('images')->findOrFail($trip_id);
             $itineraries = Itinerary::where('trip_id', $trip_id)->get();
             $highlights = TripHighlight::where('trip_id', $trip_id)->get();
             $tripFacts = TripFact::where('trip_id', $trip_id)->get();
             
             return view('frontend.trips.show', compact('trip', 'itineraries','highlights','tripFacts'));
-         }
+         
 
          
        

@@ -2,7 +2,7 @@
 
 @section('pagecontent')
 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-6 flex justify-center items-center">
-    <div class="max-w-2xl w-full bg-white p-8 rounded-xl shadow-2xl shadow-blue-100/50 relative transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-100/70">
+    <div class="max-w-2xl w-full bg-white p-8 rounded-xl shadow-2xl shadow-blue-100/50 relative transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-100/70 mt-20">
         <div class="text-center mb-6 animate-fade-in-down">
             <h1 class="text-4xl font-bold text-gray-800 mb-2">
                 <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">

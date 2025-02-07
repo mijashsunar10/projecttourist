@@ -45,6 +45,10 @@ class TrekController extends Controller
     {
         return view('frontend.trekking.main');
     }
+    public function trekmain1()
+    {
+        return view('frontend.trekking.main1');
+    }
     public function customize()
     {
         return view('frontend.customize.customize');

@@ -12,10 +12,12 @@ class RegionController extends Controller
 {
     public function index()
     {
-       
-            $regions = Region::withCount('trips')->get()->sortByDesc('created_at');
-            return view('frontend.region.index',compact('regions'));
 
+            // $regions = Region::withCount('trips')->get()->sortByDesc('created_at');
+            $regions = Region::withCount('trips')->get();
+            return view('frontend.region.index',compact('regions'));
+            // return view('layouts.header', compact('regions'));
+// 
     }
 
     // public function userindex()

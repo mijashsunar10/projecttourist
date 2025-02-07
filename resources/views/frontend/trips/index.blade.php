@@ -62,7 +62,7 @@
 
                     <!-- Buttons Section -->
                     <div class="mt-4 space-y-2">
-                        <a href="{{ route('trekmain') }}" class="block bg-[#0B6285] text-white py-2 px-4 rounded-lg w-full text-center hover:bg-[#094A6B] font-medium transition-colors duration-300 shadow-md">
+                        <a href="{{ route('tripshow',$trip->id) }}" class="block bg-[#0B6285] text-white py-2 px-4 rounded-lg w-full text-center hover:bg-[#094A6B] font-medium transition-colors duration-300 shadow-md">
                             View Details
                         </a>
 

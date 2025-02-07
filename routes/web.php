@@ -68,6 +68,7 @@ Route::get('/region',[TrekController::class,'region'])->name('region');
 Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
+Route::get('/trek/main1',[TrekController::class,'trekmain1'])->name('trekmain1');
 
 
 Route::get('/gallerys',[TrekController::class,'gallery'])->name('gallerys');
@@ -95,6 +96,7 @@ Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('r
 
 Route::controller(RegionController::class)->group(function () {
     Route::get('/regions', 'index')->name('regionsindex'); // Public
+    // Route::get('/header', 'header')->name('header'); // Public
     Route::get('/regions/{id}',  'regionshow')->name('regionsshow'); // Public
 
     Route::middleware(['auth', 'verified'])->group(function () {
@@ -127,7 +129,7 @@ Route::controller(TripController::class)->group(function () {
 
 });
 
-    Route::controller(TripDescriptionController::class)->group(function()
+    Route::controller(TripDescriptionController::class)->middleware(['auth', 'verified'])->group(function()
     {
 
      Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
