@@ -53,7 +53,17 @@ Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
-Route::resource('faqs', FaqController::class);
+Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index'); // Publicly accessible
+
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+    Route::post('faqs', [FaqController::class, 'store'])->name('faqs.store');
+    Route::get('faqs/{faq:slug}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+    Route::put('faqs/{faq:slug}', [FaqController::class, 'update'])->name('faqs.update');
+    Route::delete('faqs/{faq:slug}', [FaqController::class, 'destroy'])->name('faqs.destroy');
+
+});
 
 Route::resource('gallery', GalleryController::class);
 

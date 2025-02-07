@@ -12,7 +12,6 @@
             
             <form action="{{ route('faqs.store') }}" method="POST" class="space-y-6">
                 @csrf
-                
                 <div>
                     <label for="question" class="block text-sm font-medium text-gray-700 mb-2">Question</label>
                     <input type="text" name="question" id="question" 

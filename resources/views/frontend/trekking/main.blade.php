@@ -478,7 +478,7 @@
         </div>
         <!-- End of include exclude Section -->
         <!-- Required items Section -->
-        <div class="container mx-auto py-16 px-16 rounded-lg shadow-md bg-gray-200  mt-8" id="inclusions"
+        <div class="container mx-auto py-16 px-16 rounded-lg shadow-md bg-gray-200  mt-8" id="required"
             style="max-width: 90%;">
             <h1 class="text-3xl font-bold text-[#0B6285] mb-8">Required Items For This Trek</h1>
             <ul class="space-y-3 text-gray-600">
@@ -502,7 +502,7 @@
         <!-- End of Required items Section -->
         <div class="container mx-auto py-16 px-16 bg-gray-200 shadow-md rounded-lg  mt-8" id="faqs"
             style="max-width: 90%;">
-            <h2 class="text-3xl font-bold text-[#0B6285] mb-8">FAQS</h2>
+            <h2 class="text-3xl font-bold text-[#0B6285] mb-8"> TRIPFAQS</h2>
             <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg"></div>
         </div>
         <!-- Reviews Section -->
