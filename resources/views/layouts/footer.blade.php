@@ -161,7 +161,7 @@
         position: absolute;
         width: 6px;
         height: 6px;
-        background:#e5e7eb; 
+        background:#f3f4f6; 
         border-radius: 50%;
         animation: fall linear infinite;
         opacity: 0.8;

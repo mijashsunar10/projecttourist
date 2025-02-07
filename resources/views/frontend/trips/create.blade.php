@@ -1,46 +1,164 @@
 @extends('frontend.template.template')
 
 @section('pagecontent')
-<div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">Add Trip to {{ $region->name }}</h1>
+<div class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-6 mt-20">
+    <div class="text-center  animate-fade-in-down">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+                🏔️ Add Trip to {{ $region->name }}
+            </span>
+        </h1>
+        <p class="text-gray-600 text-lg">Add a new trip with its details and an image</p>
+    </div>
+<div class=" relative container mx-auto mt-3 p-6 bg-white shadow-2xl rounded-xl max-w-3xl">
+    <!-- Header Section -->
+    <a href="{{ route('regionsshow',$region->id) }}" class="absolute top-2 right-2">
+        <button
+            class="flex items-center justify-center w-10 h-10 bg-red-50 hover:bg-red-100 text-red-500 rounded-full transition-all duration-300">
+            ✕
+        </button>
+    </a>
 
-    <form action="{{ route('tripsstore', $region->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md">
+    <form action="{{ route('tripsstore', $region->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="name">Trip Name</label>
-            <input type="text" id="name" name="name" class="w-full border rounded px-4 py-2" required>
-        </div>
+        <div class="space-y-6">
+            <!-- Trip Name Input -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Trip Name</label>
+                <input type="text" name="name" id="name" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter trip name">
+            </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="description">Description</label>
-            <textarea id="description" name="description" rows="4" class="w-full border rounded px-4 py-2"></textarea>
-        </div>
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea name="description" id="description" rows="4" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter trip description"></textarea>
+            </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="price">Price ($)</label>
-            <input type="number" id="price" name="price" class="w-full border rounded px-4 py-2" required>
-        </div>
+            <!-- Price -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
+                <input type="number" name="price" id="price" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter trip price">
+            </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="duration">Duration (days)</label>
-            <input type="number" id="duration" name="duration" class="w-full border rounded px-4 py-2" required>
-        </div>
+            <!-- Duration -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Duration (days)</label>
+                <input type="number" name="duration" id="duration" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter trip duration">
+            </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="distance">Distance (km/day)</label>
-            <input type="number" step="0.1" id="distance" name="distance" class="w-full border rounded px-4 py-2" required>
-        </div>
+            <!-- Distance -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Distance (km/day)</label>
+                <input type="number" step="0.1" name="distance" id="distance" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter daily distance">
+            </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="ascent">Ascent (meters/day)</label>
-            <input type="number" id="ascent" name="ascent" class="w-full border rounded px-4 py-2" required>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2" for="image">Image</label>
-            <input type="file" id="image" name="image" class="w-full border rounded px-4 py-2">
-        </div>
+            <!-- Ascent -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Ascent (meters/day)</label>
+                <input type="number" name="ascent" id="ascent" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Enter daily ascent">
+            </div>
 
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Add Trip</button>
+            <!-- File Upload -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                <div class="relative group">
+                    <div id="dropzone"
+                        class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center transition-all duration-300 group-hover:border-blue-400 group-hover:bg-blue-50 cursor-pointer">
+                        <div class="space-y-3">
+                            <div class="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-blue-200">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-600">
+                                <span class="text-blue-600 font-medium">Click to upload</span> or drag and drop
+                            </p>
+                        </div>
+                        <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" required accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Preview Container -->
+                <div id="preview-container" class="mt-6 hidden">
+                    <div class="relative group">
+                        <button type="button" id="remove-preview"
+                            class="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hover:bg-red-600 transition-all shadow-sm hover:shadow-md">&times;</button>
+                        <div class="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                            <img id="image-preview" class="hidden w-full object-contain max-h-96 bg-gray-50" alt="Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-lg">
+                ✅ Save Trip
+            </button>
+        </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('image');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('border-blue-500', 'bg-blue-50');
+        });
+        
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('border-blue-500', 'bg-blue-50');
+        });
+        
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('border-blue-500', 'bg-blue-50');
+            fileInput.files = e.dataTransfer.files;
+            handleFile(e.dataTransfer.files[0]);
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) handleFile(e.target.files[0]);
+        });
+        
+        function handleFile(file) {
+            previewContainer.classList.remove('hidden');
+            const reader = new FileReader();
+            
+            if (file.type.startsWith('image/')) {
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        document.getElementById('remove-preview').addEventListener('click', () => {
+            fileInput.value = '';
+            previewContainer.classList.add('hidden');
+            imagePreview.src = '';
+        });
+    });
+</script>
+</div>
 @endsection
+
+

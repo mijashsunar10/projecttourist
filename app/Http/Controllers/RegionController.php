@@ -12,23 +12,17 @@ class RegionController extends Controller
 {
     public function index()
     {
-        // if( Auth::check() ){
-        // $regions = Region::withCount('trips')->get();
-        // return view('frontend.region.index',compact('regions'));
-        // }
-        // else
-        // {
-            $regions = Region::withCount('trips')->get();
-            return view('frontend.trekking.region1',compact('regions'));
+       
+            $regions = Region::withCount('trips')->get()->sortByDesc('created_at');
+            return view('frontend.region.index',compact('regions'));
 
-        // }
     }
 
-    public function userindex()
-    {
-        $regions = Region::withCount('trips')->get();
-        return view('frontend.trekking.region1',compact('regions'));
-    }
+    // public function userindex()
+    // {
+    //     $regions = Region::withCount('trips')->get();
+    //     return view('frontend.region.index',compact('regions'));
+    // }
     public function regionscreate()
     {
         return view('frontend.region.create');

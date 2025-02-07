@@ -2,7 +2,7 @@
 
 @section('pagecontent')
 <div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">{{ $region->name }}</h1>
+    <h1 class="text-2xl font-bold mb-4">Trips of {{ $region->name }}</h1>
     <a href="{{ route('tripscreate', $region->id) }}" class="bg-green-500 text-white px-4 py-2 rounded">Add Trip</a>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">

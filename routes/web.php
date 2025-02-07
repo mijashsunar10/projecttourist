@@ -112,12 +112,18 @@ Route::controller(RegionController::class)->group(function () {
 
 
 Route::controller(TripController::class)->group(function () {
-    Route::get('/regions/{region_id}/trips/create', 'tripscreate')->name('tripscreate');
-    Route::post('/regions/{region_id}/trips',  'tripsstore')->name('tripsstore');
-    Route::get('/trips/{id}/edit',  'tripsedit')->name('tripsedit');
-    Route::put('/trips/{id}', 'tripsupdate')->name('tripsupdate');
-    Route::delete('/trips/{id}',  'tripsdestroy')->name('tripsdestroy');
+
     Route::get('/trips/{id}', 'tripShow')->name('tripshow');
+
+    Route::middleware(['auth', 'verified'])->group(function () {
+
+        Route::get('/regions/{region_id}/trips/create', 'tripscreate')->name('tripscreate');
+        Route::post('/regions/{region_id}/trips',  'tripsstore')->name('tripsstore');
+        Route::get('/trips/{id}/edit',  'tripsedit')->name('tripsedit');
+        Route::put('/trips/{id}', 'tripsupdate')->name('tripsupdate');
+        Route::delete('/trips/{id}',  'tripsdestroy')->name('tripsdestroy');
+        });
+    
 
 });
 
@@ -187,6 +193,7 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     
     
     Route::resource('gallery', GalleryController::class);
+
 
 
 require __DIR__.'/auth.php';

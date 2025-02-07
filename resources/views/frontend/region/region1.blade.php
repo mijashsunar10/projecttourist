@@ -1,5 +1,3 @@
-
-
 @extends('frontend.template.template')
 
 @section('pagecontent')
@@ -37,8 +35,8 @@
 
     @auth
     <div class="text-center m-5">
-        <a href="{{ route('regionscreate') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 font-bold">
-          + Add Region
+        <a href="{{ route('regionscreate') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+          +  Add Region
         </a>
     </div>
     @endauth
@@ -52,24 +50,18 @@
                    class="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75 brightness-50">
               <div class="absolute inset-0 flex flex-col items-center justify-center text-white font-bold space-y-2 text-center p-6 bg-gradient-to-t from-black/60 to-transparent">
                  
-                <div class="flex justify-between flex-col mt-4 p-2 space-x-4 w-full">
-                    <div class="text-lg font-semibold px-4 py-1 rounded-full block"> 
-                        {{ $region->trips_count }} Trips
-                    </div>
-        
-                    <!-- Trip Name -->
-                    <div class="text-2xl uppercase font-bold tracking-wide block">
-                        {{ $region->name }}
-                    </div>
-                    </div>
+               <!-- Trip Count -->
+               <div class="flex justify-between flex-col mt-4 p-2 space-x-4 w-full">
+            <div class="text-lg font-semibold px-4 py-1 rounded-full block"> 
+                {{ $region->trips_count }} Trips
+            </div>
 
+            <!-- Trip Name -->
+            <div class="text-2xl uppercase font-bold tracking-wide block">
+                {{ $region->name }}
+            </div>
+               </div>
 
-                    <div class="flex justify-between mt-4 p-2 space-x-4 w-full">
-                        <a href="{{ route('regionsshow', $region->id) }}" class="bg-blue-800  text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex-1 text-center">
-                            Views Trips 
-                        </a>
-                       
-                    </div>
                   {{-- Edit and Delete Buttons Below Image --}}
                   @auth
                   <div class="flex justify-between mt-4 p-2 space-x-4 w-full">
@@ -84,9 +76,6 @@
                       </form>
                   </div>
                   @endauth
-                  
-                 
-                  
               </div>
           </a>
       </div>

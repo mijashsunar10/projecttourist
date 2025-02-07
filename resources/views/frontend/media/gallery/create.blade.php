@@ -41,12 +41,12 @@
                             <option value="photo">📷 Photo</option>
                             <option value="video">🎥 Video</option>
                         </select>
-                        <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                        {{-- <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -170,3 +170,6 @@
         });
     </script>
 </body>
+
+
+

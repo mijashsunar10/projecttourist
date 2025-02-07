@@ -75,6 +75,9 @@ class TripController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
+        // Store existing image if no new image is uploaded
+        $imageName = $trip->image;
+    
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -82,29 +85,30 @@ class TripController extends Controller
             // Move new image to the trips directory
             $image->move(public_path('images/trips'), $imageName);
     
-            // Delete old image if exists
+            // Delete old image if it exists
             if ($trip->image) {
                 $oldImagePath = public_path('images/trips/' . $trip->image);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
             }
-    
-            $trip->image = $imageName;
         }
     
-        $trip->name = $request->name;
-        $trip->description = $request->description;
-        $trip->price = $request->price;
-        $trip->duration = $request->duration;
-        $trip->distance = $request->distance;
-        $trip->ascent = $request->ascent;
-        $trip->save();
-    //    dd($request);
+        // Update trip details
+        $trip->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'distance' => $request->distance,
+            'ascent' => $request->ascent,
+            'image' => $imageName, // Keeps old image if not changed
+        ]);
     
         return redirect()->route('regionsshow', $trip->region_id)->with('success', 'Trip updated successfully.');
     }
-
+    
+    
     public function tripsdestroy($id)
     {
         $trip = Trip::findOrFail($id);

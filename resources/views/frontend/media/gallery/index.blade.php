@@ -1,8 +1,9 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
+@extends('frontend.template.template')
 
-<body class="bg-gray-100 min-h-screen p-6">
+@section('pagecontent')
+<section class="bg-gray-100 min-h-screen  ">
     <!-- Header Section -->
-    <div class="text-center mb-6">
+    <div class="text-center mb-6 mt-20 p-4">
         <h1 class="text-4xl font-bold text-gray-800">🏔️ Gallery</h1>
         <p class="text-lg text-gray-600 mt-2">Explore photos and videos from our amazing adventures.</p>
     </div>
@@ -276,4 +277,6 @@
             updateGalleryArray();
         });
     </script>
-</body>
+</section>
+
+@endsection
