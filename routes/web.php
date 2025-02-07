@@ -173,8 +173,16 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     Route::post('/contact/send', [ContactController::class, 'submitContactForm'])->name('contact.send');
 
 
-    Route::resource('/faqs', FaqController::class);
+    // Route::resource('/faqs', FaqController::class);
+    Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index'); // Publicly accessible
+    Route::middleware(['auth'])->group(function () {
     
+    Route::get('faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+    Route::post('faqs', [FaqController::class, 'store'])->name('faqs.store');
+    Route::get('faqs/{faq:slug}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+    Route::put('faqs/{faq:slug}', [FaqController::class, 'update'])->name('faqs.update');
+    Route::delete('faqs/{faq:slug}', [FaqController::class, 'destroy'])->name('faqs.destroy');
+});
 
 
     Route::get('/customize',[TrekController::class,'customize'])->name('customize');    

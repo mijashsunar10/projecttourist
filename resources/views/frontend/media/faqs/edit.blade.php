@@ -1,7 +1,8 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@extends('frontend.template.template')
 
+@section('pagecontent')
 <div class="min-h-screen bg-gray-50 py-8">
-    <div class="container mx-auto max-w-2xl px-4">
+    <div class="container mx-auto max-w-2xl px-4 mt-20">
         <div class="bg-white rounded-xl shadow-md p-8 relative">
             <a href="{{ route('faqs.index') }}" 
             class="absolute top-2 right-4 text-gray-600 hover:text-gray-900 transition-colors">
@@ -44,3 +45,4 @@
         </div>
     </div>
 </div>
+@endsection

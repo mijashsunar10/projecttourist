@@ -1,6 +1,5 @@
 @extends('frontend.template.template')
 
-
 @section('pagecontent')
     <section class="bg-gray-200 min-h-screen">
         <div class="flex items-center justify-center mt-20">
@@ -8,7 +7,12 @@
                 <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
                     <h1 class="text-4xl font-bold">Trekking in Nepal – FAQs</h1>
                     <p class="mt-2 text-lg">Have some Queries? We have the answers to your FAQs.</p>
-                    <a href="{{ route('faqs.create') }}"><button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg ">Add FAQ</button></a>
+                    {{-- Show Add FAQ button only to admin --}}
+                    @auth                   
+                            <a href="{{ route('faqs.create') }}">
+                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
+                            </a>
+                    @endauth
                 </div>
                 <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
                     @foreach ($faqs as $faq)
@@ -27,15 +31,19 @@
                             </button>
                             <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $faq->id }}">
                                 <p>{{ $faq->answer }}</p>
-                                <div class="mt-1">
-                                    <a href="{{ route('faqs.edit', $faq->slug) }}" class="text-blue-500"><button class="text-white font-bold mt-2 px-3 py-1 bg-[#0B6285] rounded-lg ">Edit</button></a>
-                                    <form action="{{ route('faqs.destroy', $faq->slug) }}" method="POST"
-                                        class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg ">Delete</button>
-                                    </form>
-                                </div>
+                                {{-- Show Edit/Delete buttons only to admin --}}
+                                @auth
+                                        <div class="mt-1">
+                                            <a href="{{ route('faqs.edit', $faq->slug) }}" class="text-blue-500">
+                                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                            </a>
+                                            <form action="{{ route('faqs.destroy', $faq->slug) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                            </form>
+                                        </div>
+                                @endauth
                             </div>
                         </div>
                     @endforeach
@@ -58,6 +66,4 @@
             }
         }
     </script>
-
-
-@section('pagecontent')
+@endsection

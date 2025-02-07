@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         $faqs = Faq::all();
