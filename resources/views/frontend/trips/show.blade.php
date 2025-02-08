@@ -605,52 +605,122 @@
 
 {{-- Trip Required  items --}}
 <!-- Required Items Section -->
-<div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
-   <div class="mx-auto" style="max-width: 95%`">
-   
-    <h2 class="section-title">Required Items For This Trek</h2>
+    <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
+    <div class="mx-auto" style="max-width: 95%`">
     
-    @foreach($trip->requiredItems as $item)
-        <div class="flex justify-between items-center border-b py-2">
-            <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
-               </p>
-            <div>
-                <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
-                <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                </form>
+        <h2 class="section-title">Required Items For This Trek</h2>
+        
+        @foreach($trip->requiredItems as $item)
+            <div class="flex justify-between items-center border-b py-2">
+                <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
+                </p>
+                <div>
+                    <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                    <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
 
-    <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
-</div>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const section = urlParams.get('section');
+        <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+    </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
 
-        if (section) {
-            const sectionElement = document.getElementById(section);
-            if (sectionElement) {
-                const navbarHeight = document.querySelector("nav").offsetHeight; 
-                const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+            if (section) {
+                const sectionElement = document.getElementById(section);
+                if (sectionElement) {
+                    const navbarHeight = document.querySelector("nav").offsetHeight; 
+                    const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
 
-                window.scrollTo({
-                    top: sectionPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                        top: sectionPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
 
 
 {{-- Trip Required  items --}}
+
+
+{{-- Trips Inclusion and Exlcuion --}}
+
+<div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
+    <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+
+    @if ($trip->inclusionExclusions->isEmpty())
+        <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
+    @else
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Price Includes -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
+                @php
+                    $inclusions = $trip->inclusionExclusions->where('type', 'inclusion');
+                @endphp
+                @if ($inclusions->isEmpty())
+                    <p class="text-gray-600">No inclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($inclusions as $inclusion)
+                            <li>&#10148; {{ $inclusion->description }}
+                                {{-- Edit and Delete Actions --}}
+                                <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $inclusion->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Price Does Not Include -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
+                @php
+                    $exclusions = $trip->inclusionExclusions->where('type', 'exclusion');
+                @endphp
+                @if ($exclusions->isEmpty())
+                    <p class="text-gray-600">No exclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($exclusions as $exclusion)
+                            <li>&#10148; {{ $exclusion->description }}
+                                {{-- Edit and Delete Actions --}}
+                                <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $exclusion->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+    @endif
+
+    <!-- Add Button -->
+    <div class="mt-6 text-center">
+        <a href="{{ route('trips.inclusions-exclusions.create', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+    </div>
+</div>
+
+{{-- Trips Inclusion and Exlcuion --}}
 
 
 

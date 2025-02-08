@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\InclusionExclusionController;
 use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
 use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripHighlightController;
+use App\Models\InclusionExclusion;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
 
@@ -211,6 +213,22 @@ Route::post('/trip/{trip_id}/requireditems/store', [RequiredItemController::clas
 Route::get('/trip/{trip_id}/requireditems/{id}/edit', [RequiredItemController::class, 'edit'])->name('requireditems.edit');
 Route::put('/trip/{trip_id}/requireditems/{id}/update', [RequiredItemController::class, 'update'])->name('requireditems.update');
 Route::delete('/trip/{trip_id}/requireditems/{id}/delete', [RequiredItemController::class, 'destroy'])->name('requireditems.destroy');
+
+
+// Show Create Form for Inclusions & Exclusions
+Route::get('trips/{trip}/inclusions-exclusions/create', [InclusionExclusionController::class, 'create'])->name('trips.inclusions-exclusions.create');
+
+// Store Inclusions & Exclusions
+Route::post('trips/{trip}/inclusions-exclusions', [InclusionExclusionController::class, 'store'])->name('trips.inclusions-exclusions.store');
+
+// Edit Inclusion/Exclusion
+Route::get('trips/{trip}/inclusions-exclusions/{inclusionExclusion}/edit', [InclusionExclusionController::class, 'edit'])->name('trips.inclusions-exclusions.edit');
+
+// Update Inclusion/Exclusion
+Route::put('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'update'])->name('trips.inclusions-exclusions.update');
+
+// Delete Inclusion/Exclusion
+Route::delete('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'destroy'])->name('trips.inclusions-exclusions.destroy');
 
 
 
