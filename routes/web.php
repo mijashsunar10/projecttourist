@@ -65,7 +65,12 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::resource('gallery', GalleryController::class);
+Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('gallery', GalleryController::class)->except(['index']);
+});
+
 
 
 

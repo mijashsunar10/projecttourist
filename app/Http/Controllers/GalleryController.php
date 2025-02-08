@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Str;
-
-class GalleryController extends Controller
+class GalleryController extends BaseController
 {
     /**
      * Display a listing of the gallery items.
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         $photos = Gallery::where('type', 'photo')->orderBy('date', 'desc')->get();
