@@ -42,6 +42,10 @@ class Trip extends Model
     {
         return $this->hasMany(InclusionExclusion::class);
     }
+    public function tripfaqs()
+    {
+        return $this->hasMany(Tripfaq::class);
+    }
     
     
 }

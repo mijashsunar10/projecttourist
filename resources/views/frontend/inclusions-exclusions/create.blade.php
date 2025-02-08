@@ -4,7 +4,7 @@
 <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-gray-700 mb-6">Add Inclusions & Exclusions</h2>
     
-    <form action="{{ route('trips.inclusions-exclusions.store', $tripId) }}" method="POST">
+    <form action="{{ route('trips.inclusions-exclusions.store', $tripId) }}#inclusions" method="POST">
         @csrf
         <label class="block text-gray-600 font-semibold mb-2">Type:</label>
         <select name="type" class="w-full p-2 border border-gray-300 rounded mb-4">
