@@ -10,6 +10,7 @@ use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\RequiredItemController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
@@ -203,6 +204,14 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     
     
     Route::resource('gallery', GalleryController::class);
+
+
+    Route::get('/trip/{trip_id}/requireditems/create', [RequiredItemController::class, 'create'])->name('requireditems.create');
+Route::post('/trip/{trip_id}/requireditems/store', [RequiredItemController::class, 'store'])->name('requireditems.store');
+Route::get('/trip/{trip_id}/requireditems/{id}/edit', [RequiredItemController::class, 'edit'])->name('requireditems.edit');
+Route::put('/trip/{trip_id}/requireditems/{id}/update', [RequiredItemController::class, 'update'])->name('requireditems.update');
+Route::delete('/trip/{trip_id}/requireditems/{id}/delete', [RequiredItemController::class, 'destroy'])->name('requireditems.destroy');
+
 
 
 

@@ -33,6 +33,10 @@ class Trip extends Model
     {
         return $this->hasMany(TripFact::class);
     }
+        public function requiredItems()
+    {
+        return $this->hasMany(RequiredItem::class);
+    }
     
     
 }

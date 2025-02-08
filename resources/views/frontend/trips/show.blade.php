@@ -354,6 +354,7 @@
                 <h2 class="text-4xl font-bold text-gray-800 mx-4">Trip Highlights</h2>
                 <div class="flex-grow h-px bg-gray-300"></div>
             </div> --}}
+            <div style="max-width: 95%" class="mx-auto">
             <h2 class="section-title">Trip Highlights</h2>
         
             <ul class="space-y-4">
@@ -381,6 +382,7 @@
                     Add Highlights
                 </a>
             </div>
+        </div>
         </div>
     @endauth
 
@@ -452,7 +454,7 @@
 </script>
 
 
-<div class="mt-6">
+<div class="mt-6" >
     {{-- <div class="flex items-center justify-center mb-6">
         <div class="flex-grow h-px bg-gray-300"></div>
         <h2 class="text-4xl font-bold text-gray-800 mx-4">Add Iterinary Overview</h2>
@@ -461,9 +463,9 @@
      --}}
     <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-        <h2 class="section-title  ">Iterinary Overview</h2>
-        
-        <div class="flex items-center justify-center" >
+    <div class=" mx-auto" style="max-width:95%" >
+        <h2 class="section-title">Iterinary Overview</h2>
+        <div class="flex items-center justify-center" style="max-width:95%" >
             <div class="w-full max-w-7xl">
                 <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
                     <h1 class="text-4xl font-bold">Trekking in Nepal – Iterinanary Overview</h1>
@@ -516,6 +518,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
     <script>
@@ -598,6 +601,57 @@
         });
     });
 </script>
+
+
+{{-- Trip Required  items --}}
+<!-- Required Items Section -->
+<div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
+   <div class="mx-auto" style="max-width: 95%`">
+   
+    <h2 class="section-title">Required Items For This Trek</h2>
+    
+    @foreach($trip->requiredItems as $item)
+        <div class="flex justify-between items-center border-b py-2">
+            <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
+               </p>
+            <div>
+                <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                </form>
+            </div>
+        </div>
+    @endforeach
+
+    <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+</div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const section = urlParams.get('section');
+
+        if (section) {
+            const sectionElement = document.getElementById(section);
+            if (sectionElement) {
+                const navbarHeight = document.querySelector("nav").offsetHeight; 
+                const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+
+                window.scrollTo({
+                    top: sectionPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+</script>
+
+
+
+{{-- Trip Required  items --}}
+
 
 
 
