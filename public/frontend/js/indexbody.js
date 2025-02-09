@@ -163,8 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Change logo name colors
         logoName.innerHTML = `
-          <span class="text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-          <span class="text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
+          <span class="notranslate text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
+          <span class="notranslate text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
         `;
       } else {
         // Revert navbar background and text
@@ -181,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Revert logo name colors
         logoName.innerHTML = `
-          <span class="text-white text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-          <span class="text-white text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
+          <span class="notranslate text-white text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
+          <span class="notranslate text-white text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
         `;
       }
     });
@@ -196,8 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set logo name colors for other pages
     logoName.innerHTML = `
-      <span class="text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-      <span class="text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
+      <span class="notranslate text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
+      <span class="notranslate text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
     `;
   }
 });

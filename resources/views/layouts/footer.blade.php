@@ -1,5 +1,6 @@
+
 <div class="w-full mx-auto service_card ">
-  
+
     <img
       src="{{asset('frontend/images/footer/footer.jpeg')}}"
       alt=""
@@ -41,6 +42,7 @@
         </ul>
       </div>
 
+
       <!-- Column 4 -->
       <div>
         <h3 class="text-lg font-bold mb-2 text-white">Legal</h3>
@@ -63,7 +65,7 @@
             <i class="fab fa-instagram"></i>
           </a>
           <a href="#" class="text-gray-400 hover:text-white">
-            <i class="fab fa-pinterest"></i>
+           <i class="fab fa-pinterest"></i>
           </a>
         </div>
         <!-- Button -->

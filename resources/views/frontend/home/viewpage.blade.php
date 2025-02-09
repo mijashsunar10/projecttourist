@@ -109,7 +109,7 @@
 
 
 <!-- Message Box -->
-<div class="fixed bottom-4 left-4 z-10">
+{{-- <div class="fixed bottom-4 left-4 z-10">
   <!-- Message Button -->
   <button id="emailButton" onclick="toggleEmailBox()" 
           class="w-16 h-16 bg-green-500 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition" 
@@ -139,6 +139,16 @@
     </div>
     <button type="submit" class="w-full py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition">Send</button>
   </form>
+</div> --}}
+<div class="fixed bottom-4 left-4 z-10">
+  <!-- Customization Button with Small Text -->
+  <a href="{{route('customize')}}">
+    <button id="customizationButton" 
+            class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 px-6 py-3 text-white text-md font-semibold" 
+            aria-label="Customize Treks">
+      Customize Treks
+    </button>
+</a>
 </div>
 
 

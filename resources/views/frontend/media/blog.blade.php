@@ -3,11 +3,12 @@
 @section('pagecontent')
 
 
-<div class="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 p-6 mt-16 xl:mt-20">
+{{-- <div class="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 p-6 mt-16 xl:mt-20"> --}}
+<div class="bg-gray-100 mt-16 xl:mt-20 ">
    
     <!-- Header Section -->
     <div class="text-center mb-12 mt-14">
-      <h1 class="text-4xl font-extrabold text-purple-700">🌏 Namaste! Latest Blogs</h1>
+      <h1 class="text-4xl font-extrabold text-[#0B6285] pt-6">🌏 Namaste! Latest Blogs</h1>
       <p class="text-gray-700 mt-3 text-lg">
         Blogs and Articles for travel advice and info on destinations and sightseeing for travelers.
       </p>
@@ -16,7 +17,7 @@
           type="text" 
           id="search-input" 
           placeholder="🔍 Search blog..." 
-          class="border-2 border-purple-400 rounded-full p-3 w-full max-w-lg text-gray-700 shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300"
+          class="border-2 border-[#0B6285] rounded-full p-3 w-full max-w-lg text-gray-700 shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300"
         >
       </div>
     </div>
@@ -67,13 +68,13 @@
         );
         filteredData.forEach(card => {
           const cardHTML = `
-            <div class="border-2 border-purple-300 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300">
+            <div class="border-2 border-gray-600 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300">
               <img src="${card.image}" alt="${card.title}" class="w-full h-48 object-cover">
               <div class="p-5">
-                <p class="text-sm text-gray-500 mb-2">By <span class="text-purple-600 font-medium">${card.author}</span> • ${card.date}</p>
+                <p class="text-sm text-gray-500 mb-2">By <span class="text-[#0B6285] font-medium">${card.author}</span> • ${card.date}</p>
                 <h2 class="text-xl font-bold text-gray-800 hover:text-purple-600 transition-colors">${card.title}</h2>
                 <p class="text-gray-600 mt-3">${card.description.substring(0, 100)}...</p>
-                <a href="${card.link}" class="inline-block mt-4 text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">Read More</a>
+                <a href="${card.link}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">Read More</a>
               </div>
             </div>
           `;
