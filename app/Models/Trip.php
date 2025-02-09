@@ -39,4 +39,5 @@ class Trip extends Model
     }
     
     
+    
 }

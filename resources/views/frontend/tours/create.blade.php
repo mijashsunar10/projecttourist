@@ -14,6 +14,7 @@
 
     <form action="{{ route('tourstore') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('POST')
         <div class="space-y-6">
             <!-- Region Name Input -->
             <div>

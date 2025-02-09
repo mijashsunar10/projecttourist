@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RequiredItemController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
@@ -219,21 +220,20 @@ Route::delete('/trip/{trip_id}/requireditems/{id}/delete', [RequiredItemControll
 
 Route::controller(TourController::class)->group(function () {
     Route::get('/tour', 'index')->name('tourindex'); // Public
-  
-    
+    Route::get('/tour/create', 'tourcreate')->name('tourcreate');
+    Route::get("/tour/{id}", 'tourshow')->name('tourshow');
+        
+    Route::post('/tour', 'tourstore')->name('tourstore');
+    Route::get('/tour/{id}/edit','touredit')->name('touredit');
+    Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
+    Route::post('/tour/{id}/delete',  'tourdestroy')->name('tourdestroy');
 
-        Route::get("/tour/{id}", 'tourshow')->name('tourshow');
-        Route::get('/tour/create', 'create')->name('tourcreate');
-        Route::post('/tour', 'tourstore')->name('tourstore');
-        Route::get('/tour/{id}/edit','touredit')->name('touredit');
-        Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
-        Route::post('/tour/{id}/delete',  'tourdestroy')->name('tourdestroy');
+        
     });
 
     Route::controller(TourtripsController::class)->group(function () {
 
-        Route::get('/tourtrips/{id}', 'tourtripShow')->name('tourtripshow');
-    
+       
         // Route::middleware(['auth', 'verified'])->group(function () {
     
             Route::get('/tourtrips/{tour_id}/tourtrips/create', 'tourtripscreate')->name('tourtripscreate');
@@ -241,10 +241,19 @@ Route::controller(TourController::class)->group(function () {
             Route::get('/tourtrips/{id}/edit',  'edit')->name('tourtripsedit');
             Route::put('/tourtrips/{id}', 'update')->name('tourtripsupdate');
             Route::delete('/tourtrips/{id}',  'tourtripdestroy')->name('tourtripdestroy');
+
+            Route::get('/tourtrips/{id}', 'tourtripshow')->name('tourtripshow');
+    
             });
 
         // })
    ;
+
+   Route::controller(TourImageController::class)->group(function () {
+    Route::post('/tourtrips/{id}/add-images', 'addImages')->name('addtourimages');
+    Route::post('/tourimages/{id}/update', 'updateImage')->name('updatetourimage');
+    Route::delete('/tourimages/{id}/delete', 'deleteImage')->name('deletetourimage');
+});
 
 
 

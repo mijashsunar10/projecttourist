@@ -118,9 +118,9 @@ class TourtripsController extends Controller
         return redirect()->route('tourshow', $tourtrip->tour_id)->with('success', 'Trip updated successfully.');
     }
 
-    public function tourtripshow($trip_id)
+    public function tourtripshow($tourtrip_id)
     {
-        $tourtrip = Tourtrips::findOrFail($trip_id);
+        $tourtrip= Tourtrips::with('images')->findOrFail($tourtrip_id);
         return view('frontend.tourtrips.show', compact('tourtrip'));
     }
 }

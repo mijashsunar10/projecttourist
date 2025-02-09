@@ -19,7 +19,7 @@ class TourController extends Controller
 
     }
 
-    public function create()
+    public function tourcreate()
     {
         return view('frontend.tours.create');
     }
