@@ -1,4 +1,4 @@
-@extends('frontend.template.template')
+
 
 @section('pagecontent')
 <style>
@@ -6,6 +6,7 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
 
 .fa-spinner {
     animation: spin 1s linear infinite;
