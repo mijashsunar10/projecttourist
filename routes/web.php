@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RequiredItemController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourFactController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
@@ -254,6 +255,14 @@ Route::controller(TourController::class)->group(function () {
     Route::post('/tourimages/{id}/update', 'updateImage')->name('updatetourimage');
     Route::delete('/tourimages/{id}/delete', 'deleteImage')->name('deletetourimage');
 });
+
+
+Route::get('tourtrips/{tourtrip_id}/tour-facts/create', [TourFactController::class, 'create'])->name('tourfactcreate');
+Route::post('tourtours/{tourtrip_id}/tour-facts/store', [TourFactController::class, 'store'])->name('tourfactstore');
+Route::get('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/edit', [TourFactController::class, 'edit'])->name('tourfactedit');
+Route::post('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/update', [TourFactController::class, 'update'])->name('tourfactupdate');
+Route::delete('tourtrips/{tourtrip_id}/tour-facts/{fact_id}', [TourFactController::class, 'destroy'])->name('tourfactdestroy');     
+    
 
 
 

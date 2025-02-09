@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Trip;
-use App\Models\TripFact;
+
+use App\Models\TourFact;
+use App\Models\Tourtrips;
 use Illuminate\Http\Request;
 
-class TripFactController extends Controller
+class TourFactController extends Controller
 {
-    public function create($trip_id) {
-        $trip = Trip::findOrFail($trip_id);
-        return view('frontend.tripfacts.create', compact('trip'));
+    public function create($tourtrip_id) {
+        $tourtrip = Tourtrips::findOrFail($tourtrip_id);
+        return view('frontend.tourfacts.create', compact('tourtrip'));
     }
-    
-    public function store(Request $request, $trip_id) {
+
+    public function store(Request $request, $tourtrip_id) {
         $request->validate([
             'duration' => 'required',
             'difficulty' => 'required',
@@ -25,8 +26,8 @@ class TripFactController extends Controller
             'accommodation' => 'required',
         ]);
 
-        TripFact::create([
-            'trip_id' => $trip_id,
+        TourFact::create([
+            'tourtrip_id' => $tourtrip_id,
             'duration' => $request->duration,
             'difficulty' => $request->difficulty,
             'start_end' => $request->start_end,
@@ -38,16 +39,17 @@ class TripFactController extends Controller
             'accommodation' => $request->accommodation,
         ]);
 
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Trip Fact added successfully');
+        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact added successfully');
     }
 
-    public function edit($trip_id, $fact_id) {
-        $trip = Trip::findOrFail($trip_id);
-        $fact = TripFact::where('trip_id', $trip_id)->findOrFail($fact_id);
-        return view('frontend.tripfacts.edit', compact('trip', 'fact'));
+    public function edit($tourtrip_id, $fact_id)
+    {
+        $tourtrip = Tourtrips::findOrFail($tourtrip_id);
+        $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
+        return view('frontend.tourfacts.edit', compact('tourtrip', 'fact'));
     }
 
-    public function update(Request $request, $trip_id, $fact_id) {
+    public function update(Request $request, $tourtrip_id, $fact_id) {
         $request->validate([
             'duration' => 'required',
             'difficulty' => 'required',
@@ -60,17 +62,17 @@ class TripFactController extends Controller
             'accommodation' => 'required',
         ]);
 
-        $fact = TripFact::where('trip_id', $trip_id)->findOrFail($fact_id);
+        $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
         $fact->update($request->all());
 
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Trip Fact updated successfully');
+        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact updated successfully');
     }
 
-    public function destroy($trip_id, $fact_id) {
-        $fact = TripFact::where('trip_id', $trip_id)->findOrFail($fact_id);
+
+    public function destroy($tourtrip_id, $fact_id) {
+        $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
         $fact->delete();
 
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Trip Fact deleted successfully');
+        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact deleted successfully');
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use App\Models\TourFact;
 use App\Models\Tourtrips;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -121,6 +122,7 @@ class TourtripsController extends Controller
     public function tourtripshow($tourtrip_id)
     {
         $tourtrip= Tourtrips::with('images')->findOrFail($tourtrip_id);
-        return view('frontend.tourtrips.show', compact('tourtrip'));
+        $tourFacts=TourFact::where('tourtrip_id', $tourtrip_id)->get();
+        return view('frontend.tourtrips.show', compact('tourtrip','tourFacts'));
     }
 }
