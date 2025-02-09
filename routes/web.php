@@ -11,13 +11,17 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RequiredItemController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
 use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripHighlightController;
+use App\Models\Tourtrips;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
+
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -212,6 +216,35 @@ Route::get('/trip/{trip_id}/requireditems/{id}/edit', [RequiredItemController::c
 Route::put('/trip/{trip_id}/requireditems/{id}/update', [RequiredItemController::class, 'update'])->name('requireditems.update');
 Route::delete('/trip/{trip_id}/requireditems/{id}/delete', [RequiredItemController::class, 'destroy'])->name('requireditems.destroy');
 
+
+Route::controller(TourController::class)->group(function () {
+    Route::get('/tour', 'index')->name('tourindex'); // Public
+  
+    
+
+        Route::get("/tour/{id}", 'tourshow')->name('tourshow');
+        Route::get('/tour/create', 'create')->name('tourcreate');
+        Route::post('/tour', 'tourstore')->name('tourstore');
+        Route::get('/tour/{id}/edit','touredit')->name('touredit');
+        Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
+        Route::post('/tour/{id}/delete',  'tourdestroy')->name('tourdestroy');
+    });
+
+    Route::controller(TourtripsController::class)->group(function () {
+
+        Route::get('/tourtrips/{id}', 'tourtripShow')->name('tourtripshow');
+    
+        // Route::middleware(['auth', 'verified'])->group(function () {
+    
+            Route::get('/tourtrips/{tour_id}/tourtrips/create', 'tourtripscreate')->name('tourtripscreate');
+            Route::post('/tourtrips/{tour_id}/tourtrips',  'tourtripsstore')->name('tourtripsstore');
+            Route::get('/tourtrips/{id}/edit',  'edit')->name('tourtripsedit');
+            Route::put('/tourtrips/{id}', 'update')->name('tourtripsupdate');
+            Route::delete('/tourtrips/{id}',  'tourtripdestroy')->name('tourtripdestroy');
+            });
+
+        // })
+   ;
 
 
 
