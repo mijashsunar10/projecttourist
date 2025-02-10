@@ -37,6 +37,11 @@ class Trip extends Model
     {
         return $this->hasMany(RequiredItem::class);
     }
+    public function inclusionExclusions()
+    {
+        return $this->hasMany(InclusionExclusion::class);
+    }
+
     
     
     

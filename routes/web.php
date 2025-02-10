@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\InclusionExclusionController;
 use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -286,6 +287,18 @@ Route::prefix('tourtrips/{trip_id}/itinerary')->group(function () {
     Route::post('/{itinerary_id}/update', [TourItineraryController::class, 'update'])->name('touritineraryupdate');
     Route::delete('/delete', [TourItineraryController::class, 'destroy'])->name('touritinerarydestroy');
 });
+
+
+// Show Create Form for Inclusions & Exclusions
+Route::get('trips/{trip}/inclusions-exclusions/create', [InclusionExclusionController::class, 'create'])->name('trips.inclusions-exclusions.create');
+// Store Inclusions & Exclusions
+Route::post('trips/{trip}/inclusions-exclusions', [InclusionExclusionController::class, 'store'])->name('trips.inclusions-exclusions.store');
+// Edit Inclusion/Exclusion
+Route::get('trips/{trip}/inclusions-exclusions/{inclusionExclusion}/edit', [InclusionExclusionController::class, 'edit'])->name('trips.inclusions-exclusions.edit');
+// Update Inclusion/Exclusion
+Route::put('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'update'])->name('trips.inclusions-exclusions.update');
+// Delete Inclusion/Exclusion
+Route::delete('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'destroy'])->name('trips.inclusions-exclusions.destroy');
 
 
 
