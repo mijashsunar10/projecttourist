@@ -16,6 +16,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourFactController;
 use App\Http\Controllers\TourHighlightController;
 use App\Http\Controllers\TourImageController;
+use App\Http\Controllers\TourInclusionExclusionController;
 use App\Http\Controllers\TourItineraryController;
 use App\Http\Controllers\TourRequiredItemController;
 use App\Http\Controllers\TourtripsController;
@@ -321,6 +322,18 @@ Route::put('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/update', [TourRequire
 Route::delete('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/delete', [TourRequiredItemController::class, 'destroy'])->name('tourrequireditemsdestroy');
 
 
+
+
+// Show Create Form for Inclusions & Exclusions
+Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/create', [TourInclusionExclusionController::class, 'create'])->name('tourtrips.inclusions-exclusions.create');
+// Store Inclusions & Exclusions
+Route::post('tourtrips/{tourtrip}/tourinclusions-exclusions', [TourInclusionExclusionController::class, 'store'])->name('tourtrips.inclusions-exclusions.store');
+// Edit Inclusion/Exclusion
+Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}/edit', [TourInclusionExclusionController::class, 'edit'])->name('tourtrips.inclusions-exclusions.edit');
+// Update Inclusion/Exclusion
+Route::put('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'update'])->name('tourtrips.inclusions-exclusions.update');
+// Delete Inclusion/Exclusion
+Route::delete('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'destroy'])->name('tourtrips.inclusions-exclusions.destroy');
 
 
 require __DIR__.'/auth.php';

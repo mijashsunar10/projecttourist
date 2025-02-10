@@ -33,4 +33,9 @@ class Tourtrips extends Model
     {
         return $this->hasMany(TourRequiredItem::class,'tourtrip_id');
     }
+
+    public function tourinclusionExclusions()
+    {
+        return $this->hasMany(TourInclusionExclusion::class,'tourtrip_id');
+    }
 }

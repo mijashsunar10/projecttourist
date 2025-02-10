@@ -460,3 +460,73 @@
     });
 </script>
 <!-- Tour Required ITem -->
+
+
+<!-- Tour Inclusionn and Exclusion -->
+
+<div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
+    <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+
+    @if ($tourtrip->tourinclusionExclusions->isEmpty())
+        <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
+    @else
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Price Includes -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
+                @php
+                    $inclusions = $tourtrip->tourinclusionExclusions->where('type', 'inclusion');
+                @endphp
+                @if ($inclusions->isEmpty())
+                    <p class="text-gray-600">No inclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($inclusions as $inclusion)
+                            <li>&#10148; {{ $inclusion->description }}
+                                {{-- Edit and Delete Actions --}}
+                                <a href="{{ route('tourtrips.inclusions-exclusions.edit', [$tourtrip->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                <form action="{{ route('tourtrips.inclusions-exclusions.destroy', [$tourtrip->id, $inclusion->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Price Does Not Include -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
+                @php
+                    $exclusions = $tourtrip->tourinclusionExclusions->where('type', 'exclusion');
+                @endphp
+                @if ($exclusions->isEmpty())
+                    <p class="text-gray-600">No exclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($exclusions as $exclusion)
+                            <li>&#10148; {{ $exclusion->description }}
+                                {{-- Edit and Delete Actions --}}
+                                <a href="{{ route('tourtrips.inclusions-exclusions.edit', [$tourtrip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                <form action="{{ route('tourtrips.inclusions-exclusions.destroy', [$tourtrip->id, $exclusion->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+    @endif
+
+    <!-- Add Button -->
+    <div class="mt-6 text-center">
+        <a href="{{ route('tourtrips.inclusions-exclusions.create', $tourtrip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+    </div>
+</div>
+
+<!-- Trip Inclusionn and Exclusion -->
