@@ -22,6 +22,7 @@ use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
 use App\Http\Controllers\TripFactController;
+use App\Http\Controllers\TripfaqController;
 use App\Http\Controllers\TripHighlightController;
 use App\Models\TourHighlight;
 use App\Models\Tourtrips;
@@ -299,6 +300,16 @@ Route::get('trips/{trip}/inclusions-exclusions/{inclusionExclusion}/edit', [Incl
 Route::put('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'update'])->name('trips.inclusions-exclusions.update');
 // Delete Inclusion/Exclusion
 Route::delete('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'destroy'])->name('trips.inclusions-exclusions.destroy');
+
+
+
+Route::prefix('trips/{trip_id}/tripfaq')->group(function () {
+    Route::get('/create', [TripfaqController::class, 'create'])->name('tripfaqcreate');
+    Route::post('/', [TripfaqController::class, 'store'])->name('tripfaqstore');
+    Route::get('/{tripfaq_id}/edit', [TripfaqController::class, 'edit'])->name('tripfaqedit');
+    Route::post('/{tripfaq_id}/update', [TripfaqController::class, 'update'])->name('tripfaqupdate');
+    Route::delete('/delete', [TripfaqController::class, 'destroy'])->name('tripfaqdestroy');
+});
 
 
 
