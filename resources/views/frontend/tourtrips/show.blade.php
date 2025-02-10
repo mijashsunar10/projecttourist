@@ -336,3 +336,79 @@
 {{-- Trip Highghlight --}}
 
  <!-- TourHIghlights -->
+
+
+ <!-- Tour Iterinary -->
+
+
+ <div class="mt-6" >
+   
+    <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+
+    <div class=" mx-auto" style="max-width:95%" >
+        <h2 class="section-title">Tour Iterinary Overview</h2>
+        <div class="flex items-center justify-center" style="max-width:95%" >
+            <div class="w-full max-w-7xl">
+                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                    <h1 class="text-4xl font-bold">TOurs in Nepal – Iterinanary Overview</h1>
+                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
+                    <a href="{{ route('touritinerarycreate', $tourtrip->id) }}">
+                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
+                    </a>
+                </div>
+                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                    @foreach ($itineraries as $itinerary)
+                        <div class="border-b mb-4 last:mb-0">
+                            <button
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                {{ $itinerary->question }}
+                                <svg id="icon{{ $itinerary->id }}"
+                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                <p>{{ $itinerary->answer }}</p>
+                               
+
+                                <div class="mt-2">
+                                    <a href="{{ route('touritineraryedit', [$tourtrip->id, $itinerary->id]) }}" class="text-blue-500">
+                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                    </a>
+                                    <form action="{{ route('touritinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <script>
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
+
+
+</div>
+ <!-- Tour Iterinary -->

@@ -15,6 +15,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourFactController;
 use App\Http\Controllers\TourHighlightController;
 use App\Http\Controllers\TourImageController;
+use App\Http\Controllers\TourItineraryController;
 use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
@@ -158,7 +159,7 @@ Route::controller(TripController::class)->group(function () {
 
     Route::prefix('trips/{trip_id}/itinerary')->group(function () {
         Route::get('/create', [ItineraryController::class, 'create'])->name('itinerarycreate');
-        Route::post('/', [ItineraryController::class, 'store'])->name('itinerarystore');
+        Route::post('/', [ItineraryController::class, 'store'])->name('tour');
         Route::get('/{itinerary_id}/edit', [ItineraryController::class, 'edit'])->name('itineraryedit');
         Route::post('/{itinerary_id}/update', [ItineraryController::class, 'update'])->name('itineraryupdate');
         Route::delete('/delete', [ItineraryController::class, 'destroy'])->name('itinerarydestroy');
@@ -274,6 +275,16 @@ Route::prefix('tourtrips/{tourtrip_id}/tourhighlights')->group(function () {
     Route::post('/update', [TourHighlightController::class, 'update'])->name('tourHighlightsupdate');
     Route::delete('/delete', [TourHighlightController::class, 'destroy'])->name('tourHighlightsdestroy');
 
+});
+
+
+
+Route::prefix('tourtrips/{trip_id}/itinerary')->group(function () {
+    Route::get('/create', [TourItineraryController::class, 'create'])->name('touritinerarycreate');
+    Route::post('/', [TourItineraryController::class, 'store'])->name('touritinerarystore');
+    Route::get('/{itinerary_id}/edit', [TourItineraryController::class, 'edit'])->name('touritineraryedit');
+    Route::post('/{itinerary_id}/update', [TourItineraryController::class, 'update'])->name('touritineraryupdate');
+    Route::delete('/delete', [TourItineraryController::class, 'destroy'])->name('touritinerarydestroy');
 });
 
 

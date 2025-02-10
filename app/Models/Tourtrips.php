@@ -24,4 +24,8 @@ class Tourtrips extends Model
     {
         return $this->hasMany(TourHighlight::class,'tourtrip_id');
     }
+    public function itineraries()
+    {
+        return $this->hasMany(TourItinerary::class,'tourtrip_id');
+    }
 }
