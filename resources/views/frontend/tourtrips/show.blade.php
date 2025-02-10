@@ -412,3 +412,51 @@
 
 </div>
  <!-- Tour Iterinary -->
+
+
+ <!-- Tour Required ITem -->
+
+
+ <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
+   <div class="mx-auto" style="max-width: 95%">
+   
+    <h2 class="section-title">Required Items For This Tour</h2>
+    
+    @foreach($tourtrip->tourrequiredItems as $item)
+        <div class="flex justify-between items-center border-b py-2">
+            <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
+               </p>
+            <div>
+                <a href="{{ route('tourrequireditemsedit', [$tourtrip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                <form action="{{ route('tourrequireditemsdestroy', [$tourtrip->id, $item->id]) }}" method="POST" class="inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                </form>
+            </div>
+        </div>
+    @endforeach
+
+    <a href="{{ route('tourrequireditemscreate', $tourtrip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+</div> 
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const section = urlParams.get('section');
+
+        if (section) {
+            const sectionElement = document.getElementById(section);
+            if (sectionElement) {
+                const navbarHeight = document.querySelector("nav").offsetHeight; 
+                const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+
+                window.scrollTo({
+                    top: sectionPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+</script>
+<!-- Tour Required ITem -->

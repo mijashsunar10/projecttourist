@@ -17,6 +17,7 @@ use App\Http\Controllers\TourFactController;
 use App\Http\Controllers\TourHighlightController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourItineraryController;
+use App\Http\Controllers\TourRequiredItemController;
 use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
 use App\Http\Controllers\TripController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripfaqController;
 use App\Http\Controllers\TripHighlightController;
 use App\Models\TourHighlight;
+use App\Models\TourRequiredItem;
 use App\Models\Tourtrips;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
@@ -310,6 +312,14 @@ Route::prefix('trips/{trip_id}/tripfaq')->group(function () {
     Route::post('/{tripfaq_id}/update', [TripfaqController::class, 'update'])->name('tripfaqupdate');
     Route::delete('/delete', [TripfaqController::class, 'destroy'])->name('tripfaqdestroy');
 });
+
+
+Route::get('/tourtrip/{tourtrip_id}/tourrequireditems/create', [TourRequiredItemController::class, 'create'])->name('tourrequireditemscreate');
+Route::post('/tourtrip/{tourtrip_id}/tourrequireditems/store', [TourRequiredItemController::class, 'store'])->name('tourrequireditemsstore');
+Route::get('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/edit', [TourRequiredItemController::class, 'edit'])->name('tourrequireditemsedit');
+Route::put('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/update', [TourRequiredItemController::class, 'update'])->name('tourrequireditemsupdate');
+Route::delete('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/delete', [TourRequiredItemController::class, 'destroy'])->name('tourrequireditemsdestroy');
+
 
 
 

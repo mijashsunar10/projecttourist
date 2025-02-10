@@ -28,4 +28,9 @@ class Tourtrips extends Model
     {
         return $this->hasMany(TourItinerary::class,'tourtrip_id');
     }
+
+    public function tourrequiredItems()
+    {
+        return $this->hasMany(TourRequiredItem::class,'tourtrip_id');
+    }
 }
