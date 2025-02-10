@@ -606,7 +606,7 @@
 {{-- Trip Required  items --}}
 <!-- Required Items Section -->
 <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
-   <div class="mx-auto" style="max-width: 95%`">
+   <div class="mx-auto" style="max-width: 95%">
    
     <h2 class="section-title">Required Items For This Trek</h2>
     

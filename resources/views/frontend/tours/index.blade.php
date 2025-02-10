@@ -24,7 +24,7 @@
                      class="w-full h-56 object-cover brightness-90 hover:brightness-100 transition-all duration-300">
                 <div class="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-30"></div>
                 <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-3 py-1 text-xs rounded-full">
-                    🌍 {{ $tour->tours_count }} Trips
+                    🌍 {{ $tour->tourtrips_count }} Trips
                 </div>
             </div>
             <div class="p-5">

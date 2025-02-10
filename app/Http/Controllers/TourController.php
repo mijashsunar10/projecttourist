@@ -14,7 +14,7 @@ class TourController extends Controller
     public function index()
     {
 
-            $tours = Tour::All();
+            $tours = Tour::withCount('tourtrips')->get();
             return view('frontend.tours.index',compact('tours'));
 
     }

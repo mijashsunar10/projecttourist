@@ -13,6 +13,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RequiredItemController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourFactController;
+use App\Http\Controllers\TourHighlightController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripDescriptionController;
 use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripHighlightController;
+use App\Models\TourHighlight;
 use App\Models\Tourtrips;
 use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
@@ -262,7 +264,17 @@ Route::post('tourtours/{tourtrip_id}/tour-facts/store', [TourFactController::cla
 Route::get('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/edit', [TourFactController::class, 'edit'])->name('tourfactedit');
 Route::post('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/update', [TourFactController::class, 'update'])->name('tourfactupdate');
 Route::delete('tourtrips/{tourtrip_id}/tour-facts/{fact_id}', [TourFactController::class, 'destroy'])->name('tourfactdestroy');     
-    
+   
+
+Route::prefix('tourtrips/{tourtrip_id}/tourhighlights')->group(function () {
+    Route::get('/', [TourHighlightController::class, 'index'])->name('tourHighlightsindex'); // This now redirects to trip show
+    Route::get('/create', [TourHighlightController::class, 'create'])->name('tourHighlightscreate');
+    Route::post('/', [TourHighlightController::class, 'store'])->name('tourHighlightsstore');
+    Route::get('/edit', [TourHighlightController::class, 'edit'])->name('tourHighlightsedit');
+    Route::post('/update', [TourHighlightController::class, 'update'])->name('tourHighlightsupdate');
+    Route::delete('/delete', [TourHighlightController::class, 'destroy'])->name('tourHighlightsdestroy');
+
+});
 
 
 
