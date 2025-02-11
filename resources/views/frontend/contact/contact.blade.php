@@ -23,7 +23,7 @@
 </div>
 
 
-    <section class="bg-[#283655] text-black font-sans mt-16 xl:mt-20 ">
+    <section class="bg-[var(--maincolor)] text-black font-sans mt-16 xl:mt-20 ">
 
 
         <div class="mt-10 flex flex-col lg:flex-row items-center justify-center px-6 py-12 lg:py-18 max-w-7xl mx-auto">

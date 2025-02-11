@@ -1,34 +1,7 @@
-
+           
                 .about-block {
             padding: 97px 0 20px
                     }
-     
-        
-        /* @font-face {
-            font-family: CerebriSans-Bold;
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-            src: url(/frontend/images/specialist/media/CerebriSans-Bold.ea158a2e.woff2) format("woff2"), url(/frontend/images/specialist/media/CerebriSans-Bold.4e6d6b88.woff) format("woff")
-        }
-        
-        
-        @font-face {
-            font-family: CerebriSans-Medium;
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-            src: url(/frontend/images/specialist/media/CerebriSans-Medium.c433bf22.woff2) format("woff2"), url(/frontend/images/specialist/media/CerebriSans-Medium.7b54e36c.woff) format("woff")
-        }
-        
-        
-        @font-face {
-            font-family: CerebriSans-Book;
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-            src: url(/frontend/images/specialist/media/CerebriSans-Book.71b1a6ca.woff2) format("woff2"), url(/frontend/images/specialist/media/CerebriSans-Book.ab760939.woff) format("woff")
-        } */
 
         @media screen and (max-width:1023px) {
             .about-block {
@@ -554,4 +527,3 @@
          
         }
         }
-<
