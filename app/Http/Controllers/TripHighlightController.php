@@ -12,7 +12,7 @@ class TripHighlightController extends Controller
     public function create($trip_id)
     {   
         $trip = Trip::findOrFail($trip_id);
-        return view('frontend.trip_highlights.create', compact('trip'));
+        return view('frontend.trekking.trip_highlights.create', compact('trip'));
     }
 
 
@@ -37,7 +37,7 @@ class TripHighlightController extends Controller
     {
         $trip = Trip::findOrFail($trip_id);
         $highlights = $trip->highlights;
-        return view('frontend.trip_highlights.edit', compact('trip', 'highlights'));
+        return view('frontend.trekking.trip_highlights.edit', compact('trip', 'highlights'));
     }
     public function update(Request $request, $trip_id)
     {

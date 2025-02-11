@@ -10,7 +10,7 @@ class TourFactController extends Controller
 {
     public function create($tourtrip_id) {
         $tourtrip = Tourtrips::findOrFail($tourtrip_id);
-        return view('frontend.tourfacts.create', compact('tourtrip'));
+        return view('frontend.tours.tourfacts.create', compact('tourtrip'));
     }
 
     public function store(Request $request, $tourtrip_id) {
@@ -46,7 +46,7 @@ class TourFactController extends Controller
     {
         $tourtrip = Tourtrips::findOrFail($tourtrip_id);
         $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
-        return view('frontend.tourfacts.edit', compact('tourtrip', 'fact'));
+        return view('frontend.tours.tourfacts.edit', compact('tourtrip', 'fact'));
     }
 
     public function update(Request $request, $tourtrip_id, $fact_id) {

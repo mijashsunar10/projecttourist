@@ -13,7 +13,7 @@ class TourRequiredItemController extends Controller
     public function create($tourtrip_id)
     {
         $tourtrip = Tourtrips::findOrFail($tourtrip_id);
-        return view('frontend.tourrequireditems.create', compact('tourtrip'));
+        return view('frontend.tours.tourrequireditems.create', compact('tourtrip'));
     }
 
     public function store(Request $request, $tourtrip_id)
@@ -38,7 +38,7 @@ class TourRequiredItemController extends Controller
     {
         $tourtrip = Tourtrips::findOrFail($tourtrip_id);
         $item = TourRequiredItem::findOrFail($id);
-        return view('frontend.tourrequireditems.edit', compact('tourtrip', 'item'));
+        return view('frontend.tours.tourrequireditems.edit', compact('tourtrip', 'item'));
     }
 
     public function update(Request $request, $tourtrip_id, $id)

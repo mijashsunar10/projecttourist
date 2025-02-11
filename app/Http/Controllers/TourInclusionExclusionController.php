@@ -12,7 +12,7 @@ class TourInclusionExclusionController extends Controller
 {
     public function create($tourtripId)
     {
-        return view('frontend.tourinclusions-exclusions.create', compact('tourtripId'));
+        return view('frontend.tours.tourinclusions-exclusions.create', compact('tourtripId'));
     }
     public function store(Request $request, $tourtripId)
     {
@@ -36,7 +36,7 @@ class TourInclusionExclusionController extends Controller
     }
     public function edit($tourtripId, TourInclusionExclusion $inclusionExclusion)
     {
-        return view('frontend.tourinclusions-exclusions.edit', compact('inclusionExclusion', 'tourtripId'));
+        return view('frontend.tours.tourinclusions-exclusions.edit', compact('inclusionExclusion', 'tourtripId'));
     }
     public function update(Request $request, $tourtripId, TourInclusionExclusion $inclusionExclusion)
     {

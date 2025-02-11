@@ -17,7 +17,7 @@ class TripController extends Controller
     public function tripscreate($region_id)
     {
         $region = Region::findOrFail($region_id);
-        return view('frontend.trips.create', compact('region'));
+        return view('frontend.trekking.trips.create', compact('region'));
 
     }
     public function tripsstore(Request $request, $region_id)
@@ -60,7 +60,7 @@ class TripController extends Controller
     public function tripsedit($id)
     {
         $trip = Trip::findOrFail($id);
-        return view('frontend.trips.edit', compact('trip'));
+        return view('frontend.trekking.trips.edit', compact('trip'));
     }
     public function tripsupdate(Request $request, $id)
     {
@@ -129,7 +129,7 @@ class TripController extends Controller
             $highlights = TripHighlight::where('trip_id', $trip_id)->get();
             $tripFacts = TripFact::where('trip_id', $trip_id)->get();
             $tripfaqs = Tripfaq::where('trip_id', $trip_id)->get();
-            return view('frontend.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs'));
+            return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs'));
          
 
          

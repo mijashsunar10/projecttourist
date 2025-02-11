@@ -10,7 +10,7 @@ class RequiredItemController extends Controller
     public function create($trip_id)
     {
         $trip = Trip::findOrFail($trip_id);
-        return view('frontend.requireditems.create', compact('trip'));
+        return view('frontend.trekking.requireditems.create', compact('trip'));
     }
 
     public function store(Request $request, $trip_id)
@@ -35,7 +35,7 @@ class RequiredItemController extends Controller
     {
         $trip = Trip::findOrFail($trip_id);
         $item = RequiredItem::findOrFail($id);
-        return view('frontend.requireditems.edit', compact('trip', 'item'));
+        return view('frontend.trekking.requireditems.edit', compact('trip', 'item'));
     }
 
     public function update(Request $request, $trip_id, $id)

@@ -10,7 +10,7 @@ class InclusionExclusionController extends Controller
 {
     public function create($tripId)
     {
-        return view('frontend.inclusions-exclusions.create', compact('tripId'));
+        return view('frontend.trekking.inclusions-exclusions.create', compact('tripId'));
     }
     public function store(Request $request, $tripId)
     {
@@ -34,7 +34,7 @@ class InclusionExclusionController extends Controller
     }
     public function edit($tripId, InclusionExclusion $inclusionExclusion)
     {
-        return view('frontend.inclusions-exclusions.edit', compact('inclusionExclusion', 'tripId'));
+        return view('frontend.trekking.inclusions-exclusions.edit', compact('inclusionExclusion', 'tripId'));
     }
     public function update(Request $request, $tripId, InclusionExclusion $inclusionExclusion)
     {

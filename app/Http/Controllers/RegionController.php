@@ -15,7 +15,7 @@ class RegionController extends Controller
 
             // $regions = Region::withCount('trips')->get()->sortByDesc('created_at');
             $regions = Region::withCount('trips')->get();
-            return view('frontend.region.index',compact('regions'));
+            return view('frontend.trekking.region.index',compact('regions'));
             // return view('layouts.header', compact('regions'));
 // 
     }
@@ -27,7 +27,7 @@ class RegionController extends Controller
     // }
     public function regionscreate()
     {
-        return view('frontend.region.create');
+        return view('frontend.trekking.region.create');
     }
 
     public function regionsstore(Request $request)
@@ -55,7 +55,7 @@ class RegionController extends Controller
     public function regionsedit($id)
     {
         $region = Region::findOrFail($id);
-        return view('frontend.region.edit', compact('region'));
+        return view('frontend.trekking.region.edit', compact('region'));
     }
 
     public function regionsupdate(Request $request, $id)
@@ -101,7 +101,7 @@ class RegionController extends Controller
     public function regionshow($id)
     {
         $region = Region::with('trips')->findOrFail($id);
-        return view('frontend.trips.index', compact('region'));
+        return view('frontend.trekking.trips.index', compact('region'));
     }
 
     // public function userregionshow($id)

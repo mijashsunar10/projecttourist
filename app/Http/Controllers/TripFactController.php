@@ -9,7 +9,7 @@ class TripFactController extends Controller
 {
     public function create($trip_id) {
         $trip = Trip::findOrFail($trip_id);
-        return view('frontend.tripfacts.create', compact('trip'));
+        return view('frontend.trekking.tripfacts.create', compact('trip'));
     }
     
     public function store(Request $request, $trip_id) {
@@ -44,7 +44,7 @@ class TripFactController extends Controller
     public function edit($trip_id, $fact_id) {
         $trip = Trip::findOrFail($trip_id);
         $fact = TripFact::where('trip_id', $trip_id)->findOrFail($fact_id);
-        return view('frontend.tripfacts.edit', compact('trip', 'fact'));
+        return view('frontend.trekking.tripfacts.edit', compact('trip', 'fact'));
     }
 
     public function update(Request $request, $trip_id, $fact_id) {
