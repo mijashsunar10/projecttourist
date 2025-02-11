@@ -6,11 +6,13 @@
         <div class="flex items-center justify-between mb-12">
             <div class="flex items-center gap-3">
                 <i class="fas fa-newspaper text-indigo-600 text-3xl"></i>
-                <h1 class="text-4xl font-bold text-gray-900">Latest News</h1>
+                <h1 class="text-4xl font-bold text-gray-900">Latest Blogs</h1>
             </div>
             <div>
+                @auth
                 <a href="{{ route('blogs.create') }}" class="px-3 py-2 bg-blue-500 text-white rounded-lg inline-block">Create new blog</a>
-                <button class="px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 inline items-center gap-2 transition-colors duration-200 ">
+                @endauth
+                <button class="px-4 py-2 text-lg font-bold text-indigo-600 hover:text-indigo-700 inline items-center gap-2 transition-colors duration-200 ">
                     View All
                     <i class="fas fa-arrow-right"></i>
                 </button>
@@ -42,7 +44,8 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fas fa-clock"></i>
-                            <span>Jan 25, 2025</span>
+                            <span>{{ $blog->updated_at->format('F j, Y') }}</span>
+
                         </div>
                     </div>
 
@@ -53,6 +56,7 @@
                                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
                             </button>
                         </a>
+                        @auth
                         <a href="{{ route('blogs.edit', [$blog->id, $blog->slug]) }}">
                             <button class="w-full px-4 py-2 bg-gray-50 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
                                 Edit Blog
@@ -67,6 +71,7 @@
                                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
                             </button>
                         </form>
+                        @endauth
                     </div>
                 </div>
             </article>

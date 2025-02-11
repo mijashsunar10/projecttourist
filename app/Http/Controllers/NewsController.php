@@ -15,14 +15,14 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::latest()->paginate(12);
-        return view('frontend.news.index', ['news' => $news]);
+        return view('frontend.media.news.index', ['news' => $news]);
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('frontend.news.addnews');
+        return view('frontend.media.news.addnews');
     }
     /**
      * Store a newly created resource in storage.
@@ -61,8 +61,8 @@ class NewsController extends Controller
     {
         $news = News::where('slug', $slug)->firstOrFail();
         // echo "edit";
-        // return view("frontend.media.addnews");
-        return view('frontend.news.newsedit', ['news' => $news]);
+        // return view("frontend.media.media.addnews");
+        return view('frontend.media.news.newsedit', ['news' => $news]);
     }
 
     public function update($slug, Request $request)
@@ -109,6 +109,13 @@ class NewsController extends Controller
         }
         $news->delete();
         return redirect()->route('news')->with('success', 'News deleted successfully');
+    }
+    public function show($id,$slug)
+    {
+        $news = News::where('id', $id)->where('slug', $slug)->firstOrFail();
+        $recentNews = News::latest()->where('id', '!=', $news->id)->take(3)->get(); // Get 3 recent news articles
+    
+        return view('frontend.media.news.show', compact('news', 'recentNews'));
     }
 
 }

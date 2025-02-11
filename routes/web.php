@@ -74,10 +74,7 @@ Route::get('/blog',[TrekController::class,'blog'])->name('blog');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
-Route::get('/faq',[TrekController::class,'faq'])->name('faq');
 
-
-Route::get('/faq',[TrekController::class,'faq'])->name('faq');
 
 Route::get('/region',[TrekController::class,'region'])->name('region');
 
@@ -86,8 +83,6 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 Route::get('/trek/main1',[TrekController::class,'trekmain1'])->name('trekmain1');
 
-
-Route::get('/gallerys',[TrekController::class,'gallery'])->name('gallerys');
 
 
 
@@ -180,11 +175,15 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index')->name('news');
+        Route::get('/news/{slug}/{id}/show', 'show')->name('news.show');
+        Route::middleware(['auth'])->group(function () {
         Route::get('/addnews', 'create')->name('createnews');
         Route::post('/storenews', 'store')->name('savenews');
         Route::get('/editnews/{slug}', 'edit')->name('editnews');
         Route::put('/update/{slug}', 'update')->name('updatenews');
         Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
+        
+        });
     });
 
     Route::get('/contact',[TrekController::class,'contact'])->name('contact');
@@ -200,6 +199,7 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     Route::get('faqs/{faq:slug}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
     Route::put('faqs/{faq:slug}', [FaqController::class, 'update'])->name('faqs.update');
     Route::delete('faqs/{faq:slug}', [FaqController::class, 'destroy'])->name('faqs.destroy');
+   
 });
 
 
@@ -209,12 +209,16 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
 
     Route::controller(BlogController::class)->group(function () {
         Route::get('/blogs', 'index')->name('blogs.index');
+        Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
+
+        Route::middleware(['auth'])->group(function () {
         Route::get('/blogs/create', 'create')->name('blogs.create');
         Route::post('/blogs', 'store')->name('blogs.store');
         Route::get('/blogs/{slug}/edit', 'edit')->name('blogs.edit');
         Route::put('/blogs/{slug}/update', 'update')->name('blogs.update');
         Route::delete('/blogs/{id}/destroy', 'destroy')->name('blogs.destroy');
-        Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
+                
+    });
     });  
     
     
@@ -345,4 +349,6 @@ Route::prefix('tourtrips/{tourtrip_id}/tourfaq')->group(function () {
     Route::post('/{tourfaq_id}/update', [TourfaqController::class, 'update'])->name('tourfaqupdate');
     Route::delete('/delete', [TourfaqController::class, 'destroy'])->name('tourfaqdestroy');
 });
+
+
 require __DIR__.'/auth.php';

@@ -263,6 +263,7 @@
                   </ul>
               </li>
               <li class="relative group">
+                <a href="{{route('tourindex')}}">
                   <button
                       class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
                       Tours & Adventures
@@ -271,6 +272,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                   </button>
+                  </a>
                   <!-- Combined Dropdown Menu -->
                   <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                       style="border-top: 4px solid orange;">
@@ -473,7 +475,8 @@
                 <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
                   
                   <li class="relative group">
-                    <a href="{{route('blog')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                    <!-- <a href="{{route('blog')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center"> -->
+                    <a href="{{route('blogs.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                       <div class="w-52">
                        Blogs
                       </div>      
@@ -494,28 +497,16 @@
                       </div>      
                   </a>
                   </li>
-                  <li class="relative group">
-                    <a href="{{route('faq')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                      <div class="w-52">
-                       Frequently Asked Questions
-                      </div>      
-                  </a>
-                  </li>
+                  
                   <li class="relative group">
                     <a href="{{route('faqs.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                       <div class="w-52">
-                       faqs
+                      Frequently Asked Questions
                       </div>      
                   </a>
                   </li>
                   
-                  <li class="relative group">
-                    <a href="{{route('gallerys')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                      <div class="w-52">
-                       Gallery old
-                      </div>      
-                  </a>
-                  </li>
+                 
                   <li class="relative group">
                     <a href="{{route('gallery.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                       <div class="w-52">

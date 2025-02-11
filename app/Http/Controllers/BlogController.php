@@ -79,11 +79,11 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($id,$slug)
     {
         $blog = Blog::findOrFail($id);
-        
-        return view('frontend.media.blogs.show', compact('blog'));
+        $recentBlogs=Blog::latest()->where('id', '!=', $blog->id)->take(3)->get(); // Get 3 recent news articles
+        return view('frontend.media.blogs.show', compact('blog','recentBlogs'));
     }
 
     /**
