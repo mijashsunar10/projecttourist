@@ -56,7 +56,13 @@
 
     Route::get('/', [TrekController::class, 'index'])->name('index');
 
+
     Route::get('/blog', [TrekController::class, 'blog'])->name('blog');
+    Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
+    Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
+    Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
+    Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
+    Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 
     // Route::get('/news',[TrekController::class,'news'])->name('news');
 

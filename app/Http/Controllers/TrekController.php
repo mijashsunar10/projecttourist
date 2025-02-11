@@ -57,4 +57,24 @@ class TrekController extends Controller
     {
         return view('frontend.media.gallery');
     }
+    public function terms()
+    {
+        return view('frontend.company.terms');
+    }
+    public function aboutus()
+    {
+        return view('frontend.company.aboutus');
+    }
+    public function payment()
+    {
+        return view('frontend.company.payment');
+    }
+    public function documents()
+    {
+        return view('frontend.company.documents');
+    }
+    public function ourteam()
+    {
+        return view('frontend.company.ourteam');
+    }
 }
