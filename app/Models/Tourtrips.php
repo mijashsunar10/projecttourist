@@ -38,4 +38,8 @@ class Tourtrips extends Model
     {
         return $this->hasMany(TourInclusionExclusion::class,'tourtrip_id');
     }
+    public function tourfaqs()
+    {
+        return $this->hasMany(Tourfaq::class,'tourtrip_id');
+    }
 }

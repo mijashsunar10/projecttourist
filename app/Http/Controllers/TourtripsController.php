@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tour;
 use App\Models\TourFact;
+use App\Models\Tourfaq;
 use App\Models\TourHighlight;
 use App\Models\TourItinerary;
 use App\Models\Tourtrips;
@@ -127,6 +128,7 @@ class TourtripsController extends Controller
         $itineraries = TourItinerary::where('tourtrip_id', $tourtrip_id)->get();
         $tourFacts=TourFact::where('tourtrip_id', $tourtrip_id)->get();
         $highlights = TourHighlight::where('tourtrip_id', $tourtrip_id)->get();
-        return view('frontend.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries'));
+        $tourfaqs = Tourfaq::where('tourtrip_id', $tourtrip_id)->get();
+        return view('frontend.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs'));
     }
 }

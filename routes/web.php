@@ -14,6 +14,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RequiredItemController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourFactController;
+use App\Http\Controllers\TourfaqController;
 use App\Http\Controllers\TourHighlightController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourInclusionExclusionController;
@@ -328,7 +329,7 @@ Route::delete('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/delete', [TourRequ
 Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/create', [TourInclusionExclusionController::class, 'create'])->name('tourtrips.inclusions-exclusions.create');
 // Store Inclusions & Exclusions
 Route::post('tourtrips/{tourtrip}/tourinclusions-exclusions', [TourInclusionExclusionController::class, 'store'])->name('tourtrips.inclusions-exclusions.store');
-// Edit Inclusion/Exclusion
+// Edit Inclusion/Exclusion\
 Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}/edit', [TourInclusionExclusionController::class, 'edit'])->name('tourtrips.inclusions-exclusions.edit');
 // Update Inclusion/Exclusion
 Route::put('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'update'])->name('tourtrips.inclusions-exclusions.update');
@@ -336,4 +337,12 @@ Route::put('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}'
 Route::delete('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'destroy'])->name('tourtrips.inclusions-exclusions.destroy');
 
 
+
+Route::prefix('tourtrips/{tourtrip_id}/tourfaq')->group(function () {
+    Route::get('/create', [TourfaqController::class, 'create'])->name('tourfaqcreate');
+    Route::post('/', [TourfaqController::class, 'store'])->name('tourfaqstore');
+    Route::get('/{tourfaq_id}/edit', [TourfaqController::class, 'edit'])->name('tourfaqedit');
+    Route::post('/{tourfaq_id}/update', [TourfaqController::class, 'update'])->name('tourfaqupdate');
+    Route::delete('/delete', [TourfaqController::class, 'destroy'])->name('tourfaqdestroy');
+});
 require __DIR__.'/auth.php';
