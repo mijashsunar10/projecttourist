@@ -1,4 +1,4 @@
-<nav id="navbar" class="bg-transparent fixed w-full z-10 shadow-sm top-0 transition-all duration-300">
+<nav id="navbar" class="bg-transparent fixed w-full z-20 shadow-sm top-0 transition-all duration-300">
   <div class="mx-auto px-0 xl:px-8">
       <div class="flex justify-between h-22 items-center">
           <!-- Logo and Name -->
@@ -49,7 +49,7 @@
                   <!-- Dropdown Menu -->
                   <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                       style="border-top: 4px solid orange;">
-                      {{-- @foreach ($regions as $region)
+                       @foreach ($regions as $region)
                       <li class="relative group">
                           <a href="{{route('regionsshow', $region->id) }}"
                               class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center"
@@ -65,6 +65,32 @@
 
                           <!-- Submenu -->
                           <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
+                              style="border-top: 3px solid brown;">
+                              @foreach ($region->trips as $trip)
+                              <li><a href="{{ route('tripshow',$trip->id) }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> {{ $trip->name }}</a>
+                              </li>
+                              @endforeach
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Circuit</a>
+                              </li>
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghorepani Poon Hill</a>
+                              </li>
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Base Camp
+                                      Trek</a></li>
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mardi Himal Trek</a>
+                              </li>
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> Poon Hill Trek</a></li>
+                              <li><a href="{{ route('trekmain') }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khopra Ridge Trek</a>
+                              </li>
+                              
+                          </ul>
+                          <!-- <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                               style="border-top: 3px solid brown;">
                               <li><a href="{{ route('trekmain') }}"
                                       class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Annapurna Circuit</a>
@@ -83,9 +109,9 @@
                               <li><a href="{{ route('trekmain') }}"
                                       class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khopra Ridge Trek</a>
                               </li>
-                          </ul>
+                          </ul> -->
                       </li>
-                      @endforeach --}}
+                      @endforeach 
                       <li class="relative group">
                           <a href="{{ route('trekinfo') }}"
                               class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
@@ -277,6 +303,34 @@
                   <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                       style="border-top: 4px solid orange;">
                       <!-- Tours Section -->
+                      @foreach ($tours as $tour)
+                      <li class="relative group">
+                      
+                          <a href="{{route('tourshow', $tour->id) }}"
+                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                              <div class="w-52">{{$tour->name}}</div>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
+                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                              </svg>
+                          </a>
+                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
+                              style="border-top:3px solid brown;">
+                              @foreach ($tour->tourtrips as $tourtrip)
+                              <li><a href="{{ route('tourtripshow',$tourtrip->id) }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> {{ $tourtrip->name }}</a>
+                              </li>
+                              @endforeach
+                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
+                                      Valley Sightseeing</a></li>
+                              <li><a href="#"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Valley
+                                      Sightseeing</a></li>
+                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
+                                      Day Tour</a></li>
+                          </ul>
+                      </li>
+                      @endforeach
                       <li class="relative group">
                           <a href="#"
                               class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">

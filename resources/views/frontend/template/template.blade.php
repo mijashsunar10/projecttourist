@@ -70,7 +70,7 @@
 </head>
 <body>
 
-    <section id="header" class="mb-18">
+    <section id="header" class="mb-18 z-20">
         @include('layouts.header')
     </section>
     <section id="pagecontent">
