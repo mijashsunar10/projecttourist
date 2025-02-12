@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Str;
-
-class GalleryController extends Controller
+class GalleryController extends BaseController
 {
     /**
      * Display a listing of the gallery items.
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         $photos = Gallery::where('type', 'photo')->orderBy('date', 'desc')->get();
@@ -70,7 +76,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|in:photo,video',
-            'file' => 'required|file|mimes:jpeg,png,jpg,HEIC,mp4,mov|max:100048000', // 20MB // Optional file upload
+            'file' => 'nullable|file|mimes:jpeg,png,heic,jpg,mp4,mov|max:100048000', // Optional file upload
         ]);
 
         $data = [

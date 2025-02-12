@@ -98,6 +98,6 @@ class TourController extends Controller
     public function tourshow($id)
     {
         $tour = Tour::with('tourtrips')->findOrFail($id);
-        return view('frontend.tourtrips.index', compact('tour'));
+        return view('frontend.tours.tourtrips.index', compact('tour'));
     }
 }
