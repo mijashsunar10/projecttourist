@@ -92,18 +92,6 @@ Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name(
 Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
 // TrekCOntroller
 
-// Route::controller(RegionController::class)->group(function () {
-//     Route::get('/regions', 'index')->middleware(['auth', 'verified'])->name('regionsindex');
-//     Route::get('/regions/create', 'regionscreate')->middleware(['auth', 'verified'])->name('regionscreate');
-//     Route::post('/regionsstore', 'regionsstore')->middleware(['auth', 'verified'])->name('regionsstore');
-//     Route::get('/regions/{id}/edit','regionsedit')->middleware(['auth', 'verified'])->name('regionsedit');
-//     Route::post('/regions/{id}/update', 'regionsupdate')->middleware(['auth', 'verified'])->name('regionsupdate');
-//     Route::post('/regions/{id}/delete',  'regionsdestroy')->middleware(['auth', 'verified'])->name('regionsdestroy');
-
-//     Route::get('/regions/{id}',  'regionshow')->middleware(['auth', 'verified'])->name('regionsshow');
-//     // Route::get('/editnews/{slug}', 'edit')->name('editnews');
-   
-// });
 
 Route::controller(RegionController::class)->group(function () {
     Route::get('/regions', 'index')->name('regionsindex'); // Public
@@ -142,65 +130,81 @@ Route::controller(TripController::class)->group(function () {
 
     Route::controller(TripDescriptionController::class)->middleware(['auth', 'verified'])->group(function()
     {
-
      Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
     Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
     Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
     });
 
-    Route::prefix('trips/{trip_id}/highlights')->group(function () {
-        Route::get('/', [TripHighlightController::class, 'index'])->name('tripHighlightsindex'); // This now redirects to trip show
-        Route::get('/create', [TripHighlightController::class, 'create'])->name('tripHighlightscreate');
-        Route::post('/', [TripHighlightController::class, 'store'])->name('tripHighlightsstore');
-        Route::get('/edit', [TripHighlightController::class, 'edit'])->name('tripHighlightsedit');
-        Route::post('/update', [TripHighlightController::class, 'update'])->name('tripHighlightsupdate');
-        Route::delete('/delete', [TripHighlightController::class, 'destroy'])->name('tripHighlightsdestroy');
-
-    });
-
-    Route::prefix('trips/{trip_id}/itinerary')->group(function () {
-        Route::get('/create', [ItineraryController::class, 'create'])->name('itinerarycreate');
-        Route::post('/', [ItineraryController::class, 'store'])->name('tour');
-        Route::get('/{itinerary_id}/edit', [ItineraryController::class, 'edit'])->name('itineraryedit');
-        Route::post('/{itinerary_id}/update', [ItineraryController::class, 'update'])->name('itineraryupdate');
-        Route::delete('/delete', [ItineraryController::class, 'destroy'])->name('itinerarydestroy');
-    });
-
-
-    Route::get('trips/{trip_id}/trip-facts/create', [TripFactController::class, 'create'])->name('tripfactcreate');
-Route::post('trips/{trip_id}/trip-facts/store', [TripFactController::class, 'store'])->name('tripfactstore');
-Route::get('trips/{trip_id}/trip-facts/{fact_id}/edit', [TripFactController::class, 'edit'])->name('tripfactedit');
-Route::post('trips/{trip_id}/trip-facts/{fact_id}/update', [TripFactController::class, 'update'])->name('tripfactupdate');
-Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class, 'destroy'])->name('tripfactdestroy');     
-    
-    Route::controller(NewsController::class)->group(function () {
-        Route::get('/news', 'index')->name('news');
-        Route::get('/news/{slug}/{id}/show', 'show')->name('news.show');
-        Route::middleware(['auth'])->group(function () {
-        Route::get('/addnews', 'create')->name('createnews');
-        Route::post('/storenews', 'store')->name('savenews');
-        Route::get('/editnews/{slug}', 'edit')->name('editnews');
-        Route::put('/update/{slug}', 'update')->name('updatenews');
-        Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
+    Route::prefix('trips/{trip_id}/highlights')->controller(TripHighlightController::class)->group(function () {
+        // Public route (no auth or verified required)
+        Route::get('/', 'index')->name('tripHighlightsindex'); // This now redirects to trip show
         
+        // Authenticated and verified routes
+        Route::middleware(['auth', 'verified'])->group(function () {
+            Route::get('/create', 'create')->name('tripHighlightscreate');
+            Route::post('/', 'store')->name('tripHighlightsstore');
+            Route::get('/edit', 'edit')->name('tripHighlightsedit');
+            Route::post('/update', 'update')->name('tripHighlightsupdate');
+            Route::delete('/delete', 'destroy')->name('tripHighlightsdestroy');
         });
     });
+    
+    
+
+    Route::prefix('trips/{trip_id}/itinerary')->controller(ItineraryController::class)->middleware(['auth', 'verified'])->group(function () {
+        Route::get('create', 'create')->name('itinerarycreate');
+        Route::post('/', 'store')->name('tour');
+        Route::get('{itinerary_id}/edit', 'edit')->name('itineraryedit');
+        Route::post('{itinerary_id}/update', 'update')->name('itineraryupdate');
+        Route::delete('delete', 'destroy')->name('itinerarydestroy');
+    });
+    
+
+
+    Route::prefix('trips/{trip_id}/trip-facts')->controller(TripFactController::class)->middleware(['auth', 'verified'])->group(function () {
+        Route::get('create', 'create')->name('tripfactcreate');
+        Route::post('store', 'store')->name('tripfactstore');
+        Route::get('{fact_id}/edit', 'edit')->name('tripfactedit');
+        Route::post('{fact_id}/update', 'update')->name('tripfactupdate');
+        Route::delete('{fact_id}', 'destroy')->name('tripfactdestroy');
+    });
+    
+    
+    Route::controller(NewsController::class)->group(function () {
+        // Public routes
+        Route::get('/news', 'index')->name('news');
+        Route::get('/news/{slug}/{id}/show', 'show')->name('news.show');
+    
+        // Authenticated and verified routes
+        Route::middleware(['auth', 'verified'])->group(function () {
+            Route::get('/addnews', 'create')->name('createnews');
+            Route::post('/storenews', 'store')->name('savenews');
+            Route::get('/editnews/{slug}', 'edit')->name('editnews');
+            Route::put('/update/{slug}', 'update')->name('updatenews');
+            Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
+        });
+    });
+    
 
     Route::get('/contact',[TrekController::class,'contact'])->name('contact');
     Route::post('/contact/send', [ContactController::class, 'submitContactForm'])->name('contact.send');
 
 
     // Route::resource('/faqs', FaqController::class);
-    Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index'); // Publicly accessible
-    Route::middleware(['auth'])->group(function () {
+    Route::controller(FaqController::class)->group(function () {
+        // Publicly accessible route
+        Route::get('faqs', 'index')->name('faqs.index'); 
+        
+        // Authenticated and verified routes
+        Route::middleware(['auth', 'verified'])->group(function () {
+            Route::get('faqs/create', 'create')->name('faqs.create');
+            Route::post('faqs', 'store')->name('faqs.store');
+            Route::get('faqs/{faq:slug}/edit', 'edit')->name('faqs.edit');
+            Route::put('faqs/{faq:slug}', 'update')->name('faqs.update');
+            Route::delete('faqs/{faq:slug}', 'destroy')->name('faqs.destroy');
+        });
+    });
     
-    Route::get('faqs/create', [FaqController::class, 'create'])->name('faqs.create');
-    Route::post('faqs', [FaqController::class, 'store'])->name('faqs.store');
-    Route::get('faqs/{faq:slug}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
-    Route::put('faqs/{faq:slug}', [FaqController::class, 'update'])->name('faqs.update');
-    Route::delete('faqs/{faq:slug}', [FaqController::class, 'destroy'])->name('faqs.destroy');
-   
-});
 
 
     Route::get('/customize',[TrekController::class,'customize'])->name('customize');    
@@ -211,7 +215,7 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
         Route::get('/blogs', 'index')->name('blogs.index');
         Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
 
-        Route::middleware(['auth'])->group(function () {
+        Route::middleware(['auth','verified'])->group(function () {
         Route::get('/blogs/create', 'create')->name('blogs.create');
         Route::post('/blogs', 'store')->name('blogs.store');
         Route::get('/blogs/{slug}/edit', 'edit')->name('blogs.edit');
@@ -225,130 +229,153 @@ Route::delete('trips/{trip_id}/trip-facts/{fact_id}', [TripFactController::class
     Route::resource('gallery', GalleryController::class);
 
 
-    Route::get('/trip/{trip_id}/requireditems/create', [RequiredItemController::class, 'create'])->name('requireditems.create');
-Route::post('/trip/{trip_id}/requireditems/store', [RequiredItemController::class, 'store'])->name('requireditems.store');
-Route::get('/trip/{trip_id}/requireditems/{id}/edit', [RequiredItemController::class, 'edit'])->name('requireditems.edit');
-Route::put('/trip/{trip_id}/requireditems/{id}/update', [RequiredItemController::class, 'update'])->name('requireditems.update');
-Route::delete('/trip/{trip_id}/requireditems/{id}/delete', [RequiredItemController::class, 'destroy'])->name('requireditems.destroy');
+
+    Route::middleware(['auth', 'verified'])->prefix('trip/{trip_id}/requireditems')->controller(RequiredItemController::class)->group(function () {
+        Route::get('create', 'create')->name('requireditems.create');
+        Route::post('store', 'store')->name('requireditems.store');
+        Route::get('{id}/edit', 'edit')->name('requireditems.edit');
+        Route::put('{id}/update', 'update')->name('requireditems.update');
+        Route::delete('{id}/delete', 'destroy')->name('requireditems.destroy');
+    });
+    
 
 
 Route::controller(TourController::class)->group(function () {
+    // Public routes (no authentication required)
     Route::get('/tour', 'index')->name('tourindex'); // Public
-    Route::get('/tour/create', 'tourcreate')->name('tourcreate');
-    Route::get("/tour/{id}", 'tourshow')->name('tourshow');
-        
-    Route::post('/tour', 'tourstore')->name('tourstore');
-    Route::get('/tour/{id}/edit','touredit')->name('touredit');
-    Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
-    Route::post('/tour/{id}/delete',  'tourdestroy')->name('tourdestroy');
+    Route::get('/tour/{id}', 'tourshow')->name('tourshow');
+    
+    // Authenticated routes
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/tour/create', 'tourcreate')->name('tourcreate');
+        Route::post('/tour', 'tourstore')->name('tourstore');
+        Route::get('/tour/{id}/edit', 'touredit')->name('touredit');
+        Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
+        Route::post('/tour/{id}/delete', 'tourdestroy')->name('tourdestroy');
+    });
+});
 
-        
+
+Route::controller(TourtripsController::class)->group(function () {
+    // Authenticated routes
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/tourtrips/{tour_id}/tourtrips/create', 'tourtripscreate')->name('tourtripscreate');
+        Route::post('/tourtrips/{tour_id}/tourtrips', 'tourtripsstore')->name('tourtripsstore');
+        Route::get('/tourtrips/{id}/edit', 'edit')->name('tourtripsedit');
+        Route::put('/tourtrips/{id}', 'update')->name('tourtripsupdate');
+        Route::delete('/tourtrips/{id}', 'tourtripdestroy')->name('tourtripdestroy');
     });
 
-    Route::controller(TourtripsController::class)->group(function () {
+    // Public route (no authentication required)
+    Route::get('/tourtrips/{id}', 'tourtripshow')->name('tourtripshow');
+});
 
-       
-        // Route::middleware(['auth', 'verified'])->group(function () {
-    
-            Route::get('/tourtrips/{tour_id}/tourtrips/create', 'tourtripscreate')->name('tourtripscreate');
-            Route::post('/tourtrips/{tour_id}/tourtrips',  'tourtripsstore')->name('tourtripsstore');
-            Route::get('/tourtrips/{id}/edit',  'edit')->name('tourtripsedit');
-            Route::put('/tourtrips/{id}', 'update')->name('tourtripsupdate');
-            Route::delete('/tourtrips/{id}',  'tourtripdestroy')->name('tourtripdestroy');
-
-            Route::get('/tourtrips/{id}', 'tourtripshow')->name('tourtripshow');
-    
-            });
 
         // })
    ;
 
-   Route::controller(TourImageController::class)->group(function () {
+   Route::middleware(['auth', 'verified'])->controller(TourImageController::class)->group(function () {
     Route::post('/tourtrips/{id}/add-images', 'addImages')->name('addtourimages');
     Route::post('/tourimages/{id}/update', 'updateImage')->name('updatetourimage');
     Route::delete('/tourimages/{id}/delete', 'deleteImage')->name('deletetourimage');
 });
 
 
-Route::get('tourtrips/{tourtrip_id}/tour-facts/create', [TourFactController::class, 'create'])->name('tourfactcreate');
-Route::post('tourtours/{tourtrip_id}/tour-facts/store', [TourFactController::class, 'store'])->name('tourfactstore');
-Route::get('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/edit', [TourFactController::class, 'edit'])->name('tourfactedit');
-Route::post('tourtrips/{tourtrip_id}/tour-facts/{fact_id}/update', [TourFactController::class, 'update'])->name('tourfactupdate');
-Route::delete('tourtrips/{tourtrip_id}/tour-facts/{fact_id}', [TourFactController::class, 'destroy'])->name('tourfactdestroy');     
-   
+Route::middleware(['auth','verified'])->prefix('tourtrips/{tourtrip_id}/tour-facts')->controller(TourFactController::class)->group(function () {
+    Route::get('create', 'create')->name('tourfactcreate');
+    Route::post('store', 'store')->name('tourfactstore');
+    Route::get('{fact_id}/edit', 'edit')->name('tourfactedit');
+    Route::post('{fact_id}/update', 'update')->name('tourfactupdate');
+    Route::delete('{fact_id}', 'destroy')->name('tourfactdestroy');
+});
 
-Route::prefix('tourtrips/{tourtrip_id}/tourhighlights')->group(function () {
-    Route::get('/', [TourHighlightController::class, 'index'])->name('tourHighlightsindex'); // This now redirects to trip show
-    Route::get('/create', [TourHighlightController::class, 'create'])->name('tourHighlightscreate');
-    Route::post('/', [TourHighlightController::class, 'store'])->name('tourHighlightsstore');
-    Route::get('/edit', [TourHighlightController::class, 'edit'])->name('tourHighlightsedit');
-    Route::post('/update', [TourHighlightController::class, 'update'])->name('tourHighlightsupdate');
-    Route::delete('/delete', [TourHighlightController::class, 'destroy'])->name('tourHighlightsdestroy');
 
+// Public route (no authentication required)
+Route::get('tourtrips/{tourtrip_id}/tourhighlights', [TourHighlightController::class, 'index'])->name('tourHighlightsindex');
+
+// Authenticated routes
+Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip_id}/tourhighlights')->controller(TourHighlightController::class)->group(function () {
+    Route::get('create', 'create')->name('tourHighlightscreate');
+    Route::post('/', 'store')->name('tourHighlightsstore');
+    Route::get('edit', 'edit')->name('tourHighlightsedit');
+    Route::post('update', 'update')->name('tourHighlightsupdate');
+    Route::delete('delete', 'destroy')->name('tourHighlightsdestroy');
 });
 
 
 
-Route::prefix('tourtrips/{trip_id}/itinerary')->group(function () {
-    Route::get('/create', [TourItineraryController::class, 'create'])->name('touritinerarycreate');
-    Route::post('/', [TourItineraryController::class, 'store'])->name('touritinerarystore');
-    Route::get('/{itinerary_id}/edit', [TourItineraryController::class, 'edit'])->name('touritineraryedit');
-    Route::post('/{itinerary_id}/update', [TourItineraryController::class, 'update'])->name('touritineraryupdate');
-    Route::delete('/delete', [TourItineraryController::class, 'destroy'])->name('touritinerarydestroy');
+
+Route::middleware(['auth', 'verified'])->prefix('tourtrips/{trip_id}/itinerary')->controller(TourItineraryController::class)->group(function () {
+    Route::get('/create', 'create')->name('touritinerarycreate');
+    Route::post('/', 'store')->name('touritinerarystore');
+    Route::get('/{itinerary_id}/edit', 'edit')->name('touritineraryedit');
+    Route::post('/{itinerary_id}/update', 'update')->name('touritineraryupdate');
+    Route::delete('/delete', 'destroy')->name('touritinerarydestroy');
 });
 
 
-// Show Create Form for Inclusions & Exclusions
-Route::get('trips/{trip}/inclusions-exclusions/create', [InclusionExclusionController::class, 'create'])->name('trips.inclusions-exclusions.create');
-// Store Inclusions & Exclusions
-Route::post('trips/{trip}/inclusions-exclusions', [InclusionExclusionController::class, 'store'])->name('trips.inclusions-exclusions.store');
-// Edit Inclusion/Exclusion
-Route::get('trips/{trip}/inclusions-exclusions/{inclusionExclusion}/edit', [InclusionExclusionController::class, 'edit'])->name('trips.inclusions-exclusions.edit');
-// Update Inclusion/Exclusion
-Route::put('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'update'])->name('trips.inclusions-exclusions.update');
-// Delete Inclusion/Exclusion
-Route::delete('trips/{trip}/inclusions-exclusions/{inclusionExclusion}', [InclusionExclusionController::class, 'destroy'])->name('trips.inclusions-exclusions.destroy');
-
-
-
-Route::prefix('trips/{trip_id}/tripfaq')->group(function () {
-    Route::get('/create', [TripfaqController::class, 'create'])->name('tripfaqcreate');
-    Route::post('/', [TripfaqController::class, 'store'])->name('tripfaqstore');
-    Route::get('/{tripfaq_id}/edit', [TripfaqController::class, 'edit'])->name('tripfaqedit');
-    Route::post('/{tripfaq_id}/update', [TripfaqController::class, 'update'])->name('tripfaqupdate');
-    Route::delete('/delete', [TripfaqController::class, 'destroy'])->name('tripfaqdestroy');
+Route::middleware(['auth', 'verified'])->prefix('trips/{trip}/inclusions-exclusions')->controller(InclusionExclusionController::class)->group(function () {
+    // Show Create Form for Inclusions & Exclusions
+    Route::get('create', 'create')->name('trips.inclusions-exclusions.create');
+    
+    // Store Inclusions & Exclusions
+    Route::post('/', 'store')->name('trips.inclusions-exclusions.store');
+    
+    // Edit Inclusion/Exclusion
+    Route::get('{inclusionExclusion}/edit', 'edit')->name('trips.inclusions-exclusions.edit');
+    
+    // Update Inclusion/Exclusion
+    Route::put('{inclusionExclusion}', 'update')->name('trips.inclusions-exclusions.update');
+    
+    // Delete Inclusion/Exclusion
+    Route::delete('{inclusionExclusion}', 'destroy')->name('trips.inclusions-exclusions.destroy');
 });
 
 
-Route::get('/tourtrip/{tourtrip_id}/tourrequireditems/create', [TourRequiredItemController::class, 'create'])->name('tourrequireditemscreate');
-Route::post('/tourtrip/{tourtrip_id}/tourrequireditems/store', [TourRequiredItemController::class, 'store'])->name('tourrequireditemsstore');
-Route::get('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/edit', [TourRequiredItemController::class, 'edit'])->name('tourrequireditemsedit');
-Route::put('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/update', [TourRequiredItemController::class, 'update'])->name('tourrequireditemsupdate');
-Route::delete('/tourtrip/{tourtrip_id}/tourrequireditems/{id}/delete', [TourRequiredItemController::class, 'destroy'])->name('tourrequireditemsdestroy');
-
-
-
-
-// Show Create Form for Inclusions & Exclusions
-Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/create', [TourInclusionExclusionController::class, 'create'])->name('tourtrips.inclusions-exclusions.create');
-// Store Inclusions & Exclusions
-Route::post('tourtrips/{tourtrip}/tourinclusions-exclusions', [TourInclusionExclusionController::class, 'store'])->name('tourtrips.inclusions-exclusions.store');
-// Edit Inclusion/Exclusion\
-Route::get('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}/edit', [TourInclusionExclusionController::class, 'edit'])->name('tourtrips.inclusions-exclusions.edit');
-// Update Inclusion/Exclusion
-Route::put('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'update'])->name('tourtrips.inclusions-exclusions.update');
-// Delete Inclusion/Exclusion
-Route::delete('tourtrips/{tourtrip}/tourinclusions-exclusions/{inclusionExclusion}', [TourInclusionExclusionController::class, 'destroy'])->name('tourtrips.inclusions-exclusions.destroy');
-
-
-
-Route::prefix('tourtrips/{tourtrip_id}/tourfaq')->group(function () {
-    Route::get('/create', [TourfaqController::class, 'create'])->name('tourfaqcreate');
-    Route::post('/', [TourfaqController::class, 'store'])->name('tourfaqstore');
-    Route::get('/{tourfaq_id}/edit', [TourfaqController::class, 'edit'])->name('tourfaqedit');
-    Route::post('/{tourfaq_id}/update', [TourfaqController::class, 'update'])->name('tourfaqupdate');
-    Route::delete('/delete', [TourfaqController::class, 'destroy'])->name('tourfaqdestroy');
+Route::middleware(['auth', 'verified'])->prefix('trips/{trip_id}/tripfaq')->controller(TripfaqController::class)->group(function () {
+    Route::get('/create', 'create')->name('tripfaqcreate');
+    Route::post('/', 'store')->name('tripfaqstore');
+    Route::get('/{tripfaq_id}/edit', 'edit')->name('tripfaqedit');
+    Route::post('/{tripfaq_id}/update', 'update')->name('tripfaqupdate');
+    Route::delete('/delete', 'destroy')->name('tripfaqdestroy');
 });
+
+
+
+Route::middleware(['auth', 'verified'])->prefix('tourtrip/{tourtrip_id}/tourrequireditems')->controller(TourRequiredItemController::class)->group(function () {
+    Route::get('create', 'create')->name('tourrequireditemscreate');
+    Route::post('store', 'store')->name('tourrequireditemsstore');
+    Route::get('{id}/edit', 'edit')->name('tourrequireditemsedit');
+    Route::put('{id}/update', 'update')->name('tourrequireditemsupdate');
+    Route::delete('{id}/delete', 'destroy')->name('tourrequireditemsdestroy');
+});
+
+
+Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip}/tourinclusions-exclusions')->controller(TourInclusionExclusionController::class)->group(function () {
+    // Show Create Form for Inclusions & Exclusions
+    Route::get('create', 'create')->name('tourtrips.inclusions-exclusions.create');
+    
+    // Store Inclusions & Exclusions
+    Route::post('/', 'store')->name('tourtrips.inclusions-exclusions.store');
+    
+    // Edit Inclusion/Exclusion
+    Route::get('{inclusionExclusion}/edit', 'edit')->name('tourtrips.inclusions-exclusions.edit');
+    
+    // Update Inclusion/Exclusion
+    Route::put('{inclusionExclusion}', 'update')->name('tourtrips.inclusions-exclusions.update');
+    
+    // Delete Inclusion/Exclusion
+    Route::delete('{inclusionExclusion}', 'destroy')->name('tourtrips.inclusions-exclusions.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip_id}/tourfaq')->controller(TourfaqController::class)->group(function () {
+    Route::get('create', 'create')->name('tourfaqcreate');
+    Route::post('/', 'store')->name('tourfaqstore');
+    Route::get('{tourfaq_id}/edit', 'edit')->name('tourfaqedit');
+    Route::post('{tourfaq_id}/update', 'update')->name('tourfaqupdate');
+    Route::delete('delete', 'destroy')->name('tourfaqdestroy');
+});
+
 
 
 require __DIR__.'/auth.php';
