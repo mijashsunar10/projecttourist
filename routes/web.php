@@ -153,7 +153,7 @@ Route::controller(TripController::class)->group(function () {
 
     Route::prefix('trips/{trip_id}/itinerary')->controller(ItineraryController::class)->middleware(['auth', 'verified'])->group(function () {
         Route::get('create', 'create')->name('itinerarycreate');
-        Route::post('/', 'store')->name('tour');
+        Route::post('/', 'store')->name('itinerarystore');
         Route::get('{itinerary_id}/edit', 'edit')->name('itineraryedit');
         Route::post('{itinerary_id}/update', 'update')->name('itineraryupdate');
         Route::delete('delete', 'destroy')->name('itinerarydestroy');

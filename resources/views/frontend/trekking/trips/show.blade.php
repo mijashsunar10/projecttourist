@@ -79,288 +79,197 @@
 </div>
 
 
-<!-- Imga Section -->
+<!-- Imgage Section -->
 
+    <div>
+        <div class="bg-gray-100 h-[80vh] mt-20 w-full mx-auto flex items-center justify-center overflow-hidden relative ">
+            <div class="w-full text-center h-full relative ">
+                
+                <!-- Region Name -->
+                <h2 class="absolute top-3 left-1/2 mt-4 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xl md:text-2xl font-semibold px-4 py-2 rounded-lg">
+                    {{ $trip->name }}
+                </h2>
+                @auth
+                <!-- Action Buttons (Add, Edit, Delete) -->
+                <div class="absolute top-3 mt-4 right-4 flex gap-2">
+                
+                    <!-- Add Button -->
+                    <a href="#" onclick="openModal()" 
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
+                        Add
+                    </a>
 
-<div class="bg-gray-100 h-[80vh] mt-20 w-full mx-auto flex items-center justify-center overflow-hidden relative ">
-    <div class="w-full text-center h-full relative ">
-        
-        <!-- Region Name -->
-        <h2 class="absolute top-3 left-1/2 mt-4 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xl md:text-2xl font-semibold px-4 py-2 rounded-lg">
-            {{ $trip->name }}
-        </h2>
+                    <!-- Modal Overlay -->
+                    <div id="addImageModal" class="fixed inset-0 z-10 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
+                        <!-- Modal Content -->
+                        <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg relative">
+                            
+                            <!-- Close Button -->
+                            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">
+                                &times;
+                            </button>
 
-        <!-- Action Buttons (Add, Edit, Delete) -->
-        <div class="absolute top-3 mt-4 right-4 flex gap-2">
-            <!-- Add Button -->
-            <!-- Add Button -->
-<!-- Add Button -->
-<a href="#" onclick="openModal()" 
-   class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
-    Add
-</a>
+                            <!-- Modal Header -->
+                            <div class="text-center mb-4">
+                                <h2 class="text-2xl font-semibold text-gray-800">Add New Images</h2>
+                            </div>
 
-<!-- Modal Overlay -->
-<div id="addImageModal" class="fixed inset-0 z-10 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
-    <!-- Modal Content -->
-    <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg relative">
-        
-        <!-- Close Button -->
-        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">
-            &times;
-        </button>
+                            <!-- Add Image Form -->
+                            <form action="{{ route('addtripimages', $trip->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="images" class="block text-gray-700 font-medium mb-2">Select Images</label>
+                                    <input type="file" id="images" name="images[]" class="w-full border rounded px-4 py-2" multiple onchange="previewImages(event)">
+                                </div>
 
-        <!-- Modal Header -->
-        <div class="text-center mb-4">
-            <h2 class="text-2xl font-semibold text-gray-800">Add New Images</h2>
+                                <!-- Image Preview -->
+                                <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
+
+                                <!-- Modal Footer -->
+                                <div class="flex justify-end space-x-2">
+                                    <button type="button" onclick="closeModal()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                                        Upload Images
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript for Modal and Image Preview -->
+                    <script>
+                        function openModal() {
+                            document.getElementById('addImageModal').classList.remove('hidden');
+                        }
+
+                        function closeModal() {
+                            document.getElementById('addImageModal').classList.add('hidden');
+                            document.getElementById('imagePreview').innerHTML = ''; // Clear previews on close
+                        }
+
+                        function previewImages(event) {
+                            const imagePreview = document.getElementById('imagePreview');
+                            imagePreview.innerHTML = ''; // Clear previous previews
+
+                            Array.from(event.target.files).forEach((file, index) => {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const previewContainer = document.createElement('div');
+                                    previewContainer.className = "relative group";
+
+                                    const imgElement = document.createElement('img');
+                                    imgElement.src = e.target.result;
+                                    imgElement.className = "h-40 w-full object-cover rounded-lg border shadow-md";
+
+                                    // Close button for each image
+                                    const closeButton = document.createElement('button');
+                                    closeButton.innerHTML = "&times;";
+                                    closeButton.className = "absolute top-1 right-1 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center opacity-80 hover:opacity-100";
+                                    closeButton.onclick = function() {
+                                        previewContainer.remove();
+                                    };
+
+                                    previewContainer.appendChild(imgElement);
+                                    previewContainer.appendChild(closeButton);
+                                    imagePreview.appendChild(previewContainer);
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                        }
+
+                        // Close modal when clicking outside
+                        window.onclick = function(event) {
+                            const modal = document.getElementById('addImageModal');
+                            if (event.target === modal) {
+                                closeModal();
+                            }
+                        }
+
+                        // Close modal when pressing ESC
+                        document.addEventListener('keydown', function(event) {
+                            if (event.key === "Escape") {
+                                closeModal();
+                            }
+                        });
+                    </script>
+
+                
+
+                    <!-- Delete Button -->
+                    @if ($trip->images->isNotEmpty())
+                        <form action="{{ route('deleteimage', $trip->images->first()->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
+                                Delete
+                            </button>
+                        </form>
+
+                    @endif
+                </div>
+                @endauth
+
+                <!-- Large Image -->
+                <img id="main-image"
+                    src="{{ $trip->images->isNotEmpty() ? asset('images/trips/' . $trip->images->first()->image) : 'https://via.placeholder.com/800' }}"
+                    alt="Main Image"
+                    class="h-full w-full object-cover rounded-lg shadow-lg z-0 transition-opacity duration-500 ease-in-out opacity-100 overflow-hidden" />
+
+                <!-- Thumbnail Images -->
+                @if ($trip->images->isNotEmpty())
+                    <div class="flex flex-wrap gap-4 justify-center absolute bottom-16 w-full z-1 px-4">
+                        @foreach ($trip->images as $image)
+                            <img src="{{ asset('images/trips/' . $image->image) }}" 
+                                alt="Thumbnail" 
+                                class="h-24 w-36 sm:h-32 sm:w-48 md:h-40 md:w-60 object-cover rounded-lg cursor-pointer small-image" />
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </div>
 
-        <!-- Add Image Form -->
-        <form action="{{ route('addtripimages', $trip->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-4">
-                <label for="images" class="block text-gray-700 font-medium mb-2">Select Images</label>
-                <input type="file" id="images" name="images[]" class="w-full border rounded px-4 py-2" multiple onchange="previewImages(event)">
-            </div>
+        <script>
+                // Get the main image element
+                const mainImage = document.getElementById("main-image");
 
-            <!-- Image Preview -->
-            <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
+                // Get all small images
+                const smallImages = document.querySelectorAll(".small-image");
 
-            <!-- Modal Footer -->
-            <div class="flex justify-end space-x-2">
-                <button type="button" onclick="closeModal()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
-                    Cancel
-                </button>
-                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
-                    Upload Images
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+                // Add click event listener to each small image
+                smallImages.forEach((image) => {
+                    image.addEventListener("click", () => {
+                        // Add fade-out effect
+                        mainImage.classList.add("opacity-0");
 
-<!-- JavaScript for Modal and Image Preview -->
-<script>
-    function openModal() {
-        document.getElementById('addImageModal').classList.remove('hidden');
-    }
+                        // Wait for the fade-out to complete before changing the image
+                        setTimeout(() => {
+                            mainImage.src = image.src;
 
-    function closeModal() {
-        document.getElementById('addImageModal').classList.add('hidden');
-        document.getElementById('imagePreview').innerHTML = ''; // Clear previews on close
-    }
-
-    function previewImages(event) {
-        const imagePreview = document.getElementById('imagePreview');
-        imagePreview.innerHTML = ''; // Clear previous previews
-
-        Array.from(event.target.files).forEach((file, index) => {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const previewContainer = document.createElement('div');
-                previewContainer.className = "relative group";
-
-                const imgElement = document.createElement('img');
-                imgElement.src = e.target.result;
-                imgElement.className = "h-40 w-full object-cover rounded-lg border shadow-md";
-
-                // Close button for each image
-                const closeButton = document.createElement('button');
-                closeButton.innerHTML = "&times;";
-                closeButton.className = "absolute top-1 right-1 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center opacity-80 hover:opacity-100";
-                closeButton.onclick = function() {
-                    previewContainer.remove();
-                };
-
-                previewContainer.appendChild(imgElement);
-                previewContainer.appendChild(closeButton);
-                imagePreview.appendChild(previewContainer);
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-        const modal = document.getElementById('addImageModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    }
-
-    // Close modal when pressing ESC
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-            closeModal();
-        }
-    });
-</script>
-
-<!-- Edit Button -->
-
-<!-- JavaScript for Edit Modal -->
-<script>
-    function openEditModal(imageId, currentImageSrc) {
-    // Set the current image preview in the modal
-    document.getElementById('currentImage').src = currentImageSrc;
-
-    // Set the form action to update the correct image
-    const formAction = "{{ route('updateimage', ':imageId') }}".replace(':imageId', imageId);
-    document.getElementById('editImageForm').action = formAction;
-
-    // Show the modal
-    document.getElementById('editImageModal').classList.remove('hidden');
-}
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-        const modal = document.getElementById('editImageModal');
-        if (event.target === modal) {
-            closeEditModal();
-        }
-    }
-
-    // Close modal when pressing ESC
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-            closeEditModal();
-        }
-    });
-</script>
-
-
-            <!-- Edit Button -->
-          
-            
-          
-
-
-            <!-- Delete Button -->
-            @if ($trip->images->isNotEmpty())
-                <form action="{{ route('deleteimage', $trip->images->first()->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" 
-                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
-                        Delete
-                    </button>
-                </form>
-
-            @endif
-        </div>
-
-        <!-- Large Image -->
-        <img id="main-image"
-            src="{{ $trip->images->isNotEmpty() ? asset('images/trips/' . $trip->images->first()->image) : 'https://via.placeholder.com/800' }}"
-            alt="Main Image"
-            class="h-full w-full object-cover rounded-lg shadow-lg z-0 transition-opacity duration-500 ease-in-out opacity-100 overflow-hidden" />
-
-        <!-- Thumbnail Images -->
-        @if ($trip->images->isNotEmpty())
-            <div class="flex flex-wrap gap-4 justify-center absolute bottom-16 w-full z-1 px-4">
-                @foreach ($trip->images as $image)
-                    <img src="{{ asset('images/trips/' . $image->image) }}" 
-                        alt="Thumbnail" 
-                        class="h-24 w-36 sm:h-32 sm:w-48 md:h-40 md:w-60 object-cover rounded-lg cursor-pointer small-image" />
-                @endforeach
-            </div>
-        @endif
-    </div>
-</div>
-
-    <script>
-            // Get the main image element
-            const mainImage = document.getElementById("main-image");
-
-            // Get all small images
-            const smallImages = document.querySelectorAll(".small-image");
-
-            // Add click event listener to each small image
-            smallImages.forEach((image) => {
-                image.addEventListener("click", () => {
-                    // Add fade-out effect
-                    mainImage.classList.add("opacity-0");
-
-                    // Wait for the fade-out to complete before changing the image
-                    setTimeout(() => {
-                        mainImage.src = image.src;
-
-                        // Add fade-in effect
-                        mainImage.classList.remove("opacity-0");
-                    }, 500); // Match the duration of the transition (500ms)
+                            // Add fade-in effect
+                            mainImage.classList.remove("opacity-0");
+                        }, 500); // Match the duration of the transition (500ms)
+                    });
                 });
-            });
         </script>
-</div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-{{-- <div class="mt-6">
-    <h2 class="text-xl font-bold">Trip Highlights</h2>
-    <ul class="list-disc pl-6 space-y-2">
-        @forelse ($trip->highlights as $highlight)
-            <li>{{ $highlight->highlight }}</li>
-        @empty
-            <li>No highlights available.</li>
-        @endforelse
-    </ul>
-
-    <!-- Add Highlights Button -->
-  
-    <a href="{{ route('tripHighlightsedit', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block">Edit Highlights</a>
-</div> --}}
-{{-- <div class="mt-6">
-    <h2 class="text-xl font-bold">Trip Highlights</h2>
-    <ul class="list-disc pl-6 space-y-2">
-        @forelse ($trip->highlights as $highlight)
-            <li class="flex items-center space-x-2">
-                <span>{{ $highlight->highlight }}</span>
-                <form action="{{ route('tripHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-500 text-white px-3 py-2 rounded text-sm">Delete</button>
-                </form>
-            </li>
-        @empty
-            <li>No highlights available.</li>
-        @endforelse
-    </ul>
-
-    <a href="{{ route('tripHighlightsedit', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block">Edit Highlights</a>
-    <a href="{{ route('tripHighlightscreate', $trip->id) }}" class="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block">Add Highlights</a>
-</div> --}}
-
-
-
+<!-- Imgage Section -->
 
 {{-- Trip Facts --}}
 
     <div id="tripfacts" class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%">
-        {{-- <div class="flex items-center justify-center mt-10 mb-6 mx-8">
-            <div class="flex-grow h-px bg-gray-300"></div>
-            <h2 class="text-4xl font-bold text-[#0B6285] mx-4">{{$trip->name}} Trip Facts</h2>
-            <div class="flex-grow h-px bg-gray-300"></div>
-        </div> --}}
+        
         <h2 class="section-title">Trip Facts</h2>
-        {{-- <div class="flex items-center justify-center mt-5 mb-6 mx-8">
-        <a href="{{ route('tripfactcreate', $trip->id) }}">
-                <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Trip Fact</button>
-            </a>
-        </div> --}}
+        
         @auth
         <a href="{{ route('tripfactcreate', $trip->id) }}">
             <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Trip Fact</button>
         </a>
         @endauth
 
-            {{-- <h2 class="text-3xl font-bold text-[#0B6285] mb-6">Trip Facts </h2> --}}
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Duration -->
@@ -620,157 +529,150 @@
 </script>
 
 
-<div class="mt-6" >
-    {{-- <div class="flex items-center justify-center mb-6">
-        <div class="flex-grow h-px bg-gray-300"></div>
-        <h2 class="text-4xl font-bold text-gray-800 mx-4">Add Iterinary Overview</h2>
-        <div class="flex-grow h-px bg-gray-300"></div>
-    </div>
-     --}}
-    <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+<!-- Trip Iterinary Overview -->
+    <div class="mt-6" >
+    
+        <section class="bg-gray-100   mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-    <div class=" mx-auto" style="max-width:95%" >
-        <h2 class="section-title">Iterinary Overview</h2>
-        <div class="flex items-center justify-center" style="max-width:95%" >
-            <div class="w-full max-w-7xl">
-                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-4xl font-bold">Trekking in Nepal – Iterinanary Overview</h1>
-                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
-                    <a href="{{ route('itinerarycreate', $trip->id) }}">
-                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
-                    </a>
-                </div>
-                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
-                    @foreach ($itineraries as $itinerary)
-                        <div class="border-b mb-4 last:mb-0">
-                            <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
-                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
-                                {{ $itinerary->question }}
-                                <svg id="icon{{ $itinerary->id }}"
-                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
-                                <p>{{ $itinerary->answer }}</p>
-                                {{-- <div class="mt-1">
-                                    <a href="{{ route('itineraryedit', $trip->id) }}" class="text-blue-500">
-                                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                    </a>
-                                    <form action="{{ route('itinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                    </form>
-                                </div> --}}
+        <div class=" mx-auto" style="max-width:95%" >
+            <h2 class="section-title">Iterinary Overview</h2>
+            <div class="flex items-center justify-center" style="max-width:95%" >
+                <div class="w-full max-w-7xl">
+                    <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                        <h1 class="text-4xl font-bold">Trekking in Nepal – Iterinanary Overview</h1>
+                        <p class="mt-2 text-lg">A detail description of Itirenary</p>
 
-                                <div class="mt-2">
-                                    <a href="{{ route('itineraryedit', [$trip->id, $itinerary->id]) }}" class="text-blue-500">
-                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                    </a>
-                                    <form action="{{ route('itinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                    </form>
+                        @auth
+                            <a href="{{ route('itinerarycreate', $trip->id) }}">
+                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
+                            </a>
+                        @endauth
+                    </div>
+                    <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                        @foreach ($itineraries as $itinerary)
+                            <div class="border-b mb-4 last:mb-0">
+                                <button
+                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                    onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                    {{ $itinerary->question }}
+                                    <svg id="icon{{ $itinerary->id }}"
+                                        class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                    <p>{{ $itinerary->answer }}</p>
+                                    
+                                    @auth
+
+                                        <div class="mt-2">
+                                            <a href="{{ route('itineraryedit', [$trip->id, $itinerary->id]) }}" class="text-blue-500">
+                                                <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                            </a>
+                                            <form action="{{ route('itinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                            </form>
+                                        </div>
+                                    @endauth
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
+        </section>
 
-    <script>
-        function toggleAnswer(answerId) {
-            const answer = document.getElementById(answerId);
-            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+        <script>
+            function toggleAnswer(answerId) {
+                const answer = document.getElementById(answerId);
+                const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
 
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-            }
-        }
-    </script>
-
-
-</div>
-<script>
-    // Smooth scrolling with intermediate sliding
-    // Smooth scrolling with intermediate sliding and navbar offset
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default anchor behavior
-
-            const targetId = this.getAttribute('href').substring(1); // Get target section ID
-            const targetElement = document.getElementById(targetId);
-            if (!targetElement) return;
-
-            const startPosition = window.pageYOffset;
-            const targetPosition = targetElement.offsetTop -
-                150; // Offset for the sticky navbar height (adjust as needed)
-            const distance = targetPosition - startPosition;
-            const duration = 500; // Total duration of the scrolling
-
-            let start = null;
-
-            function step(timestamp) {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                const percent = Math.min(progress / duration, 1);
-
-                const easedProgress = percent < 0.5 ?
-                    4 * percent ** 3 :
-                    1 - Math.pow(-2 * percent + 2, 3) / 2;
-
-                window.scrollTo(0, startPosition + distance * easedProgress);
-
-                if (progress < duration) {
-                    requestAnimationFrame(step);
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
                 }
             }
+        </script>
 
-            requestAnimationFrame(step);
+
+    </div>
+    <script>
+        // Smooth scrolling with intermediate sliding
+        // Smooth scrolling with intermediate sliding and navbar offset
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default anchor behavior
+
+                const targetId = this.getAttribute('href').substring(1); // Get target section ID
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+
+                const startPosition = window.pageYOffset;
+                const targetPosition = targetElement.offsetTop -
+                    150; // Offset for the sticky navbar height (adjust as needed)
+                const distance = targetPosition - startPosition;
+                const duration = 500; // Total duration of the scrolling
+
+                let start = null;
+
+                function step(timestamp) {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const percent = Math.min(progress / duration, 1);
+
+                    const easedProgress = percent < 0.5 ?
+                        4 * percent ** 3 :
+                        1 - Math.pow(-2 * percent + 2, 3) / 2;
+
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+
+                    if (progress < duration) {
+                        requestAnimationFrame(step);
+                    }
+                }
+
+                requestAnimationFrame(step);
+            });
         });
-    });
 
-    // Highlight active navbar link based on scroll position
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
+        // Highlight active navbar link based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
+        window.addEventListener('scroll', () => {
+            let current = '';
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200; // Adjust for header height
-            const sectionHeight = section.offsetHeight;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200; // Adjust for header height
+                const sectionHeight = section.offsetHeight;
 
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active-link');
+                }
+            });
         });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active-link');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active-link');
-            }
-        });
-    });
-</script>
+    </script>
+<!-- Trip Iterinary Overview -->
 
 
 {{-- Trip Required  items --}}
-<!-- Required Items Section -->
+
     <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
     <div class="mx-auto" style="max-width: 95%">
     
@@ -780,39 +682,43 @@
             <div class="flex justify-between items-center border-b py-2">
                 <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
                 </p>
-                <div>
-                    <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
-                    <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                    </form>
-                </div>
+                @auth
+                    <div>
+                        <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                        <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
         @endforeach
 
-        <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+        @auth
+            <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+        @endauth
     </div>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const section = urlParams.get('section');
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
 
-        if (section) {
-            const sectionElement = document.getElementById(section);
-            if (sectionElement) {
-                const navbarHeight = document.querySelector("nav").offsetHeight; 
-                const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+            if (section) {
+                const sectionElement = document.getElementById(section);
+                if (sectionElement) {
+                    const navbarHeight = document.querySelector("nav").offsetHeight; 
+                    const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
 
-                window.scrollTo({
-                    top: sectionPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                        top: sectionPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
 
 
@@ -821,156 +727,160 @@
 
 <!-- Trip Inclusionn and Exclusion -->
 
-<div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
-    <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+    <div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
+        <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
 
-    @if ($trip->inclusionExclusions->isEmpty())
-        <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
-    @else
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- Price Includes -->
-            <div class="p-6 bg-white rounded-lg shadow-md">
-                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
-                @php
-                    $inclusions = $trip->inclusionExclusions->where('type', 'inclusion');
-                @endphp
-                @if ($inclusions->isEmpty())
-                    <p class="text-gray-600">No inclusions added yet.</p>
-                @else
-                    <ul class="space-y-3 text-gray-600">
-                        @foreach ($inclusions as $inclusion)
-                            <li>&#10148; {{ $inclusion->description }}
-                                {{-- Edit and Delete Actions --}}
-                                <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
-                                <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $inclusion->id]) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
-                                </form>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+        @if ($trip->inclusionExclusions->isEmpty())
+            <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
+        @else
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Price Includes -->
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
+                    @php
+                        $inclusions = $trip->inclusionExclusions->where('type', 'inclusion');
+                    @endphp
+                    @if ($inclusions->isEmpty())
+                        <p class="text-gray-600">No inclusions added yet.</p>
+                    @else
+                        <ul class="space-y-3 text-gray-600">
+                            @foreach ($inclusions as $inclusion)
+                                <li>&#10148; {{ $inclusion->description }}
+
+                                    {{-- Edit and Delete Actions --}}
+
+                                    @auth
+                                        <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                        <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $inclusion->id]) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                        </form>
+                                    @endauth
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+
+                <!-- Price Does Not Include -->
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
+                    @php
+                        $exclusions = $trip->inclusionExclusions->where('type', 'exclusion');
+                    @endphp
+                    @if ($exclusions->isEmpty())
+                        <p class="text-gray-600">No exclusions added yet.</p>
+                    @else
+                        <ul class="space-y-3 text-gray-600">
+                            @foreach ($exclusions as $exclusion)
+                                <li>&#10148; {{ $exclusion->description }}
+
+                                    {{-- Edit and Delete Actions --}}
+                                    @auth
+                                        <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                        <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $exclusion->id]) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                        </form>
+                                    @endauth
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
             </div>
+        @endif
 
-            <!-- Price Does Not Include -->
-            <div class="p-6 bg-white rounded-lg shadow-md">
-                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
-                @php
-                    $exclusions = $trip->inclusionExclusions->where('type', 'exclusion');
-                @endphp
-                @if ($exclusions->isEmpty())
-                    <p class="text-gray-600">No exclusions added yet.</p>
-                @else
-                    <ul class="space-y-3 text-gray-600">
-                        @foreach ($exclusions as $exclusion)
-                            <li>&#10148; {{ $exclusion->description }}
-                                {{-- Edit and Delete Actions --}}
-                                <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
-                                <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $exclusion->id]) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
-                                </form>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+        <!-- Add Button -->
+         @auth
+            <div class="mt-6 text-center">
+                <a href="{{ route('trips.inclusions-exclusions.create', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
             </div>
-        </div>
-    @endif
-
-    <!-- Add Button -->
-    <div class="mt-6 text-center">
-        <a href="{{ route('trips.inclusions-exclusions.create', $trip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+        @endauth
     </div>
-</div>
 
 <!-- Trip Inclusionn and Exclusion -->
 
 
+<!-- Trip FAQ EXPlanation -->
 
-<div class="mt-6" >
-   
-    <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+    <div class="mt-6" >
+    
+        <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-    <div class=" mx-auto" style="max-width:95%" >
-        <h2 class="section-title">Iterinary Overview</h2>
-        <div class="flex items-center justify-center" style="max-width:95%" >
-            <div class="w-full max-w-7xl">
-                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-4xl font-bold">Trekking in Nepal – Iterinanary Overview</h1>
-                    <p class="mt-2 text-lg">A detail description of Tripfaq</p>
-                    <a href="{{ route('tripfaqcreate', $trip->id) }}">
-                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
-                    </a>
-                </div>
-                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
-                    @foreach ($tripfaqs as $tripfaq)
-                        <div class="border-b mb-4 last:mb-0">
-                            <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
-                                onclick="toggleAnswer('answer{{ $tripfaq->id }}')" aria-expanded="false">
-                                {{ $tripfaq->question }}
-                                <svg id="icon{{ $tripfaq->id }}"
-                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $tripfaq->id }}">
-                                <p>{{ $tripfaq->answer }}</p>
-                                {{-- <div class="mt-1">
-                                    <a href="{{ route('tripfaqedit', $trip->id) }}" class="text-blue-500">
-                                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                    </a>
-                                    <form action="{{ route('tripfaqdestroy', $tripfaq->id) }}" method="POST" class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                    </form>
-                                </div> --}}
-
-                                <div class="mt-2">
-                                    <a href="{{ route('tripfaqedit', [$trip->id, $tripfaq->id]) }}" class="text-blue-500">
-                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                    </a>
-                                    <form action="{{ route('tripfaqdestroy', $tripfaq->id) }}" method="POST" class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                    </form>
+        <div class=" mx-auto" style="max-width:95%" >
+            <h2 class="section-title">{{$trip->name}} FAQ Overview</h2>
+            <div class="flex items-center justify-center" style="max-width:95%" >
+                <div class="w-full max-w-7xl">
+                    <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                        <h1 class="text-4xl font-bold">Trekking in Nepal – FAQ Overview</h1>
+                        <p class="mt-2 text-lg">A detail description of Tripfaq</p>
+                        @auth
+                            <a href="{{ route('tripfaqcreate', $trip->id) }}">
+                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add FAQ</button>
+                            </a>
+                        @endauth
+                    </div>
+                    <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                        @foreach ($tripfaqs as $tripfaq)
+                            <div class="border-b mb-4 last:mb-0">
+                                <button
+                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                    onclick="toggleAnswer('answer{{ $tripfaq->id }}')" aria-expanded="false">
+                                    {{ $tripfaq->question }}
+                                    <svg id="icon{{ $tripfaq->id }}"
+                                        class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $tripfaq->id }}">
+                                    <p>{{ $tripfaq->answer }}</p>
+                                    
+                                    @auth
+                                        <div class="mt-2">
+                                            <a href="{{ route('tripfaqedit', [$trip->id, $tripfaq->id]) }}" class="text-blue-500">
+                                                <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                            </a>
+                                            <form action="{{ route('tripfaqdestroy', $tripfaq->id) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                            </form>
+                                        </div>
+                                    @endauth
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
+        </section>
 
-    <script>
-        function toggleAnswer(answerId) {
-            const answer = document.getElementById(answerId);
-            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+        <script>
+            function toggleAnswer(answerId) {
+                const answer = document.getElementById(answerId);
+                const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
 
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('rotate-180');
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
             }
-        }
-    </script>
+        </script>
 
 
-</div>
+    </div>
 
-{{-- TripFaq --}}
+<!-- {{-- TripFaq --}} -->
 
 
 
