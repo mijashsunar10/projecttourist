@@ -42,9 +42,11 @@
                 <p class="text-gray-600 mt-3">
                     {{ Str::limit($blog->description, 100, '...') }}
                 </p>
+                @guest
                 <a href="{{ route('blogs.show', [$blog->id, $blog->slug]) }}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">
                     Read More
                 </a>
+                @endguestw
                 
             @auth
                         <div class="mt-6 flex flex-wrap gap-2">

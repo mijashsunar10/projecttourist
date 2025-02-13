@@ -40,9 +40,11 @@
                 <p class="text-gray-600 mt-3">
                     {{ Str::limit($new->description, 100, '...') }}
                 </p>
-                <a href="{{ route('news.show', [$new->id, $new->slug]) }}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">
-                    Read More
-                </a>
+                @guest
+                    <a href="{{ route('news.show', [$new->id, $new->slug]) }}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">
+                        Read More
+                    </a>
+                @endguest
                 
                 @auth
                 <div class="mt-6 flex flex-wrap gap-2">
