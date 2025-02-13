@@ -1,85 +1,91 @@
+
 @extends('frontend.template.template')
 
 @section('pagecontent')
-<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8 pt-28 mt-10">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex items-center justify-between mb-12">
-            <div class="flex items-center gap-3">
-                <i class="fas fa-newspaper text-indigo-600 text-3xl"></i>
-                <h1 class="text-4xl font-bold text-gray-900">Latest Blogs</h1>
-            </div>
-            <div>
+<div class="bg-gray-100 mt-16 xl:mt-20" x-data="{ search: '' }">
+   
+    <!-- Header Section -->
+    <div class="text-center mb-12 mt-14">
+      <h1 class="text-4xl font-extrabold text-[#0B6285] pt-6">🌏 Namaste! Latest Blogs</h1>
+      <p class="text-gray-700 mt-3 text-lg">
+        Blogs and Articles for travel advice and info on destinations and sightseeing for travelers.
+      </p>
+      <div class="mt-6">
+        <input 
+          type="text" 
+          x-model="search"
+          placeholder="🔍 Search blog..." 
+          class="border-2 border-[#0B6285] rounded-full p-3 mb-5 w-full max-w-lg text-gray-700 shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300"
+        >
+              
+      </div>
                 @auth
                 <a href="{{ route('blogs.create') }}" class="px-3 py-2 bg-blue-500 text-white rounded-lg inline-block">Create new blog</a>
                 @endauth
-                <button class="px-4 py-2 text-lg font-bold text-indigo-600 hover:text-indigo-700 inline items-center gap-2 transition-colors duration-200 ">
-                    View All
-                    <i class="fas fa-arrow-right"></i>
+    </div>
+  
+    <!-- Blog Cards Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[90%] mx-auto">
+        @foreach($blogs as $blog)
+        <article 
+            class="border-2 border-gray-600 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
+            x-show="'{{ Str::lower($blog->title) }}'.includes(search.toLowerCase())"
+        >
+            <img src="{{ asset('uploads/blogs/images/'.$blog->image )}}" alt="{{ $blog->title }}" class="w-full h-48 object-cover">
+            <div class="p-5">
+                <p class="text-sm text-gray-500 mb-2">
+                    By <span class="text-[#0B6285] font-medium">{{ $blog->author }}</span> • {{ $blog->updated_at->format('F j, Y') }}
+                </p>
+                <h2 class="text-xl font-bold text-gray-800 hover:text-purple-600 transition-colors">
+                    {{ $blog->title }}
+                </h2>
+                <p class="text-gray-600 mt-3">
+                    {{ Str::limit($blog->description, 100, '...') }}
+                </p>
+                <a href="{{ route('blogs.show', [$blog->id, $blog->slug]) }}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">
+                    Read More
+                </a>
+                
+            @auth
+                        <div class="mt-6 flex flex-wrap gap-2">
+            <a href="{{ route('blogs.show', [$blog->id, $blog->slug]) }}">
+                <button class="px-4 py-2 bg-[#0B6285] text-white font-medium rounded-lg hover:bg-purple-700 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    Read More
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
                 </button>
+            </a>
+
+            <a href="{{ route('blogs.edit', [$blog->id, $blog->slug]) }}">
+                <button class="px-4 py-2 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    Edit Blog
+                    <i class="fas fa-pen group-hover:rotate-12 transition-transform duration-200"></i>
+                </button>
+            </a>
+
+            <form action="{{ route('blogs.destroy', [$blog->id, $blog->slug]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?')">
+                @csrf
+                @method('DELETE')
+                <button class="px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    Delete
+                    <i class="fas fa-trash group-hover:scale-110 transition-transform duration-200"></i>
+                </button>
+            </form>
+            
+    </div>
+    @endauth    
 
             </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- News Item Start -->
-            @foreach($blogs as $blog)
-            <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="{{ asset('uploads/blogs/images/'.$blog->image )}}" alt="{{ $blog -> image}}" class="w-full h-full object-contain transform hover:scale-110 transition-transform duration-500">
-
-                </div>
-
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-indigo-600 transition-colors duration-200">
-                        {{ $blog->title }}
-                    </h2>
-                    <p class="text-gray-600 mb-4 line-clamp-2">
-                        {{ $blog->description }}
-                    </p>
-
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-user"></i>
-                            <span>{{ $blog->author }}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-clock"></i>
-                            <span>{{ $blog->updated_at->format('F j, Y') }}</span>
-
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <a href="{{ route('blogs.show', [$blog->id, $blog->slug]) }}">
-                            <button class="w-full px-4 py-2 bg-gray-50 text-indigo-600 font-medium rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
-                                Read More
-                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
-                            </button>
-                        </a>
-                        @auth
-                        <a href="{{ route('blogs.edit', [$blog->id, $blog->slug]) }}">
-                            <button class="w-full px-4 py-2 bg-gray-50 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
-                                Edit Blog
-                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
-                            </button>
-                        </a>
-                        <form action="{{ route('blogs.destroy', [$blog->id, $blog->slug] ) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this news ?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="w-full px-4 py-2 bg-gray-50 text-red-600 font-medium rounded-lg hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
-                                Delete
-                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
-                            </button>
-                        </form>
-                        @endauth
-                    </div>
-                </div>
-            </article>
-            <!-- News Item End -->
-            @endforeach
-
-        </div>
+        </article>
+        @endforeach
     </div>
+
+    <!-- No Results Message -->
+    <p class="text-gray-600 text-center mt-6" x-show="search && document.querySelectorAll('article[x-show=false]').length === {{ $blogs->count() }}">
+        No blogs found matching your search. Try a different keyword!
+    </p>
 </div>
 
-@section('pagecontent')
+@endsection
+
+
+

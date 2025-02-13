@@ -17,6 +17,23 @@
     <!-- News Cards Section -->
     <div class=" shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 box-shadow" id="news-container">
       <!-- News cards will be inserted dynamically -->
+      <div class="rounded-2xl overflow-hidden bg-gray-100 shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+            <img src="${news.image}" alt="${news.title}" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <p class="text-sm text-gray-600 mb-2">
+                By <span class="font-semibold text-blue-700">${news.author}</span> • ${news.date}
+              </p>
+              <h2 class="text-2xl font-bold text-gray-800 hover:text-green-600 transition-colors">
+                ${news.title}
+              </h2>
+              <p class="text-gray-700 mt-3">
+                ${news.description.substring(0, 100)}...
+              </p>
+              <a href="${news.link}" class="inline-block mt-4 text-white bg-[#0B6285] hover:from-blue-600 hover:to-green-600 px-6 py-3 rounded-full font-semibold shadow-md transform hover:-translate-y-1 transition-all">
+                Read More
+              </a>
+            </div>
+          </div>
     </div>
   
    
