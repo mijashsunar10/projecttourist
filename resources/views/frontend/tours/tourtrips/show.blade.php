@@ -3,7 +3,7 @@
 @section('pagecontent')
 <style>
     hidden { display: none; }
-.rotate-180 { transform: rotate(180deg); }
+    .rotate-180 { transform: rotate(180deg); }
 
     html {
         scroll-behavior: smooth;
@@ -67,74 +67,201 @@
 </style>
 
 
-{{-- Image Section --}}
-    <div class="container mx-auto mt-20">
-    
-        <div class="flex items-center justify-center mb-6">
+<!--  -->
+
+<!-- Imgage Section -->
+
+<div>
+        <div class="bg-gray-100 h-[80vh] mt-20 w-full mx-auto flex items-center justify-center overflow-hidden relative ">
+            <div class="w-full text-center h-full relative ">
                 
-                <h2 class="text-5xl font-bold text-blue-800 mx-4">{{$tourtrip->name}}</h2>
-            
-            </div>
+                <!-- Region Name -->
+                <h2 class="absolute top-3 left-1/2 mt-4 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xl md:text-2xl font-semibold px-4 py-2 rounded-lg">
+                    {{ $tourtrip->name }}
+                </h2>
+                @auth
+                <!-- Action Buttons (Add, Edit, Delete) -->
+                <div class="absolute top-3 mt-4 right-4 flex gap-2">
+                
+                    <!-- Add Button -->
+                    <a href="#" onclick="openModal()" 
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
+                        Add
+                    </a>
 
-        <div class="flex items-center justify-center mb-6 mx-8">
-            <div class="flex-grow h-px bg-gray-300"></div>
-            <h2 class="text-4xl font-bold text-gray-800 mx-4">Add Images</h2>
-            <div class="flex-grow h-px bg-gray-300"></div>
-        </div>
-        <form action="{{ route('addtourimages', $tourtrip->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-4">
-                <label for="images" class="block text-gray-700 font-medium mb-2">Select Images</label>
-                <input type="file" id="images" name="images[]" class="w-full border rounded px-4 py-2" multiple onchange="previewImages(event)">
-            </div>
-            <div id="imagePreview" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-1 mb-4">Upload Images</button>
-        </form>
+                    <!-- Modal Overlay -->
+                    <div id="addImageModal" class="fixed inset-0 z-10 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
+                        <!-- Modal Content -->
+                        <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg relative">
+                            
+                            <!-- Close Button -->
+                            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">
+                                &times;
+                            </button>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            @if ($tourtrip->images->isEmpty())
-                <p class="text-gray-500">No images available for this trip.</p>
-            @else
-                    @foreach ($tourtrip->images as $image)
-                    <div class="border rounded p-2 relative">
-                        <img src="{{ asset('images/tourtrips/' . $image->image) }}" alt="{{ $tourtrip->name }}" class="w-full h-40 object-contain rounded">
-                        
-                        <!-- Update Image Form -->
-                        <form action="{{ route('updatetourimage', $image->id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
-                            @csrf
-                            <label for="image-{{ $image->id }}" class="text-sm font-medium">Update Image:</label>
-                            <input type="file" name="image" id="image-{{ $image->id }}" class="w-full border rounded px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-2 rounded">Update</button>
-                        </form>
+                            <!-- Modal Header -->
+                            <div class="text-center mb-4">
+                                <h2 class="text-2xl font-semibold text-gray-800">Add New Images</h2>
+                            </div>
 
-                        <!-- Delete Image Form -->
-                        <form action="{{ route('deletetourimage', $image->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="mt-2">
+                            <!-- Add Image Form -->
+                            <form action="{{ route('addtourimages', $tourtrip->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="images" class="block text-gray-700 font-medium mb-2">Select Images</label>
+                                    <input type="file" id="images" name="images[]" class="w-full border rounded px-4 py-2" multiple onchange="previewImages(event)">
+                                </div>
+
+                                <!-- Image Preview -->
+                                <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
+
+                                <!-- Modal Footer -->
+                                <div class="flex justify-end space-x-2">
+                                    <button type="button" onclick="closeModal()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                                        Upload Images
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript for Modal and Image Preview -->
+                    <script>
+                        function openModal() {
+                            document.getElementById('addImageModal').classList.remove('hidden');
+                        }
+
+                        function closeModal() {
+                            document.getElementById('addImageModal').classList.add('hidden');
+                            document.getElementById('imagePreview').innerHTML = ''; // Clear previews on close
+                        }
+
+                        function previewImages(event) {
+                            const imagePreview = document.getElementById('imagePreview');
+                            imagePreview.innerHTML = ''; // Clear previous previews
+
+                            Array.from(event.target.files).forEach((file, index) => {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const previewContainer = document.createElement('div');
+                                    previewContainer.className = "relative group";
+
+                                    const imgElement = document.createElement('img');
+                                    imgElement.src = e.target.result;
+                                    imgElement.className = "h-40 w-full object-cover rounded-lg border shadow-md";
+
+                                    // Close button for each image
+                                    const closeButton = document.createElement('button');
+                                    closeButton.innerHTML = "&times;";
+                                    closeButton.className = "absolute top-1 right-1 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center opacity-80 hover:opacity-100";
+                                    closeButton.onclick = function() {
+                                        previewContainer.remove();
+                                    };
+
+                                    previewContainer.appendChild(imgElement);
+                                    previewContainer.appendChild(closeButton);
+                                    imagePreview.appendChild(previewContainer);
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                        }
+
+                        // Close modal when clicking outside
+                        window.onclick = function(event) {
+                            const modal = document.getElementById('addImageModal');
+                            if (event.target === modal) {
+                                closeModal();
+                            }
+                        }
+
+                        // Close modal when pressing ESC
+                        document.addEventListener('keydown', function(event) {
+                            if (event.key === "Escape") {
+                                closeModal();
+                            }
+                        });
+                    </script>
+
+                
+
+                    <!-- Delete Button -->
+                    @if ($tourtrip->images->isNotEmpty())
+                        <form action="{{ route('deletetourimage', $tourtrip->images->first()->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                            <button type="submit" 
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
+                                Delete
+                            </button>
                         </form>
+
+                    @endif
+                </div>
+                @endauth
+
+                <!-- Large Image -->
+                <img id="main-image"
+                    src="{{ $tourtrip->images->isNotEmpty() ? asset('images/tourtrips/' . $tourtrip->images->first()->image) : 'https://via.placeholder.com/800' }}"
+                    alt="Main Image"
+                    class="h-full w-full object-cover rounded-lg shadow-lg z-0 transition-opacity duration-500 ease-in-out opacity-100 overflow-hidden" />
+
+                <!-- Thumbnail Images -->
+                @if ($tourtrip->images->isNotEmpty())
+                    <div class="flex flex-wrap gap-4 justify-center absolute bottom-16 w-full z-1 px-4">
+                        @foreach ($tourtrip->images as $image)
+                            <img src="{{ asset('images/tourtrips/' . $image->image) }}" 
+                                alt="Thumbnail" 
+                                class="h-24 w-36 sm:h-32 sm:w-48 md:h-40 md:w-60 object-cover rounded-lg cursor-pointer small-image" />
+                        @endforeach
                     </div>
-                @endforeach
-            @endif
+                @endif
+            </div>
         </div>
 
-    
+        <script>
+                // Get the main image element
+                const mainImage = document.getElementById("main-image");
+
+                // Get all small images
+                const smallImages = document.querySelectorAll(".small-image");
+
+                // Add click event listener to each small image
+                smallImages.forEach((image) => {
+                    image.addEventListener("click", () => {
+                        // Add fade-out effect
+                        mainImage.classList.add("opacity-0");
+
+                        // Wait for the fade-out to complete before changing the image
+                        setTimeout(() => {
+                            mainImage.src = image.src;
+
+                            // Add fade-in effect
+                            mainImage.classList.remove("opacity-0");
+                        }, 500); // Match the duration of the transition (500ms)
+                    });
+                });
+        </script>
     </div>
 
-{{-- End Image Section --}}
+<!-- Imgage Section -->
+
 
 
 {{-- Trip Facts --}}
 
     <div id="tourfacts" class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%">
-       
-        <a href="{{ route('tourfactcreate', $tourtrip->id) }}">
-            <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
-        </a>
+        @auth
+            <a href="{{ route('tourfactcreate', $tourtrip->id) }}">
+                <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
+            </a>
+        @endauth
        
 
-            <!-- {{-- <h2 class="text-3xl font-bold text-[#0B6285] mb-6">Trip Facts </h2> --}}
-             -->
+             <h2 class="text-4xl font-bold text-[#0B6285] mb-6">Trip Facts </h2> 
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Duration -->
             
@@ -233,17 +360,17 @@
                     </div>
                 </div>
                 @auth
-                <div class="mt-2">
-                
-                    <a href="{{ route('tourfactedit', [$tourtrip->id, $fact->id]) }}">
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded">Edit Trip Facts</button>
-                    </a>
-                    <form action="{{ route('tourfactdestroy', [$tourtrip->id, $fact->id]) }}" method="POST" class="inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete Trip Facts</button>
-                    </form>
-                </div>
+                    <div class="mt-2">
+                    
+                        <a href="{{ route('tourfactedit', [$tourtrip->id, $fact->id]) }}">
+                            <button class="bg-yellow-500 text-white px-4 py-2 rounded">Edit Trip Facts</button>
+                        </a>
+                        <form action="{{ route('tourfactdestroy', [$tourtrip->id, $fact->id]) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete Trip Facts</button>
+                        </form>
+                    </div>
                 @endauth
 
                 @endforeach
@@ -336,7 +463,7 @@
         </ul>
     </div>
     @endguest
-{{-- Trip Highghlight --}}
+
 
  <!-- TourHIghlights -->
 
@@ -344,76 +471,79 @@
  <!-- Tour Iterinary -->
 
 
- <div class="mt-6" >
-   
-    <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+    <div class="mt-6" >
+    
+        <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-    <div class=" mx-auto" style="max-width:95%" >
-        <h2 class="section-title">Tour Iterinary Overview</h2>
-        <div class="flex items-center justify-center" style="max-width:95%" >
-            <div class="w-full max-w-7xl">
-                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-4xl font-bold">TOurs in Nepal – Iterinanary Overview</h1>
-                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
-                    <a href="{{ route('touritinerarycreate', $tourtrip->id) }}">
-                        <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
-                    </a>
-                </div>
-                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
-                    @foreach ($itineraries as $itinerary)
-                        <div class="border-b mb-4 last:mb-0">
-                            <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
-                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
-                                {{ $itinerary->question }}
-                                <svg id="icon{{ $itinerary->id }}"
-                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
-                                <p>{{ $itinerary->answer }}</p>
-                               
-
-                                <div class="mt-2">
-                                    <a href="{{ route('touritineraryedit', [$tourtrip->id, $itinerary->id]) }}" class="text-blue-500">
-                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                    </a>
-                                    <form action="{{ route('touritinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                    </form>
+        <div class=" mx-auto" style="max-width:95%" >
+            <h2 class="section-title">Tour Iterinary Overview</h2>
+            <div class="flex items-center justify-center" style="max-width:95%" >
+                <div class="w-full max-w-7xl">
+                    <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                        <h1 class="text-4xl font-bold">TOurs in Nepal – Iterinanary Overview</h1>
+                        <p class="mt-2 text-lg">A detail description of Itirenary</p>
+                        @auth
+                            <a href="{{ route('touritinerarycreate', $tourtrip->id) }}">
+                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
+                            </a>
+                        @endauth
+                    </div>
+                    <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                        @foreach ($itineraries as $itinerary)
+                            <div class="border-b mb-4 last:mb-0">
+                                <button
+                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                    onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                    {{ $itinerary->question }}
+                                    <svg id="icon{{ $itinerary->id }}"
+                                        class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                    <p>{{ $itinerary->answer }}</p>
+                                
+                                    @auth
+                                        <div class="mt-2">
+                                            <a href="{{ route('touritineraryedit', [$tourtrip->id, $itinerary->id]) }}" class="text-blue-500">
+                                                <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                            </a>
+                                            <form action="{{ route('touritinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                            </form>
+                                        </div>
+                                    @endauth
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
+        </section>
 
-    <script>
-        function toggleAnswer(answerId) {
-            const answer = document.getElementById(answerId);
-            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+        <script>
+            function toggleAnswer(answerId) {
+                const answer = document.getElementById(answerId);
+                const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
 
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('rotate-180');
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
             }
-        }
-    </script>
+        </script>
 
 
-</div>
+    </div>
  <!-- Tour Iterinary -->
 
 
@@ -429,18 +559,22 @@
             <div class="flex justify-between items-center border-b py-2">
                 <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
                 </p>
-                <div>
-                    <a href="{{ route('tourrequireditemsedit', [$tourtrip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
-                    <form action="{{ route('tourrequireditemsdestroy', [$tourtrip->id, $item->id]) }}" method="POST" class="inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                    </form>
-                </div>
+                @auth
+                    <div>
+                        <a href="{{ route('tourrequireditemsedit', [$tourtrip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                        <form action="{{ route('tourrequireditemsdestroy', [$tourtrip->id, $item->id]) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
         @endforeach
 
-        <a href="{{ route('tourrequireditemscreate', $tourtrip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+        @auth
+            <a href="{{ route('tourrequireditemscreate', $tourtrip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+        @endauth
     </div> 
     </div>
     <script>
@@ -486,6 +620,8 @@
                         <ul class="space-y-3 text-gray-600">
                             @foreach ($inclusions as $inclusion)
                                 <li>&#10148; {{ $inclusion->description }}
+
+                                @auth
                                     {{-- Edit and Delete Actions --}}
                                     <a href="{{ route('tourtrips.inclusions-exclusions.edit', [$tourtrip->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
                                     <form action="{{ route('tourtrips.inclusions-exclusions.destroy', [$tourtrip->id, $inclusion->id]) }}" method="POST" class="inline">
@@ -493,6 +629,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 ml-2">Delete</button>
                                     </form>
+                                @endauth
                                 </li>
                             @endforeach
                         </ul>
@@ -512,12 +649,15 @@
                             @foreach ($exclusions as $exclusion)
                                 <li>&#10148; {{ $exclusion->description }}
                                     {{-- Edit and Delete Actions --}}
-                                    <a href="{{ route('tourtrips.inclusions-exclusions.edit', [$tourtrip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
-                                    <form action="{{ route('tourtrips.inclusions-exclusions.destroy', [$tourtrip->id, $exclusion->id]) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-500 ml-2">Delete</button>
-                                    </form>
+
+                                    @auth
+                                        <a href="{{ route('tourtrips.inclusions-exclusions.edit', [$tourtrip->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                        <form action="{{ route('tourtrips.inclusions-exclusions.destroy', [$tourtrip->id, $exclusion->id]) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                        </form>
+                                    @endauth
                                 </li>
                             @endforeach
                         </ul>
@@ -527,9 +667,11 @@
         @endif
 
         <!-- Add Button -->
-        <div class="mt-6 text-center">
-            <a href="{{ route('tourtrips.inclusions-exclusions.create', $tourtrip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
-        </div>
+         @auth
+            <div class="mt-6 text-center">
+                <a href="{{ route('tourtrips.inclusions-exclusions.create', $tourtrip->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+            </div>
+        @endauth
     </div>
 
 <!-- Trip Inclusionn and Exclusion -->
@@ -539,75 +681,80 @@
  
    <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-   <div class=" mx-auto" style="max-width:95%" >
-       <h2 class="section-title">Tour Faq Overview</h2>
-       <div class="flex items-center justify-center" style="max-width:95%" >
-           <div class="w-full max-w-7xl">
-               <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                   <h1 class="text-4xl font-bold">TOurs in Nepal – Iterinanary Overview</h1>
-                   <p class="mt-2 text-lg">A detail description of Itirenary</p>
-                   <a href="{{ route('tourfaqcreate', $tourtrip->id) }}">
-                       <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
-                   </a>
-               </div>
-               <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
-                   @foreach ($tourfaqs as $tourfaq)
-                       <div class="border-b mb-4 last:mb-0">
-                           <button
-                               class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
-                               onclick="toggleAnswer('answer{{ $tourfaq->id }}')" aria-expanded="false">
-                               {{ $tourfaq->question }}
-                               <svg id="icon{{ $tourfaq->id }}"
-                                   class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
-                                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                   stroke="currentColor">
-                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                       d="M19 9l-7 7-7-7" />
-                               </svg>
-                           </button>
-                           <div style="display: none;" class="px-4 pb-4 bg-white text-black" id="answer{{ $tourfaq->id }}">
-                           <p>{{ $tourfaq->answer }}</p>
-                              
+    <div class=" mx-auto" style="max-width:95%" >
+        <h2 class="section-title">Tour Faq Overview</h2>
+        <div class="flex items-center justify-center" style="max-width:95%" >
+            <div class="w-full max-w-7xl">
+                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                    <h1 class="text-4xl font-bold">TOurs in Nepal – TOur Faq Overview</h1>
+                    <p class="mt-2 text-lg">A detail description of TOur Faq</p>
 
-                               <div class="mt-2">
-                                   <a href="{{ route('tourfaqedit',  [$tourtrip->id, $tourfaq->id]) }}" class="text-blue-500">
-                                       <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                   </a>
-                                   <form action="{{ route('tourfaqdestroy', $tourfaq->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
-                                       @csrf
-                                       @method('DELETE')
-                                       <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
-                   @endforeach
-               </div>
-           </div>
-       </div>
-   </div>
+                    @auth
+                        <a href="{{ route('tourfaqcreate', $tourtrip->id) }}">
+                            <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
+                        </a>
+                    @endauth
+                </div>
+                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                    @foreach ($tourfaqs as $tourfaq)
+                        <div class="border-b mb-4 last:mb-0">
+                            <button
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                onclick="toggleAnswer('answer{{ $tourfaq->id }}')" aria-expanded="false">
+                                {{ $tourfaq->question }}
+                                <svg id="icon{{ $tourfaq->id }}"
+                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div style="display: none;" class="px-4 pb-4 bg-white text-black" id="answer{{ $tourfaq->id }}">
+                            <p>{{ $tourfaq->answer }}</p>
+                                
+
+                            @auth
+                                <div class="mt-2">
+                                    <a href="{{ route('tourfaqedit',  [$tourtrip->id, $tourfaq->id]) }}" class="text-blue-500">
+                                        <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                    </a>
+                                    <form action="{{ route('tourfaqdestroy', $tourfaq->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                    </form>
+                                </div>
+                            @endauth
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
    </section>
 
    <script>
-      function toggleAnswer(answerId) {
-    const answer = document.getElementById(answerId);
-    const icon = document.getElementById(`icon${answerId.replace('answer', '').replace('tourfaq-', '').replace('itinerary-', '')}`);
+            function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(`icon${answerId.replace('answer', '').replace('tourfaq-', '').replace('itinerary-', '')}`);
 
-    if (!answer || !icon) {
-        console.log("Element not found: " + answerId);
-        return;
-    }
+            if (!answer || !icon) {
+                console.log("Element not found: " + answerId);
+                return;
+            }
 
-    if (answer.classList.contains("hidden") || answer.style.display === "none") {
-        answer.classList.remove("hidden");
-        answer.style.display = "block";
-        icon.classList.add("rotate-180");
-    } else {
-        answer.classList.add("hidden");
-        answer.style.display = "none";
-        icon.classList.remove("rotate-180");
-    }
-}
+            if (answer.classList.contains("hidden") || answer.style.display === "none") {
+                answer.classList.remove("hidden");
+                answer.style.display = "block";
+                icon.classList.add("rotate-180");
+            } else {
+                answer.classList.add("hidden");
+                answer.style.display = "none";
+                icon.classList.remove("rotate-180");
+            }
+        }
 
     </script>
 

@@ -257,6 +257,7 @@
     </div>
 
 <!-- Imgage Section -->
+ 
 
 {{-- Trip Facts --}}
 
