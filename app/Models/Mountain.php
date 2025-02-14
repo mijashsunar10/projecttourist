@@ -39,6 +39,10 @@ class Mountain extends Model
     {
         return $this->hasMany(ExpeditionRequiredItem::class,'mountain_id');
     }
+    public function mountainfaqs()
+    {
+        return $this->hasMany(Expeditionfaq::class,'mountain_id');
+    }
 
 
 

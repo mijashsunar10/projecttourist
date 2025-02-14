@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\ExpeditionFactController;
+use App\Http\Controllers\ExpeditionfaqController;
 use App\Http\Controllers\ExpeditionHighlightController;
 use App\Http\Controllers\ExpeditionImageController;
 use App\Http\Controllers\ExpeditionInclusionExcluionController;
@@ -484,6 +485,15 @@ Route::middleware(['auth', 'verified'])->prefix('mountain/{mountain_id}/mountain
     Route::get('{id}/edit', 'edit')->name('mountainrequireditemsedit');
     Route::put('{id}/update', 'update')->name('mountainrequireditemsupdate');
     Route::delete('{id}/delete', 'destroy')->name('mountainrequireditemsdestroy');
+});
+
+
+Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountainfaq')->controller(ExpeditionfaqController::class)->group(function () {
+    Route::get('create', 'create')->name('mountainfaqcreate');
+    Route::post('/', 'store')->name('mountainfaqstore');
+    Route::get('{mountainfaq_id}/edit', 'edit')->name('mountainfaqedit');
+    Route::post('{mountainfaq_id}/update', 'update')->name('mountainfaqupdate');
+    Route::delete('delete', 'destroy')->name('mountainfaqdestroy');
 });
 
 
