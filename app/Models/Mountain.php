@@ -35,6 +35,10 @@ class Mountain extends Model
     {
         return $this->hasMany(ExpeditionInclusionExclusion::class,'mountain_id');
     }
+    public function mountainrequiredItems()
+    {
+        return $this->hasMany(ExpeditionRequiredItem::class,'mountain_id');
+    }
 
 
 

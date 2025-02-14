@@ -534,158 +534,221 @@
 {{-- Expedition Iterinary --}}
 
 
-<div class="mt-6" >
-    
-    <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+    <div class="mt-6" >
+        
+        <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
-    <div class=" mx-auto" style="max-width:95%" >
-        <h2 class="section-title">mountain Iterinary Overview</h2>
-        <div class="flex items-center justify-center" style="max-width:95%" >
-            <div class="w-full max-w-7xl">
-                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-4xl font-bold">mountains in Nepal – Iterinanary Overview</h1>
-                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
-                    @auth
-                        <a href="{{ route('mountainitinerarycreate', $mountain->id) }}">
-                            <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
-                        </a>
-                    @endauth
-                </div>
-                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
-                    @foreach ($itineraries as $itinerary)
-                        <div class="border-b mb-4 last:mb-0">
-                            <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
-                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
-                                {{ $itinerary->question }}
-                                <svg id="icon{{ $itinerary->id }}"
-                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
-                                <p>{{ $itinerary->answer }}</p>
-                            
-                                @auth
-                                    <div class="mt-2">
-                                        <a href="{{ route('mountainitineraryedit', [$mountain->id, $itinerary->id]) }}" class="text-blue-500">
-                                            <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
-                                        </a>
-                                        <form action="{{ route('mountainitinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
-                                        </form>
-                                    </div>
-                                @endauth
+        <div class=" mx-auto" style="max-width:95%" >
+            <h2 class="section-title">mountain Iterinary Overview</h2>
+            <div class="flex items-center justify-center" style="max-width:95%" >
+                <div class="w-full max-w-7xl">
+                    <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                        <h1 class="text-4xl font-bold">mountains in Nepal – Iterinanary Overview</h1>
+                        <p class="mt-2 text-lg">A detail description of Itirenary</p>
+                        @auth
+                            <a href="{{ route('mountainitinerarycreate', $mountain->id) }}">
+                                <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
+                            </a>
+                        @endauth
+                    </div>
+                    <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                        @foreach ($itineraries as $itinerary)
+                            <div class="border-b mb-4 last:mb-0">
+                                <button
+                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                    onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                    {{ $itinerary->question }}
+                                    <svg id="icon{{ $itinerary->id }}"
+                                        class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                    <p>{{ $itinerary->answer }}</p>
+                                
+                                    @auth
+                                        <div class="mt-2">
+                                            <a href="{{ route('mountainitineraryedit', [$mountain->id, $itinerary->id]) }}" class="text-blue-500">
+                                                <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                            </a>
+                                            <form action="{{ route('mountainitinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                            </form>
+                                        </div>
+                                    @endauth
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
+        </section>
 
-    <script>
-        function toggleAnswer(answerId) {
-            const answer = document.getElementById(answerId);
-            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+        <script>
+            function toggleAnswer(answerId) {
+                const answer = document.getElementById(answerId);
+                const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
 
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('rotate-180');
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
             }
-        }
-    </script>
+        </script>
 
 
-</div>
-{{-- Expedition Iterinary --}}
+    </div>
+ {{-- Expedition Iterinary --}}
 
 
-<!-- Tour Inclusionn and Exclusion -->
 
-<div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
-    <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+  <!-- mountain Required ITem -->
 
-    @if ($mountain->expeditioninclusionExclusions->isEmpty())
-        <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
-    @else
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- Price Includes -->
-            <div class="p-6 bg-white rounded-lg shadow-md">
-                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
-                @php
-                    $inclusions = $mountain->expeditioninclusionExclusions->where('type', 'inclusion');
-                @endphp
-                @if ($inclusions->isEmpty())
-                    <p class="text-gray-600">No inclusions added yet.</p>
-                @else
-                    <ul class="space-y-3 text-gray-600">
-                        @foreach ($inclusions as $inclusion)
-                            <li>&#10148; {{ $inclusion->description }}
 
-                            @auth
-                                {{-- Edit and Delete Actions --}}
-                                <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
-                                <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $inclusion->id]) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
-                                </form>
-                            @endauth
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+  <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
+    <div class="mx-auto" style="max-width: 95%">
+    
+        <h2 class="section-title">Required Items For This mountain</h2>
+        
+        @foreach($mountain->mountainrequiredItems as $item)
+            <div class="flex justify-between items-center border-b py-2">
+                <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
+                </p>
+                @auth
+                    <div>
+                        <a href="{{ route('mountainrequireditemsedit', [$mountain->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                        <form action="{{ route('mountainrequireditemsdestroy', [$mountain->id, $item->id]) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
+        @endforeach
 
-            <!-- Price Does Not Include -->
-            <div class="p-6 bg-white rounded-lg shadow-md">
-                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
-                @php
-                    $exclusions = $mountain->expeditioninclusionExclusions->where('type', 'exclusion');
-                @endphp
-                @if ($exclusions->isEmpty())
-                    <p class="text-gray-600">No exclusions added yet.</p>
-                @else
-                    <ul class="space-y-3 text-gray-600">
-                        @foreach ($exclusions as $exclusion)
-                            <li>&#10148; {{ $exclusion->description }}
-                                {{-- Edit and Delete Actions --}}
+        @auth
+            <a href="{{ route('mountainrequireditemscreate', $mountain->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+        @endauth
+    </div> 
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
+
+            if (section) {
+                const sectionElement = document.getElementById(section);
+                if (sectionElement) {
+                    const navbarHeight = document.querySelector("nav").offsetHeight; 
+                    const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+
+                    window.scrollTo({
+                        top: sectionPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
+<!-- mountain Required ITem -->
+
+
+
+
+
+
+
+<!-- mountain Inclusionn and Exclusion -->
+
+    <div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
+        <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+
+        @if ($mountain->expeditioninclusionExclusions->isEmpty())
+            <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
+        @else
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Price Includes -->
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
+                    @php
+                        $inclusions = $mountain->expeditioninclusionExclusions->where('type', 'inclusion');
+                    @endphp
+                    @if ($inclusions->isEmpty())
+                        <p class="text-gray-600">No inclusions added yet.</p>
+                    @else
+                        <ul class="space-y-3 text-gray-600">
+                            @foreach ($inclusions as $inclusion)
+                                <li>&#10148; {{ $inclusion->description }}
 
                                 @auth
-                                    <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
-                                    <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $exclusion->id]) }}" method="POST" class="inline">
+                                    {{-- Edit and Delete Actions --}}
+                                    <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                    <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $inclusion->id]) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 ml-2">Delete</button>
                                     </form>
                                 @endauth
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
-        </div>
-    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
 
-    <!-- Add Button -->
-     @auth
-        <div class="mt-6 text-center">
-            <a href="{{ route('mountains.inclusions-exclusions.create', $mountain->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
-        </div>
-    @endauth
-</div>
+                <!-- Price Does Not Include -->
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
+                    @php
+                        $exclusions = $mountain->expeditioninclusionExclusions->where('type', 'exclusion');
+                    @endphp
+                    @if ($exclusions->isEmpty())
+                        <p class="text-gray-600">No exclusions added yet.</p>
+                    @else
+                        <ul class="space-y-3 text-gray-600">
+                            @foreach ($exclusions as $exclusion)
+                                <li>&#10148; {{ $exclusion->description }}
+                                    {{-- Edit and Delete Actions --}}
+
+                                    @auth
+                                        <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                        <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $exclusion->id]) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                        </form>
+                                    @endauth
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+        @endif
+
+        <!-- Add Button -->
+        @auth
+            <div class="mt-6 text-center">
+                <a href="{{ route('mountains.inclusions-exclusions.create', $mountain->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+            </div>
+        @endauth
+    </div>
 
 <!-- Trip Inclusionn and Exclusion -->
+
+
+
+
+
 
 
 

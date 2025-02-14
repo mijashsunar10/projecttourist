@@ -10,6 +10,7 @@ use App\Http\Controllers\ExpeditionHighlightController;
 use App\Http\Controllers\ExpeditionImageController;
 use App\Http\Controllers\ExpeditionInclusionExcluionController;
 use App\Http\Controllers\ExpeditionItineraryController;
+use App\Http\Controllers\ExpeditionRequiredItemController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InclusionExclusionController;
@@ -476,6 +477,14 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain}/mountainin
     Route::delete('{inclusionExclusion}', 'destroy')->name('mountains.inclusions-exclusions.destroy');
 });
 
+
+Route::middleware(['auth', 'verified'])->prefix('mountain/{mountain_id}/mountainrequireditems')->controller(ExpeditionRequiredItemController::class)->group(function () {
+    Route::get('create', 'create')->name('mountainrequireditemscreate');
+    Route::post('store', 'store')->name('mountainrequireditemsstore');
+    Route::get('{id}/edit', 'edit')->name('mountainrequireditemsedit');
+    Route::put('{id}/update', 'update')->name('mountainrequireditemsupdate');
+    Route::delete('{id}/delete', 'destroy')->name('mountainrequireditemsdestroy');
+});
 
 
 
