@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
+use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InclusionExclusionController;
@@ -243,7 +244,7 @@ Route::controller(TripController::class)->group(function () {
 Route::controller(TourController::class)->group(function () {
     // Public routes (no authentication required)
     Route::get('/tour', 'index')->name('tourindex'); // Public
-    Route::get('/tour/{id}', 'tourshow')->name('tourshow');
+  
     
     // Authenticated routes
     Route::middleware(['auth', 'verified'])->group(function () {
@@ -253,6 +254,7 @@ Route::controller(TourController::class)->group(function () {
         Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
         Route::post('/tour/{id}/delete', 'tourdestroy')->name('tourdestroy');
     });
+    Route::get('/tour/{id}', 'tourshow')->name('tourshow');
 });
 
 
@@ -375,6 +377,24 @@ Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip_id}/tourfaq
     Route::post('{tourfaq_id}/update', 'update')->name('tourfaqupdate');
     Route::delete('delete', 'destroy')->name('tourfaqdestroy');
 });
+
+
+
+Route::controller(ExpeditionController::class)->group(function () {
+    Route::get('/expeditions', 'index')->name('expeditionsindex'); // Public
+    // Route::get('/header', 'header')->name('header'); // Public
+    
+
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('expeditions/create', 'expeditionscreate')->name('expeditionscreate');
+        Route::post('/expeditionsstore', 'expeditionsstore')->name('expeditionsstore');
+        Route::get('/expeditions/{id}/edit','expeditionsedit')->name('expeditionsedit');
+        Route::post('/expeditions/{id}/update', 'expeditionsupdate')->name('expeditionsupdate');
+        Route::post('/expeditions/{id}/delete',  'expeditionsdestroy')->name('expeditionsdestroy');
+    });
+    Route::get('/expeditions/{id}',  'expeditionshow')->name('expeditionsshow'); // Public
+});
+
 
 
 
