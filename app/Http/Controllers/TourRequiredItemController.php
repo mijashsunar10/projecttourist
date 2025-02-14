@@ -51,11 +51,11 @@ class TourRequiredItemController extends Controller
         return redirect()->route('tourtripshow', ['id' => $item->tourtrip_id, 'section' => 'required'])->with('success', 'Item updated successfully.');
     }
 
-    public function destroy($tourtrip_id, $id)
+    public function destroy($tourtrip_id, $id)  
     {
         $item = TourRequiredItem::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Item deleted successfully.');
+        return redirect()->route('tourtripshow', ['id' => $item->tourtrip_id, 'section' => 'required'])->with('success', 'Item deleted successfully.');
     }
 }

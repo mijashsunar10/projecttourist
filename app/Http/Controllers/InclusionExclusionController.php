@@ -30,7 +30,7 @@ class InclusionExclusionController extends Controller
             'description' => $description,
         ]);
     }
-    return redirect()->route('tripshow', $tripId)->with('success', 'Items added successfully!'). '#inclusions';
+    return redirect()->route('tripshow', ['id' => $tripId, 'section' => 'inclusions'])->with('success', 'Items added successfully!'). '#inclusions';
     }
     public function edit($tripId, InclusionExclusion $inclusionExclusion)
     {
@@ -40,11 +40,11 @@ class InclusionExclusionController extends Controller
     {
         $request->validate(['description' => 'required|string']);
         $inclusionExclusion->update(['description' => $request->description]);
-        return redirect()->route('tripshow', $tripId)->with('success', 'Item updated successfully!'). '#inclusions';
+        return redirect()->route('tripshow', ['id' => $tripId, 'section' => 'inclusions'])->with('success', 'Item updated successfully!'). '#inclusions';
     }
     public function destroy($tripId, InclusionExclusion $inclusionExclusion)
     {
         $inclusionExclusion->delete();
-        return redirect()->route('tripshow', $tripId)->with('success', 'Item deleted successfully!'). '#inclusions';
+        return redirect()->route('tripshow', ['id' => $tripId, 'section' => 'inclusions'])->with('success', 'Item deleted successfully!'). '#inclusions';
     }
 }

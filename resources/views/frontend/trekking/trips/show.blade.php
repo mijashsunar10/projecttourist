@@ -701,7 +701,7 @@
         @endauth
     </div>
     </div>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const section = urlParams.get('section');
@@ -719,7 +719,10 @@
                 }
             }
         });
-    </script>
+    </script> --}}
+
+
+
 
 
 
@@ -809,7 +812,7 @@
 
     <div class="mt-6" >
     
-        <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+        <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="tripfaq">
 
         <div class=" mx-auto" style="max-width:95%" >
             <h2 class="section-title">{{$trip->name}} FAQ Overview</h2>
@@ -885,5 +888,26 @@
 
 
 
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+
+    if (section) {
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+            const navbar = document.querySelector("nav"); 
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;  
+            const sectionPosition = sectionElement.offsetTop - navbarHeight - 80; 
+
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: 'instant' // Instantly jumps to the section
+            });
+        }
+    }
+});
+
+</script>
 
 @endsection

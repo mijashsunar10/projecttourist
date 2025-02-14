@@ -33,7 +33,7 @@ class TourItineraryController extends Controller
             'slug' => Str::slug($request->question . '-' . time()),
         ]);
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Itinerary added successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'itinerary'])->with('success', 'Itinerary added successfully.');
     }
 
     public function edit($tourtrip_id, $itinerary_id)
@@ -56,7 +56,7 @@ class TourItineraryController extends Controller
             'answer' => $request->answer,
         ]);
     
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Itinerary updated successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'itinerary'])->with('success', 'Itinerary updated successfully.');
     }
     
 
@@ -66,7 +66,7 @@ class TourItineraryController extends Controller
         $tourtrip_id = $itinerary->tourtrip_id;
         $itinerary->delete();
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Itinerary deleted successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'itinerary'])->with('success', 'Itinerary deleted successfully.');
     }
 
 

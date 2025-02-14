@@ -29,7 +29,7 @@ class TripfaqController extends Controller
             'answer' => $request->answer,
             'slug' => Str::slug($request->question . '-' . time()),
         ]);
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Itinerary added successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'tripfaq'])->with('success', 'Itinerary added successfully.');
     }
     public function edit($trip_id, $tripfaq_id)
     {
@@ -51,7 +51,7 @@ class TripfaqController extends Controller
             'answer' => $request->answer,
         ]);
     
-        return redirect()->route('tripshow', $trip_id)->with('success', 'tripfaq updated successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'tripfaq'])->with('success', 'tripfaq updated successfully.');
     }
     
     public function destroy($tripfaq_id)
@@ -59,6 +59,6 @@ class TripfaqController extends Controller
         $tripfaq = Tripfaq::findOrFail($tripfaq_id);
         $trip_id = $tripfaq->trip_id;
         $tripfaq->delete();
-        return redirect()->route('tripshow', $trip_id)->with('success', 'tripfaq deleted successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'tripfaq'])->with('success', 'tripfaq deleted successfully.');
     }
 }

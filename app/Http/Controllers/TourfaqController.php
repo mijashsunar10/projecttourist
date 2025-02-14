@@ -32,7 +32,7 @@ class TourfaqController extends Controller
             'slug' => Str::slug($request->question . '-' . time()),
         ]);
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'faq added successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'faqs'])->with('success', 'faq added successfully.');
     }
 
     public function edit($tourtrip_id, $tourfaq_id)
@@ -55,7 +55,7 @@ class TourfaqController extends Controller
             'answer' => $request->answer,
         ]);
     
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'faq updated successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'faqs'])->with('success', 'faq updated successfully.');
     }
     
 
@@ -65,7 +65,7 @@ class TourfaqController extends Controller
         $tourtrip_id = $tourfaq->tourtrip_id;
         $tourfaq->delete();
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'faq deleted successfully.');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'faqs'])->with('success', 'faq deleted successfully.');
     }
 
 }

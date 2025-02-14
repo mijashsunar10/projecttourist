@@ -39,7 +39,7 @@ class TourFactController extends Controller
             'accommodation' => $request->accommodation,
         ]);
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact added successfully');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'tripfacts'])->with('success', 'Trip Fact added successfully');
     }
 
     public function edit($tourtrip_id, $fact_id)
@@ -65,7 +65,7 @@ class TourFactController extends Controller
         $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
         $fact->update($request->all());
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact updated successfully');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'tripfacts'])->with('success', 'Trip Fact updated successfully');
     }
 
 
@@ -73,6 +73,6 @@ class TourFactController extends Controller
         $fact = TourFact::where('tourtrip_id', $tourtrip_id)->findOrFail($fact_id);
         $fact->delete();
 
-        return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Trip Fact deleted successfully');
+        return redirect()->route('tourtripshow', ['id' => $tourtrip_id, 'section' => 'tripfacts'])->with('success', 'Trip Fact deleted successfully');
     }
 }

@@ -31,7 +31,7 @@ class TripHighlightController extends Controller
             ]);
         }
 
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Highlights added successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'highlight'])->with('success', 'Highlights added successfully.');
     }
     public function edit($trip_id)
     {
@@ -63,14 +63,16 @@ class TripHighlightController extends Controller
             }
         }
 
-        return redirect()->route('tripshow', $trip_id)->with('success', 'Highlights updated successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'highlight'])->with('success', 'Highlights updated successfully.');
     }
         public function destroy($highlightId)
     {
         $highlight = TripHighlight::findOrFail($highlightId);
+        $trip_id = $highlight->trip_id;
+
         $highlight->delete();
 
-        return redirect()->back()->with('success', 'Highlight deleted successfully.');
+        return redirect()->route('tripshow', ['id' => $trip_id, 'section' => 'highlight'])->with('success', 'Highlight deleted successfully.');
     }
 
 }

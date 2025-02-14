@@ -54,6 +54,6 @@ class ExpeditionRequiredItemController extends Controller
         $item = ExpeditionRequiredItem::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'Item deleted successfully.');
+        return redirect()->route('mountainshow',['id' => $item->mountain_id, 'section' => 'required'])->with('success', 'Item deleted successfully.');
     }
 }

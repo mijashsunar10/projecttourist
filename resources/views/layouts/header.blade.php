@@ -471,6 +471,7 @@
 
 
               <li class="relative group">
+                <a href="{{route('expeditionsindex')}}">
                   <button
                       class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
                       Expeditions
@@ -479,9 +480,39 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                   </button>
+                </a>
                   <!-- Dropdown Menu -->
                   <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
                       style="border-top: 4px solid orange;">
+
+                      @foreach ($expeditions as $expedition)
+                      <li class="relative group">
+                      
+                          <a href="{{route('expeditionsshow', $expedition->id) }}"
+                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                              <div class="w-52">{{$expedition->name}}</div>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
+                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                              </svg>
+                          </a>
+                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
+                              style="border-top:3px solid brown;">
+                              @foreach ($expedition->mountains as $mountain)
+                              <li><a href="{{ route('mountainshow',$mountain->id) }}"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> {{ $mountain->name }}</a>
+                              </li>
+                              @endforeach
+                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
+                                      Valley Sightseeing</a></li>
+                              <li><a href="#"
+                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Valley
+                                      Sightseeing</a></li>
+                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
+                                      Day Tour</a></li>
+                          </ul>
+                      </li>
+                      @endforeach
                       <li class="relative group">
                           <a href="#"
                               class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">

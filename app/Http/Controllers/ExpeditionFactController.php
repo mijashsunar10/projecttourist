@@ -42,7 +42,7 @@ class ExpeditionFactController extends Controller
             'accommodation' => $request->accommodation,
         ]);
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'mountain Fact added successfully');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'tripfacts'])->with('success', 'mountain Fact added successfully');
     }
 
     public function edit($mountain_id, $fact_id) {
@@ -67,13 +67,13 @@ class ExpeditionFactController extends Controller
         $fact = ExpeditionFact::where('mountain_id', $mountain_id)->findOrFail($fact_id);
         $fact->update($request->all());
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'mountain Fact updated successfully');
+        return redirect()->route('mountainshow',['id' => $mountain_id, 'section' => 'tripfacts'])->with('success', 'mountain Fact updated successfully');
     }
 
         public function destroy($mountain_id, $fact_id) {
             $fact = ExpeditionFact::where('mountain_id', $mountain_id)->findOrFail($fact_id);
             $fact->delete();
 
-            return redirect()->route('mountainshow', $mountain_id)->with('success', 'mountain Fact deleted successfully');
+            return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'tripfacts'])->with('success', 'mountain Fact deleted successfully');
         }
 }

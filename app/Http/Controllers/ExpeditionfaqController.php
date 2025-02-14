@@ -33,7 +33,7 @@ class ExpeditionfaqController extends Controller
             'slug' => Str::slug($request->question . '-' . time()),
         ]);
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'faq added successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'faqs'])->with('success', 'faq added successfully.');
     }
 
     public function edit($mountain_id, $mountainfaq_id)
@@ -56,7 +56,7 @@ class ExpeditionfaqController extends Controller
             'answer' => $request->answer,
         ]);
     
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'faq updated successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'faqs'])->with('success', 'faq updated successfully.');
     }
     
 
@@ -66,7 +66,7 @@ class ExpeditionfaqController extends Controller
         $mountain_id = $mountainfaq->mountain_id;
         $mountainfaq->delete();
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'faq deleted successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'faqs'])->with('success', 'faq deleted successfully.');
     }
 
 }

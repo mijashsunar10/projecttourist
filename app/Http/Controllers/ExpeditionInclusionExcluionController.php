@@ -30,7 +30,7 @@ class ExpeditionInclusionExcluionController extends Controller
             'description' => $description,
         ]);
     }
-    return redirect()->route('mountainshow', $mountainId)->with('success', 'Items added successfully!'). '#inclusions';
+    return redirect()->route('mountainshow', ['id' => $mountainId, 'section' => 'inclusions'])->with('success', 'Items added successfully!'). '#inclusions';
     }
     public function edit($mountainId, ExpeditionInclusionExclusion $inclusionExclusion)
     {
@@ -40,11 +40,11 @@ class ExpeditionInclusionExcluionController extends Controller
     {
         $request->validate(['description' => 'required|string']);
         $inclusionExclusion->update(['description' => $request->description]);
-        return redirect()->route('mountainshow', $mountainId)->with('success', 'Item updated successfully!'). '#inclusions';
+        return redirect()->route('mountainshow', ['id' => $mountainId, 'section' => 'inclusions'])->with('success', 'Item updated successfully!'). '#inclusions';
     }
     public function destroy($mountainId, ExpeditionInclusionExclusion $inclusionExclusion)
     {
         $inclusionExclusion->delete();
-        return redirect()->route('mountainshow', $mountainId)->with('success', 'Item deleted successfully!'). '#inclusions';
+        return redirect()->route('mountainshow', ['id' => $mountainId, 'section' => 'inclusions'])->with('success', 'Item deleted successfully!'). '#inclusions';
     }
 }

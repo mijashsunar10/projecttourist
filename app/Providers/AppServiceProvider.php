@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+
+use App\Models\Expedition;
 use App\Models\Region;
 use App\Models\Tour;
 use Illuminate\Support\Facades\View;
@@ -24,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $regions = Region::with('trips')->get(); // Load regions with their trips
         $tours = Tour::with('tourtrips')->get();
-        View::share(['regions'=> $regions, 'tours'=>$tours]);
+        $expeditions = Expedition::with('mountains')->get();
+        View::share(['regions'=> $regions, 'tours'=>$tours, 'expeditions'=>$expeditions]);
     }
 }

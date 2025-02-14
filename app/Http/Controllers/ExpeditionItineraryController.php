@@ -31,7 +31,7 @@ class ExpeditionItineraryController extends Controller
             'slug' => Str::slug($request->question . '-' . time()),
         ]);
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'Itinerary added successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'itinerary'])->with('success', 'Itinerary added successfully.');
     }
 
     public function edit($mountain_id, $itinerary_id)
@@ -54,7 +54,7 @@ class ExpeditionItineraryController extends Controller
             'answer' => $request->answer,
         ]);
     
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'Itinerary updated successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'itinerary'])->with('success', 'Itinerary updated successfully.');
     }
     
 
@@ -64,6 +64,6 @@ class ExpeditionItineraryController extends Controller
         $mountain_id = $itinerary->mountain_id;
         $itinerary->delete();
 
-        return redirect()->route('mountainshow', $mountain_id)->with('success', 'Itinerary deleted successfully.');
+        return redirect()->route('mountainshow', ['id' => $mountain_id, 'section' => 'itinerary'])->with('success', 'Itinerary deleted successfully.');
     }
 }
