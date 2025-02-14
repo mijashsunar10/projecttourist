@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\ExpeditionController;
+use App\Http\Controllers\ExpeditionImageController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InclusionExclusionController;
@@ -413,6 +414,14 @@ Route::controller(MountainController::class)->group(function () {
         Route::get('/mountains/{id}', 'mountainShow')->name('mountainshow');
   
 
+});
+
+
+Route::controller(ExpeditionImageController::class)->middleware(['auth', 'verified'])->group(function()
+{
+ Route::post('/mountains/{id}/add-images',  'addImages')->name('addmountainimages');
+Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
+Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
 });
 
 

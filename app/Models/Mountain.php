@@ -12,5 +12,9 @@ class Mountain extends Model
     {
         return $this->belongsTo(Expedition::class);
     }
+    public function images()
+    {
+        return $this->hasMany(ExpeditionImage::class);
+    }
 
 }

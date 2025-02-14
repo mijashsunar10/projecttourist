@@ -18,7 +18,7 @@ class Trip extends Model
     {
         return $this->hasMany(TripImage::class);
     }
-
+    
     public function highlights()
     {
         return $this->hasMany(TripHighlight::class);

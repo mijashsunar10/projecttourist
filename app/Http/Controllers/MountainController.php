@@ -118,13 +118,13 @@ class MountainController extends Controller
             public function mountainShow($mountain_id)
         {
         
-            // $mountain = mountain::with('images')->findOrFail($mountain_id);
+            $mountain = mountain::with('images')->findOrFail($mountain_id);
             // $itineraries = Itinerary::where('mountain_id', $mountain_id)->get();
             // $highlights = mountainHighlight::where('mountain_id', $mountain_id)->get();
             // $mountainFacts = mountainFact::where('mountain_id', $mountain_id)->get();
             // $mountainfaqs = mountainfaq::where('mountain_id', $mountain_id)->get();
             // return view('frontend.expeditions.mountains.show', compact('mountain', 'itineraries','highlights','mountainFacts','mountainfaqs'));
-            return view('frontend.expeditions.mountain.show');
+            return view('frontend.expeditions.mountain.show',compact('mountain'));
          
 
          
