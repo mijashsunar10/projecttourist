@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\ExpeditionFactController;
+use App\Http\Controllers\ExpeditionHighlightController;
 use App\Http\Controllers\ExpeditionImageController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
@@ -432,6 +433,17 @@ Route::prefix('mountains/{mountain_id}/mountain-facts')->controller(ExpeditionFa
     Route::get('{fact_id}/edit', 'edit')->name('mountainfactedit');
     Route::post('{fact_id}/update', 'update')->name('mountainfactupdate');
     Route::delete('{fact_id}', 'destroy')->name('mountainfactdestroy');
+});
+
+Route::get('mountains/{mountain_id}/mountainhighlights', [ExpeditionHighlightController::class, 'index'])->name('mountainHighlightsindex');
+
+// Authenticated routes
+Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountainhighlights')->controller(ExpeditionHighlightController::class)->group(function () {
+    Route::get('create', 'create')->name('mountainHighlightscreate');
+    Route::post('/', 'store')->name('mountainHighlightsstore');
+    Route::get('edit', 'edit')->name('mountainHighlightsedit');
+    Route::post('update', 'update')->name('mountainHighlightsupdate');
+    Route::delete('delete', 'destroy')->name('mountainHighlightsdestroy');
 });
 
 

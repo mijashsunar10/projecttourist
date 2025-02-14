@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expedition;
 use App\Models\ExpeditionFact;
+use App\Models\ExpeditionHighlight;
 use App\Models\Mountain;
 use Illuminate\Http\Request;
 
@@ -121,11 +122,11 @@ class MountainController extends Controller
         
             $mountain = mountain::with('images')->findOrFail($mountain_id);
             // $itineraries = Itinerary::where('mountain_id', $mountain_id)->get();
-            // $highlights = mountainHighlight::where('mountain_id', $mountain_id)->get();
+            $highlights = ExpeditionHighlight::where('mountain_id', $mountain_id)->get();
             $mountainFacts = ExpeditionFact::where('mountain_id', $mountain_id)->get();
             // $mountainfaqs = mountainfaq::where('mountain_id', $mountain_id)->get();
             // return view('frontend.expeditions.mountains.show', compact('mountain', 'itineraries','highlights','mountainFacts','mountainfaqs'));
-            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts'));
+            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts','highlights'));
          
 
          

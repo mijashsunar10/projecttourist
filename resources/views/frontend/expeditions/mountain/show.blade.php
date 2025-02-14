@@ -65,7 +65,7 @@
 <div class="sticky top-20 z-10 bg-blue-200 shadow">
     <nav class="container flex justify-center items-center py-4 px-6">
         <ul class="flex space-x-16 text-gray-700">
-            <li><a href="#tripfacts" class="nav-link hover:text-blue-600">Trip Facts</a></li>
+            <li><a href="#tripfacts" class="nav-link hover:text-blue-600">mountain Facts</a></li>
             <li><a href="#overview" class="nav-link hover:text-blue-600">Overview</a></li>
             <li><a href="#highlight" class="nav-link hover:text-blue-600">Trip Highlights</a></li>
             <li><a href="#itinerary" class="nav-link hover:text-blue-600">Itinerary Overview</a></li>
@@ -259,19 +259,19 @@
 <!-- Imgage Section -->
 
 
-{{-- Trip Facts --}}
+{{-- mountain Facts --}}
 
-<div id="tripfacts" class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%">
+    <div id="tripfacts" class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%">
+            
+        <h2 class="section-title">Expedition Facts</h2>
         
-    <h2 class="section-title">Trip Facts</h2>
-    
-    @auth
-    @if(!$mountain->mountainfacts) 
-        <a href="{{ route('mountainfactcreate', $mountain->id) }}">
-            <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Mountain Fact</button>
-        </a>
-    @endif
-@endauth
+        @auth
+        @if(!$mountain->mountainfacts) 
+            <a href="{{ route('mountainfactcreate', $mountain->id) }}">
+                <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Mountain Fact</button>
+            </a>
+        @endif
+    @endauth
 
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -390,9 +390,149 @@
 
             
         </div>
-</div>
+    </div>
 
 {{-- mountain Facts --}}
+
+{{-- Trip Overview --}}
+
+    <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-xl mt-8 hover-scale" id="overview" style="max-width: 90%;">
+        <div class="mx-auto" style="max-width:95%">
+        <h2 class="section-title">Expedition Overview</h2>
+        
+        <div class="text-gray-700 leading-relaxed space-y-4 " >
+            <p>
+                {{$mountain->description}}
+            </p>
+            <p>
+                For couples seeking an extraordinary adventure, the Couple Trek to Everest offers an unparalleled
+                experience that combines the thrill of exploration with the intimacy of shared moments. This trek is
+                not just a physical challenge; it’s a journey of the heart, where every step taken together through
+                the rugged trails and serene landscapes of the Himalayas deepens the connection between partners.
+            </p>
+            <p>
+                As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
+                including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
+                bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
+                the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
+                your body and soul, making every meal a moment to cherish.
+            </p>
+        </div>
+        </div>
+    </div>
+
+{{-- Trip Overview --}}
+
+{{-- Trip Highghlight --}}
+@auth
+<div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl" id="highlight" style="max-width: 90%">
+    <!-- Centered Heading with Lines -->
+    {{-- <div class="flex items-center justify-center mb-6">
+        <div class="flex-grow h-px bg-gray-300"></div>
+        <h2 class="text-4xl font-bold text-gray-800 mx-4">Trip Highlights</h2>
+        <div class="flex-grow h-px bg-gray-300"></div>
+    </div> --}}
+    <div style="max-width: 95%" class="mx-auto">
+    <h2 class="section-title">Trip Highlights</h2>
+
+    <ul class="space-y-4">
+        @forelse ($highlights as $highlight)
+            <li class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                <span class="text-gray-700 font-medium">{{ $highlight->highlight }}</span>
+                <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 transition-colors duration-300">
+                        Delete
+                    </button>
+                </form>
+            </li>
+        @empty
+            <li class="text-gray-500 italic">No highlights available.</li>
+        @endforelse
+    </ul>
+
+    <div class="mt-6 flex space-x-4">
+        <a href="{{ route('mountainHighlightsedit', $mountain->id) }}" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
+            Edit Highlights
+        </a>
+        <a href="{{ route('mountainHighlightscreate', $mountain->id) }}" class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors duration-300">
+            Add Highlights
+        </a>
+    </div>
+</div>
+</div>
+@endauth
+
+@guest
+<div class="container mx-auto py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" style="max-width: 90%;">
+<h2 class="section-title">mountain Highlights</h2>
+<ul class="space-y-6 text-gray-700 text-lg font-semibold">
+    @forelse ($highlights as $highlight)
+    <li class="flex items-center justify-between">
+        
+        <p><span class="bullet-icon">✔</span>{{ $highlight->highlight }}</p>
+        {{-- <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 transition-colors duration-300">
+                Delete
+            </button>
+        </form> --}}
+    </li>
+    @empty
+    <li class="text-gray-500 italic">No highlights available.</li>
+@endforelse
+    <li class="flex items-start">
+        <span class="bullet-icon">✔</span>
+        <p>The sight of the majestic Everest and its surrounding peaks offers a backdrop for romance
+            like no other.</p>
+    </li>
+    <li class="flex items-start">
+        <span class="bullet-icon">✔</span>
+        <p>Engage with the Sherpa culture, gaining insights into their traditions and Buddhist
+            practices, enriching your journey with spiritual depth.</p>
+    </li>
+    <li class="flex items-start">
+        <span class="bullet-icon">✔</span>
+        <p>Savor the taste of local dishes, each a delightful fusion of traditional ingredients and
+            mountain freshness.</p>
+    </li>
+    <li class="flex items-start">
+        <span class="bullet-icon">✔</span>
+        <p>Every challenge overcome and every laughter shared becomes a precious memory, etching this
+            trek into the story of your lives.</p>
+    </li>
+    <li class="flex items-start">
+        <span class="bullet-icon">✔</span>
+        <p>Standing together at Everest Base Camp, you’ll feel a sense of shared triumph that only such
+            a formidable quest can provide.</p>
+    </li>
+</ul>
+</div>
+@endguest
+{{-- mountain Highghlight --}}
+<script>
+function previewImages(event) {
+const imagePreview = document.getElementById('imagePreview');
+imagePreview.innerHTML = ''; // Clear previous previews
+const files = event.target.files;
+
+Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'w-full h-40 object-contain rounded mb-4';
+        imagePreview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+});
+}
+</script>
+
+
+
 
 
 

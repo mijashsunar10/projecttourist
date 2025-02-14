@@ -21,4 +21,12 @@ class Mountain extends Model
         return $this->hasOne(ExpeditionFact::class);
     }
 
+    public function mountainhighlights()
+    {
+        return $this->hasMany(ExpeditionHighlight::class,'mountain_id');
+    }
+
+
+
+
 }
