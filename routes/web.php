@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
 use App\Http\Controllers\ExpeditionController;
+use App\Http\Controllers\ExpeditionFactController;
 use App\Http\Controllers\ExpeditionImageController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
@@ -422,6 +423,15 @@ Route::controller(ExpeditionImageController::class)->middleware(['auth', 'verifi
  Route::post('/mountains/{id}/add-images',  'addImages')->name('addmountainimages');
 Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
 Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
+});
+
+
+Route::prefix('mountains/{mountain_id}/mountain-facts')->controller(ExpeditionFactController::class)->middleware(['auth', 'verified'])->group(function () {
+    Route::get('create', 'create')->name('mountainfactcreate');
+    Route::post('store', 'store')->name('mountainfactstore');
+    Route::get('{fact_id}/edit', 'edit')->name('mountainfactedit');
+    Route::post('{fact_id}/update', 'update')->name('mountainfactupdate');
+    Route::delete('{fact_id}', 'destroy')->name('mountainfactdestroy');
 });
 
 
