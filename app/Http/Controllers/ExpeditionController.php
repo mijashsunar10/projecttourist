@@ -12,8 +12,8 @@ class ExpeditionController extends Controller
 
             // $expeditions = expedition::withCount('trips')->get()->sortByDesc('created_at');
             // $expeditions = expedition::withCount('trips')->get()->sortByDesc('created_at');
-            // $expeditions = Expedition::withCount('mountains')->get();
-            $expeditions = Expedition::get();
+            $expeditions = Expedition::withCount('mountains')->get();
+            // $expeditions = Expedition::get();
             return view('frontend.expeditions.expeditionregion.index',compact('expeditions'));
             // return view('layouts.header', compact('expeditions'));
     }
@@ -94,8 +94,8 @@ class ExpeditionController extends Controller
 
     public function expeditionshow($id)
     {
-        // $expedition = Expedition::with('mountains')->findOrFail($id);
-        $expedition = Expedition::findOrFail($id);
+        $expedition = Expedition::with('mountains')->findOrFail($id);
+        // $expedition = Expedition::findOrFail($id);
         return view('frontend.expeditions.mountain.index', compact('expedition'));
     }
 

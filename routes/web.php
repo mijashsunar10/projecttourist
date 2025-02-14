@@ -9,6 +9,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InclusionExclusionController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\MountainController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionController;
@@ -392,8 +393,28 @@ Route::controller(ExpeditionController::class)->group(function () {
         Route::post('/expeditions/{id}/update', 'expeditionsupdate')->name('expeditionsupdate');
         Route::post('/expeditions/{id}/delete',  'expeditionsdestroy')->name('expeditionsdestroy');
     });
+    
     Route::get('/expeditions/{id}',  'expeditionshow')->name('expeditionsshow'); // Public
 });
+
+
+Route::controller(MountainController::class)->group(function () {
+
+   
+    Route::middleware(['auth', 'verified'])->group(function () {
+
+        Route::get('/expeditions/{expedition_id}/mountains/create', 'mountainscreate')->name('mountainscreate');
+        Route::post('/expeditions/{expedition_id}/mountains',  'mountainsstore')->name('mountainsstore');
+        Route::get('/mountains/{id}/edit',  'mountainsedit')->name('mountainsedit');
+        Route::put('/mountains/{id}', 'mountainsupdate')->name('mountainsupdate');
+        Route::delete('/mountains/{id}',  'mountainsdestroy')->name('mountainsdestroy');
+        });
+
+        Route::get('/mountains/{id}', 'mountainShow')->name('mountainshow');
+  
+
+});
+
 
 
 

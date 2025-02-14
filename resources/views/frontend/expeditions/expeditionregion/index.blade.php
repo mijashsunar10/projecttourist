@@ -54,7 +54,7 @@
                  
                 <div class="flex justify-between flex-col mt-4 p-2 space-x-4 w-full">
                     <div class="text-lg font-semibold px-4 py-1 rounded-full block"> 
-                        {{ $expedition->trips_count }} Trips
+                        {{ $expedition->mountains_count }} Trips
                     </div>
         
                     <!-- Trip Name -->

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->integer('trips_count')->default(0); // Default trips count
+            $table->integer('mountains_count')->default(0); // Default trips count
             $table->timestamps();
         });
     }
