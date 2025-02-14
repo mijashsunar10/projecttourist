@@ -424,113 +424,190 @@
 {{-- Trip Overview --}}
 
 {{-- Trip Highghlight --}}
-@auth
-<div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl" id="highlight" style="max-width: 90%">
-    <!-- Centered Heading with Lines -->
-    {{-- <div class="flex items-center justify-center mb-6">
-        <div class="flex-grow h-px bg-gray-300"></div>
-        <h2 class="text-4xl font-bold text-gray-800 mx-4">Trip Highlights</h2>
-        <div class="flex-grow h-px bg-gray-300"></div>
-    </div> --}}
-    <div style="max-width: 95%" class="mx-auto">
-    <h2 class="section-title">Trip Highlights</h2>
+        @auth
+        <div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl" id="highlight" style="max-width: 90%">
+            <!-- Centered Heading with Lines -->
+            {{-- <div class="flex items-center justify-center mb-6">
+                <div class="flex-grow h-px bg-gray-300"></div>
+                <h2 class="text-4xl font-bold text-gray-800 mx-4">Trip Highlights</h2>
+                <div class="flex-grow h-px bg-gray-300"></div>
+            </div> --}}
+            <div style="max-width: 95%" class="mx-auto">
+            <h2 class="section-title">Trip Highlights</h2>
 
-    <ul class="space-y-4">
-        @forelse ($highlights as $highlight)
-            <li class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                <span class="text-gray-700 font-medium">{{ $highlight->highlight }}</span>
-                <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
+            <ul class="space-y-4">
+                @forelse ($highlights as $highlight)
+                    <li class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                        <span class="text-gray-700 font-medium">{{ $highlight->highlight }}</span>
+                        <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 transition-colors duration-300">
+                                Delete
+                            </button>
+                        </form>
+                    </li>
+                @empty
+                    <li class="text-gray-500 italic">No highlights available.</li>
+                @endforelse
+            </ul>
+
+            <div class="mt-6 flex space-x-4">
+                <a href="{{ route('mountainHighlightsedit', $mountain->id) }}" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
+                    Edit Highlights
+                </a>
+                <a href="{{ route('mountainHighlightscreate', $mountain->id) }}" class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors duration-300">
+                    Add Highlights
+                </a>
+            </div>
+        </div>
+        </div>
+        @endauth
+
+        @guest
+        <div class="container mx-auto py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" style="max-width: 90%;">
+        <h2 class="section-title">mountain Highlights</h2>
+        <ul class="space-y-6 text-gray-700 text-lg font-semibold">
+            @forelse ($highlights as $highlight)
+            <li class="flex items-center justify-between">
+                
+                <p><span class="bullet-icon">✔</span>{{ $highlight->highlight }}</p>
+                {{-- <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 transition-colors duration-300">
                         Delete
                     </button>
-                </form>
+                </form> --}}
             </li>
-        @empty
+            @empty
             <li class="text-gray-500 italic">No highlights available.</li>
         @endforelse
-    </ul>
-
-    <div class="mt-6 flex space-x-4">
-        <a href="{{ route('mountainHighlightsedit', $mountain->id) }}" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
-            Edit Highlights
-        </a>
-        <a href="{{ route('mountainHighlightscreate', $mountain->id) }}" class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors duration-300">
-            Add Highlights
-        </a>
-    </div>
-</div>
-</div>
-@endauth
-
-@guest
-<div class="container mx-auto py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" style="max-width: 90%;">
-<h2 class="section-title">mountain Highlights</h2>
-<ul class="space-y-6 text-gray-700 text-lg font-semibold">
-    @forelse ($highlights as $highlight)
-    <li class="flex items-center justify-between">
-        
-        <p><span class="bullet-icon">✔</span>{{ $highlight->highlight }}</p>
-        {{-- <form action="{{ route('mountainHighlightsdestroy', $highlight->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this highlight?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 transition-colors duration-300">
-                Delete
-            </button>
-        </form> --}}
-    </li>
-    @empty
-    <li class="text-gray-500 italic">No highlights available.</li>
-@endforelse
-    <li class="flex items-start">
-        <span class="bullet-icon">✔</span>
-        <p>The sight of the majestic Everest and its surrounding peaks offers a backdrop for romance
-            like no other.</p>
-    </li>
-    <li class="flex items-start">
-        <span class="bullet-icon">✔</span>
-        <p>Engage with the Sherpa culture, gaining insights into their traditions and Buddhist
-            practices, enriching your journey with spiritual depth.</p>
-    </li>
-    <li class="flex items-start">
-        <span class="bullet-icon">✔</span>
-        <p>Savor the taste of local dishes, each a delightful fusion of traditional ingredients and
-            mountain freshness.</p>
-    </li>
-    <li class="flex items-start">
-        <span class="bullet-icon">✔</span>
-        <p>Every challenge overcome and every laughter shared becomes a precious memory, etching this
-            trek into the story of your lives.</p>
-    </li>
-    <li class="flex items-start">
-        <span class="bullet-icon">✔</span>
-        <p>Standing together at Everest Base Camp, you’ll feel a sense of shared triumph that only such
-            a formidable quest can provide.</p>
-    </li>
-</ul>
-</div>
-@endguest
+            <li class="flex items-start">
+                <span class="bullet-icon">✔</span>
+                <p>The sight of the majestic Everest and its surrounding peaks offers a backdrop for romance
+                    like no other.</p>
+            </li>
+            <li class="flex items-start">
+                <span class="bullet-icon">✔</span>
+                <p>Engage with the Sherpa culture, gaining insights into their traditions and Buddhist
+                    practices, enriching your journey with spiritual depth.</p>
+            </li>
+            <li class="flex items-start">
+                <span class="bullet-icon">✔</span>
+                <p>Savor the taste of local dishes, each a delightful fusion of traditional ingredients and
+                    mountain freshness.</p>
+            </li>
+            <li class="flex items-start">
+                <span class="bullet-icon">✔</span>
+                <p>Every challenge overcome and every laughter shared becomes a precious memory, etching this
+                    trek into the story of your lives.</p>
+            </li>
+            <li class="flex items-start">
+                <span class="bullet-icon">✔</span>
+                <p>Standing together at Everest Base Camp, you’ll feel a sense of shared triumph that only such
+                    a formidable quest can provide.</p>
+            </li>
+        </ul>
+        </div>
+        @endguest
 {{-- mountain Highghlight --}}
 <script>
-function previewImages(event) {
-const imagePreview = document.getElementById('imagePreview');
-imagePreview.innerHTML = ''; // Clear previous previews
-const files = event.target.files;
+    function previewImages(event) {
+    const imagePreview = document.getElementById('imagePreview');
+    imagePreview.innerHTML = ''; // Clear previous previews
+    const files = event.target.files;
 
-Array.from(files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.className = 'w-full h-40 object-contain rounded mb-4';
-        imagePreview.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-});
-}
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'w-full h-40 object-contain rounded mb-4';
+            imagePreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
+    }
 </script>
 
+{{-- Expedition Iterinary --}}
+
+
+<div class="mt-6" >
+    
+    <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+
+    <div class=" mx-auto" style="max-width:95%" >
+        <h2 class="section-title">mountain Iterinary Overview</h2>
+        <div class="flex items-center justify-center" style="max-width:95%" >
+            <div class="w-full max-w-7xl">
+                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
+                    <h1 class="text-4xl font-bold">mountains in Nepal – Iterinanary Overview</h1>
+                    <p class="mt-2 text-lg">A detail description of Itirenary</p>
+                    @auth
+                        <a href="{{ route('mountainitinerarycreate', $mountain->id) }}">
+                            <button class="text-white font-bold mt-2 px-3 py-1 bg-[#374151] rounded-lg">Add Iterinary</button>
+                        </a>
+                    @endauth
+                </div>
+                <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                    @foreach ($itineraries as $itinerary)
+                        <div class="border-b mb-4 last:mb-0">
+                            <button
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
+                                {{ $itinerary->question }}
+                                <svg id="icon{{ $itinerary->id }}"
+                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="hidden px-4 pb-4 bg-white text-black" id="answer{{ $itinerary->id }}">
+                                <p>{{ $itinerary->answer }}</p>
+                            
+                                @auth
+                                    <div class="mt-2">
+                                        <a href="{{ route('mountainitineraryedit', [$mountain->id, $itinerary->id]) }}" class="text-blue-500">
+                                            <button class="text-white font-bold px-3 py-1 bg-[#0B6285] rounded-lg">Edit</button>
+                                        </a>
+                                        <form action="{{ route('mountainitinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                        </form>
+                                    </div>
+                                @endauth
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <script>
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
+
+
+</div>
+{{-- Expedition Iterinary --}}
 
 
 

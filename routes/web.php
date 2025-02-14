@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\ExpeditionFactController;
 use App\Http\Controllers\ExpeditionHighlightController;
 use App\Http\Controllers\ExpeditionImageController;
+use App\Http\Controllers\ExpeditionItineraryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InclusionExclusionController;
@@ -444,6 +445,14 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountai
     Route::get('edit', 'edit')->name('mountainHighlightsedit');
     Route::post('update', 'update')->name('mountainHighlightsupdate');
     Route::delete('delete', 'destroy')->name('mountainHighlightsdestroy');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/itinerary')->controller(ExpeditionItineraryController::class)->group(function () {
+    Route::get('/create', 'create')->name('mountainitinerarycreate');
+    Route::post('/', 'store')->name('mountainitinerarystore');
+    Route::get('/{itinerary_id}/edit', 'edit')->name('mountainitineraryedit');
+    Route::post('/{itinerary_id}/update', 'update')->name('mountainitineraryupdate');
+    Route::delete('/delete', 'destroy')->name('mountainitinerarydestroy');
 });
 
 
