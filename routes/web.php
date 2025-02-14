@@ -1,41 +1,52 @@
     <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomizeController;
-use App\Http\Controllers\ExpeditionController;
-use App\Http\Controllers\ExpeditionFactController;
-use App\Http\Controllers\ExpeditionfaqController;
-use App\Http\Controllers\ExpeditionHighlightController;
-use App\Http\Controllers\ExpeditionImageController;
-use App\Http\Controllers\ExpeditionInclusionExcluionController;
-use App\Http\Controllers\ExpeditionItineraryController;
-use App\Http\Controllers\ExpeditionRequiredItemController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\InclusionExclusionController;
-use App\Http\Controllers\ItineraryController;
-use App\Http\Controllers\MountainController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegionController;
-use App\Http\Controllers\RequiredItemController;
-use App\Http\Controllers\TourController;
-use App\Http\Controllers\TourFactController;
-use App\Http\Controllers\TourfaqController;
-use App\Http\Controllers\TourHighlightController;
-use App\Http\Controllers\TourImageController;
-use App\Http\Controllers\TourInclusionExclusionController;
-use App\Http\Controllers\TourItineraryController;
-use App\Http\Controllers\TourRequiredItemController;
-use App\Http\Controllers\TourtripsController;
 use App\Http\Controllers\TrekController;
-use App\Http\Controllers\TripController;
-use App\Http\Controllers\TripDescriptionController;
-use App\Http\Controllers\TripFactController;
-use App\Http\Controllers\TripfaqController;
-use App\Http\Controllers\TripHighlightController;
+
+use App\Http\Controllers\Expedition\ExpeditionController;
+use App\Http\Controllers\Expedition\ExpeditionFactController;
+use App\Http\Controllers\Expedition\ExpeditionfaqController;
+use App\Http\Controllers\Expedition\ExpeditionHighlightController;
+use App\Http\Controllers\Expedition\ExpeditionImageController;
+use App\Http\Controllers\Expedition\ExpeditionInclusionExcluionController;
+use App\Http\Controllers\Expedition\ExpeditionItineraryController;
+use App\Http\Controllers\Expedition\ExpeditionRequiredItemController;
+use App\Http\Controllers\Expedition\MountainController;
+
+
+
+use App\Http\Controllers\Media\GalleryController;
+use App\Http\Controllers\Media\BlogController;
+use App\Http\Controllers\Media\NewsController;
+
+
+
+use App\Http\Controllers\Tours\TourController;
+use App\Http\Controllers\Tours\TourFactController;
+use App\Http\Controllers\Tours\TourfaqController;
+use App\Http\Controllers\Tours\TourHighlightController;
+use App\Http\Controllers\Tours\TourImageController;
+use App\Http\Controllers\Tours\TourInclusionExclusionController;
+use App\Http\Controllers\Tours\TourItineraryController;
+use App\Http\Controllers\Tours\TourRequiredItemController;
+use App\Http\Controllers\Tours\TourtripsController;
+
+
+
+use App\Http\Controllers\Trekking\TripController;
+use App\Http\Controllers\Trekking\TripDescriptionController;
+use App\Http\Controllers\Trekking\TripFactController;
+use App\Http\Controllers\Trekking\TripfaqController;
+use App\Http\Controllers\Trekking\TripHighlightController;
+use App\Http\Controllers\Trekking\InclusionExclusionController;
+use App\Http\Controllers\Trekking\ItineraryController;
+use App\Http\Controllers\Trekking\RegionController;
+use App\Http\Controllers\Trekking\RequiredItemController;
 use App\Models\ExpeditionInclusionExclusion;
 use App\Models\TourHighlight;
 use App\Models\TourRequiredItem;
@@ -69,18 +80,9 @@ Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
 
-// HomeCOntrolller
-
-// HomeCOntrolller
-
-// TrekController
-
-
 Route::get('/',[TrekController::class,'index'])->name('index');
 
 Route::get('/blog',[TrekController::class,'blog'])->name('blog');
-
-// Route::get('/news',[TrekController::class,'news'])->name('news');
 
 Route::get('/testimonials',[TrekController::class,'testimonials'])->name('testimonials');
 
@@ -97,10 +99,10 @@ Route::get('/trek/main1',[TrekController::class,'trekmain1'])->name('trekmain1')
 
 
 
-Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name('regionscreate');
+// Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name('regionscreate');
 
-Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
-// TrekCOntroller
+// Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
+// // TrekCOntroller
 
 
 Route::controller(RegionController::class)->group(function () {
@@ -116,10 +118,6 @@ Route::controller(RegionController::class)->group(function () {
         Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
     });
 });
-
-
-// Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
-// Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
 
 
 Route::controller(TripController::class)->group(function () {
