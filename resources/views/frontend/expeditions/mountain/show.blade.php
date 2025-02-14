@@ -610,6 +610,85 @@
 {{-- Expedition Iterinary --}}
 
 
+<!-- Tour Inclusionn and Exclusion -->
+
+<div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
+    <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
+
+    @if ($mountain->expeditioninclusionExclusions->isEmpty())
+        <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
+    @else
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Price Includes -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Includes</h3>
+                @php
+                    $inclusions = $mountain->expeditioninclusionExclusions->where('type', 'inclusion');
+                @endphp
+                @if ($inclusions->isEmpty())
+                    <p class="text-gray-600">No inclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($inclusions as $inclusion)
+                            <li>&#10148; {{ $inclusion->description }}
+
+                            @auth
+                                {{-- Edit and Delete Actions --}}
+                                <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $inclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $inclusion->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                </form>
+                            @endauth
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Price Does Not Include -->
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Price Does Not Include</h3>
+                @php
+                    $exclusions = $mountain->expeditioninclusionExclusions->where('type', 'exclusion');
+                @endphp
+                @if ($exclusions->isEmpty())
+                    <p class="text-gray-600">No exclusions added yet.</p>
+                @else
+                    <ul class="space-y-3 text-gray-600">
+                        @foreach ($exclusions as $exclusion)
+                            <li>&#10148; {{ $exclusion->description }}
+                                {{-- Edit and Delete Actions --}}
+
+                                @auth
+                                    <a href="{{ route('mountains.inclusions-exclusions.edit', [$mountain->id, $exclusion->id]) }}" class="text-blue-500 ml-2">Edit</a>
+                                    <form action="{{ route('mountains.inclusions-exclusions.destroy', [$mountain->id, $exclusion->id]) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 ml-2">Delete</button>
+                                    </form>
+                                @endauth
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+    @endif
+
+    <!-- Add Button -->
+     @auth
+        <div class="mt-6 text-center">
+            <a href="{{ route('mountains.inclusions-exclusions.create', $mountain->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow-md">Add Items</a>
+        </div>
+    @endauth
+</div>
+
+<!-- Trip Inclusionn and Exclusion -->
+
+
+
 
 
 

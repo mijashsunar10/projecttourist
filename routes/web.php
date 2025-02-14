@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\ExpeditionFactController;
 use App\Http\Controllers\ExpeditionHighlightController;
 use App\Http\Controllers\ExpeditionImageController;
+use App\Http\Controllers\ExpeditionInclusionExcluionController;
 use App\Http\Controllers\ExpeditionItineraryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
@@ -33,6 +34,7 @@ use App\Http\Controllers\TripDescriptionController;
 use App\Http\Controllers\TripFactController;
 use App\Http\Controllers\TripfaqController;
 use App\Http\Controllers\TripHighlightController;
+use App\Models\ExpeditionInclusionExclusion;
 use App\Models\TourHighlight;
 use App\Models\TourRequiredItem;
 use App\Models\Tourtrips;
@@ -454,6 +456,26 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/itinera
     Route::post('/{itinerary_id}/update', 'update')->name('mountainitineraryupdate');
     Route::delete('/delete', 'destroy')->name('mountainitinerarydestroy');
 });
+
+
+
+Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain}/mountaininclusions-exclusions')->controller(ExpeditionInclusionExcluionController::class)->group(function () {
+    // Show Create Form for Inclusions & Exclusions
+    Route::get('create', 'create')->name('mountains.inclusions-exclusions.create');
+    
+    // Store Inclusions & Exclusions
+    Route::post('/', 'store')->name('mountains.inclusions-exclusions.store');
+    
+    // Edit Inclusion/Exclusion
+    Route::get('{inclusionExclusion}/edit', 'edit')->name('mountains.inclusions-exclusions.edit');
+    
+    // Update Inclusion/Exclusion
+    Route::put('{inclusionExclusion}', 'update')->name('mountains.inclusions-exclusions.update');
+    
+    // Delete Inclusion/Exclusion
+    Route::delete('{inclusionExclusion}', 'destroy')->name('mountains.inclusions-exclusions.destroy');
+});
+
 
 
 
