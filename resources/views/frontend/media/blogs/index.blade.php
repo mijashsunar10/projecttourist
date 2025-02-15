@@ -3,6 +3,13 @@
 
 @section('pagecontent')
 <div class="bg-gray-100 mt-16 xl:mt-20" x-data="{ search: '' }">
+    @if(session('success'))
+    <div id="alert-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative max-w-lg mx-auto mb-6" role="alert">
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
+
+
    
     <!-- Header Section -->
     <div class="text-center mb-12 mt-14">
@@ -19,9 +26,15 @@
         >
               
       </div>
-                @auth
+                
                 <a href="{{ route('blogs.create') }}" class="px-3 py-2 bg-blue-500 text-white rounded-lg inline-block">Create new blog</a>
-                @endauth
+                @auth
+        <a href="{{ route('blogs.pending') }}" class="inline-block">
+            <span class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-md font-medium hover:bg-yellow-600 transition-all">
+                Pending Blogs: {{ $pendingBlogsCount }}
+            </span>
+        </a>
+@endauth
     </div>
   
     <!-- Blog Cards Section -->
@@ -87,6 +100,14 @@
     </p>
 </div>
 
+<script>
+    const alertMessage = document.getElementById('alert-message');
+    if (alertMessage) {
+        setTimeout(() => {
+            alertMessage.style.display = 'none';
+        }, 3000); // 3 seconds
+    }
+</script>
 @endsection
 
 

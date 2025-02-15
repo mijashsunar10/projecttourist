@@ -17,11 +17,13 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->take(9)->get();
-    
-        return view('frontend.media.blogs.index', compact('blogs'));
+        // Fetch approved blogs
+        $blogs = Blog::where('is_approved', true)->orderBy('created_at', 'desc')->take(9)->get();
 
-        
+        // Fetch the count of pending blogs
+        $pendingBlogsCount = Blog::where('is_approved', false)->count();
+
+        return view('frontend.media.blogs.index', compact('blogs', 'pendingBlogsCount'));
     }
 
     /**
@@ -39,14 +41,12 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = [
             'title' => 'required|min:3|max:255|string',
             'author' => 'required|string|max:100',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string|min:10|max:1000',
             'content' => 'required|string|min:10',
-            
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -55,14 +55,15 @@ class BlogController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->author = $request->author;
         $blog->description = $request->description;
         $blog->content = $request->content;
-        $slug= Str::slug($request->title);
-        $blog->slug = $slug;
+        $blog->slug = Str::slug($request->title);
+
+        // Set is_approved based on user role
+        $blog->is_approved = auth()->check() && auth()->user()->is_admin ? true : false;
 
         if ($request->hasFile('image')) {
             if ($request->file('image')->getSize() > 2048000) {  // 2MB limit
@@ -74,18 +75,26 @@ class BlogController extends Controller
 
             $image->move(public_path('uploads/blogs/images'), $image_name);
         }
+
         $blog->save();
-        return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
+
+        return redirect()->route('blogs.index')->with('success', 'Blog submitted successfully. It will be reviewed by an admin.');
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show($id,$slug)
+    public function show($id, $slug)
     {
         $blog = Blog::findOrFail($id);
-        $recentBlogs=Blog::latest()->where('id', '!=', $blog->id)->take(3)->get(); // Get 3 recent news articles
-        return view('frontend.media.blogs.show', compact('blog','recentBlogs'));
+        $recentBlogs = Blog::where('is_approved', true)
+                           ->where('id', '!=', $blog->id)
+                           ->latest()
+                           ->take(3)
+                           ->get();
+
+        return view('frontend.media.blogs.show', compact('blog', 'recentBlogs'));
     }
 
     /**
@@ -163,5 +172,34 @@ class BlogController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('blogs.index')->with('error', 'Error deleting blog: ' . $e->getMessage());
         }
+    }
+
+    public function pendingBlogs()
+    {
+        $pendingBlogs = Blog::where('is_approved', false)->get();
+        return view('frontend.media.blogs.pending', compact('pendingBlogs'));
+    }
+
+    public function approveBlog($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->is_approved = true;
+        $blog->save();
+
+        return redirect()->route('blogs.pending')->with('success', 'Blog approved successfully.');
+    }
+
+    public function deletePendingBlog($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        // Delete the image if it exists
+        if ($blog->image) {
+            File::delete(public_path('uploads/blogs/images/' . $blog->image));
+        }
+
+        $blog->delete();
+
+        return redirect()->route('blogs.pending')->with('success', 'Blog deleted successfully.');
     }
 }

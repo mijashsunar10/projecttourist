@@ -231,13 +231,19 @@ Route::controller(TripController::class)->group(function () {
 
     Route::controller(BlogController::class)->group(function () {
         Route::get('/blogs', 'index')->name('blogs.index');
-       
-        Route::middleware(['auth','verified'])->group(function () {
         Route::get('/blogs/create', 'create')->name('blogs.create');
         Route::post('/blogs', 'store')->name('blogs.store');
+       
+        Route::middleware(['auth','verified'])->group(function () {
+       
         Route::get('/blogs/{slug}/edit', 'edit')->name('blogs.edit');
         Route::put('/blogs/{slug}/update', 'update')->name('blogs.update');
         Route::delete('/blogs/{id}/destroy', 'destroy')->name('blogs.destroy');
+
+
+        Route::get('/pending-blogs', 'pendingBlogs')->name('blogs.pending');
+        Route::post('/approve-blog/{id}', 'approveBlog')->name('blogs.approve');
+        Route::delete('/delete-pending-blog/{id}', 'deletePendingBlog')->name('blogs.deletePending');
                 
     });
     Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
