@@ -27,21 +27,21 @@
  </style>
 
 
-<div class="bg-[#efeeee] ">
+<div class="bg-gray-200 ">
 
    
   <div class="mx-auto px-4 py-8 container w-[90%] " >
     <!-- Heading -->
-    <h1 class="text-center text-[#0B6285] text-4xl font-bold mb-10 xl:mt-10 lg:mt-8 mt-4service_card">Travel the World Your Way</h1>
+    <h1 class="text-center text-gray-800 text-4xl font-bold mb-10 xl:mt-10 lg:mt-8 mt-4service_card">Travel the Nepal Your Way</h1>
 
     <!-- Main Content -->
     <div class="space-y-8">
       <!-- Row: Hiking and Trekking -->
       <div class="carousel-container service_card">
-        <p class="text-xl font-[550] pb-4 ">Hiking and Trekking</p>
+        <p class="text-xl font-[550] text-gray-800 pb-4 ">Hiking and Trekking</p>
         <div class="relative flex items-center">
           <!-- Left Button -->
-          <button class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-blue-800 text-white rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl hidden">
+          <button class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl hidden">
             <i class="fa-solid fa-arrow-left"></i>
         </button>
 
@@ -50,7 +50,7 @@
             <div class="carousel-inner flex transition-transform duration-300">
               <!-- Cards -->
               @foreach ($regions as $region)
-              <div class="card service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
+              <div class="card service_card1 bg-white card text-gray-700 shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{ asset('images/regions/' . $region->image) }}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{ route('regionsshow', $region->id)}}">
                 <p class=" font-[500] text-md pl-1">{{ $region->name }}</p>
@@ -60,61 +60,61 @@
               <div class="card service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Annapurna Area</p>
+                <p class=" font-[500] text-md text-gray-700  pl-1">Annapurna Area</p>
                 </a>
               </div>
 
               <div class= " card bg-white card service_card1 shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Kanchanzanga area</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Kanchanzanga area</p>
                 </a>
               </div>
 
               <div class="bg-white card service_card1 shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Manasalu Region</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Manasalu Region</p>
                 </a>
               </div>
 
               <div class=" service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Ganesh Himal Region</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Ganesh Himal Region</p>
                 </a>
               </div>
 
               <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Lhotse Region</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Lhotse Region</p>
                 </a>
               </div>
  
               <div class= " bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class= " bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class=" bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class=" bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class=" bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
               
               
@@ -132,7 +132,7 @@
        <!-- Row 2: Europe Destinations -->
 
       <div class="carousel-container service_card">
-        <p class="text-xl font-[550] pb-4 ">Tours & Adventures</p>
+        <p class="text-xl font-[550] text-gray-800 pb-4 ">Tours & Adventures</p>
         <div class="relative flex items-center">
           <!-- Left Button -->
           <button class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-blue-800 text-white rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl hidden">
@@ -146,58 +146,58 @@
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{ asset('images/tours/' . $tour->image) }}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                <a href="{{route('tourshow', $tour->id)}}">
-                <p class=" font-[500] text-md pl-1">{{ $tour->name }}</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">{{ $tour->name }}</p>
               </a>
               </div>
               @endforeach
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">One day Tours</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">One day Tours</p>
               </div>
 
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Milti Day TOurs</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Milti Day TOurs</p>
               </div>
 
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Day Hiking</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Day Hiking</p>
               </div>
 
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Wildlife Safari</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Wildlife Safari</p>
               </div>
 
               <div class="service_card1 bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2  flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
               
               
@@ -229,7 +229,7 @@
               <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                 </a>
               </div>
               
@@ -239,7 +239,7 @@
               <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="">
-                <p class=" font-[500] text-md pl-1">Rafting</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Rafting</p>
                 </a>
               </div>
            
@@ -249,7 +249,7 @@
               <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Bungee</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Bungee</p>
               </a>
               </div>
 
@@ -258,7 +258,7 @@
               <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">HeliPad Ride</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">HeliPad Ride</p>
                 </a>
               </div>
 
@@ -268,7 +268,7 @@
                
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                 <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md pl-1">Zeep Flyer</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Zeep Flyer</p>
                 </a>
               </div>
 
@@ -278,27 +278,27 @@
 
               <div class="bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
 
               <div class="bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                 <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-md pl-1">Nepal</p>
+                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
               </div>
               
               
@@ -314,7 +314,7 @@
       </div> --}}
 
       <div class="carousel-container service_card">
-        <p class="text-xl font-[550] pb-4"> Expeditions</p>
+        <p class="text-xl font-[550] text-gray-800 pb-4"> Expeditions</p>
         <div class="relative flex items-center">
             <!-- Left Button -->
             <button class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-blue-800 text-white rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl hidden">
@@ -329,50 +329,50 @@
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                         <img src="{{ asset('images/expeditions/' . $expedition->image) }}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                         <a href="{{ route('expeditionsshow', $expedition->id) }}">
-                            <p class=" font-[500] text-md pl-1">{{ $expedition->name }}</p>
+                            <p class=" font-[500] text-gray-700 text-md pl-1">{{ $expedition->name }}</p>
                         </a>
                     </div>
                     @endforeach
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                     <div class="service_card1 bg-white card shadow-md rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
                       <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
                       <a href="{{route('contact')}}">
-                      <p class=" font-[500] text-md pl-1">Peak Climbing</p>
+                      <p class=" font-[500] text-gray-700 text-md pl-1">Peak Climbing</p>
                       </a>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Trekking;
 use App\Http\Controllers\Controller;
 use App\Models\Itinerary;
 use App\Models\region;
+use App\Models\Review;
 use App\Models\Trip;
 use App\Models\TripFact;
 use App\Models\Tripfaq;
@@ -129,11 +130,22 @@ class TripController extends Controller
             $highlights = TripHighlight::where('trip_id', $trip_id)->get();
             $tripFacts = TripFact::where('trip_id', $trip_id)->get();
             $tripfaqs = Tripfaq::where('trip_id', $trip_id)->get();
-            return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs'));
+            $reviews = Review::where('trip_id', $trip_id)
+            ->latest()  // Get the latest reviews
+            ->take(3)   // Limit to 3 reviews
+            ->get();
+
+            return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs','reviews','trip_id'));
          
 
          
        
+        }
+
+        public function index()
+        {
+            $latestReviews = Review::latest()->take(3)->get(); // Fetch the latest 3 reviews
+            return view('frontend.home.review', compact('latestReviews'));
         }
 
 

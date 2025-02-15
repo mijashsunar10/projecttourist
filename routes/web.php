@@ -23,9 +23,7 @@ use App\Http\Controllers\Expedition\MountainController;
 use App\Http\Controllers\Media\GalleryController;
 use App\Http\Controllers\Media\BlogController;
 use App\Http\Controllers\Media\NewsController;
-
-
-
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Tours\TourController;
 use App\Http\Controllers\Tours\TourFactController;
 use App\Http\Controllers\Tours\TourfaqController;
@@ -510,6 +508,11 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountai
     Route::post('{mountainfaq_id}/update', 'update')->name('mountainfaqupdate');
     Route::delete('delete', 'destroy')->name('mountainfaqdestroy');
 });
+
+Route::post('/trips/{trip}/reviews', [ReviewController::class, 'store'])->name('reviews.store');Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::get('trip/{trip_id}/reviews', [ReviewController::class, 'allReviews'])->name('reviews.index');
+
 
 
 

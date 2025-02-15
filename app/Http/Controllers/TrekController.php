@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class TrekController extends Controller
 {
     public function index()
     {
-        return view('frontend.home.homepage');
+        $latestReviews = Review::latest()->take(3)->get(); // Fetch the latest 3 reviews
+        return view('frontend.home.homepage', compact('latestReviews'));
     }
     public function contact()
     {

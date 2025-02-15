@@ -46,6 +46,11 @@ class Trip extends Model
         return $this->hasMany(Tripfaq::class);
     }
 
+        public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     
     
     
