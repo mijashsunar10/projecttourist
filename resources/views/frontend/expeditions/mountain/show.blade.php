@@ -69,8 +69,9 @@
             <li><a href="#overview" class="nav-link hover:text-blue-600">Overview</a></li>
             <li><a href="#highlight" class="nav-link hover:text-blue-600">Trip Highlights</a></li>
             <li><a href="#itinerary" class="nav-link hover:text-blue-600">Itinerary Overview</a></li>
-            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
             <li><a href="#required" class="nav-link hover:text-blue-600">Required Items</a></li>
+            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
+            
             <li><a href="#faqs" class="nav-link hover:text-blue-600">FAQS</a></li>
             <li><a href="#reviews" class="nav-link hover:text-blue-600">Reviews</a></li>
             {{-- <li> <a href="{{route('regionsshow',$trip->region_id)}}"><button type="submit" class="text-white  px-3  bg-[#ff0000] rounded-lg">Go back to trip</button></a></li> --}}
@@ -433,7 +434,7 @@
                 <div class="flex-grow h-px bg-gray-300"></div>
             </div> --}}
             <div style="max-width: 95%" class="mx-auto">
-            <h2 class="section-title">Trip Highlights</h2>
+            <h2 class="section-title">Expedition Highlights</h2>
 
             <ul class="space-y-4">
                 @forelse ($highlights as $highlight)
@@ -466,7 +467,7 @@
 
         @guest
         <div class="container mx-auto py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" style="max-width: 90%;">
-        <h2 class="section-title">mountain Highlights</h2>
+        <h2 class="section-title">Expeditions Highlights</h2>
         <ul class="space-y-6 text-gray-700 text-lg font-semibold">
             @forelse ($highlights as $highlight)
             <li class="flex items-center justify-between">
@@ -539,7 +540,7 @@
         <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
 
         <div class=" mx-auto" style="max-width:95%" >
-            <h2 class="section-title">mountain Iterinary Overview</h2>
+            <h2 class="section-title">Expedition Iterinary Overview</h2>
             <div class="flex items-center justify-center" style="max-width:95%" >
                 <div class="w-full max-w-7xl">
                     <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
@@ -617,7 +618,7 @@
   <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
     <div class="mx-auto" style="max-width: 95%">
     
-        <h2 class="section-title">Required Items For This mountain</h2>
+        <h2 class="section-title">Required Items For This Expeditions</h2>
         
         @foreach($mountain->mountainrequiredItems as $item)
             <div class="flex justify-between items-center border-b py-2">
@@ -754,11 +755,11 @@
     <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="faqs">
  
      <div class=" mx-auto" style="max-width:95%" >
-         <h2 class="section-title">mountain Faq Overview</h2>
+         <h2 class="section-title">Expedition Faq Overview</h2>
          <div class="flex items-center justify-center" style="max-width:95%" >
              <div class="w-full max-w-7xl">
                  <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                     <h1 class="text-4xl font-bold">mountains in Nepal – mountain Faq Overview</h1>
+                     <h1 class="text-4xl font-bold">Expeditions in Nepal – mountain Faq Overview</h1>
                      <p class="mt-2 text-lg">A detail description of mountain Faq</p>
  
                      @auth
@@ -767,7 +768,7 @@
                          </a>
                      @endauth
                  </div>
-                 <div id="faq-container" class="bg-transparent shadow-lg rounded-b-lg">
+                 <div id="faq-container" class="bg-transparent   shadow-lg rounded-b-lg">
                      @foreach ($mountainfaqs as $mountainfaq)
                          <div class="border-b mb-4 last:mb-0">
                              <button
@@ -874,28 +875,28 @@
     });
 
     // Highlight active navbar link based on scroll position
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id], div[id]'); // Select both sections and divs with IDs
+const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
+window.addEventListener('scroll', () => {
+    let current = '';
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200; // Adjust for header height
-            const sectionHeight = section.offsetHeight;
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 200; // Adjust for navbar height
+        const sectionHeight = section.offsetHeight;
 
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active-link');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active-link');
-            }
-        });
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id'); // Get the ID of the current visible section/div
+        }
     });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active-link');
+        }
+    });
+});
 </script>
 
 

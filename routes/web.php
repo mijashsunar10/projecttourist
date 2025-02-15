@@ -108,8 +108,7 @@ Route::get('/trek/main1',[TrekController::class,'trekmain1'])->name('trekmain1')
 Route::controller(RegionController::class)->group(function () {
     Route::get('/regions', 'index')->name('regionsindex'); // Public
     // Route::get('/header', 'header')->name('header'); // Public
-    Route::get('/regions/{id}',  'regionshow')->name('regionsshow'); // Public
-
+   
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/regions/create', 'regionscreate')->name('regionscreate');
         Route::post('/regionsstore', 'regionsstore')->name('regionsstore');
@@ -117,12 +116,14 @@ Route::controller(RegionController::class)->group(function () {
         Route::post('/regions/{id}/update', 'regionsupdate')->name('regionsupdate');
         Route::post('/regions/{id}/delete',  'regionsdestroy')->name('regionsdestroy');
     });
+    Route::get('/regions/{id}',  'regionshow')->name('regionsshow'); // Public
+
 });
 
 
 Route::controller(TripController::class)->group(function () {
 
-    Route::get('/trips/{id}', 'tripShow')->name('tripshow');
+   
 
     Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -132,7 +133,7 @@ Route::controller(TripController::class)->group(function () {
         Route::put('/trips/{id}', 'tripsupdate')->name('tripsupdate');
         Route::delete('/trips/{id}',  'tripsdestroy')->name('tripsdestroy');
         });
-    
+        Route::get('/trips/{id}', 'tripShow')->name('tripshow');
 
 });
 
@@ -181,16 +182,25 @@ Route::controller(TripController::class)->group(function () {
     Route::controller(NewsController::class)->group(function () {
         // Public routes
         Route::get('/news', 'index')->name('news');
-        Route::get('/news/{slug}/{id}/show', 'show')->name('news.show');
-    
+        Route::get('/addnews', 'create')->name('createnews');
+        Route::post('/storenews', 'store')->name('savenews');
+       
         // Authenticated and verified routes
         Route::middleware(['auth', 'verified'])->group(function () {
-            Route::get('/addnews', 'create')->name('createnews');
-            Route::post('/storenews', 'store')->name('savenews');
+           
             Route::get('/editnews/{slug}', 'edit')->name('editnews');
             Route::put('/update/{slug}', 'update')->name('updatenews');
             Route::delete('/delete/{slug}', 'destroy')->name('deletenews');
         });
+        Route::get('/news/{slug}/{id}/show', 'show')->name('news.show');
+
+        
+    });
+
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/pending-news', [NewsController::class, 'pendingNews'])->name('pending.news');
+        Route::post('/approve-news/{id}', [NewsController::class, 'approveNews'])->name('approve.news');
+        Route::delete('/delete-news/{id}', [NewsController::class, 'deleteNews'])->name('delete.news');
     });
     
 
@@ -221,8 +231,7 @@ Route::controller(TripController::class)->group(function () {
 
     Route::controller(BlogController::class)->group(function () {
         Route::get('/blogs', 'index')->name('blogs.index');
-        Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
-
+       
         Route::middleware(['auth','verified'])->group(function () {
         Route::get('/blogs/create', 'create')->name('blogs.create');
         Route::post('/blogs', 'store')->name('blogs.store');
@@ -231,6 +240,8 @@ Route::controller(TripController::class)->group(function () {
         Route::delete('/blogs/{id}/destroy', 'destroy')->name('blogs.destroy');
                 
     });
+    Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
+
     });  
     
     

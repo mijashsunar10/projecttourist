@@ -1,4 +1,4 @@
-<section class="bg-[#FDF7F4] py-10">
+<section class="bg-gray-100 py-10">
 
 
     <div class="max-w-7xl mx-auto py-10 px-4">

@@ -144,7 +144,7 @@
   <!-- Customization Button with Small Text -->
   <a href="{{route('customize')}}">
     <button id="customizationButton" 
-            class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 px-6 py-3 text-white text-md font-semibold" 
+            class="bg-blue-800 rounded-full shadow-lg hover:bg-blue-800  transition-all duration-300 transform hover:scale-105 px-6 py-3 text-white text-md font-semibold" 
             aria-label="Customize Treks">
       Customize Treks
     </button>

@@ -8,15 +8,29 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller; // Import the base Controller
-
+use Psy\VersionUpdater\Checker;
 
 
 class NewsController extends Controller
 {
+    // public function index()
+    // {
+    //     $news = News::latest()->paginate(12);
+    //     return view('frontend.media.news.index', ['news' => $news]);
+    // }
+
     public function index()
     {
-        $news = News::latest()->paginate(12);
-        return view('frontend.media.news.index', ['news' => $news]);
+        // Fetch approved news articles
+        $news = News::where('is_approved', true)->latest()->paginate(12);
+    
+        // Fetch the count of pending news articles
+        $pendingNewsCount = News::where('is_approved', false)->count();
+    
+        return view('frontend.media.news.index', [
+            'news' => $news,
+            'pendingNewsCount' => $pendingNewsCount,
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -30,33 +44,40 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $rules = [
-            'title' => 'required',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+    $rules = [
+        'title' => 'required',
+        'description' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $news = new News();
+    $news->title = $request->title;
+    $news->description = $request->description;
+    $news->is_approved = auth()->check() ? true : false; // Approved if logged in, otherwise false
+    $news->author = auth()->check() ? auth()->user()->name : 'Guest';
+
+    if ($request->image != "") {
+        $image = $request->image;
+        if ($image->getSize() > 2048 * 1024) {
+            return redirect()->back()->with('error', 'Image size is too large. Max allowed is 2MB.');
         }
-        $news = new News();
-        $news->title = $request->title;
-        $news->description = $request->description;
-        if ($request->image != "") {
-            $image = $request->image;
-            if ($image->getSize() > 2048 * 1024) {  // Convert KB to Bytes
-                return redirect()->back()->with('error', 'Image size is too large. Max allowed is 2MB.');
-            }
-            $extension = $image->getClientOriginalExtension();
-            $imageName = time() . '.' . $extension;
-        };
-        $slug = Str::slug($imageName . '-' . time());
-        $news->slug = $slug;
-        $news->image = $imageName;
-        $news->save();
-        $image->move(public_path('images/news'), $imageName);
-        return redirect()->route('news')->with('success', 'News added successfully');
+        $extension = $image->getClientOriginalExtension();
+        $imageName = time() . '.' . $extension;
+    }
+
+    $slug = Str::slug($imageName . '-' . time());
+    $news->slug = $slug;
+    $news->image = $imageName;
+    $news->save();
+
+    $image->move(public_path('images/news'), $imageName);
+
+    return redirect()->route('news')->with('success', 'News submitted successfully. It will be reviewed by an admin.');
     }
     public function edit($slug)
     {
@@ -111,12 +132,45 @@ class NewsController extends Controller
         $news->delete();
         return redirect()->route('news')->with('success', 'News deleted successfully');
     }
-    public function show($id,$slug)
+    public function show($id, $slug)
     {
+        // Fetch the current news article
         $news = News::where('id', $id)->where('slug', $slug)->firstOrFail();
-        $recentNews = News::latest()->where('id', '!=', $news->id)->take(3)->get(); // Get 3 recent news articles
+    
+        // Fetch 3 recent approved news articles, excluding the current one
+        $recentNews = News::where('is_approved', true) // Only approved news
+                          ->where('id', '!=', $news->id) // Exclude the current news
+                          ->latest() // Order by latest
+                          ->take(3) // Limit to 3 articles
+                          ->get();
     
         return view('frontend.media.news.show', compact('news', 'recentNews'));
     }
+
+    public function pendingNews()
+{
+    $pendingNews = News::where('is_approved', false)->get();
+    return view('frontend.media.news.pending', ['pendingNews' => $pendingNews]);
+}
+
+public function approveNews($id)
+{
+    $news = News::findOrFail($id);
+    $news->is_approved = true;
+    $news->save();
+
+    return redirect()->route('pending.news')->with('success', 'News approved successfully.');
+}
+
+public function deleteNews($id)
+{
+    $news = News::findOrFail($id);
+    if ($news->image) {
+        File::delete(public_path('images/news/' . $news->image));
+    }
+    $news->delete();
+
+    return redirect()->route('pending.news')->with('success', 'News deleted successfully.');
+}
 
 }

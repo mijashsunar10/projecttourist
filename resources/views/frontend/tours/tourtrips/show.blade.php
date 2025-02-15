@@ -73,8 +73,9 @@
             <li><a href="#overview" class="nav-link hover:text-blue-600">Overview</a></li>
             <li><a href="#highlight" class="nav-link hover:text-blue-600">Trip Highlights</a></li>
             <li><a href="#itinerary" class="nav-link hover:text-blue-600">Itinerary Overview</a></li>
-            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
             <li><a href="#required" class="nav-link hover:text-blue-600">Required Items</a></li>
+            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
+           
             <li><a href="#faqs" class="nav-link hover:text-blue-600">FAQS</a></li>
             <li><a href="#reviews" class="nav-link hover:text-blue-600">Reviews</a></li>
             {{-- <li> <a href="{{route('regionsshow',$trip->region_id)}}"><button type="submit" class="text-white  px-3  bg-[#ff0000] rounded-lg">Go back to trip</button></a></li> --}}
@@ -267,8 +268,8 @@
 
 
 {{-- Trip Facts --}}
-
-    <div id="tripfacts" class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%">
+<div class="mt-6">
+    <section  class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%" id="tripfacts">
         @auth
             <a href="{{ route('tourfactcreate', $tourtrip->id) }}">
                 <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
@@ -394,16 +395,47 @@
 
                 
             </div>
-    </div>
+    </section>
+</div>
     
 {{-- Trip Facts --}}
 
+{{-- Trip Overview --}}
+
+<div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-xl mt-8 hover-scale" id="overview" style="max-width: 90%;">
+    <div class="mx-auto" style="max-width:95%">
+    <h2 class="section-title">Expedition Overview</h2>
+    
+    <div class="text-gray-700 leading-relaxed space-y-4 " >
+        <p>
+            {{$tourtrip->description}}
+        </p>
+        <p>
+            For couples seeking an extraordinary adventure, the Couple Trek to Everest offers an unparalleled
+            experience that combines the thrill of exploration with the intimacy of shared moments. This trek is
+            not just a physical challenge; it’s a journey of the heart, where every step taken together through
+            the rugged trails and serene landscapes of the Himalayas deepens the connection between partners.
+        </p>
+        <p>
+            As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
+            including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
+            bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
+            the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
+            your body and soul, making every meal a moment to cherish.
+        </p>
+    </div>
+    </div>
+</div>
+
+{{-- Trip Overview --}}
+
 
  <!-- TourHIghlights -->
+ <section id="highlight">
 
 
     @auth
-        <div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl" id="highlight" style="max-width: 90%">
+        <div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl"  style="max-width: 90%">
             <!-- Centered Heading with Lines -->
 
             <div style="max-width: 95%" class="mx-auto">
@@ -479,6 +511,7 @@
         </ul>
     </div>
     @endguest
+</section>
 
 
  <!-- TourHIghlights -->
@@ -565,8 +598,8 @@
 
  <!-- Tour Required ITem -->
 
-
-    <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8" id="required" style="max-width: 90%;">
+<section id="required">
+    <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8"  style="max-width: 90%;">
     <div class="mx-auto" style="max-width: 95%">
     
         <h2 class="section-title">Required Items For This Tour</h2>
@@ -612,6 +645,7 @@
             }
         });
     </script>
+</section>
 <!-- Tour Required ITem -->
 
 
@@ -695,7 +729,7 @@
 
 <div class="mt-6" >
  
-   <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="faqs">
+   <div class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="faqs">
 
     <div class=" mx-auto" style="max-width:95%" >
         <h2 class="section-title">Tour Faq Overview</h2>
@@ -749,7 +783,7 @@
             </div>
         </div>
     </div>
-   </section>
+   </div>
 
    <script>
             function toggleAnswer(answerId) {
@@ -867,28 +901,29 @@ link.addEventListener('click', function(e) {
 });
 
 // Highlight active navbar link based on scroll position
-const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('section[id], div[id]'); // Select both sections and divs with IDs
 const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
-let current = '';
+    let current = '';
 
-sections.forEach(section => {
-   const sectionTop = section.offsetTop - 200; // Adjust for header height
-   const sectionHeight = section.offsetHeight;
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 200; // Adjust for navbar height
+        const sectionHeight = section.offsetHeight;
 
-   if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-       current = section.getAttribute('id');
-   }
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id'); // Get the ID of the current visible section/div
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active-link');
+        }
+    });
 });
 
-navLinks.forEach(link => {
-   link.classList.remove('active-link');
-   if (link.getAttribute('href').substring(1) === current) {
-       link.classList.add('active-link');
-   }
-});
-});
 </script>
 
 

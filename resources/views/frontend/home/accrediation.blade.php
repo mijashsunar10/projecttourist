@@ -17,12 +17,12 @@
     }
   </style>
   <body>
-    <article class=" bg-gray-100 pb-10">
+    <article class=" bg-gray-50 pb-10">
       <!-- Title Section -->
       <div class="p-5 text-center">
-        <h1 class="text-2xl md:text-5xl text-black font-bold design ">Accreditations</h1>
+        <h1 class="text-3xl md:text-5xl text-[#0B6285] font-bold design ">Accreditations</h1>
         <div class="flex justify-center mt-2">
-          <hr class="w-16 hover:w-32 h-1 bg-blue-400 transition-all duration-500 ease-in-out">
+          <hr class="w-16 hover:w-32 h-1 bg-[#0B6285] transition-all duration-500 ease-in-out">
         </div>
       </div>
   

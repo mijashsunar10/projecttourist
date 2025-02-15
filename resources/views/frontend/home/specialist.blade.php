@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('frontend/css/home/specialist.css')}}">
 
-<section class="specialist bg-[#f7f7f7] service_card">
+<section class="specialist bg-gray-50 service_card">
 
 
 

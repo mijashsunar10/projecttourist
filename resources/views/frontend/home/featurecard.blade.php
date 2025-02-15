@@ -1,9 +1,16 @@
-<section class="bg-gray-100 service_card">
+<style>
+    h3
+    {
+        color: #0B6285
+    }
+</style>
+
+<section class="bg-gray-50 service_card">
     <!-- Main Container -->
     <div class="container mx-auto px-4 py-10 relative" style="width: 90%">
 
         <!-- Title -->
-        <h2 class="text-4xl font-extrabold text-center mb-10 text-gray-800">Featured Experiences</h2>
+        <h2 class="text-4xl font-extrabold text-center mb-10 text-[#0B6285]">Featured Experiences</h2>
 
         <!-- Carousel Container -->
         <div class="relative group py-6">

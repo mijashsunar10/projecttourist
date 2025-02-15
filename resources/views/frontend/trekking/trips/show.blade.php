@@ -67,10 +67,11 @@
         <ul class="flex space-x-16 text-gray-700">
             <li><a href="#tripfacts" class="nav-link hover:text-blue-600">Trip Facts</a></li>
             <li><a href="#overview" class="nav-link hover:text-blue-600">Overview</a></li>
-            <li><a href="#highlight" class="nav-link hover:text-blue-600">Trip Highlights</a></li>
+            <li><a href="#highlight" class="nav-link hover:text-blue-600"> Highlights</a></li>
             <li><a href="#itinerary" class="nav-link hover:text-blue-600">Itinerary Overview</a></li>
-            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
             <li><a href="#required" class="nav-link hover:text-blue-600">Required Items</a></li>
+            <li><a href="#inclusions" class="nav-link hover:text-blue-600">Included & Excluded</a></li>
+           
             <li><a href="#faqs" class="nav-link hover:text-blue-600">FAQS</a></li>
             <li><a href="#reviews" class="nav-link hover:text-blue-600">Reviews</a></li>
             <li> <a href="{{route('regionsshow',$trip->region_id)}}"><button type="submit" class="text-white  px-3  bg-[#ff0000] rounded-lg">Go back to trip</button></a></li>
@@ -606,69 +607,7 @@
 
 
     </div>
-    <script>
-        // Smooth scrolling with intermediate sliding
-        // Smooth scrolling with intermediate sliding and navbar offset
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default anchor behavior
-
-                const targetId = this.getAttribute('href').substring(1); // Get target section ID
-                const targetElement = document.getElementById(targetId);
-                if (!targetElement) return;
-
-                const startPosition = window.pageYOffset;
-                const targetPosition = targetElement.offsetTop -
-                    150; // Offset for the sticky navbar height (adjust as needed)
-                const distance = targetPosition - startPosition;
-                const duration = 500; // Total duration of the scrolling
-
-                let start = null;
-
-                function step(timestamp) {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-                    const percent = Math.min(progress / duration, 1);
-
-                    const easedProgress = percent < 0.5 ?
-                        4 * percent ** 3 :
-                        1 - Math.pow(-2 * percent + 2, 3) / 2;
-
-                    window.scrollTo(0, startPosition + distance * easedProgress);
-
-                    if (progress < duration) {
-                        requestAnimationFrame(step);
-                    }
-                }
-
-                requestAnimationFrame(step);
-            });
-        });
-
-        // Highlight active navbar link based on scroll position
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 200; // Adjust for header height
-                const sectionHeight = section.offsetHeight;
-
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active-link');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active-link');
-                }
-            });
-        });
-    </script>
+    
 <!-- Trip Iterinary Overview -->
 
 
@@ -812,7 +751,7 @@
 
     <div class="mt-6" >
     
-        <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="tripfaq">
+        <section class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="faqs">
 
         <div class=" mx-auto" style="max-width:95%" >
             <h2 class="section-title">{{$trip->name}} FAQ Overview</h2>
@@ -908,6 +847,70 @@
     }
 });
 
+</script>
+
+<script>
+    // Smooth scrolling with intermediate sliding
+    // Smooth scrolling with intermediate sliding and navbar offset
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
+
+            const targetId = this.getAttribute('href').substring(1); // Get target section ID
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
+
+            const startPosition = window.pageYOffset;
+            const targetPosition = targetElement.offsetTop -
+                150; // Offset for the sticky navbar height (adjust as needed)
+            const distance = targetPosition - startPosition;
+            const duration = 500; // Total duration of the scrolling
+
+            let start = null;
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const percent = Math.min(progress / duration, 1);
+
+                const easedProgress = percent < 0.5 ?
+                    4 * percent ** 3 :
+                    1 - Math.pow(-2 * percent + 2, 3) / 2;
+
+                window.scrollTo(0, startPosition + distance * easedProgress);
+
+                if (progress < duration) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        });
+    });
+
+    // Highlight active navbar link based on scroll position
+    const sections = document.querySelectorAll('section[id], div[id]'); // Select both sections and divs with IDs
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 200; // Adjust for navbar height
+            const sectionHeight = section.offsetHeight;
+
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id'); // Get the ID of the current visible section/div
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active-link');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active-link');
+            }
+        });
+    });
 </script>
 
 @endsection

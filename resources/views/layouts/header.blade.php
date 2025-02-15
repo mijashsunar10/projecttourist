@@ -693,7 +693,7 @@
 </div>
 <!-- Mobile Navbar (Visible only on smaller screens) -->
 <div id="mobileNavbar"
-  class="fixed top-0 right-0 w-full sm:w-96 h-full bg-blue-900 text-white transform translate-x-full transition-transform duration-300 z-10 lg:hidden  overflow-y-auto">
+  class="fixed  top-0 right-0 w-full sm:w-96 h-full bg-blue-900 text-white transform translate-x-full transition-transform duration-300 z-20 lg:hidden  overflow-y-auto">
   <div class="flex justify-between items-center p-4 border-b border-gray-700">
       <div class="flex items-center space-x-3">
           <span>

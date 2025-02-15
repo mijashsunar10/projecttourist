@@ -1,7 +1,14 @@
 @extends('frontend.template.template')
-
 @section('pagecontent')
 <div class="bg-gray-100 mt-16 xl:mt-20" x-data="{ search: '' }">
+    <!-- Alert Message for Guests -->
+    @guest
+    @if(session('success'))
+        <div id="alert-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative max-w-lg mx-auto mb-6" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    @endguest
    
     <!-- Header Section -->
     <div class="text-center mb-12 mt-14">
@@ -17,14 +24,22 @@
           class="border-2 border-[#0B6285] rounded-full p-3 mb-5 w-full max-w-lg text-gray-700 shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300"
         >
       </div>
-      @auth
+      
       <a href="{{ route('createnews') }}" class="px-3 py-2 bg-blue-500 text-white rounded-lg inline-block">Create New News</a>
+      
+      @auth
+      <a href="{{ route('pending.news') }}" class="inline-block">
+        <span class="bg-yellow-500 text-white px-4 py-2 rounded-lg  text-md font-medium hover:bg-yellow-600 transition-all">
+            Pending News: {{ $pendingNewsCount }}
+        </span>
+    </a>
       @endauth
     </div>
   
     <!-- News Cards Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[90%] mx-auto">
         @foreach($news as $new)
+        @if($new->is_approved)
         <article 
             class="border-2 border-gray-600 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
             x-show="'{{ Str::lower($new->title) }}'.includes(search.toLowerCase())"
@@ -74,6 +89,7 @@
                 @endauth    
             </div>
         </article>
+        @endif
         @endforeach
     </div>
 
@@ -82,4 +98,16 @@
         No news found matching your search. Try a different keyword!
     </p>
 </div>
+
+<!-- JavaScript to Auto-Hide the Alert -->
+<script>
+    // Check if the alert message exists
+    const alertMessage = document.getElementById('alert-message');
+    if (alertMessage) {
+        // Hide the alert after 3 seconds (3000 milliseconds)
+        setTimeout(() => {
+            alertMessage.style.display = 'none';
+        }, 3000);
+    }
+</script>
 @endsection
