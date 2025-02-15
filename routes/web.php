@@ -24,6 +24,7 @@ use App\Http\Controllers\Media\GalleryController;
 use App\Http\Controllers\Media\BlogController;
 use App\Http\Controllers\Media\NewsController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Tours\TourController;
 use App\Http\Controllers\Tours\TourFactController;
 use App\Http\Controllers\Tours\TourfaqController;
@@ -133,7 +134,7 @@ Route::controller(TripController::class)->group(function () {
         });
         Route::get('/trips/{id}', 'tripShow')->name('tripshow');
 
-});
+}); 
 
     Route::controller(TripDescriptionController::class)->middleware(['auth', 'verified'])->group(function()
     {
@@ -513,6 +514,8 @@ Route::post('/trips/{trip}/reviews', [ReviewController::class, 'store'])->name('
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::get('trip/{trip_id}/reviews', [ReviewController::class, 'allReviews'])->name('reviews.index');
 
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 

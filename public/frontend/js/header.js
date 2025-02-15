@@ -1,31 +1,31 @@
 //    search javascript
    
-   let searchHistory = [];
+//    let searchHistory = [];
     
-        function handleSearch(event) {
-        const searchInputModal = document.getElementById('searchInputModal');
-        const query = searchInputModal.value.trim();
+//         function handleSearch(event) {
+//         const searchInputModal = document.getElementById('searchInputModal');
+//         const query = searchInputModal.value.trim();
     
-        if (query && !searchHistory.includes(query)) {
-            searchHistory.unshift(query);
-            if (searchHistory.length > 5) searchHistory.pop();
-            updateSearchHistory();
-        }
+//         if (query && !searchHistory.includes(query)) {
+//             searchHistory.unshift(query);
+//             if (searchHistory.length > 5) searchHistory.pop();
+//             updateSearchHistory();
+//         }
     
-        searchInputModal.value = ''; 
-        console.log('Searching for:', query);
-        }
+//         searchInputModal.value = ''; 
+//         console.log('Searching for:', query);
+//         }
     
-        function updateSearchHistory() {
-        const historyList = document.getElementById('searchHistory');
-        historyList.innerHTML = ''; 
-        searchHistory.forEach(search => {
-            const li = document.createElement('li');
-            li.classList.add('cursor-pointer', 'text-white', 'mb-2', 'hover:text-gray-300');
-            li.textContent = search;
-            historyList.appendChild(li);
-        });
-        }
+//         function updateSearchHistory() {
+//         const historyList = document.getElementById('searchHistory');
+//         historyList.innerHTML = ''; 
+//         searchHistory.forEach(search => {
+//             const li = document.createElement('li');
+//             li.classList.add('cursor-pointer', 'text-white', 'mb-2', 'hover:text-gray-300');
+//             li.textContent = search;
+//             historyList.appendChild(li);
+//         });
+//         }
     
         function toggleModal() {
         const modal = document.getElementById('searchModal');
@@ -41,7 +41,7 @@
         }
     }
 
-//   search javascript
+// //   search javascript
 
     
 // Close modal when clicking outside
