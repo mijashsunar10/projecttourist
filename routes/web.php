@@ -18,6 +18,7 @@
     use App\Http\Controllers\TripFactController;
     use App\Http\Controllers\TripfaqController;
     use App\Http\Controllers\TripHighlightController;
+    use App\Http\Controllers\Admin\ContactAdminController;
     use App\Models\InclusionExclusion;
     use App\Models\TripDescription;
     use Illuminate\Support\Facades\Route;
@@ -38,7 +39,13 @@
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::get('/admindashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('admindashboard');
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::prefix('admin')->name('admin.')->group(function() {
+        Route::resource('contacts', ContactAdminController::class);
+        // You can add more resource controllers for Customize, Trekking, etc.
+    });
+
+    
 
     Route::get('/new', function () {
         return view('frontend.home.new');

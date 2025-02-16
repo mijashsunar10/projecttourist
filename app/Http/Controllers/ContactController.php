@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
 use App\Mail\ContactFormMail;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    
     /**
      * Handle the contact form submission.
      *
@@ -20,13 +19,18 @@ class ContactController extends Controller
     {
         // Validate the form data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'whatsapp' => 'nullable|string|max:20',
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email|max:255',
+            'whatsapp'=> 'nullable|string|max:20',
             'message' => 'required|string',
         ]);
+
+        // Save to database
+        Contact::create($validatedData);
+
         // Send the email
-        Mail::to('sunaranamol@gmail.com')->send(new ContactFormMail($validatedData));
+        Mail::to('sandeshpahari05@gmail.com')->send(new ContactFormMail($validatedData));
+
         return response()->json(['message' => 'Your message has been sent successfully!'], 200);
     }
 }
