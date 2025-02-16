@@ -42,4 +42,9 @@ class Tourtrips extends Model
     {
         return $this->hasMany(Tourfaq::class,'tourtrip_id');
     }
+
+    public function tourreviews()
+    {
+        return $this->hasMany(TourReview::class);
+    }
 }

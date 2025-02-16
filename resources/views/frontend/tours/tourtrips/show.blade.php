@@ -811,6 +811,128 @@
 
 </div>
 
+
+
+<div class="container mx-auto py-8 px-4 bg-gray-100 mt-10 rounded-lg shadow-lg" style="max-width: 90%" id="reviews">
+    {{-- <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Reviews</h2> --}}
+    <h2 class="section-title text-center">Latest Reviews</h2>
+    
+    @if ($tourreviews->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            @foreach ($tourreviews as $review)
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold overflow-hidden bg-gray-300">
+                                @if ($review->photo)
+                                    <img src="{{ asset('images/tourtrips/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
+                                @else
+                                    <span class="text-gray-700">{{ strtoupper(substr($review->name, 0, 1)) }}</span>
+                                @endif
+                            </div>
+                            
+                            <div class="ml-3">
+                                <h3 class="font-bold text-gray-800">{{ $review->name }}</h3>
+                                <p class="text-gray-500 text-sm">{{ $review->created_at->format('F j, Y') }}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-500 text-2xl mb-4">
+                            @for ($i = 0; $i < $review->rating; $i++)
+                                <span>&#9733;</span>
+                            @endfor
+                            @for ($i = $review->rating; $i < 5; $i++)
+                                <span class="text-gray-300">&#9733;</span>
+                            @endfor
+                        </div>
+
+                        <p class="text-gray-600 mb-4">{{ $review->review }}</p>
+
+                        @if ($review->youtube_url)
+                            <div class="mt-4">
+                                <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">Watch Video Review</a>
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Delete button always at the bottom -->
+                    <div class="mt-auto pt-4">
+                        <form action="{{ route('tourreviews.destroy', $review->id) }}" method="POST" 
+                              onsubmit="return confirm('Are you sure you want to delete this review?');" 
+                              class="inline-block w-full text-right">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ease-in-out">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- View All Button -->
+        <div class="mt-8 text-center">
+            <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
+                View All Reviews
+            </a>
+        </div>
+
+    @else
+        <p class="text-gray-500 text-center">No reviews yet. Be the first to review this trip!</p>
+    @endif
+</div>
+
+<div class="container mx-auto py-8 px-4 bg-gray-100 rounded-lg shadow-lg mt-10" style="max-width:90%">
+    <h2 class=" text-center section-title">Write a Review</h2>
+    <form action="{{ route('tourreviews.store', $tourtrip->id) }}" method="POST" enctype="multipart/form-data" class="bg-white mx-auto p-8 rounded-lg shadow-md" style="max-width:95%">
+        @csrf
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Full Name</label>
+                <input type="text" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+            </div>
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Email Address</label>
+                <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <label class="block text-gray-700 font-medium mb-2">Your Photo</label>
+            <input type="file" name="photo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </div>
+
+        <div class="mt-6">
+            <label class="block text-gray-700 font-medium mb-2">YouTube Video URL</label>
+            <input type="url" name="youtube_url" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </div>
+
+        <div class="mt-6" x-data="{ rating: 0 }">
+            <label class="block text-gray-700 font-medium mb-2">Rating</label>
+            <div class="flex space-x-2 text-yellow-500 text-3xl cursor-pointer">
+                <template x-for="star in 5">
+                    <span @click="rating = star" :class="rating >= star ? 'text-yellow-500' : 'text-gray-300'" class="hover:text-yellow-600 transition-colors duration-200">
+                        &#9733;
+                    </span>
+                </template>
+            </div>
+            <input type="hidden" name="rating" x-model="rating">
+        </div>
+
+        <div class="mt-6">
+            <label class="block text-gray-700 font-medium mb-2">Review</label>
+            <textarea name="review" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required></textarea>
+        </div>
+
+        <div class="mt-6 text-center">
+            <button type="submit" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 ease-in-out">
+                Submit Review
+            </button>
+        </div>
+    </form>
+</div>
+
 <!-- <script>
      function toggleAnswer(answerId) {
     console.log("Toggling FAQ: " + answerId); // Debugging

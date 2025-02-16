@@ -8,6 +8,7 @@ use App\Models\TourFact;
 use App\Models\Tourfaq;
 use App\Models\TourHighlight;
 use App\Models\TourItinerary;
+use App\Models\TourReview;
 use App\Models\Tourtrips;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -130,6 +131,10 @@ class TourtripsController extends Controller
         $tourFacts=TourFact::where('tourtrip_id', $tourtrip_id)->get();
         $highlights = TourHighlight::where('tourtrip_id', $tourtrip_id)->get();
         $tourfaqs = Tourfaq::where('tourtrip_id', $tourtrip_id)->get();
-        return view('frontend.tours.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs'));
+        $tourreviews = TourReview::where('tourtrip_id', $tourtrip_id)
+            ->latest()  // Get the latest reviews
+            ->take(3)   // Limit to 3 reviews
+            ->get();
+        return view('frontend.tours.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs','tourreviews','tourtrip_id'));
     }
 }

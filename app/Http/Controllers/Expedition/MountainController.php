@@ -8,6 +8,7 @@ use App\Models\ExpeditionFact;
 use App\Models\Expeditionfaq;
 use App\Models\ExpeditionHighlight;
 use App\Models\ExpeditionItinerary;
+use App\Models\ExpeditionReview;
 use App\Models\Mountain;
 use Illuminate\Http\Request;
 
@@ -129,7 +130,11 @@ class MountainController extends Controller
             $mountainFacts = ExpeditionFact::where('mountain_id', $mountain_id)->get();
             $mountainfaqs = Expeditionfaq::where('mountain_id', $mountain_id)->get();
             // return view('frontend.expeditions.mountains.show', compact('mountain', 'itineraries','highlights','mountainFacts','mountainfaqs'));
-            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts','highlights','itineraries','mountainfaqs'));
+            $mountainreviews = ExpeditionReview::where('mountain_id', $mountain_id)
+            ->latest()  // Get the latest reviews
+            ->take(3)   // Limit to 3 reviews
+            ->get();
+            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts','highlights','itineraries','mountainfaqs','mountainreviews','mountain_id'));
          
 
          

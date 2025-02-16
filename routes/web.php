@@ -17,14 +17,13 @@ use App\Http\Controllers\Expedition\ExpeditionInclusionExcluionController;
 use App\Http\Controllers\Expedition\ExpeditionItineraryController;
 use App\Http\Controllers\Expedition\ExpeditionRequiredItemController;
 use App\Http\Controllers\Expedition\MountainController;
-
-
-
+use App\Http\Controllers\ExpeditionReviewController;
 use App\Http\Controllers\Media\GalleryController;
 use App\Http\Controllers\Media\BlogController;
 use App\Http\Controllers\Media\NewsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TourReviewController;
 use App\Http\Controllers\Tours\TourController;
 use App\Http\Controllers\Tours\TourFactController;
 use App\Http\Controllers\Tours\TourfaqController;
@@ -510,13 +509,27 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountai
     Route::delete('delete', 'destroy')->name('mountainfaqdestroy');
 });
 
-Route::post('/trips/{trip}/reviews', [ReviewController::class, 'store'])->name('reviews.store');Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::post('/trips/{trip}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+// Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::get('trip/{trip_id}/reviews', [ReviewController::class, 'allReviews'])->name('reviews.index');
 
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
+
+
+Route::post('/tourtrips/{tourtrip}/tourreviews', [TourReviewController::class, 'store'])->name('tourreviews.store');
+// Route::delete('/reviews/{id}', [TourReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::delete('/tourreviews/{id}', [TourReviewController::class, 'destroy'])->name('tourreviews.destroy');
+Route::get('tourtrip/{tourtrip_id}/tourreviews', [TourReviewController::class, 'allReviews'])->name('tourreviews.index');
+
+
+
+Route::post('/mountains/{mountain}/expeditionreviews', [ExpeditionReviewController::class, 'store'])->name('mountainreviews.store');
+// Route::delete('/revi ews/{id}', [ExpeditionReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::delete('/mountainreviews/{id}', [ExpeditionReviewController::class, 'destroy'])->name('mountainreviews.destroy');
+Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewController::class, 'allReviews'])->name('mountainreviews.index');
 
 
 
