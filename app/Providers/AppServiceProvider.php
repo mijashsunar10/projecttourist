@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
 use App\Models\Expedition;
 use App\Models\Region;
 use App\Models\Tour;
@@ -28,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $tours = Tour::with('tourtrips')->get();
         $expeditions = Expedition::with('mountains')->get();
         View::share(['regions'=> $regions, 'tours'=>$tours, 'expeditions'=>$expeditions]);
+
+        View::composer('admin.*', function ($view) {
+            $view->with('unreadCount', Contact::where('is_read', false)->count());
+        });
     }
 }

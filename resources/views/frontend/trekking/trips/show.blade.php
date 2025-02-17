@@ -624,42 +624,7 @@
 
             </div>
         
-    <!-- Trip Iterinary Overview -->
-
-    {{--  Required Item for this trek--}}
-
-        <div class="container mx-auto py-12 px-8  bg-white rounded-lg shadow-lg mt-6" id="required" >
-            <div class="mx-auto" style="max-width: 96%">
-            
-                <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Required Item for This Trek</h2>
-                
-                @foreach($trip->requiredItems as $item)
-                    <div class="flex justify-between items-center border-b py-2">
-                        <p class="text-gray-800 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
-                        </p>
-                        @auth
-                            <div>
-                                <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
-                                <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                                </form>
-                            </div>
-                        @endauth
-                    </div>
-                @endforeach
-
-                @auth
-                    <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
-                @endauth
-            </div>
-        </div>
-
-    {{--  Required Item for this trek--}}
-
-
-    <!-- Trip Inclusionn and Exclusion -->
+    
 
     <div class="container py-12 px-12 bg-gray-100 mt-8" id="inclusions" >
         <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Inclusions and Exclusions</h2>

@@ -265,29 +265,44 @@
 <!-- Imgage Section -->
 
 
-<div class="flex flex-col items-center justify-center mt-20">
-    <!-- Region Name with Straight Horizontal Lines -->
-    <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-        <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-        <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
-             {{ $tourtrip->name }}
-        </h1>
-        <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-    </div>
+<div class="container  px-8 py-12 flex gap-6">
+    <!-- Left Section: Trip Details (80%) -->
+    <div class="w-4/5"  >
 
+        <div class="flex flex-col items-center justify-center ">
+            <!-- Region Name with Straight Horizontal Lines -->
+            <div class="flex items-center w-full max-w-4xl  mt-6">
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+                    {{ $tourtrip->name }} 
+                </h1>
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+            </div>
+        </div>
 
+        
+        {{-- Tour Overview --}}
 
-    <!-- Buttons Section -->
-    
-   
-    
-</div>
+        <div class="bg-white xl:p-12 p-8 rounded-lg shadow-lg mt-6" id="overview">
+            <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Trip Overview</h2>
+            <div class="text-gray-800 space-y-4 text-lg font-semibold">
+                <p>{{ $tourtrip->description }}</p>
+                <p>
+                    As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
+                    including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
+                    bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
+                    the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
+                    your body and soul, making every meal a moment to cherish.
+                </p>
+            </div>
+        </div>
 
+        {{-- Tour Overview --}}
 
 
 {{-- Trip Facts --}}
-<div class="mt-3">
-    <section  class="container  mx-auto py-2 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%" id="tripfacts">
+
+    <section  class="container   py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale"  id="tripfacts">
         @auth
             <a href="{{ route('tourfactcreate', $tourtrip->id) }}">
                 <button class="bg-blue-900 text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
@@ -295,8 +310,8 @@
         @endauth
        
 
-             <h2 class="text-4xl font-bold text-[#0B6285] mb-6">Trip Facts </h2> 
-            
+        <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour Facts</h2>
+                
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Duration -->
             
@@ -414,36 +429,13 @@
                 
             </div>
     </section>
-</div>
+
     
 {{-- Trip Facts --}}
 
 {{-- Trip Overview --}}
 
-<div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-xl mt-8 hover-scale" id="overview" style="max-width: 90%;">
-    <div class="mx-auto" style="max-width:95%">
-    <h2 class="section-title">Expedition Overview</h2>
-    
-    <div class="text-gray-700 leading-relaxed space-y-4 " >
-        <p>
-            {{$tourtrip->description}}
-        </p>
-        <p>
-            For couples seeking an extraordinary adventure, the Couple Trek to Everest offers an unparalleled
-            experience that combines the thrill of exploration with the intimacy of shared moments. This trek is
-            not just a physical challenge; it’s a journey of the heart, where every step taken together through
-            the rugged trails and serene landscapes of the Himalayas deepens the connection between partners.
-        </p>
-        <p>
-            As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
-            including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
-            bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
-            the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
-            your body and soul, making every meal a moment to cherish.
-        </p>
-    </div>
-    </div>
-</div>
+
 
 {{-- Trip Overview --}}
 
@@ -453,12 +445,12 @@
 
 
     @auth
-        <div class="mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl"  style="max-width: 90%">
+        <div class=" mt-8 p-6 bg-white rounded-lg shadow-xl"  >
             <!-- Centered Heading with Lines -->
 
-            <div style="max-width: 95%" class="mx-auto">
-            <h2 class="section-title">Tour Highlights</h2>
-        
+            <div style="max-width: 95%" class="">
+                <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour Highlights</h2>
+           
             <ul class="space-y-4">
                 @forelse ($highlights as $highlight)
                     <li class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
@@ -489,8 +481,9 @@
     @endauth
 
     @guest
-    <div class="container mx-auto py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" style="max-width: 90%;">
-        <h2 class="section-title">Trip Highlights</h2>
+    <div class="container  py-20 px-8 bg-gray-50 rounded-lg shadow-lg mt-8 " id="highlight" ">
+        <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour Highilights</h2>
+           
         <ul class="space-y-6 text-gray-700 text-lg font-semibold">
             @forelse ($highlights as $highlight)
             <li class="flex items-center justify-between">
@@ -540,14 +533,15 @@
 
     <div class="mt-6" >
     
-        <section class="bg-gray-100  mx-auto mt-8 p-9 " style="max-width: 90%" id="itinerary">
+        <section class="bg-gray-100 mt-8 p-9 "  id="itinerary">
 
-        <div class=" mx-auto" style="max-width:95%" >
-            <h2 class="section-title">Tour Iterinary Overview</h2>
+        <div class=" " style="max-width:95%" >
+            <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour Iterinary Overview</h2>
+           
             <div class="flex items-center justify-center" style="max-width:95%" >
                 <div class="w-full max-w-7xl">
-                    <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                        <h1 class="text-4xl font-bold">TOurs in Nepal – Iterinanary Overview</h1>
+                    <div class="bg-blue-800 text-white text-center my-6 p-6 rounded-t-lg">
+                        <h1 class="text-3xl font-bold" style="font-family: 'Times New Roman', Times, serif">TOurs in Nepal – Iterinanary Overview</h1>
                         <p class="mt-2 text-lg">A detail description of Itirenary</p>
                         @auth
                             <a href="{{ route('touritinerarycreate', $tourtrip->id) }}">
@@ -559,11 +553,11 @@
                         @foreach ($itineraries as $itinerary)
                             <div class="border-b mb-4 last:mb-0">
                                 <button
-                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                    class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-blue-900 bg-white focus:outline-none shadow-md"
                                     onclick="toggleAnswer('answer{{ $itinerary->id }}')" aria-expanded="false">
                                     {{ $itinerary->question }}
                                     <svg id="icon{{ $itinerary->id }}"
-                                        class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                        class="ml-2 w-5 h-5 text-gray-800 transition-transform transform rotate-0"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -617,11 +611,11 @@
  <!-- Tour Required ITem -->
 
 <section id="required">
-    <div class="container mx-auto py-20 px-8 bg-white rounded-lg shadow-lg mt-8"  style="max-width: 90%;">
-    <div class="mx-auto" style="max-width: 95%">
+    <div class="container  py-20 px-8 bg-white rounded-lg shadow-lg mt-8"  ">
+    <div class="" style="max-width: 95%">
     
-        <h2 class="section-title">Required Items For This Tour</h2>
-        
+        <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Required Items for This Tour</h2>
+           
         @foreach($tourtrip->tourrequiredItems as $item)
             <div class="flex justify-between items-center border-b py-2">
                 <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
@@ -669,9 +663,9 @@
 
 <!-- Tour Inclusionn and Exclusion -->
 
-    <div class="container mx-auto py-16 px-16 bg-gray-200 mt-8" id="inclusions" style="max-width: 90%;">
-        <h2 class="text-3xl font-bold text-[#0B6285] mb-8">Inclusions And Exclusions</h2>
-
+    <div class="container  py-6 px-12 bg-gray-100 mt-8" id="inclusions" >
+        <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour Inclusionn and Exclusion </h2>
+           
         @if ($tourtrip->tourinclusionExclusions->isEmpty())
             <p class="text-gray-600 text-center">No inclusions or exclusions available.</p>
         @else
@@ -747,14 +741,15 @@
 
 <div class="mt-6" >
  
-   <div class="bg-gray-100 min-h-screen  mx-auto mt-8 p-9 " style="max-width: 90%" id="faqs">
+   <div class="bg-gray-100 mt-8 p-9 "  id="faqs">
 
-    <div class=" mx-auto" style="max-width:95%" >
-        <h2 class="section-title">Tour Faq Overview</h2>
+    <div class="mx-auto " style="max-width:95%" >
+        <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Tour FAQ Overview</h2>
         <div class="flex items-center justify-center" style="max-width:95%" >
             <div class="w-full max-w-7xl">
-                <div class="bg-[#0B6285] text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-4xl font-bold">TOurs in Nepal – TOur Faq Overview</h1>
+                <div class="bg-blue-800 text-white text-center my-6 p-6 rounded-t-lg">
+                    {{-- <h1 class="text-4xl font-bold">TOurs in Nepal – TOur Faq Overview</h1> --}}
+                    <h2 class="text-3xl font-bold  text-white" style=" font-family: 'Times New Roman', Times, serif">Tours in Nepal – TOur Faq Overview</h2>
                     <p class="mt-2 text-lg">A detail description of TOur Faq</p>
 
                     @auth
@@ -767,11 +762,11 @@
                     @foreach ($tourfaqs as $tourfaq)
                         <div class="border-b mb-4 last:mb-0">
                             <button
-                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-orange-800 bg-white focus:outline-none shadow-md"
+                                class="w-full flex justify-between items-center text-left p-4 text-lg font-semibold text-blue-900 bg-white focus:outline-none shadow-md"
                                 onclick="toggleAnswer('answer{{ $tourfaq->id }}')" aria-expanded="false">
                                 {{ $tourfaq->question }}
                                 <svg id="icon{{ $tourfaq->id }}"
-                                    class="ml-2 w-5 h-5 text-orange-800 transition-transform transform rotate-0"
+                                    class="ml-2 w-5 h-5 text-gray-800 transition-transform transform rotate-0"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -858,10 +853,9 @@
 
 </style>
 
-<div class="bg-gray-100 p-10  mx-auto" style="max-width: 90% ">
-    <div class="my-20">
-        <h2 class="text-center text-3xl font-bold mb-6">Latest Reviews</h2>
-
+<div class="bg-gray-100  mt-6 p-10  " >
+    <div class="">
+        <h2 class="text-4xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Latest Review</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach ($tourreviews as $review)
                 <div class="card-flip w-full h-80">
@@ -934,7 +928,7 @@
 
         <!-- View All Reviews Button -->
         <div class="mt-8 text-center">
-            <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
+            <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
                 View All Reviews
             </a>
         </div>
@@ -945,79 +939,11 @@
 
 
 
-    <div class="container mx-auto py-8 px-4 bg-gray-100 mt-10 rounded-lg shadow-lg" style="max-width: 90%" id="reviews">
-        {{-- <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Reviews</h2> --}}
-        <h2 class="section-title text-center">Latest Reviews</h2>
-        
-        @if ($tourreviews->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach ($tourreviews as $review)
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full">
-                        <div>
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold overflow-hidden bg-gray-300">
-                                    @if ($review->photo)
-                                        <img src="{{ asset('images/tourtrips/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
-                                    @else
-                                        <span class="text-gray-700">{{ strtoupper(substr($review->name, 0, 1)) }}</span>
-                                    @endif
-                                </div>
-                                
-                                <div class="ml-3">
-                                    <h3 class="font-bold text-gray-800">{{ $review->name }}</h3>
-                                    <p class="text-gray-500 text-sm">{{ $review->created_at->format('F j, Y') }}</p>
-                                </div>
-                            </div>
+  
 
-                            <div class="flex text-yellow-500 text-2xl mb-4">
-                                @for ($i = 0; $i < $review->rating; $i++)
-                                    <span>&#9733;</span>
-                                @endfor
-                                @for ($i = $review->rating; $i < 5; $i++)
-                                    <span class="text-gray-300">&#9733;</span>
-                                @endfor
-                            </div>
-
-                            <p class="text-gray-600 mb-4">{{ $review->review }}</p>
-
-                            @if ($review->youtube_url)
-                                <div class="mt-4">
-                                    <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">Watch Video Review</a>
-                                </div>
-                            @endif
-                        </div>
-
-                        <!-- Delete button always at the bottom -->
-                        <div class="mt-auto pt-4">
-                            <form action="{{ route('tourreviews.destroy', $review->id) }}" method="POST" 
-                                onsubmit="return confirm('Are you sure you want to delete this review?');" 
-                                class="inline-block w-full text-right">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ease-in-out">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            <!-- View All Button -->
-            <div class="mt-8 text-center">
-                <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
-                    View All Reviews
-                </a>
-            </div>
-
-        @else
-            <p class="text-gray-500 text-center">No reviews yet. Be the first to review this trip!</p>
-        @endif
-    </div>
-
-<div class="container mx-auto py-8 px-4 bg-gray-100 rounded-lg shadow-lg mt-10" style="max-width:90%">
-    <h2 class=" text-center section-title">Write a Review</h2>
-    <form action="{{ route('tourreviews.store', $tourtrip->id) }}" method="POST" enctype="multipart/form-data" class="bg-white mx-auto p-8 rounded-lg shadow-md" style="max-width:95%">
+<div class="container  py-8 px-12 mx-auto bg-gray-100 rounded-lg shadow-lg mt-10">
+    <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Write a Review</h2>
+    <form action="{{ route('tourreviews.store', $tourtrip->id) }}" method="POST" enctype="multipart/form-data" class="bg-white  p-8 rounded-lg shadow-md" style="max-width:95%">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -1065,28 +991,56 @@
     </form>
 </div>
 
-<!-- <script>
-     function toggleAnswer(answerId) {
-    console.log("Toggling FAQ: " + answerId); // Debugging
+</div>
+<div class="w-1/5 sticky top-40 h-max">
+    <div class="bg-white p-6 rounded-lg shadow-xl">
+        <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Total Cost</h2>
+        <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
+        <div class="space-y-3 mt-4">
+            <a href="#" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
+                Book Now  
+                <span class="ml-3 text-sm bg-white text-blue-800 rounded-full px-2 py-1 shadow-md">
+                    <i class="fas fa-arrow-right"></i> 
+                </span> 
+            </a>
+        
+            <a href="#" class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold">
+                Enquiry Now  
+                <span class="ml-3 text-sm bg-white text-green-700 rounded-full px-2 py-1 shadow-md">
+                    <i class="fas fa-arrow-right"></i> 
+                </span>
+            </a>
+        
+            <a href="#" class="block bg-gray-700 text-white text-center py-3 rounded-md hover:bg-indigo-600 transition font-bold">
+                Customize Now  
+                <span class="ml-3 text-sm bg-white text-indigo-700 rounded-full px-2 py-1 shadow-md">
+                    <i class="fas fa-arrow-right"></i> 
+                </span> 
+            </a>
+        </div>
+        
+    </div>
 
-    const answer = document.getElementById(answerId);
-    const icon = document.getElementById(`icon${answerId.replace('answer', '')}`);
+    <div class="bg-gray-50 p-6 rounded-lg shadow-lg mt-6">
+        <h3 class="text-lg font-bold mb-3">Why Us?</h3>
+        <ul class="space-y-3 text-gray-700">
+            <li class="flex items-center">
+                <span class="text-blue-800 font-bold mr-2">✔</span> Best Price Guaranteed
+            </li>
+            <li class="flex items-center">
+                <span class="text-blue-800 font-bold mr-2">✔</span> Hassle-Free Booking
+            </li>
+            <li class="flex items-center">
+                <span class="text-blue-800 font-bold mr-2">✔</span> Top Notch Service
+            </li>
+            <li class="flex items-center">
+                <span class="text-blue-800 font-bold mr-2">✔</span> Expert Knowledge
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
 
-    if (!answer || !icon) {
-        console.log("Element not found!");
-        return;
-    }
-
-    if (answer.style.display === "none") {
-        answer.style.display = "block"; // Show
-        icon.classList.add("rotate-180");
-    } else {
-        answer.style.display = "none"; // Hide
-        icon.classList.remove("rotate-180");
-    }
-}
-
-   </script> -->
 
    <script>
     function toggleAnswer(answerId) {

@@ -12,8 +12,6 @@
             </h1>
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
-  
-    
 
         <!-- Buttons Section -->
         

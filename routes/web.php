@@ -53,6 +53,9 @@ use App\Models\TripDescription;
 use Illuminate\Support\Facades\Route;
 
 
+use App\Http\Controllers\Admin\ContactAdminController;
+
+
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
 // })->name('index');
@@ -538,7 +541,11 @@ Route::delete('/mountainreviews/{id}', [ExpeditionReviewController::class, 'dest
 Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewController::class, 'allReviews'])->name('mountainreviews.index');
 
 
-
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('contacts', ContactAdminController::class);
+    // You can add more resource controllers for Customize, Trekking, etc.
+});
 // routes/web.php
 
 
