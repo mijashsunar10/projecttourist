@@ -10,6 +10,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </a>
+               
+             <!-- Delete Button -->
+             <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST" class="absolute top-0 right-16">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                    class="bg-white p-2 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-200 hover:-translate-y-1 hover:scale-105 "
+                    onclick="return confirm('Are you sure you want to delete this inquiry?')">
+                    <svg class="w-8 h-8 text-gray-600 hover:text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </form>
 
             <!-- Header Section -->
             <div class="pb-4 space-y-2">
