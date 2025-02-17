@@ -609,6 +609,66 @@
     
                 </ul>
               </li>
+
+              <li class="relative group">
+                <button
+                    class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                    Company
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
+                    style="border-top: 4px solid orange;">
+
+                    <li class="relative group">
+                        <a href="{{ route('aboutus') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                About Us
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="relative group">
+                        <a href="{{ route('ourteam') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                Our Team
+                            </div>
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a href="{{ route('documents') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                Legal Documents
+                            </div>
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a href="{{ route('terms') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                Terms & Conditions
+                            </div>
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a href="{{ route('payment') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                Payment Method
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
               <!-- Navbar Item 2 -->
               <li class="relative group">
                   <a href="{{ route('contact') }}">
@@ -620,7 +680,7 @@
                   </a>
 
               </li>
-              <li class="relative group">
+              {{-- <li class="relative group">
                   <a href="">
                       <button
                           class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
@@ -639,7 +699,7 @@
                       </button>
                   </a>
 
-              </li>
+              </li> --}}
 
               <li class="relative group">
                   <div class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">

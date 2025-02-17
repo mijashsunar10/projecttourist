@@ -546,6 +546,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('contacts', ContactAdminController::class);
     // You can add more resource controllers for Customize, Trekking, etc.
 });
+
+
+Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
+Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
+Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
+Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
+Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 // routes/web.php
 
 
