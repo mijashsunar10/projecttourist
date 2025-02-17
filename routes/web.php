@@ -78,6 +78,12 @@ Route::get('/new2', function () {
     return view('frontend.home.new2');
 });
 
+Route::get('/new1', function () {
+    return view('frontend.media.news');
+});
+
+
+
 Route::get('/',[TrekController::class,'index'])->name('index');
 
 Route::get('/blog',[TrekController::class,'blog'])->name('blog');
@@ -532,6 +538,8 @@ Route::delete('/mountainreviews/{id}', [ExpeditionReviewController::class, 'dest
 Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewController::class, 'allReviews'])->name('mountainreviews.index');
 
 
+
+// routes/web.php
 
 
 require __DIR__.'/auth.php';

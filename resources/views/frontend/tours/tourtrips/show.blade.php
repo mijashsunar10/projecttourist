@@ -40,7 +40,7 @@
         left: 0;
         width: 60px;
         height: 4px;
-        background: #2563eb;
+        background: white;
         border-radius: 2px;
     }
 
@@ -66,9 +66,9 @@
     
 </style>
 
-<div class="sticky top-20 z-10 bg-blue-200 bg-blue-200 shadow">
+<div class="sticky top-20 z-10 bg-blue-800 shadow ">
     <nav class="container flex justify-center items-center py-4 px-6">
-        <ul class="flex space-x-16 text-gray-700">
+        <ul class="flex space-x-16 text-white">
             <li><a href="#tripfacts" class="nav-link hover:text-blue-600">mountain Facts</a></li>
             <li><a href="#overview" class="nav-link hover:text-blue-600">Overview</a></li>
             <li><a href="#highlight" class="nav-link hover:text-blue-600">Trip Highlights</a></li>
@@ -88,14 +88,13 @@
 
 <!-- Imgage Section -->
 
+
+
 <div>
         <div class="bg-gray-100 h-[80vh] mt-20 w-full mx-auto flex items-center justify-center overflow-hidden relative ">
             <div class="w-full text-center h-full relative ">
                 
-                <!-- Region Name -->
-                <h2 class="absolute top-3 left-1/2 mt-4 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xl md:text-2xl font-semibold px-4 py-2 rounded-lg">
-                    {{ $tourtrip->name }}
-                </h2>
+               
                 @auth
                 <!-- Action Buttons (Add, Edit, Delete) -->
                 <div class="absolute top-3 mt-4 right-4 flex gap-2">
@@ -266,13 +265,32 @@
 <!-- Imgage Section -->
 
 
+<div class="flex flex-col items-center justify-center mt-20">
+    <!-- Region Name with Straight Horizontal Lines -->
+    <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
+        <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+        <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+             {{ $tourtrip->name }}
+        </h1>
+        <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+    </div>
+
+
+
+    <!-- Buttons Section -->
+    
+   
+    
+</div>
+
+
 
 {{-- Trip Facts --}}
-<div class="mt-6">
-    <section  class="container  mx-auto py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%" id="tripfacts">
+<div class="mt-3">
+    <section  class="container  mx-auto py-2 px-16 bg-white shadow-xl rounded-lg  mt-8 hover-scale" style="max-width: 90%" id="tripfacts">
         @auth
             <a href="{{ route('tourfactcreate', $tourtrip->id) }}">
-                <button class="bg-[#0B6285] text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
+                <button class="bg-blue-900 text-white px-4 py-2 rounded mb-5">Add Tour Fact</button>
             </a>
         @endauth
        
@@ -811,77 +829,191 @@
 
 </div>
 
+<style>
+    .card-flip {
+    perspective: 1000px;
+}
 
+.card-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
 
-<div class="container mx-auto py-8 px-4 bg-gray-100 mt-10 rounded-lg shadow-lg" style="max-width: 90%" id="reviews">
-    {{-- <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Reviews</h2> --}}
-    <h2 class="section-title text-center">Latest Reviews</h2>
-    
-    @if ($tourreviews->count() > 0)
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+.card-flip:hover .card-inner,
+.card-flip:focus .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+</style>
+
+<div class="bg-gray-100 p-10  mx-auto" style="max-width: 90% ">
+    <div class="my-20">
+        <h2 class="text-center text-3xl font-bold mb-6">Latest Reviews</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach ($tourreviews as $review)
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold overflow-hidden bg-gray-300">
-                                @if ($review->photo)
-                                    <img src="{{ asset('images/tourtrips/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
-                                @else
-                                    <span class="text-gray-700">{{ strtoupper(substr($review->name, 0, 1)) }}</span>
-                                @endif
+                <div class="card-flip w-full h-80">
+                    <div class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+                        <!-- Front Side -->
+                        <div class="card-front absolute w-full h-full bg-cover bg-center rounded-lg shadow-lg overflow-hidden" 
+                            style="background-image: url('{{ asset('images/tourtrips/reviews/' . ($review->photo ?? 'default.png')) }}');">
+                            
+                            <!-- Overlay -->
+                            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+                            <!-- Content -->
+                            <div class="absolute bottom-0 z-10 bg-transparent text-white w-full py-3 px-4">
+                                <h3 class="text-lg font-bold">{{ $review->name }}</h3>
+                                <p class="text-sm">{{ $review->created_at->format('F j, Y') }}</p>
+                            </div>
+
+                            
+                        </div>
+
+                        <!-- Back Side -->
+                        <div class="card-back absolute w-full h-full bg-white flex flex-col justify-center items-center text-center px-4 rounded-lg shadow-lg rotate-y-180 backface-hidden">
+                            <!-- Rating -->
+                            <div class="flex text-yellow-500 text-2xl mb-3">
+                                @for ($i = 0; $i < $review->rating; $i++)
+                                    <span>&#9733;</span>
+                                @endfor
+                                @for ($i = $review->rating; $i < 5; $i++)
+                                    <span class="text-gray-300">&#9733;</span>
+                                @endfor
+                            </div>
+
+                            <!-- Review -->
+                            <blockquote class="text-green-600 text-lg font-bold">
+                                "{{ $review->review }}"
+                            </blockquote>
+
+                            <!-- YouTube URL -->
+                            @if ($review->youtube_url)
+                                <div class="mt-4">
+                                    <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">
+                                        Watch Video Review
+                                    </a>
+                                </div>
+                            @endif
+
+                            <!-- Delete Button (Always at Bottom) -->
+
+                            <div class=" pt-4 w-full  pr-4">
+                                <form action="{{ route('tourreviews.destroy', $review->id) }}" method="POST" 
+                                    onsubmit="return confirm('Are you sure you want to delete this review?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ease-in-out">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                             
-                            <div class="ml-3">
-                                <h3 class="font-bold text-gray-800">{{ $review->name }}</h3>
-                                <p class="text-gray-500 text-sm">{{ $review->created_at->format('F j, Y') }}</p>
-                            </div>
                         </div>
 
-                        <div class="flex text-yellow-500 text-2xl mb-4">
-                            @for ($i = 0; $i < $review->rating; $i++)
-                                <span>&#9733;</span>
-                            @endfor
-                            @for ($i = $review->rating; $i < 5; $i++)
-                                <span class="text-gray-300">&#9733;</span>
-                            @endfor
-                        </div>
-
-                        <p class="text-gray-600 mb-4">{{ $review->review }}</p>
-
-                        @if ($review->youtube_url)
-                            <div class="mt-4">
-                                <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">Watch Video Review</a>
-                            </div>
-                        @endif
+                        
                     </div>
 
-                    <!-- Delete button always at the bottom -->
-                    <div class="mt-auto pt-4">
-                        <form action="{{ route('tourreviews.destroy', $review->id) }}" method="POST" 
-                              onsubmit="return confirm('Are you sure you want to delete this review?');" 
-                              class="inline-block w-full text-right">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ease-in-out">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
+                    
                 </div>
+                
             @endforeach
         </div>
 
-        <!-- View All Button -->
+        <!-- View All Reviews Button -->
         <div class="mt-8 text-center">
             <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
                 View All Reviews
             </a>
         </div>
-
-    @else
-        <p class="text-gray-500 text-center">No reviews yet. Be the first to review this trip!</p>
-    @endif
+    </div>
 </div>
+
+
+
+
+
+    <div class="container mx-auto py-8 px-4 bg-gray-100 mt-10 rounded-lg shadow-lg" style="max-width: 90%" id="reviews">
+        {{-- <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Reviews</h2> --}}
+        <h2 class="section-title text-center">Latest Reviews</h2>
+        
+        @if ($tourreviews->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach ($tourreviews as $review)
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold overflow-hidden bg-gray-300">
+                                    @if ($review->photo)
+                                        <img src="{{ asset('images/tourtrips/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
+                                    @else
+                                        <span class="text-gray-700">{{ strtoupper(substr($review->name, 0, 1)) }}</span>
+                                    @endif
+                                </div>
+                                
+                                <div class="ml-3">
+                                    <h3 class="font-bold text-gray-800">{{ $review->name }}</h3>
+                                    <p class="text-gray-500 text-sm">{{ $review->created_at->format('F j, Y') }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex text-yellow-500 text-2xl mb-4">
+                                @for ($i = 0; $i < $review->rating; $i++)
+                                    <span>&#9733;</span>
+                                @endfor
+                                @for ($i = $review->rating; $i < 5; $i++)
+                                    <span class="text-gray-300">&#9733;</span>
+                                @endfor
+                            </div>
+
+                            <p class="text-gray-600 mb-4">{{ $review->review }}</p>
+
+                            @if ($review->youtube_url)
+                                <div class="mt-4">
+                                    <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">Watch Video Review</a>
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Delete button always at the bottom -->
+                        <div class="mt-auto pt-4">
+                            <form action="{{ route('tourreviews.destroy', $review->id) }}" method="POST" 
+                                onsubmit="return confirm('Are you sure you want to delete this review?');" 
+                                class="inline-block w-full text-right">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ease-in-out">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- View All Button -->
+            <div class="mt-8 text-center">
+                <a href="{{ route('tourreviews.index', $tourtrip_id) }}" class="inline-block px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
+                    View All Reviews
+                </a>
+            </div>
+
+        @else
+            <p class="text-gray-500 text-center">No reviews yet. Be the first to review this trip!</p>
+        @endif
+    </div>
 
 <div class="container mx-auto py-8 px-4 bg-gray-100 rounded-lg shadow-lg mt-10" style="max-width:90%">
     <h2 class=" text-center section-title">Write a Review</h2>

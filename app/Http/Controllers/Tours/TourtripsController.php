@@ -133,7 +133,7 @@ class TourtripsController extends Controller
         $tourfaqs = Tourfaq::where('tourtrip_id', $tourtrip_id)->get();
         $tourreviews = TourReview::where('tourtrip_id', $tourtrip_id)
             ->latest()  // Get the latest reviews
-            ->take(3)   // Limit to 3 reviews
+            ->take(4)   // Limit to 3 reviews
             ->get();
         return view('frontend.tours.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs','tourreviews','tourtrip_id'));
     }

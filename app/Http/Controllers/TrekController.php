@@ -9,7 +9,7 @@ class TrekController extends Controller
 {
     public function index()
     {
-        $latestReviews = Review::latest()->take(3)->get(); // Fetch the latest 3 reviews
+        $latestReviews = Review::latest()->take(4)->get(); // Fetch the latest 3 reviews
         return view('frontend.home.homepage', compact('latestReviews'));
     }
     public function contact()

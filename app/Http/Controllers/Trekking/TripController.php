@@ -132,7 +132,7 @@ class TripController extends Controller
             $tripfaqs = Tripfaq::where('trip_id', $trip_id)->get();
             $reviews = Review::where('trip_id', $trip_id)
             ->latest()  // Get the latest reviews
-            ->take(3)   // Limit to 3 reviews
+            ->take(4)   // Limit to 3 reviews
             ->get();
 
             return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs','reviews','trip_id'));
