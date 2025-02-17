@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\CustomizeFormMail;
+use App\Models\Customize;
 use Illuminate\Support\Facades\Mail;
+
 
 class CustomizeController extends Controller
 {
@@ -25,10 +27,12 @@ class CustomizeController extends Controller
             'guide_porter' => 'nullable|string', // Nullable
             'message' => 'nullable|string',      // Nullable
         ]);
+         // Save to database
+         Customize::create($validatedData);
                 
 
         // Send email
-        Mail::to('sunaranamol@gmail.com')->send(new CustomizeFormMail($validatedData));
+        Mail::to('sandeshpahari05@gmail.com')->send(new CustomizeFormMail($validatedData));
 
         return response()->json(['message' => 'Your message has been sent successfully!',200]);
     }

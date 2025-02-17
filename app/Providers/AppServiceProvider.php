@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Contact;
+use App\Models\Customize;
 use Illuminate\Support\Facades\View;
 
 
@@ -22,9 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-          // For every view in the admin folder, share the unread count
-    View::composer('admin.*', function ($view) {
-        $view->with('unreadCount', Contact::where('is_read', false)->count());
-    });
+        // Share unread counts separately for Contact and Customize in admin views
+        View::composer('admin.*', function ($view) {
+            $unreadContactCount = Contact::where('is_read', false)->count();
+            $unreadCustomizeCount = Customize::where('is_read', false)->count();
+
+            $view->with([
+                'unreadContactCount' => $unreadContactCount,
+                'unreadCustomizeCount' => $unreadCustomizeCount,
+            ]);
+        });
     }
 }

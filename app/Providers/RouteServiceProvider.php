@@ -19,9 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      * Bootstrap services.
      */
     public function boot(): void
-    {
+    {    
         parent::boot();
 
+       
         // Bind 'faq' parameter to use the slug field for Faq model
         Route::bind('faq', function ($value) {
             return \App\Models\Faq::where('slug', $value)->firstOrFail();

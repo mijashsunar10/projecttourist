@@ -40,22 +40,29 @@
                     </svg>
                     <span>Tours</span>
                 </a>
-                <a href="#" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
+                <a href="{{route('admin.customizes.index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                     <span>Customize</span>
+                    @isset($unreadCustomizeCount)
+                        @if ($unreadCustomizeCount > 0)
+                            <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
+                                {{ $unreadCustomizeCount }}
+                            </span>
+                        @endif
+                    @endisset
                 </a>
                 <a href="{{ route('admin.contacts.index') }}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A10.001 10.001 0 0112 2a10.001 10.001 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                        <span>Contacts</span>
-                      @isset($unreadCount)
-                        @if ($unreadCount > 0)
+                      @isset($unreadContactCount)
+                        @if ($unreadContactCount > 0)
                             <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
-                                {{ $unreadCount }}
+                                {{ $unreadContactCount }}
                             </span>
                         @endif
                     @endisset
