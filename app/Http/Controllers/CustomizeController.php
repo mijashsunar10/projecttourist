@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\CustomizeFormMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Customize;
 
 class CustomizeController extends Controller
 {
@@ -25,6 +26,8 @@ class CustomizeController extends Controller
             'guide_porter' => 'nullable|string', // Nullable
             'message' => 'nullable|string',      // Nullable
         ]);
+
+        Customize::create($validatedData);
                 
 
         // Send email

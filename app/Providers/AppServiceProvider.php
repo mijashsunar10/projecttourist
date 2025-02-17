@@ -7,6 +7,7 @@ use App\Models\Expedition;
 use App\Models\Region;
 use App\Models\Tour;
 use Illuminate\Support\Facades\View;
+use App\Models\Customize;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +32,12 @@ class AppServiceProvider extends ServiceProvider
         View::share(['regions'=> $regions, 'tours'=>$tours, 'expeditions'=>$expeditions]);
 
         View::composer('admin.*', function ($view) {
-            $view->with('unreadCount', Contact::where('is_read', false)->count());
+            $unreadContactCount = Contact::where('is_read', false)->count();
+            $unreadCustomizeCount = Customize::where('is_read', false)->count();
+            $view->with([
+                'unreadContactCount' => $unreadContactCount,
+                'unreadCustomizeCount' => $unreadCustomizeCount,
+            ]);
         });
     }
 }

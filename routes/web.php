@@ -54,6 +54,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Admin\ContactAdminController;
+use App\Http\Controllers\Admin\CustomizeAdminController;
 
 
 // Route::get('/', function () {
@@ -544,6 +545,7 @@ Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewControll
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('contacts', ContactAdminController::class);
+    Route::resource('customizes', CustomizeAdminController::class);
     // You can add more resource controllers for Customize, Trekking, etc.
 });
 
@@ -555,5 +557,9 @@ Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
 Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 // routes/web.php
 
+
+Route::get('/booking', function () {
+    return view('frontend.booking.booking');
+});
 
 require __DIR__.'/auth.php';
