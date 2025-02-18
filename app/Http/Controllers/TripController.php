@@ -129,7 +129,7 @@ class TripController extends Controller
             $highlights = TripHighlight::where('trip_id', $trip_id)->get();
             $tripFacts = TripFact::where('trip_id', $trip_id)->get();
             $tripfaqs = Tripfaq::where('trip_id', $trip_id)->get();
-            return view('frontend.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs'));
+            return view('frontend.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs','trip_id'));
          
 
          

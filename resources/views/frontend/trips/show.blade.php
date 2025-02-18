@@ -821,6 +821,9 @@
 
 </div>
 
+
+<a href="{{route('booking',$trip->id)}}"> book now</a>
+
 {{-- TripFaq --}}
 
 

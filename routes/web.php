@@ -19,8 +19,10 @@
     use App\Http\Controllers\TripfaqController;
     use App\Http\Controllers\TripHighlightController;
     use App\Http\Controllers\Admin\ContactAdminController;
-    use App\Http\Controllers\Admin\CustomizeAdminController;
-    use App\Models\InclusionExclusion;
+use App\Http\Controllers\Admin\CustomizeAdminController;
+use App\Http\Controllers\Admin\BookingAdminController;
+use App\Http\Controllers\BookingController;
+use App\Models\InclusionExclusion;
     use App\Models\TripDescription;
     use Illuminate\Support\Facades\Route;
 
@@ -46,18 +48,19 @@
     Route::prefix('admin')->name('admin.')->group(function() {
         Route::resource('contacts', ContactAdminController::class);
         Route::resource('customizes', CustomizeAdminController::class);
+        Route::resource('booking', BookingAdminController::class);
         // You can add more resource controllers for Customize, Trekking, etc.
     });
-
+ 
 
     
 
     Route::get('/new', function () {
         return view('frontend.home.new');
     });
-    Route::get('/booking', function () {
-        return view('frontend.booking.booking');
-    });
+
+
+   
 
     // HomeCOntrolller
 
@@ -130,7 +133,8 @@
         });
     });
 
-
+    
+     
     // Route::get('/userregions', [RegionController::class, 'userindex'])->name('userregions');
     // Route::get('/userregions/{id}', [RegionController::class,  'userregionshow'])->name('userregionsshow');
 
@@ -214,7 +218,7 @@
 
     Route::get('/customize', [TrekController::class, 'customize'])->name('customize');
     Route::post('/customize/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
-
+    Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
 
     Route::controller(BlogController::class)->group(function () {
         Route::get('/blogs', 'index')->name('blogs.index');
@@ -257,5 +261,7 @@
 
 
 
+    Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
 
+    
     require __DIR__ . '/auth.php';
