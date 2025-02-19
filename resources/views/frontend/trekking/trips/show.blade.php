@@ -89,6 +89,10 @@
 
 </style>
 <div class="sticky top-20 z-10 bg-blue-800 shadow">
+    
+
+    
+
     <nav class="container flex justify-center items-center py-4 px-6">
         <ul class="flex space-x-16 text-white">
             <li><a href="#overview" class="nav-link hover:text-gray-200">Overview</a></li>
@@ -104,13 +108,32 @@
             <li> <a href="{{route('regionsshow',$trip->region_id)}}"><button type="submit" class="text-white  font-bold rounded-lg">Go back to trip</button></a></li>
         </ul>
     </nav>
+
+    <div>
+
+    @if(session('success'))
+    <div id="success-message" class="bg-green-500 text-white p-3 rounded ">
+        {{ session('success') }}
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-message').style.display = 'none';
+        }, 4000); // 10 seconds
+    </script>
+    @endif
+    </div>
+
 </div>
+
 
 
 <!-- Imgage Section -->
 
     <div>
         <div class="bg-gray-100 h-[80vh] mt-20 w-full mx-auto flex items-center justify-center overflow-hidden relative ">
+            
+
             <div class="w-full text-center h-full relative ">
                 
                 <!-- Region Name -->
@@ -623,6 +646,59 @@
 
 
             </div>
+
+             <!-- Tour Required ITem -->
+
+            <section id="required">
+                <div class="container  py-20 px-8 bg-white rounded-lg shadow-lg mt-8"  ">
+                <div class="" style="max-width: 95%">
+                
+                    <h2 class="text-3xl font-bold mb-4 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Required Items for This Trip</h2>
+                    
+                    @foreach($trip->requiredItems as $item)
+                        <div class="flex justify-between items-center border-b py-2">
+                            <p class="text-gray-600 text-[1.2rem] font-semibold">&#10148; <span class="px-3"> {{ $item->item_name }}</span>
+                            </p>
+                            @auth
+                                <div>
+                                    <a href="{{ route('requireditems.edit', [$trip->id, $item->id]) }}" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</a>
+                                    <form action="{{ route('requireditems.destroy', [$trip->id, $item->id]) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                                    </form>
+                                </div>
+                            @endauth
+                        </div>
+                    @endforeach
+
+                    @auth
+                        <a href="{{ route('requireditems.create', $trip->id) }}" class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded">Add Required Item</a>
+                    @endauth
+                </div> 
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const section = urlParams.get('section');
+
+                        if (section) {
+                            const sectionElement = document.getElementById(section);
+                            if (sectionElement) {
+                                const navbarHeight = document.querySelector("nav").offsetHeight; 
+                                const sectionPosition = sectionElement.offsetTop - navbarHeight - 20; 
+
+                                window.scrollTo({
+                                    top: sectionPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    });
+                </script>
+            </section>
+            <!-- Tour Required ITem -->
+
         
     
 
@@ -923,7 +999,7 @@
             <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Trip Cost</h2>
             <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
             <div class="space-y-3 mt-4">
-                <a href="#" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
+                <a href="{{route('booking',$trip->id)}}" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
                     Book Now  
                     <span class="ml-3 text-sm bg-white text-blue-800 rounded-full px-2 py-1 shadow-md">
                         <i class="fas fa-arrow-right"></i> 
@@ -937,7 +1013,7 @@
                     </span>
                 </a>
             
-                <a href="#" class="block bg-gray-700 text-white text-center py-3 rounded-md hover:bg-indigo-600 transition font-bold">
+                <a href="{{route('customize')}}" class="block bg-gray-700 text-white text-center py-3 rounded-md hover:bg-indigo-600 transition font-bold">
                     Customize Now  
                     <span class="ml-3 text-sm bg-white text-indigo-700 rounded-full px-2 py-1 shadow-md">
                         <i class="fas fa-arrow-right"></i> 

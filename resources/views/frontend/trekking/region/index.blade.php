@@ -12,35 +12,41 @@
     </style>
 
     @auth
-    <div class="mt-8">
-        <div class="flex items-center justify-center mb-6 mx-8">
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
-            <h2 class="text-4xl font-bold text-gray-800 mx-8 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Add Trekking Regions
-            </h2>
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+        <div class="flex flex-col items-center justify-center  mt-6">
+            <!-- Region Name with Straight Horizontal Lines -->
+            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+                    Add Trekking Region
+                </h1>
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+            </div>
         </div>
-    </div>
     @endauth
 
+   
+
     @guest
-    <div class="mt-8">
-        <div class="flex items-center justify-center mb-6 mx-8">
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
-            <h2 class="text-4xl font-bold text-gray-800 mx-4 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Trekking Regions
-            </h2>
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+
+        <div class="flex flex-col items-center justify-center mt-8 ">
+            <!-- Region Name with Straight Horizontal Lines -->
+            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+                    Trekking Region
+                </h1>
+                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+            </div>
         </div>
-    </div>
+
     @endguest
 
     @auth
-    <div class="text-center m-5">
-        <a href="{{ route('regionscreate') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 font-bold">
-          + Add Region
-        </a>
-    </div>
+        <div class="text-center m-5">
+            <a href="{{ route('regionscreate') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 font-bold">
+            + Add Region
+            </a>
+        </div>
     @endauth
  
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-[90%] mx-auto p-6">
@@ -65,7 +71,7 @@
 
 
                     <div class="flex justify-between mt-4 p-2 space-x-4 w-full">
-                        <a href="{{ route('regionsshow', $region->id) }}" class="bg-blue-800  text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex-1 text-center">
+                        <a href="{{ route('regionsshow', $region->id) }}" class="bg-blue-700   text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex-1 text-center">
                             Views Trips 
                         </a>
                        
@@ -157,3 +163,4 @@
     </div>
 </div>
 @endsection--}}
+

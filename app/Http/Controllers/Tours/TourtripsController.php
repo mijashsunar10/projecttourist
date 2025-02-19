@@ -26,10 +26,10 @@ class TourtripsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'duration' => 'required|integer',
-            'distance' => 'required|numeric',
-            'ascent' => 'required|integer',
+            'price' => 'required|string|max:255',
+            'duration' => 'required|string|max:255',
+            'distance' => 'required|string|max:255',
+          
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -48,7 +48,7 @@ class TourtripsController extends Controller
             'price' => $request->price,
             'duration' => $request->duration,
             'distance' => $request->distance,
-            'ascent' => $request->ascent,
+            
             'image' => $imageName,
         ]);
 
@@ -84,10 +84,10 @@ class TourtripsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'duration' => 'required|integer',
-            'distance' => 'required|numeric',
-            'ascent' => 'required|integer',
+            'price' => 'required|string|max:255',
+            'duration' => 'required|string|max:255',
+            'distance' => 'required|string|max:255',
+           
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -117,7 +117,7 @@ class TourtripsController extends Controller
             'price' => $request->price,
             'duration' => $request->duration,
             'distance' => $request->distance,
-            'ascent' => $request->ascent,
+           
             'image' => $imageName, // Keeps old image if not changed
         ]);
 

@@ -86,6 +86,7 @@
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                     veniam quis nostrud exercitation ullamco.
                 </p>
+                
             </div>
             <div class="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Left Section -->
@@ -97,6 +98,49 @@
                         veniam quis nostrud exercitation ullamco.
                     </p>
                     <!-- Your existing contact details here -->
+
+                    <div class="space-y-6">
+                        <!-- Location -->
+                        <div class="flex items-center">
+                          <div class="bg-blue-500 text-white p-3 rounded-full">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </div>
+                          <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Our Location</h4>
+                            <p class="text-gray-500 text-sm">Lakeside-6, Pokhara</p>
+                          </div>
+                        </div>
+                        <!-- Phone -->
+                        <div class="flex items-center">
+                          <div class="bg-blue-500 text-white p-3 rounded-full">
+                            <i class="fas fa-phone-alt"></i>
+                          </div>
+                          <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Phone Number</h4>
+                            <p class="text-gray-500 text-sm">(+977)9826115361</p>
+                          </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="flex items-center">
+                          <div class="bg-blue-500 text-white p-3 rounded-full">
+                            <i class="fas fa-envelope"></i>
+                          </div>
+                          <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Email Address</h4>
+                            <p class="text-gray-500 text-sm">admin@gmail.com</p>
+                          </div>
+                        </div>
+                        <!-- website -->
+                        <div class="flex items-center">
+                          <div class="bg-blue-500 text-white p-3 rounded-full">
+                              <i class="fa-solid fa-globe"></i>
+                          </div>
+                          <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Website</h4>
+                            <p class="text-gray-500 text-sm">www.google.com</p>
+                          </div>
+                        </div>
+                      </div>
                 </div>
 
                 <!-- Right Section -->

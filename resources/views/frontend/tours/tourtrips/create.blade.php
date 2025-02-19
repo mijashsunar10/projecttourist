@@ -42,7 +42,7 @@
             <!-- Price -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
-                <input type="number" name="price" id="price" required
+                <input type="text" name="price" id="price" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip price">
             </div>
@@ -50,7 +50,7 @@
             <!-- Duration -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Duration (days)</label>
-                <input type="number" name="duration" id="duration" required
+                <input type="text" name="duration" id="duration" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip duration">
             </div>
@@ -58,18 +58,13 @@
             <!-- Distance -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Distance (km/day)</label>
-                <input type="number" step="0.1" name="distance" id="distance" required
+                <input type="text"  name="distance" id="distance" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter daily distance">
             </div>
 
-            <!-- Ascent -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Ascent (meters/day)</label>
-                <input type="number" name="ascent" id="ascent" required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
-                    placeholder="Enter daily ascent">
-            </div>
+           
+            
 
             <!-- File Upload -->
             <div>

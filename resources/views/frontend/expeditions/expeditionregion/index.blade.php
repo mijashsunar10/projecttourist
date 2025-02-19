@@ -16,7 +16,7 @@
         <div class="flex items-center justify-center mb-6 mx-8">
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
             <h2 class="text-4xl font-bold text-gray-800 mx-8 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Add Trekking Expeditions
+                Add Expeditions Region
             </h2>
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
         </div>
@@ -28,7 +28,7 @@
         <div class="flex items-center justify-center mb-6 mx-8">
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
             <h2 class="text-4xl font-bold text-gray-800 mx-4 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Trekking Expeditions
+               Expeditions Region
             </h2>
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
         </div>

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('tour_id'); // Foreign key for region
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->integer('duration');
-            $table->float('distance');
-            $table->integer('ascent');
+            $table->string('price');
+            $table->string('duration');
+            $table->string('distance');
+          
             $table->string('image')->nullable();
             $table->timestamps();
         

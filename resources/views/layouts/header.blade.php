@@ -633,6 +633,15 @@
                     </li>
 
                     <li class="relative group">
+                        <a href="{{ route('documents.index') }}"
+                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                            <div class="w-52">
+                                Legal Documents
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="relative group">
                         <a href="{{ route('ourteam') }}"
                             class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                             <div class="w-52">
@@ -640,14 +649,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="relative group">
-                        <a href="{{ route('documents') }}"
-                            class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                            <div class="w-52">
-                                Legal Documents
-                            </div>
-                        </a>
-                    </li>
+                   
                     <li class="relative group">
                         <a href="{{ route('terms') }}"
                             class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">

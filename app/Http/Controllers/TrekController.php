@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Tour;
 use Illuminate\Http\Request;
 
 class TrekController extends Controller
@@ -10,7 +11,9 @@ class TrekController extends Controller
     public function index()
     {
         $latestReviews = Review::latest()->take(4)->get(); // Fetch the latest 3 reviews
-        return view('frontend.home.homepage', compact('latestReviews'));
+
+        $tours = Tour::with('tourtrips')->get();
+        return view('frontend.home.homepage', compact('latestReviews','tours'));
     }
     public function contact()
     {

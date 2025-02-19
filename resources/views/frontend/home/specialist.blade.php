@@ -27,7 +27,7 @@
                                 <p>Dawn In Nepal Adventures Pvt. Ltd. is a well-established trekking and adventure company based in Pokhara, Nepal, offering a variety of travel experiences for adventure enthusiasts. Registered under the Nepalese government, the company specializes in organizing treks to some of Nepal’s most breathtaking regions, including the Annapurna and Everest trails. With a team of experienced and knowledgeable guides, they provide personalized services, ensuring a safe and memorable journey for trekkers of all levels. In addition to trekking, the company also arranges cultural tours, allowing travelers to immerse themselves in Nepal's rich heritage, as well as adventure activities such as river rafting and paragliding for thrill-seekers. </p>
                                
                             </div>
-                            <button type="button" class="link link--white open-more font-bold mt-2 text-md" style="opacity:1;cursor:pointer ">+ More About Us</button></div>
+                            <button type="button" class="link link--white open-more font-bold mt-2 text-md" style="opacity:1;cursor:pointer "><a href="{{route('aboutus')}}">+   More About Us</a> </button></div>
                     </div>
                    
             </div>

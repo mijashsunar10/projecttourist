@@ -47,11 +47,7 @@
                 <input type="number" step="0.1" id="distance" name="distance" value="{{ $tourtrip->distance }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
             </div>
 
-            <!-- Ascent -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2" for="ascent">Ascent (meters/day)</label>
-                <input type="number" id="ascent" name="ascent" value="{{ $tourtrip->ascent }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
-            </div>
+           
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="image">Current Image</label>

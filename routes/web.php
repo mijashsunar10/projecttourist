@@ -1,5 +1,6 @@
     <?php
 
+use App\Http\Controllers\Admin\BookingAdminController;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ContactController;
@@ -55,13 +56,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
-
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DocumentController;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
 // })->name('index');
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -546,20 +546,32 @@ Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboa
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('contacts', ContactAdminController::class);
     Route::resource('customizes', CustomizeAdminController::class);
+    Route::resource('booking', BookingAdminController::class);
     // You can add more resource controllers for Customize, Trekking, etc.
 });
+
+Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
+Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
 
 
 Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
 Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
-Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
+// Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
 Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
 Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 // routes/web.php
 
 
-Route::get('/booking', function () {
-    return view('frontend.booking.booking');
-});
+// Route::get('/booking', function () {
+//     return view('frontend.booking.booking');
+// });
+
+Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index'); // List documents
+Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create'); // Show form
+Route::post('/documents/store', [DocumentController::class, 'store'])->name('documents.store'); // Save document
+Route::get('/documents/edit/{id}', [DocumentController::class, 'edit'])->name('documents.edit'); // Edit form
+Route::post('/documents/update/{id}', [DocumentController::class, 'update'])->name('documents.update'); // Update document
+Route::delete('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('documents.destroy'); // Delete document
+
 
 require __DIR__.'/auth.php';
