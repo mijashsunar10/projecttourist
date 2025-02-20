@@ -12,32 +12,43 @@
     </style>
 
     @auth
-        <div class="flex flex-col items-center justify-center  mt-6">
-            <!-- Region Name with Straight Horizontal Lines -->
-            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
-                    Add Trekking Region
-                </h1>
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-            </div>
+    <div class="flex flex-col items-center justify-center mt-6 px-4">
+        <!-- Region Name with Straight Horizontal Lines -->
+        <div class="flex items-center justify-center w-full max-w-4xl mx-auto mt-6">
+            <!-- Left Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+    
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
+                  Add Trekking Region
+            </h1>
+    
+            <!-- Right Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
+    </div>
+    
     @endauth
 
    
 
     @guest
 
-        <div class="flex flex-col items-center justify-center mt-8 ">
-            <!-- Region Name with Straight Horizontal Lines -->
-            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
-                    Trekking Region
-                </h1>
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-            </div>
+    <div class="flex flex-col items-center justify-center mt-6 px-4">
+        <!-- Region Name with Straight Horizontal Lines -->
+        <div class="flex items-center justify-center w-full max-w-4xl mx-auto mb-4 mt-8">
+            <!-- Left Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+    
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
+               Trekking Regions
+            </h1>
+    
+            <!-- Right Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
+    </div>
 
     @endguest
 
@@ -49,7 +60,7 @@
         </div>
     @endauth
  
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-[90%] mx-auto p-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-[90%] mx-auto p-6">
       @foreach ($regions as $region)
       <div class="relative overflow-hidden rounded-2xl shadow-xl group h-96 transform transition-transform duration-300 hover:scale-105">
           <a href="{{ route('regionsshow', $region->id) }}">

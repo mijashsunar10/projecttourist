@@ -4,9 +4,9 @@
 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-6 flex justify-center items-center">
     <div class="max-w-2xl w-full bg-white p-8 rounded-xl shadow-2xl shadow-blue-100/50 relative transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-100/70 mt-20">
         <div class="text-center mb-6 animate-fade-in-down">
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">
-                <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-                    ✨ Edit Region
+            <h1 class="text-2xl ss:text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
+                <span>✨</span><span class="bg-gradient-to-r from-blue-700 to-indigo-700 text-transparent bg-clip-text" style="font-family: 'Times New Roman', Times, serif">
+                     Edit Region
                 </span>
             </h1>
             <p class="text-lg text-gray-600">Refine and update your region details</p>

@@ -67,9 +67,70 @@
             }
             /* testimonials */
     </style>
+
+{{-- FOr preloader --}}
+            {{-- <style>
+
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: white; /* Background color while loading */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999; /* Ensure it's above everything */
+        }
+
+        #preloader-logo {
+            width: 150px; /* Adjust size */
+            animation: fadeInOut 1.5s infinite alternate ease-in-out;
+        }
+
+        /* Animation effect */
+        @keyframes fadeInOut {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+
+    </style> --}}
+
+    <style>
+        /* Preloader Styles */
+        #preloader {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+    </style>
      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+        <!-- Preloader -->
+    {{-- <div id="preloader">
+        <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Loading..." id="preloader-logo">
+    </div> --}}
+<!-- Preloader -->
+<div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-500">
+    <div class="animate-spin rounded-full h-64 w-64 border-t-4 border-b-4 border-orange-500"></div>
+    <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo" class="absolute h-56 w-56">
+</div>
+
 
     <section id="header" class="mb-18 z-20">
         @include('layouts.header')
@@ -80,6 +141,47 @@
     <section id="footer">
         @include('layouts.footer')
     </section>
+
+
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("preloader").style.display = "none";
+            },500); // Adjust the timeout if needed
+        });
+    </script> --}}
+
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("preloader").style.display = "none";
+            }); // Adjust the timeout if needed
+        });
+    </script>
+     --}}
+
+     {{-- <script>
+        // Wait for the page to fully load
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            
+            // Add a delay to ensure the preloader is visible for at least 1 second
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            },100); // Adjust the delay as needed
+        });
+    </script> --}}
+
+    <script>
+        // Wait for the page to fully load
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            // Hide the preloader immediately after the page is fully loaded
+            preloader.classList.add('hidden');
+        });
+    </script>
+    
+    
 
     
     <script src="{{asset('frontend/js/indexbody.js')}}"></script>

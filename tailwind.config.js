@@ -17,6 +17,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+                'xs':'450px',
+                'ss': '360px',
+                'xxl': '1330px' ,
+                'xlg':'1080px'// Custom breakpoint
+              },
         },
     },
 

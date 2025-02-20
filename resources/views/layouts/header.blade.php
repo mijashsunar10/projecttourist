@@ -2,30 +2,42 @@
   <div class="mx-auto px-0 xl:px-8">
       <div class="flex justify-between h-22 items-center">
           <!-- Logo and Name -->
-          <div class="flex items-center">
+          {{-- <div class="flex items-center ">
               <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
-                  class="xl:h-20 xl:w-20 h-16 w-16  rounded-full ml-10 mr-3">
+                  class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-0 xl:ml-10 mr-3">
               <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;">
                   <!-- <span class="text-amber-900 text-xl font-bold block">DAWN IN NEPAL</span> -->
                   <!-- <span class="text-yellow-500 text-md font-bold block">ADVENTURES P.LTD</span> -->
                   <a href="{{ route('index') }}">
 
-                      <span class="notranslate text-white xl:text-2xl text-lg font-bold block">DAWN IN NEPAL</span>
-                      <span class="notranslate text-white xl:text-lg  text-sm font-bold block">ADVENTURES P.LTD</span>
+                      <span class="notranslate text-white xl:text-2xl md:text-xl text-lg font-bold block">DAWN IN NEPAL</span>
+                      <span class="notranslate text-white xl:text-lg md:text-md text-sm font-bold block">ADVENTURES P.LTD</span>
                   </a>
               </div>
-          </div>
+          </div> --}}
+
+          <div class="flex items-center ">
+            <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
+                class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-0 xxl:ml-10 mr-3">
+                <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;" class="hidden ss:block">
+                  <a href="{{ route('index') }}">
+                    <span class="notranslate text-white xl:text-2xl md:text-xl text-lg ss:font-bold block">DAWN IN NEPAL</span>
+                    <span class="notranslate text-white xl:text-lg md:text-md text-sm ss:font-bold block">ADVENTURES P.LTD</span>
+                  </a>
+                </div>
+                
+        </div>
 
 
 
           <!-- Navbar Items -->
-          <ul class="hidden lg:flex space-x-0 xl:space-x-4">
+          <ul class="hidden xlg:flex space-x-0 xl:space-x-3 xxl:space-x-4">
 
 
               <li class="relative group">
                   <a href="{{ route('index') }}">
                       <button
-                          class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                          class="flex items-center font-bold px-3 py-2  focus:outline-none {{ request()->routeIs('index') ? 'text-orange-400' : 'text-white hover:text-orange-400' }}">
                           Home
                       </button>
                   </a>
@@ -38,7 +50,7 @@
 
                   <a href="{{ route('regionsindex') }}">
                       <button
-                          class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                          class="flex items-center  font-bold px-3 py-2  focus:outline-none {{ request()->routeIs('regionsindex') ? 'text-orange-400' : 'text-white hover:text-orange-400' }}">
                           Trekking
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -291,7 +303,7 @@
               <li class="relative group">
                 <a href="{{route('tourindex')}}">
                   <button
-                      class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                      class="flex items-center font-bold px-3 py-2 focus:outline-none  {{ request()->routeIs('tourindex') ? 'text-orange-400' : 'text-white hover:text-orange-400' }}">
                       Tours & Adventures
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -473,7 +485,7 @@
               <li class="relative group">
                 <a href="{{route('expeditionsindex')}}">
                   <button
-                      class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                      class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none  {{ request()->routeIs('expeditionsindex') ? 'text-orange-400' : 'text-white hover:text-orange-400' }}">
                       Expeditions
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -550,7 +562,7 @@
               </li>
 
               <li class="relative group">
-                <button class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                <button class="flex items-center  font-bold px-3 py-2 hover:text-orange-400 focus:outline-none   {{ request()->routeIs('blogs.index', 'news', 'testimonials', 'faqs.index', 'gallery.index', 'customize') ? 'text-orange-400' : 'text-white' }} ">
                   Media
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -675,7 +687,7 @@
               <li class="relative group">
                   <a href="{{ route('contact') }}">
                       <button
-                          class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
+                          class="flex items-center font-bold px-3 py-2 hover:text-orange-400 focus:outline-none  {{ request()->routeIs('contact') ? 'text-orange-400' : 'text-white' }} ">
                           Contact
 
                       </button>
@@ -703,7 +715,7 @@
 
               </li> --}}
 
-              <li class="relative group">
+              <li class="relative group mr-2">
                   <div class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">
                       <div id="gt-mordadam-43217984"></div>
                   </div>
@@ -731,7 +743,7 @@
 </nav>
 
 <!-- Top Right Controls Container -->
-<div class="fixed top-4 right-4 z-30 flex items-center space-x-2 lg:hidden">
+<div class="fixed top-4 right-4 z-30 flex items-center space-x-2 xlg:hidden">
   <!-- Language Selector -->
   <div class="language-selector text-white p-2 rounded-md text-sm">
       <div id="gt-mordadam-43217984"></div>

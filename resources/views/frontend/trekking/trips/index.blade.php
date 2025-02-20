@@ -7,7 +7,7 @@
         <!-- Region Name with Straight Horizontal Lines -->
         <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-            <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family: 'Times New Roman', Times, serif">
+            <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" >
                 Trips of {{ $region->name }}
             </h1>
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
