@@ -9,6 +9,8 @@ use App\Models\Tour;
 use Illuminate\Support\Facades\View;
 use App\Models\Customize;
 use App\Models\Booking;
+use App\Models\Enquiry;
+use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -36,10 +38,13 @@ class AppServiceProvider extends ServiceProvider
             $unreadContactCount = Contact::where('is_read', false)->count();
             $unreadCustomizeCount = Customize::where('is_read', false)->count();
             $unreadBookingCount = Booking::where('is_read', false)->count();
+            $unreadEnquiryCount = Enquiry::where('is_read', false)->count();
+           
             $view->with([
                 'unreadContactCount' => $unreadContactCount,
                 'unreadCustomizeCount' => $unreadCustomizeCount,
-                'unreadBookingCount' => $unreadBookingCount
+                'unreadBookingCount' => $unreadBookingCount,
+                'unreadEnquiryCount' => $unreadEnquiryCount,
                 
             ]);
         });

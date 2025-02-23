@@ -56,8 +56,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
+use App\Http\Controllers\Admin\EnquiryAdminController;
+use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
+use App\Models\Enquiry;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -547,9 +550,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('contacts', ContactAdminController::class);
     Route::resource('customizes', CustomizeAdminController::class);
     Route::resource('booking', BookingAdminController::class);
+    Route::resource('enquiry', EnquiryAdminController::class);
+    
+    
     // You can add more resource controllers for Customize, Trekking, etc.
 });
-
+Route::post('/enquiry/{trip_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit');
 Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
 Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
 
@@ -562,9 +568,7 @@ Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 // routes/web.php
 
 
-// Route::get('/booking', function () {
-//     return view('frontend.booking.booking');
-// });
+
 
 Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index'); // List documents
 Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create'); // Show form
