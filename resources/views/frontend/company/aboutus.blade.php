@@ -46,6 +46,105 @@
     </div>
   </section>
 
+
+  <!-- Add custom animation styles -->
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out;
+    }
+  </style>
+
+<section class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Header Section -->
+  <!-- <header class="relative bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative text-center px-6">
+      <h1 class="text-6xl md:text-7xl font-bold text-white mb-6 animate-fadeInUp">Our Mission & Goals</h1>
+      <p class="text-xl text-gray-200 max-w-2xl mx-auto animate-fadeInUp">Guiding you to explore the world, one step at a time.</p>
+    </div>
+  </header> -->
+
+  <!-- Mission Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6 animate-fadeInUp">Our Mission</h2>
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto animate-fadeInUp">
+          At Trekking Adventures, our mission is to inspire and empower people to connect with nature, challenge themselves, and discover the beauty of the world through unforgettable trekking experiences. We believe that every journey begins with a single step, and we're here to guide you every step of the way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Goals Section -->
+  <section class="py-20 bg-gradient-to-r from-green-50 to-blue-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6 animate-fadeInUp">Our Goals</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+        <!-- Goal 1 -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fadeInUp">
+          <div class="text-green-600 text-5xl mb-4">🌍</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Promote Sustainable Travel</h3>
+          <p class="text-gray-700">
+            We are committed to preserving the natural beauty of the destinations we explore by promoting eco-friendly practices and responsible tourism.
+          </p>
+        </div>
+        <!-- Goal 2 -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fadeInUp">
+          <div class="text-green-600 text-5xl mb-4">🥾</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Empower Adventurers</h3>
+          <p class="text-gray-700">
+            We aim to provide the tools, resources, and guidance needed for trekkers of all levels to embark on their own adventures with confidence.
+          </p>
+        </div>
+        <!-- Goal 3 -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fadeInUp">
+          <div class="text-green-600 text-5xl mb-4">❤️</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Foster a Global Community</h3>
+          <p class="text-gray-700">
+            We strive to build a community of like-minded individuals who share a passion for exploration, adventure, and the great outdoors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-gray-900 mb-6 animate-fadeInUp">Join Us on the Journey</h2>
+      <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8 animate-fadeInUp">
+        Ready to take the first step toward your next adventure? Explore our treks, connect with our community, and start your journey today.
+      </p>
+      <a href="#" class="inline-block bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition duration-300 transform hover:scale-105 animate-fadeInUp">
+        Explore Treks
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2023 Trekking Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+</section>
+</html>
+
   <!-- Our Story Section -->
   <section class="py-16 px-4 md:px-8">
     <div class="max-w-4xl mx-auto">

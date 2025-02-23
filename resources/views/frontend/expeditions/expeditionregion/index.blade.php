@@ -11,28 +11,47 @@
         }
     </style>
 
+    
+
     @auth
-    <div class="mt-8">
-        <div class="flex items-center justify-center mb-6 mx-8">
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
-            <h2 class="text-4xl font-bold text-gray-800 mx-8 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Add Expeditions Region
-            </h2>
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+    <div class="flex flex-col items-center justify-center mt-6 px-4">
+        <!-- Region Name with Straight Horizontal Lines -->
+        <div class="flex items-center justify-center w-full max-w-4xl mx-auto mt-6">
+            <!-- Left Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+    
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
+                  Add Expeditions Region
+            </h1>
+    
+            <!-- Right Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
     </div>
+    
     @endauth
 
+   
+
     @guest
-    <div class="mt-8">
-        <div class="flex items-center justify-center mb-6 mx-8">
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
-            <h2 class="text-4xl font-bold text-gray-800 mx-4 mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-               Expeditions Region
-            </h2>
-            <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+
+    <div class="flex flex-col items-center justify-center mt-6 px-4">
+        <!-- Region Name with Straight Horizontal Lines -->
+        <div class="flex items-center justify-center w-full max-w-4xl mx-auto mb-4 mt-8">
+            <!-- Left Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+    
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
+               Expeditions Regions
+            </h1>
+    
+            <!-- Right Line -->
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
     </div>
+
     @endguest
 
     @auth

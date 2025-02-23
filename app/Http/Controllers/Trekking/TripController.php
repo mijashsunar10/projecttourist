@@ -23,15 +23,19 @@ class TripController extends Controller
     }
     public function tripsstore(Request $request, $region_id)
     {
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'duration' => 'required|integer',
-            'distance' => 'required|numeric',
-            'ascent' => 'required|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'price' => 'required',
+            'duration' => 'required',
+            'distance' => 'required',
+            'ascent' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
 
         $imageName = null;
         if ($request->hasFile('image')) {
@@ -66,16 +70,19 @@ class TripController extends Controller
     public function tripsupdate(Request $request, $id)
     {
         $trip = Trip::findOrFail($id);
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
     
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'duration' => 'required|integer',
-            'distance' => 'required|numeric',
-            'ascent' => 'required|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'price' => 'required',
+            'duration' => 'required',
+            'distance' => 'required',
+            'ascent' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
     
         // Store existing image if no new image is uploaded
         $imageName = $trip->image;

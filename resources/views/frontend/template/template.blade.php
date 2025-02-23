@@ -131,6 +131,52 @@
     <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo" class="absolute h-56 w-56">
 </div>
 
+<button id="scrollToTop" class="fixed bottom-4 right-4 bg-blue-900 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg hover:bg-blue-700 transition opacity-100 z-50 text-md hidden">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+  
+    // Toggle button visibility based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        scrollToTopBtn.classList.remove('hidden');
+      } else {
+        scrollToTopBtn.classList.add('hidden');
+      }
+    });
+  
+    // Smooth scroll to top with easing effect when the button is clicked
+    scrollToTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+  
+      const startPosition = window.pageYOffset;
+      const targetPosition = 0;
+      const distance = targetPosition - startPosition;
+      const duration = 500; // Duration in milliseconds
+      let start = null;
+  
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percent = Math.min(progress / duration, 1);
+        
+        // Cubic easing in/out
+        const easedProgress = percent < 0.5
+          ? 4 * percent ** 3
+          : 1 - Math.pow(-2 * percent + 2, 3) / 2;
+        
+        window.scrollTo(0, startPosition + distance * easedProgress);
+  
+        if (progress < duration) {
+          requestAnimationFrame(step);
+        }
+      }
+  
+      requestAnimationFrame(step);
+    });
+  </script>
 
     <section id="header" class="mb-18 z-20">
         @include('layouts.header')

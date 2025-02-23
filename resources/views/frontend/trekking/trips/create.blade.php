@@ -28,6 +28,9 @@
                 <input type="text" name="name" id="name" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip name">
+                    @error('name')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Description -->
@@ -36,38 +39,54 @@
                 <textarea name="description" id="description" rows="4" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip description"></textarea>
+                    @error('description')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Price -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
-                <input type="number" name="price" id="price" required
+                <input type="text" name="price" id="price" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip price">
+                    @error('price')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
+                    
             </div>
 
             <!-- Duration -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Duration (days)</label>
-                <input type="number" name="duration" id="duration" required
+                <input type="text" name="duration" id="duration" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip duration">
+                    @error('duration')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Distance -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Distance (km/day)</label>
-                <input type="number" step="0.1" name="distance" id="distance" required
+                <input type="text" step="0.1" name="distance" id="distance" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter daily distance">
+                    @error('distance')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Ascent -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Ascent (meters/day)</label>
-                <input type="number" name="ascent" id="ascent" required
+                <input type="text" name="ascent" id="ascent" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter daily ascent">
+                    @error('distance')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- File Upload -->
@@ -88,6 +107,9 @@
                         </div>
                         <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" required accept="image/*">
                     </div>
+                    @error('image')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Preview Container -->

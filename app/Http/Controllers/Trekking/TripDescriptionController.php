@@ -6,19 +6,25 @@ use App\Models\region;
 use App\Models\Trip;
 use App\Models\TripImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class TripDescriptionController extends Controller
 {
     
     public function addImages(Request $request, $trip_id)
-{
+{ 
+    $customMessages = [
+        'images.required'    => 'Please select at least one image.',
+       
+     
+        'images.*.uploaded'  => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+    ];
+
     // Validate: maximum 5 images, each image must be of valid type and size
     $request->validate([
-        'images' => 'required|array|max:5',  // Limit to 5 images
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image types and size
-    ], [
-        'images.max' => 'You can upload a maximum of 5 images.', // Custom message for exceeding image limit
-    ]);
+        'images'   => 'required|array|max:5',  // Limit to 5 images
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validate image types and size
+    ], $customMessages);
 
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
@@ -27,7 +33,7 @@ class TripDescriptionController extends Controller
 
             TripImage::create([
                 'trip_id' => $trip_id,
-                'image' => $imageName,
+                'image'   => $imageName,
             ]);
         }
     }
@@ -36,34 +42,8 @@ class TripDescriptionController extends Controller
 }
 
 
-public function updateImage(Request $request, $image_id)
-{
-    // Validate the incoming request
-    $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
 
-    // Find the existing image record
-    $tripImage = TripImage::findOrFail($image_id);
 
-    // Delete the old image if it exists
-    $oldImagePath = public_path('images/trips/' . $tripImage->image);
-    if (file_exists($oldImagePath)) {
-        unlink($oldImagePath);
-    }
-
-    // Upload the new image
-    $image = $request->file('image');
-    $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-    $image->move(public_path('images/trips'), $imageName);
-
-    // Update the image record in the database
-    $tripImage->update(['image' => $imageName]);
-
-    // Redirect back to the trip show page with success message
-    return redirect()->route('tripshow', $tripImage->trip_id)
-                     ->with('success', 'Image updated successfully.');
-}
 
         public function deleteImage($image_id)
     {
@@ -79,5 +59,7 @@ public function updateImage(Request $request, $image_id)
 
         return redirect()->route('tripshow', $tripImage->trip_id)->with('success', 'Image deleted successfully.');
     }
+
+    
 
 }

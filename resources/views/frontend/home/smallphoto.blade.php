@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     /* Media query for responsive cards */
     @media (max-width: 640px) {
       .carousel-inner > div {
@@ -8,130 +8,85 @@
       
     }
 
-    .card:hover {
+    /* .card:hover {
       transform: scale(1.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
-    /* Transition for images and text */
+    
     .card img, .card p {
       transition: transform 0.3s ease, font-size 0.3s ease;
     }
-    /* Scale image and text on hover */
+   
     .card:hover img {
       transform: scale(1.2);
     }
     .card:hover p {
-      font-size: 1.1rem; /* Slightly increase text size */
-    }
- </style>
+      font-size: 1.1rem; /* Slightly increase text size
+    } */
 
 
-<div class="bg-gradient-to-br from-blue-50 to-indigo-50 ">
+    /* Custom styles for smooth transitions and hover effects */
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  .card img {
+    transition: transform 0.3s ease;
+  }
+  .card:hover img {
+    transform: scale(1.1);
+  }
+ </style> --}}
 
-   
-  <div class="mx-auto px-4 py-8 container w-[90%] " >
+{{-- <div class="bg-gradient-to-br from-blue-50 to-indigo-50 py-12">
+  <div class="container mx-auto px-4">
     <!-- Heading -->
-    <h1 class="text-center text-gray-800 text-4xl font-bold mb-10 xl:mt-10 lg:mt-8 mt-4service_card">Travel the Nepal Your Way</h1>
+    <h1 class="text-center text-4xl font-bold text-gray-800 mb-12">
+      Travel Nepal Your Way
+    </h1>
 
-    <!-- Main Content -->
+    <!-- Carousel Section -->
     <div class="space-y-8">
       <!-- Row: Hiking and Trekking -->
-      <div class="carousel-container service_card">
-        <p class="text-xl font-[550] text-gray-800 pb-4 ">Hiking and Trekking</p>
-        <div class="relative flex items-center">
-          <!-- Left Button -->
-          <button class="carousel-left-btn absolute top-1/2 left-1 sm:-left-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-2xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
+      
+    </div>
+  </div>
 
-          <!-- Carousel Wrapper -->
-          <div class="carousel overflow-hidden w-full">
-            <div class="carousel-inner flex transition-transform duration-300">
-              <!-- Cards -->
-              @foreach ($regions as $region)
-              <div class="card service_card1 bg-white border-2 border-gray-300  card text-gray-700 shadow-xl rounded-lg p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{ asset('images/regions/' . $region->image) }}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{ route('regionsshow', $region->id)}}">
-                <p class=" font-[500] text-md pl-1">{{ $region->name }}</p>
-                </a>
-              </div>
-              @endforeach
-              <div class="card service_card1 bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{route('contact')}}">
-                <p class=" font-[500] text-md text-gray-700  pl-1">Annapurna Area</p>
-                </a>
-              </div>
+  
+<script>
+  // JavaScript for Carousel Functionality
+  const carouselInner = document.querySelector('.carousel-inner');
+  const carouselLeftBtn = document.querySelector('.carousel-left-btn');
+  const carouselRightBtn = document.querySelector('.carousel-right-btn');
 
-              <div class= " card bg-white card service_card1 shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{route('contact')}}">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Kanchanzanga area</p>
-                </a>
-              </div>
+  let scrollAmount = 0;
+  const cardWidth = 256; // Width of each card (w-64 = 16rem = 256px)
+  const gap = 16; // Gap between cards (space-x-4 = 1rem = 16px)
 
-              <div class="bg-white card service_card1 shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{route('contact')}}">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Manasalu Region</p>
-                </a>
-              </div>
+  carouselRightBtn.addEventListener('click', () => {
+    scrollAmount += cardWidth + gap;
+    if (scrollAmount > carouselInner.scrollWidth - carouselInner.clientWidth) {
+      scrollAmount = carouselInner.scrollWidth - carouselInner.clientWidth;
+    }
+    carouselInner.style.transform = `translateX(-${scrollAmount}px)`;
+  });
 
-              <div class=" service_card1 bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{route('contact')}}">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Ganesh Himal Region</p>
-                </a>
-              </div>
-
-              <div class="service_card1 bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <a href="{{route('contact')}}">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Lhotse Region</p>
-                </a>
-              </div>
- 
-              <div class= " bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
-              </div>
-
-              <div class= " bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
-              </div>
-
-              <div class=" bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
-              </div>
-
-              <div class=" bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
-              </div>
-
-              <div class=" bg-white card shadow-lg border-2 border-gray-300 rounded-md p-2 flex-shrink-0 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex items-center transform hover:scale-105 hover:shadow-lg mx-2">
-                <img src="{{asset('frontend/images/smallphoto/image.png')}}" alt="Image" class="w-10 h-10 object-cover rounded-md mr-2">
-                <p class=" font-[500] text-gray-700 text-md pl-1">Nepal</p>
-              </div>
-              
-              
-              <!-- Add more cards as needed -->
-            </div>
-          </div>
-
-          <!-- Right Button -->
-          <button class="carousel-right-btn absolute top-1/2 right-2 xs:-right-5 sm:-right-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-        </div>
-      </div>
+  carouselLeftBtn.addEventListener('click', () => {
+    scrollAmount -= cardWidth + gap;
+    if (scrollAmount < 0) {
+      scrollAmount = 0;
+    }
+    carouselInner.style.transform = `translateX(-${scrollAmount}px)`;
+  });
+</script> --}}
 
        <!-- Row 2: Europe Destinations -->
 
-      <div class="carousel-container service_card">
+      {{-- <div class="carousel-container service_card">
         <p class="text-xl font-[550] text-gray-800 pb-4 ">Tours & Adventures</p>
         <div class="relative flex items-center">
           <!-- Left Button -->
@@ -210,9 +165,80 @@
             <i class="fa-solid fa-arrow-right"></i>
         </button>
         </div>
-      </div>
+      </div> --}}
 
-     
+      {{-- <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card-container {
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            transition: transform 0.6s, box-shadow 0.3s;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-container:hover .card-inner {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .circular-frame {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            padding: 3px;
+            background: linear-gradient(45deg, #1e40af, #2563eb, #60a5fa);
+            animation: borderRotate 8s linear infinite, borderGlow 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .circular-frame:hover {
+            width: 100px;
+            height: 100px;
+        }
+
+        .circular-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .circular-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes borderRotate {
+            100% { background-position: 400% 400%; }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { box-shadow: 0 0 35px rgba(30, 64, 175, 0.4), 0 0 25px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 0 45px rgba(30, 64, 175, 0.6), 0 0 35px rgba(37, 99, 235, 0.5); }
+        }
+
+        .popular-badge {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
 
       <div class="carousel-container service_card">
         <p class="text-xl font-[550] text-gray-800 pb-4"> Expeditions</p>
@@ -296,72 +322,6 @@
 
   
 </div>
-{{-- 
-<script>
-
-    document.querySelectorAll('.carousel-container').forEach((carouselWrapper) => {
-      const leftBtn = carouselWrapper.querySelector('.carousel-left-btn');
-      const rightBtn = carouselWrapper.querySelector('.carousel-right-btn');
-      const carouselInner = carouselWrapper.querySelector('.carousel-inner');
-      const carouselContainer = carouselWrapper.querySelector('.carousel');
-
-      let scrollIndex = 0;
-
-      const getCardWidth = () => {
-        const card = carouselInner.children[0];
-        const style = window.getComputedStyle(card);
-        const cardWidth = card.offsetWidth;
-        const marginRight = parseFloat(style.marginRight);
-        return cardWidth + marginRight;
-      };
-
-      const getCardsInView = () => {
-        const wrapperWidth = carouselContainer.offsetWidth;
-        const cardWidth = getCardWidth();
-        return Math.floor(wrapperWidth / cardWidth);
-      };
-
-      const updateButtonVisibility = (totalCards, cardsInView) => {
-        leftBtn.style.display = scrollIndex > 0 ? 'flex' : 'none';
-        rightBtn.style.display = scrollIndex < totalCards - cardsInView ? 'flex' : 'none';
-      };
-
-      const slideRight = () => {
-        const totalCards = carouselInner.children.length;
-        const cardWidth = getCardWidth();
-        const maxScroll = (totalCards * cardWidth) - carouselContainer.offsetWidth;
-
-        scrollIndex++;
-        if (scrollIndex * cardWidth > maxScroll) {
-          scrollIndex = Math.ceil(maxScroll / cardWidth); // Prevent overflow
-        }
-        carouselInner.style.transform = `translateX(-${scrollIndex * cardWidth}px)`;
-        updateButtonVisibility(totalCards, getCardsInView());
-      };
-
-      const slideLeft = () => {
-        const cardWidth = getCardWidth();
-        if (scrollIndex > 0) {
-          scrollIndex--;
-        }
-        carouselInner.style.transform = `translateX(-${scrollIndex * cardWidth}px)`;
-        updateButtonVisibility(carouselInner.children.length, getCardsInView());
-      };
-
-      rightBtn.addEventListener('click', slideRight);
-      leftBtn.addEventListener('click', slideLeft);
-
-      // Initial update
-      updateButtonVisibility(carouselInner.children.length, getCardsInView());
-
-      // Adjust on resize
-      window.addEventListener('resize', () => {
-        scrollIndex = 0; // Reset scroll
-        carouselInner.style.transform = `translateX(0)`;
-        updateButtonVisibility(carouselInner.children.length, getCardsInView());
-      });
-    });
-  </script> --}}
 
   <script>
     document.querySelectorAll('.carousel-container').forEach((carouselWrapper) => {
@@ -426,4 +386,192 @@
             updateButtonVisibility(carouselInner.children.length, getCardsInView());
         });
     });
-    </script>
+    </script> --}}
+
+    <style>
+      * {
+          font-family: 'Poppins', sans-serif;
+      }
+  
+      .card-container {
+          perspective: 1000px;
+      }
+  
+      .card-inner {
+          transition: transform 0.6s, box-shadow 0.3s;
+          transform-style: preserve-3d;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+  
+      .card-container:hover .card-inner {
+          transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+  
+      .circular-frame {
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          overflow: hidden;
+          padding: 3px;
+          background: linear-gradient(45deg, #1e40af, #2563eb, #60a5fa);
+          animation: borderRotate 8s linear infinite, borderGlow 3s ease-in-out infinite;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 20;
+      }
+  
+      .circular-frame:hover {
+          width: 100px;
+          height: 100px;
+      }
+  
+      .circular-frame img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          transition: transform 0.3s ease;
+      }
+  
+      .circular-frame:hover img {
+          transform: scale(1.05);
+      }
+  
+      @keyframes borderRotate {
+          100% { background-position: 400% 400%; }
+      }
+  
+      @keyframes borderGlow {
+          0%, 100% { box-shadow: 0 0 35px rgba(30, 64, 175, 0.4), 0 0 25px rgba(37, 99, 235, 0.3); }
+          50% { box-shadow: 0 0 45px rgba(30, 64, 175, 0.6), 0 0 35px rgba(37, 99, 235, 0.5); }
+      }
+  
+      .popular-badge {
+          animation: float 3s ease-in-out infinite;
+      }
+  
+      @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+      }
+  
+      /* Responsive Adjustments */
+      @media (max-width: 1024px) {
+          .card-container {
+              width: calc(25% - 16px) !important; /* 4 cards in view */
+          }
+      }
+  
+      @media (max-width: 768px) {
+          .card-container {
+              width: calc(33.33% - 16px) !important; /* 3 cards in view */
+          }
+      }
+  
+      @media (max-width: 640px) {
+          .card-container {
+              width: calc(50% - 16px) !important; /* 2 cards in view */
+          }
+      }
+  
+      @media (max-width: 480px) {
+          .card-container {
+              width: calc(100% - 16px) !important; /* 1 card in view */
+          }
+      }
+  </style>
+  
+  <section class="bg-gradient-to-br from-blue-50 to-indigo-50 py-12">
+      <div class="container mx-auto px-4 w-[90%]">
+          <!-- Heading -->
+          <h1 class="text-center text-4xl font-bold text-gray-800 mb-12">
+              Travel Nepal Your Way
+          </h1>
+  
+          <!-- Carousel Section -->
+          <div class="carousel-container">
+              <p class="text-xl font-[550] text-gray-800 pb-4">Expeditions</p>
+              <div class="relative flex items-center">
+                  <!-- Left Button -->
+                  <button id="carousel-left-btn" class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-2xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                      <i class="fa-solid fa-arrow-left"></i>
+                  </button>
+  
+                  <!-- Carousel Wrapper -->
+                  <div class="carousel overflow-hidden w-full">
+                      <div id="carousel-inner" class="carousel-inner flex space-x-4 transition-transform duration-300">
+                          <!-- Cards -->
+                          @foreach ($expeditions as $expedition)
+                          <div class="card-container flex-shrink-0 w-[calc(20%-16px)]">
+                              <div class="card-inner relative h-[300px] rounded-2xl overflow-hidden bg-white">
+                                  <!-- Image Section with Gradient Overlay -->
+                                  <div class="h-[60%] relative">
+                                      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+                                      <img src="{{ asset('images/expeditions/' . $expedition->image) }}" 
+                                           alt="{{ $expedition->name }}" 
+                                           class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                                  </div>
+                                  
+                                  <!-- Animated Circular Frame -->
+                                  <div class="circular-frame">
+                                      <img src="{{ asset('images/expeditions/' . $expedition->image) }}" 
+                                           alt="Zoomed View">
+                                  </div>
+                                  
+                                  <!-- Content Section -->
+                                  <div class="h-[40%] flex flex-col items-center justify-center py-4 px-8">
+                                      <h1 class="text-xl font-bold text-gray-800 mb-2 mt-2 text-center">
+                                          {{ $expedition->name }}
+                                      </h1>
+                                      {{-- <p class="text-sm text-gray-600 text-center">
+                                          Explore the beauty of {{ $expedition->name }} with breathtaking views and thrilling trails.
+                                      </p> --}}
+                                  </div>
+                                  
+                                  <!-- Popular Badge -->
+                                  <div class="absolute top-4 right-4 bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold popular-badge">
+                                      POPULAR!
+                                  </div>
+                              </div>
+                          </div>
+                          @endforeach
+                      </div>
+                  </div>
+  
+                  <!-- Right Button -->
+                  <button id="carousel-right-btn" class="carousel-right-btn absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                      <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carouselInner = document.getElementById('carousel-inner');
+        const carouselLeftBtn = document.getElementById('carousel-left-btn');
+        const carouselRightBtn = document.getElementById('carousel-right-btn');
+        const cardWidth = document.querySelector('.card-container').offsetWidth;
+        const gap = 16; // Gap between cards (16px as per your CSS)
+        const cardsToScroll = 1; // Number of cards to scroll at a time
+        let scrollPosition = 0;
+
+        // Function to scroll left
+        carouselLeftBtn.addEventListener('click', () => {
+            scrollPosition = Math.max(scrollPosition - (cardWidth + gap) * cardsToScroll, 0);
+            carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
+        });
+
+        // Function to scroll right
+        carouselRightBtn.addEventListener('click', () => {
+            const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+            scrollPosition = Math.min(scrollPosition + (cardWidth + gap) * cardsToScroll, maxScroll);
+            carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
+        });
+    });
+</script>

@@ -118,11 +118,25 @@
                             d="M4 4h16v16H4zM16 2v20M8 6h4M8 10h4M8 14h4">
                         </path>
                     </svg>
-                    <span>News  @if($pendingNewsCount > 0)
+                    {{-- <span>News  @if($pendingNewsCount > 0)
+                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute  transform translate-x-2 ">
+                            {{ $pendingNewsCount }}
+                        </span>
+                        @endif</span> --}}
+
+                        <span>
+                            News  
+
+                        @if(isset($pendingNewsCount) && $pendingNewsCount > 0)
+                    <span> @if($pendingNewsCount > 0)
                         <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute  transform translate-x-2 ">
                             {{ $pendingNewsCount }}
                         </span>
                         @endif</span>
+                        
+                        @endif
+
+                    </span>
 
                    
                 </a>
@@ -133,11 +147,16 @@
                             d="M16.5 3.5l4 4M4 20h4l10-10-4-4L4 16v4zM13.5 6.5L17 10">
                         </path>
                     </svg>
-                    <span>Blogs   @if($pendingBlogsCount > 0)
+                   <span> Blogs
+                    @if(isset($pendingBlogsCount) && $pendingBlogsCount > 0)
+                    <span>  @if($pendingBlogsCount > 0)
                         <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute  transform translate-x-2 ">
                             {{ $pendingBlogsCount }}
                         </span>
                         @endif</span>
+                        
+                        @endif
+                    </span>
                 </a>
                 
                 <!-- Add more navigation items as needed -->
@@ -164,6 +183,13 @@
                             <button class="flex items-center space-x-2">
                                 <div class="w-8 h-8 bg-orange-400 rounded-full"></div>
                                 <span class="text-gray-700">Admin User</span>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="text-sm text-gray-700 hover:text-gray-900">
+                                        Log Out
+                                    </button>
+                                </form>
+                                
                             </button>
                         </div>
                     </div>

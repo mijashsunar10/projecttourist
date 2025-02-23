@@ -18,11 +18,29 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             screens: {
+
+                //navbar
+
+            'ns' : '1140px',
+
+                //trips index
+
+                'xmd':'680px',
+
+                //
+
+                'xxmd':'900px',
                 'xs':'450px',
-                'ss': '360px',
+                'ss': '370px',
                 'xxl': '1330px' ,
-                'xlg':'1080px'// Custom breakpoint
+                'xlg':'1150px'// Custom breakpoint
               },
+
+              colors: {
+                primary: '#753f0e',
+                secondary: '#f3cc88',
+                tertiary: '#b7965b',
+            },
         },
     },
 

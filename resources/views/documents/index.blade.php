@@ -61,10 +61,15 @@
         <!-- Region Name with Straight Horizontal Lines -->
         <div class="flex items-center w-full max-w-4xl mx-auto mt-6 mb-6">
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+            
             <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
                 Legal Documents
             </h1>
+            
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+        </div>
+        <div class="text-center mb-6">
+            <a href="{{ route('documents.create') }}" class="bg-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-700">➕ Add Document</a>
         </div>
     </div>
 

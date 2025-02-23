@@ -5,10 +5,11 @@
 
 @include('frontend.home.viewpage')
 
+@include('frontend.home.specialist')
 
 @include('frontend.home.description')
 
-@include('frontend.home.specialist')
+
 
 @include('frontend.home.smallphoto')
 

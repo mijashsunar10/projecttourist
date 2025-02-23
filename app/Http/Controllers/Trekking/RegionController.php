@@ -32,27 +32,31 @@ class RegionController extends Controller
     }
 
     public function regionsstore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $customMessages = [
+        'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+    ];
 
-        $imageName = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/regions'), $imageName);
-        }
+    $request->validate([
+        'name'  => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+    ], $customMessages);
 
-        Region::create([
-            'name' => $request->name,
-            'image' => $imageName,
-        ]);
-
-        return redirect()->route('regionsindex');
-
+    $imageName = null;
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/regions'), $imageName);
     }
+
+    Region::create([
+        'name'  => $request->name,
+        'image' => $imageName,
+    ]);
+
+    return redirect()->route('regionsindex');
+}
+
     public function regionsedit($id)
     {
         $region = Region::findOrFail($id);
@@ -63,10 +67,14 @@ class RegionController extends Controller
     {
         $region = Region::findOrFail($id);
 
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

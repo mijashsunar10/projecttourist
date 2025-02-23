@@ -145,11 +145,11 @@ Route::controller(TripController::class)->group(function () {
 
 }); 
 
-    Route::controller(TripDescriptionController::class)->middleware(['auth', 'verified'])->group(function()
+    Route::middleware(['auth', 'verified'])->controller(TripDescriptionController::class)->group(function()
     {
      Route::post('/trips/{id}/add-images',  'addImages')->name('addtripimages');
     Route::post('/images/{id}/update',  'updateImage')->name('updateimage');
-    Route::delete('/images/{id}/delete', 'deleteImage')->name('deleteimage');
+    Route::delete('/trips/{id}/delete', 'deleteImage')->name('tripdeleteimage');
     });
 
     Route::prefix('trips/{trip_id}/highlights')->controller(TripHighlightController::class)->group(function () {

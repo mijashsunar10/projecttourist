@@ -34,7 +34,7 @@
 
 
     <div class="bg-gray-100 flex justify-center items-center min-h-screen">
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-8">
+        <section class=" max-w-7xlgrid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-8">
 
             @if($tour->tourtrips->isEmpty())
             <p class="text-gray-500 text-center col-span-full">No trips available for this region.</p>
@@ -49,6 +49,7 @@
                    
                     <span class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 bg-blue-800 text-white text-lg font-bold px-6 py-3 rounded-lg shadow-lg ">10 Days Tours</span>
                 </div>
+                
                 <div class="p-6 mt-2 tour-content">
                     <h3 class="text-2xl font-bold text-gray-900 mt-3 cursor-pointer leading-tight" style="font-family: 'Playfair Display', serif;
                    letter-spacing:0.04ch;

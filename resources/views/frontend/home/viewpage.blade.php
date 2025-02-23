@@ -1,6 +1,6 @@
 <div class="relative h-screen">
     <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover opacity-100 overflow-hidden">
-        <source src="{{asset('frontend/video/nepal.mp4')}}" type="video/mp4">
+        <source src="{{asset('frontend/video/website.mp4')}}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 

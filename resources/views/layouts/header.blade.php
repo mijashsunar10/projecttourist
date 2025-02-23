@@ -18,7 +18,7 @@
 
           <div class="flex items-center ">
             <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
-                class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-0 xxl:ml-10 mr-3">
+                class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-5 ml-0 xxl:ml-10 mr-3">
                 <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;" class="hidden ss:block">
                   <a href="{{ route('index') }}">
                     <span class="notranslate text-white xl:text-2xl md:text-xl text-lg ss:font-bold block">DAWN IN NEPAL</span>
@@ -31,7 +31,7 @@
 
 
           <!-- Navbar Items -->
-          <ul class="hidden xlg:flex space-x-0 xl:space-x-3 xxl:space-x-4">
+          <ul class="hidden xlg:flex space-x-0 ns:space-x-1 lg:space-x-2 xl:space-x-3 xxl:space-x-4">
 
 
               <li class="relative group">
