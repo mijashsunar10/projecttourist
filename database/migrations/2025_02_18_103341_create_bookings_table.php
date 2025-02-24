@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('country');
             $table->string('passport_no');
-            $table->foreignId('trip_id')->constrained()->onDelete('cascade');
+            $table->string('entity_type'); // e.g., 'trip', 'tourtrip', 'mountain'
+            $table->unsignedBigInteger('entity_id'); 
             $table->date('date');
             $table->integer('people');
             $table->text('message');

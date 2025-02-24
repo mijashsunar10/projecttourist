@@ -997,7 +997,7 @@
         <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Total Cost</h2>
         <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
         <div class="space-y-3 mt-4">
-            <a href="#" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
+            <a href="{{route('booking',['tourtrip',$tourtrip->id])}}" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
                 Book Now  
                 <span class="ml-3 text-sm bg-white text-blue-800 rounded-full px-2 py-1 shadow-md">
                     <i class="fas fa-arrow-right"></i> 

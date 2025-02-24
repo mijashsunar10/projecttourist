@@ -144,7 +144,7 @@
                         </div>
                         <div class="ml-4">
                             <dt class="text-sm font-medium text-gray-500">Trip</dt>
-                            <dd class="mt-1 text-lg font-semibold text-gray-900">{{ $booking->trip->name}}</dd>
+                            <dd class="mt-1 text-lg font-semibold text-gray-900">{{ $entity->name}}</dd>
                         </div>
                     </div>
 

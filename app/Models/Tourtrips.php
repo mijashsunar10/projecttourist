@@ -47,4 +47,9 @@ class Tourtrips extends Model
     {
         return $this->hasMany(TourReview::class);
     }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
 }

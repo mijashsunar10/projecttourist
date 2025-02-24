@@ -1067,19 +1067,20 @@
             <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Trip Cost</h2>
             <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
             <div class="space-y-3 mt-4">
-                <a href="{{route('booking',$trip->id)}}" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
+                <a href="{{ route('booking', ['trip', $trip->id]) }}" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
                     Book Now  
                     <span class="ml-3 text-sm bg-white text-blue-800 rounded-full px-2 py-1 shadow-md">
                         <i class="fas fa-arrow-right"></i> 
                     </span> 
                 </a>
             
-                <a href="#" class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold">
-                    Enquiry Now  
-                    <span class="ml-3 text-sm bg-white text-green-700 rounded-full px-2 py-1 shadow-md">
-                        <i class="fas fa-arrow-right"></i> 
-                    </span>
-                </a>
+                <button onclick="openModal()"
+                class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold px-7">
+                Enquiry Now
+                <span class="ml-3 text-sm bg-white text-green-700 rounded-full px-2 py-1 shadow-md">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </button>
             
                 <a href="{{route('customize')}}" class="block bg-gray-700 text-white text-center py-3 rounded-md hover:bg-indigo-600 transition font-bold">
                     Customize Now  
@@ -1110,7 +1111,124 @@
         </div>
     </div>
     </div>
+
+    <div id="modalBackdrop"
+    class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-blur-sm transition-all">
+    <!-- Modal Container -->
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div id="modalContent"
+            class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 opacity-0 transition-all duration-300 p-8 relative overflow-hidden">
+            <!-- Gradient Decoration -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-blue-500">
+            </div>
+
+            <!-- Close Button -->
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <i class="fas fa-times-circle text-2xl"></i>
+            </button>
+
+            <!-- Modal Content -->
+            <div class="pt-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+                    <i class="fas fa-comments text-green-600 mr-2"></i>
+                    Have a Question? Connect Now
+                </h2>
+                <h4 class="text-2xl font-semibold text-gray-700 mb-6 text-center">{{$trip->name}}</h4>
+
+                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', $trip->id) }}">
+                    @csrf
+                    <!-- Full Name -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-user text-green-600 mr-2"></i>
+                            Full Name
+                        </label>
+                        <input type="text" name="name"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            placeholder="John Doe" required>
+                    </div>
+
+                    <!-- Email and Contact No -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2 font-medium">
+                                <i class="fas fa-envelope text-green-600 mr-2"></i>
+                                Email
+                            </label>
+                            <input type="email" name="email"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                                placeholder="john@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2 font-medium">
+                                <i class="fas fa-phone text-green-600 mr-2"></i>
+                                Contact No
+                            </label>
+                            <input type="tel" name="phone"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                                placeholder="Whatsapp No" >
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-globe text-green-600 mr-2"></i>
+                            Country
+                        </label>
+                        <input type="text" name="country"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                        placeholder="" >
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-comment-dots text-green-600 mr-2"></i>
+                            Your Message/Question
+                        </label>
+                        <textarea rows="4" name="message"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-md">
+                        Send Message
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
+
+<script>
+    function openModal() {
+        document.getElementById('modalBackdrop').classList.remove('hidden');
+        setTimeout(() => {
+            document.getElementById('modalContent').classList.remove('scale-95', 'opacity-0');
+            document.getElementById('modalContent').classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeModal() {
+        document.getElementById('modalContent').classList.remove('scale-100', 'opacity-100');
+        document.getElementById('modalContent').classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            document.getElementById('modalBackdrop').classList.add('hidden');
+        }, 300);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('modalBackdrop').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+</script>
+
 
 
     <!-- {{-- TripFaq --}} -->

@@ -48,6 +48,11 @@ class Mountain extends Model
     {
         return $this->hasMany(ExpeditionReview::class);
     }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
 
 
 

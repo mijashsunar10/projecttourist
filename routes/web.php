@@ -58,6 +58,9 @@ use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\Admin\EnquiryAdminController;
+use App\Http\Controllers\EnquiryController;
+use App\Models\Enquiry;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -547,11 +550,23 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('contacts', ContactAdminController::class);
     Route::resource('customizes', CustomizeAdminController::class);
     Route::resource('booking', BookingAdminController::class);
+    Route::resource('enquiry', EnquiryAdminController::class);
     // You can add more resource controllers for Customize, Trekking, etc.
 });
 
-Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
-Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
+// Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
+
+Route::post('/enquiry/{trip_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit');
+// Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
+
+// routes/web.php
+
+// Route for displaying the booking form
+Route::get('/{entity_type}/{entity_id}/booking', [BookingController::class, 'index'])->name('booking');
+
+// Route for handling the booking form submission
+Route::post('/bookings/{entity_type}/{entity_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
+
 
 
 Route::get('/payment', [TrekController::class, 'payment'])->name('payment');

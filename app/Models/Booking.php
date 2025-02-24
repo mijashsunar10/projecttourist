@@ -12,7 +12,8 @@ class Booking extends Model
         'country',
         'phone',
         'passport_no',
-        'trip_id',
+        'entity_type',
+        'entity_id',
         'date',
         'message',
         'people',
@@ -21,5 +22,14 @@ class Booking extends Model
     public function trip()
     {
         return $this->belongsTo(Trip::class);
+    }
+
+    public function mountain()
+    {
+        return $this->belongsTo(Mountain::class);
+    } 
+
+    public function tourtrip() {
+        return $this->belongsTo(Tourtrips::class.'tourtrip_id');
     }
 }
