@@ -67,6 +67,7 @@ public function updateImage(Request $request, $image_id)
 
         public function deleteImage($image_id)
     {
+        
         $tripImage = TripImage::findOrFail($image_id);
 
         // Delete the image file from storage

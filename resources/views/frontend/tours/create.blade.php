@@ -5,7 +5,7 @@
     <!-- Header Section -->
     <div class="text-center mb-6 animate-fade-in-down">
         <h1 class="text-2xl font-bold text-gray-800 mb-2">
-            <span class="text-blue-600  bg-clip-text">
+            <span class="text-[#753f0e]  bg-clip-text">
                 🌍 Add Tour
             </span>
         </h1>
@@ -58,7 +58,7 @@
 
             <!-- Submit Button -->
             <button type="submit"
-                class="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-lg">
+                class="w-full  bg-[#753f0e] text-[#f3cc88] py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-lg">
                 ✅ Save Tour
             </button>
         </div>

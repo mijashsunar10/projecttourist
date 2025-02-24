@@ -9,7 +9,7 @@
           </div>
           <!-- Content -->
           <div class="service_card1 w-full lg:w-1/2 p-6">
-              <h2 class="text-2xl font-bold mb-2">Trekking in Nepal</h2>
+              <h2 class="text-2xl font-bold mb-2 opacity-75">Trekking in Nepal</h2>
               <hr class="h-1 bg-orange-500 w-full max-w-[24ch] mb-4" />
               <p class="text-gray-700 text-md leading-relaxed mb-4">
                 Trekking is an exhilarating outdoor activity that takes adventurers through breathtaking landscapes, from snow-capped mountains and lush forests to remote villages and scenic valleys. It offers a unique blend of adventure, physical endurance, and cultural exploration. Whether you're seeking a short and easy hike or a challenging high-altitude expedition, trekking caters to all levels of experience.
@@ -22,7 +22,7 @@
                       <i class="fa-solid fa-angle-right"></i>
                   </button>
                 </a>
-                  <span class="text-orange-500 font-semibold">View Trekking Regions</span>
+                  <span class="text-black opacity-75 font-semibold">View Trekking Regions</span>
               </div>
           </div>
       </div>
@@ -31,7 +31,7 @@
       <div class="flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden ">
           <!-- Content -->
           <div class="service_card1 w-full lg:w-1/2 p-6 order-2 lg:order-1">
-              <h2 class="text-2xl font-bold mb-2">Tours and Adventure in Nepal</h2>
+              <h2 class="text-2xl font-bold mb-2 opacity-75">Tours and Adventure in Nepal</h2>
               <hr class="h-1 bg-orange-500 w-full max-w-[40ch] mb-4" />
               <p class="text-gray-700 text-md leading-relaxed mb-4">
                 Nepal is a paradise for travelers seeking both cultural exploration and thrilling adventures. From the ancient temples of Kathmandu Valley to the serene lakes of Pokhara, Nepal offers a rich blend of history, spirituality, and breathtaking landscapes. Visitors can embark on heritage tours, explore UNESCO World Heritage Sites, and immerse themselves in vibrant local traditions.
@@ -46,7 +46,7 @@
                       <i class="fa-solid fa-angle-right"></i>
                   </button>
                 </a>
-                  <span class="text-orange-500 font-semibold">View Tours & Advnetures</span>
+                  <span class="text-black opacity-75 font-semibold">View Tours & Advnetures</span>
               </div>
           </div>
           <!-- Image -->
@@ -65,7 +65,7 @@
           </div>
           <!-- Content -->
           <div class="service_card1 w-full lg:w-1/2 p-6">
-              <h2 class="text-2xl font-bold mb-2">Expedition in Nepal</h2>
+              <h2 class="text-2xl font-bold mb-2 opacity-75">Expedition in Nepal</h2>
               <hr class="h-1 bg-orange-500 w-full max-w-[27ch] mb-4" />
               <p class="text-gray-700 text-md leading-relaxed mb-4">
                 Nepal is a dream destination for mountaineers and adventure enthusiasts, offering some of the world’s highest and most challenging peaks. Home to Mount Everest (8,848m) and several other 8,000-meter giants like Kanchenjunga, Lhotse, and Annapurna, Nepal attracts climbers from across the globe.
@@ -79,7 +79,7 @@
                       <i class="fa-solid fa-angle-right"></i>
                   </button>
                 </a>
-                  <span class="text-orange-500 font-semibold">View Expeditions Regions</span>
+                  <span class="text-black opacity-75 font-semibold">View Expeditions Regions</span>
               </div>
           </div>
       </div>

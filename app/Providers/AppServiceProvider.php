@@ -9,7 +9,7 @@ use App\Models\Tour;
 use Illuminate\Support\Facades\View;
 use App\Models\Customize;
 use App\Models\Booking;
-
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(191);
         $regions = Region::with('trips')->get(); // Load regions with their trips
         $tours = Tour::with('tourtrips')->get();
         $expeditions = Expedition::with('mountains')->get();

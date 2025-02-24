@@ -62,7 +62,7 @@
 </footer>
 
 <style>
-    .snow-container {
+      .snow-container {
         position: absolute;
         top: 0;
         left: 0;
@@ -71,67 +71,73 @@
         pointer-events: none;
         z-index: 20;
         overflow: hidden;
-    }
+      }
 
-    .snowflake {
+      .snowflake {
         position: absolute;
         width: 6px;
         height: 6px;
-        background:#f3f4f6; 
+        background: white;
         border-radius: 50%;
-        animation: fall linear infinite;
+        animation: fall linear infinite forwards;
         opacity: 0.8;
         filter: blur(1px);
-    }
+      }
 
-    @keyframes fall {
+      @keyframes fall {
         0% {
-            transform: translateY(-100vh);
-            opacity: 1;
+          transform: translateY(-100vh);
+          opacity: 1;
         }
-
         100% {
-            transform: translateY(100vh);
-            opacity: 0;
+          transform: translateY(100vh);
+          opacity: 0;
+          visibility: hidden;
         }
-    }
-</style>
+      }
+    </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const snowContainer = document.querySelector('.snow-container');
-        const numberOfSnowflakes = 30;
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const snowContainer = document.querySelector(".snow-container");
+        const numberOfSnowflakes = 50;
 
         function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
+          const snowflake = document.createElement("div");
+          snowflake.className = "snowflake";
 
-            // Random positioning and animation properties
-            const leftPosition = Math.random() * 100;
-            const duration = 5 + Math.random() * 10;
-            const delay = Math.random() * -duration;
-            const size = 3 + Math.random() * 5;
+          const leftPosition = Math.random() * 100;
+          const duration = 5 + Math.random() * 10;
+          const delay = Math.random() * -duration;
+          const size = 3 + Math.random() * 5;
 
-            snowflake.style.left = leftPosition + '%';
-            snowflake.style.width = size + 'px';
-            snowflake.style.height = size + 'px';
-            snowflake.style.animationDuration = duration + 's';
-            snowflake.style.animationDelay = delay + 's';
+          snowflake.style.left = leftPosition + "%";
+          snowflake.style.width = size + "px";
+          snowflake.style.height = size + "px";
+          snowflake.style.animationDuration = duration + "s";
+          snowflake.style.animationDelay = delay + "s";
 
-            return snowflake;
+          snowflake.addEventListener('animationend', () => {
+            snowflake.remove();
+          });
+
+          return snowflake;
         }
 
         // Create initial snowflakes
         for (let i = 0; i < numberOfSnowflakes; i++) {
-            snowContainer.appendChild(createSnowflake());
+          snowContainer.appendChild(createSnowflake());
         }
 
-        // Optional: Add new snowflakes periodically
+        // Maintain constant snowflakes
         setInterval(() => {
+          const currentSnowflakes = document.querySelectorAll('.snowflake').length;
+          if (currentSnowflakes < 50) {
             snowContainer.appendChild(createSnowflake());
+          }
         }, 500);
-    });
-</script>
+      });
+    </script>
   
 
 

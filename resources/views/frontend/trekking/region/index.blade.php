@@ -15,11 +15,11 @@
         <div class="flex flex-col items-center justify-center  mt-6">
             <!-- Region Name with Straight Horizontal Lines -->
             <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+                <div class="flex-1 border-t-2 border-[#753f0e]"></div>
+                <h1 class="text-2xl md:text-3xl text-wrap font-bold text-[#753f0e] mx-8 text-center uppercase whitespace-nowrap">
                     Add Trekking Region
                 </h1>
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+                <div class="flex-1 border-t-2 border-[#753f0e]"></div>
             </div>
         </div>
     @endauth
@@ -32,7 +32,7 @@
             <!-- Region Name with Straight Horizontal Lines -->
             <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
                 <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+                <h1 class="text-2xl md:text-3xl text-wrap font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" >
                     Trekking Region
                 </h1>
                 <div class="flex-1 border-t-2 border-[#0b3e85]"></div>

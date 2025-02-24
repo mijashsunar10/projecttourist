@@ -58,6 +58,8 @@ use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\TermsandCondition;
+use App\Http\Controllers\TermsandConditionController;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -573,5 +575,18 @@ Route::get('/documents/edit/{id}', [DocumentController::class, 'edit'])->name('d
 Route::post('/documents/update/{id}', [DocumentController::class, 'update'])->name('documents.update'); // Update document
 Route::delete('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('documents.destroy'); // Delete document
 
+
+Route::controller(TermsandConditionController::class)->group(function () {
+    
+  
+        Route::get('/termsandcondition', 'index')->name('termsandconditionindex'); // Public
+        Route::get('/termsandcondition/create', 'create')->name('termsandconditioncreate');
+        Route::get('/terms/edit/{slug}', 'edit')->name('termsandconditionedit'); // Public    
+        Route::post('/terms/add', 'store')->name('termsandconditionstore');
+        Route::put('/terms/update/{slug}', 'update')->name('termsandconditionupdate');
+        
+        Route::delete('/terms/delete/{slug}', 'delete')->name('delete');
+        
+});
 
 require __DIR__.'/auth.php';
