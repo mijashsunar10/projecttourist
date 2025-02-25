@@ -1112,19 +1112,57 @@
     </div>
     </div>
 
-    <div id="modalBackdrop"
-    class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-blur-sm transition-all">
-    <!-- Modal Container -->
-    <div class="min-h-screen flex items-center justify-center px-4">
-        <div id="modalContent"
-            class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 opacity-0 transition-all duration-300 p-8 relative overflow-hidden">
+    <style>
+        /* Modal Backdrop */
+#modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    overflow-y: auto; /* Allow scrolling */
+    display: none; /* Hidden by default */
+}
+
+/* Modal Content */
+#modalContent {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Modal Content when open */
+#modalContent.open {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Prevent body scrolling when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+    </style>
+
+   <!-- Enquiry Modal -->
+<div id="modalBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-blur-sm transition-all">
+    <div class=" flex items-center justify-center px-4">
+        <div id="modalContent" class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 opacity-0 transition-all duration-300 p-8 relative overflow-hidden">
             <!-- Gradient Decoration -->
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-blue-500">
-            </div>
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-blue-500"></div>
 
             <!-- Close Button -->
-            <button onclick="closeModal()"
-                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
                 <i class="fas fa-times-circle text-2xl"></i>
             </button>
 
@@ -1134,9 +1172,9 @@
                     <i class="fas fa-comments text-green-600 mr-2"></i>
                     Have a Question? Connect Now
                 </h2>
-                <h4 class="text-2xl font-semibold text-gray-700 mb-6 text-center">{{$trip->name}}</h4>
 
-                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', $trip->id) }}">
+                <!-- Enquiry Form -->
+                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', [$entity_type, $trip->id]) }}">
                     @csrf
                     <!-- Full Name -->
                     <div>
@@ -1167,7 +1205,7 @@
                             </label>
                             <input type="tel" name="phone"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
-                                placeholder="Whatsapp No" >
+                                placeholder="Whatsapp No" required>
                         </div>
                     </div>
 
@@ -1178,8 +1216,41 @@
                             Country
                         </label>
                         <input type="text" name="country"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
-                        placeholder="" >
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            placeholder="" required>
+                    </div>
+
+                    <!-- Passport Number -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-passport text-green-600 mr-2"></i>
+                            Passport Number
+                        </label>
+                        <input type="text" name="passport_no"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            placeholder="" required>
+                    </div>
+
+                    <!-- Date -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-calendar text-green-600 mr-2"></i>
+                            Date
+                        </label>
+                        <input type="date" name="date"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            required>
+                    </div>
+
+                    <!-- Number of People -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">
+                            <i class="fas fa-users text-green-600 mr-2"></i>
+                            Number of People
+                        </label>
+                        <input type="number" name="people"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none"
+                            min="1" required>
                     </div>
 
                     <!-- Message -->
@@ -1203,23 +1274,33 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 </div>
 
 <script>
     function openModal() {
-        document.getElementById('modalBackdrop').classList.remove('hidden');
+        // Add class to body to prevent scrolling
+        document.body.classList.add('modal-open');
+
+        // Show the modal backdrop
+        document.getElementById('modalBackdrop').style.display = 'block';
+
+        // Add a slight delay for the animation
         setTimeout(() => {
-            document.getElementById('modalContent').classList.remove('scale-95', 'opacity-0');
-            document.getElementById('modalContent').classList.add('scale-100', 'opacity-100');
+            document.getElementById('modalContent').classList.add('open');
         }, 10);
     }
 
     function closeModal() {
-        document.getElementById('modalContent').classList.remove('scale-100', 'opacity-100');
-        document.getElementById('modalContent').classList.add('scale-95', 'opacity-0');
+        // Remove the open class for the modal content
+        document.getElementById('modalContent').classList.remove('open');
+
+        // Hide the modal backdrop after the animation
         setTimeout(() => {
-            document.getElementById('modalBackdrop').classList.add('hidden');
+            document.getElementById('modalBackdrop').style.display = 'none';
+
+            // Remove the class from body to allow scrolling again
+            document.body.classList.remove('modal-open');
         }, 300);
     }
 
@@ -1227,11 +1308,16 @@
     document.getElementById('modalBackdrop').addEventListener('click', function(e) {
         if (e.target === this) closeModal();
     });
+
+    // Close modal when pressing the Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
 </script>
 
 
 
-    <!-- {{-- TripFaq --}} -->
+    <!-- {{-- enquiryFaq --}} -->
 
 </div>
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
+            $table->string('entity_type'); // e.g., 'trip', 'tourtrip', 'mountain'
+            $table->unsignedBigInteger('entity_id'); 
             $table->text('message')->nullable();
             $table->boolean('is_read')->default(false);
             $table->timestamps();

@@ -2,6 +2,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Enquiry;
+use App\Models\Mountain;
+use App\Models\Tourtrips;
+use App\Models\Trip;
 use Illuminate\Http\Request;
 
 class EnquiryAdminController extends Controller
@@ -18,7 +21,19 @@ class EnquiryAdminController extends Controller
         if (!$enquiry->is_read) {
             $enquiry->update(['is_read' => true]);
         }
-        return view('admin.enquiry.show', compact('enquiry'));
+        $entity = null;
+        switch ($enquiry->entity_type) {
+            case 'trip':
+                $entity = Trip::find($enquiry->entity_id);
+                break;
+            case 'tourtrip':
+                $entity = Tourtrips::find($enquiry->entity_id);
+                break;
+            case 'mountain':
+                $entity = Mountain::find($enquiry->entity_id);
+                break;
+        }
+        return view('admin.enquiry.show', compact('enquiry','entity'));
     }
     
     public function destroy(Enquiry $enquiry)

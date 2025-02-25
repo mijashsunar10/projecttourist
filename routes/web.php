@@ -556,8 +556,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
 // Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
 
-Route::post('/enquiry/{trip_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit');
+// Route::post('/enquiry/entity_type}/entity_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit');
+// Route::get('/{entity_type}/{entity_id}/enquiry', [EnquiryController::class, 'index'])->name('enquiry');
+
 // Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
+
+
+Route::post('/enquiry/{entity_type}/{entity_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit'); 
+
 
 // routes/web.php
 

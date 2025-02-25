@@ -11,6 +11,8 @@ class Enquiry extends Model
         'email',
         'phone',
         'country',
+        'entity_id',
+        'entity_type',
         'message',
         'is_read'
     ];
@@ -18,5 +20,15 @@ class Enquiry extends Model
     public function trip()
     {
         return $this->belongsTo(Trip::class);
+    }
+
+    
+    public function mountain()
+    {
+        return $this->belongsTo(Mountain::class);
+    } 
+
+    public function tourtrip() {
+        return $this->belongsTo(Tourtrips::class.'tourtrip_id');
     }
 }

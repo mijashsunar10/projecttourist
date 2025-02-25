@@ -141,8 +141,10 @@ class TripController extends Controller
             ->latest()  // Get the latest reviews
             ->take(4)   // Limit to 3 reviews
             ->get();
+            $entity_type = 'trip';
 
-            return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs','reviews','trip_id'));
+
+            return view('frontend.trekking.trips.show', compact('trip', 'itineraries','highlights','tripFacts','tripfaqs','reviews','trip_id','entity_type'));
          
 
          
