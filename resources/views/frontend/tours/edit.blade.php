@@ -27,7 +27,11 @@
                     <input type="text" name="name" id="name" 
                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                            value="{{ $tour->name }}" placeholder="Enter tour name" required>
-                </div>
+                           @error('name')
+                           <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                           @enderror
+                
+                        </div>
                 
                 <!-- Existing tour Image Preview -->
                 @if ($tour->image)
@@ -65,6 +69,9 @@
                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
                                    accept="image/*">
                         </div>
+                        @error('image')
+                        <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                     
                     <!-- New Preview Container -->

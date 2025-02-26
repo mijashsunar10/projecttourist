@@ -168,6 +168,15 @@
                                 <div class="mb-4">
                                     <label for="images" class="block text-gray-700 font-medium mb-2">Select Images</label>
                                     <input type="file" id="images" name="images[]" class="w-full border rounded px-4 py-2" multiple onchange="previewImages(event)">
+                                    @if ($errors->has('images'))
+                                        @foreach ($errors->get('images') as $message)
+                                            <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                                        @endforeach
+                                    @endif
+
+                                    @error('images.*')
+                                        <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <!-- Image Preview -->

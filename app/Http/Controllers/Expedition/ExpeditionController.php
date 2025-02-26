@@ -27,11 +27,15 @@ class ExpeditionController extends Controller
     }
 
     public function expeditionsstore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+    { 
+        $customMessages = [
+        'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+    ];
+
+    $request->validate([
+        'name'  => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+    ], $customMessages);
 
         $imageName = null;
         if ($request->hasFile('image')) {
@@ -58,10 +62,14 @@ class ExpeditionController extends Controller
     {
         $expedition = Expedition::findOrFail($id);
 
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

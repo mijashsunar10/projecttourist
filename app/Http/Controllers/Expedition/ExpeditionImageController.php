@@ -11,12 +11,18 @@ class ExpeditionImageController extends Controller
     public function addImages(Request $request, $mountain_id)
     {
         // Validate: maximum 5 images, each image must be of valid type and size
+        $customMessages = [
+            'images.required'    => 'Please select at least one image.',
+           
+         
+            'images.*.uploaded'  => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
+        // Validate: maximum 5 images, each image must be of valid type and size
         $request->validate([
-            'images' => 'required|array|max:5',  // Limit to 5 images
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image types and size
-        ], [
-            'images.max' => 'You can upload a maximum of 5 images.', // Custom message for exceeding image limit
-        ]);
+            'images'   => 'required|array|max:5',  // Limit to 5 images
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validate image types and size
+        ], $customMessages);
     
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {

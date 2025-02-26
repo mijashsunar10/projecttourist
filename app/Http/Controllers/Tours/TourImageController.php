@@ -11,10 +11,16 @@ class TourImageController extends Controller
 {
     public function addImages(Request $request, $tourtrip_id)
     {
+        $customMessages = [
+            'images.required'    => 'Please select at least one image.',
+           
+         
+            'images.*.uploaded'  => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
         $request->validate([
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
+            'images'   => 'required|array|max:5',  // Limit to 5 images
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validate image types and size
+        ], $customMessages);
         // $tourtrip = Tourtrips::findOrFail($to);
 
         if ($request->hasFile('images')) {
@@ -32,34 +38,7 @@ class TourImageController extends Controller
         return redirect()->route('tourtripshow', $tourtrip_id)->with('success', 'Images uploaded successfully.');
     }
 
-    public function updateImage(Request $request, $image_id)
-    {
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
-    
-        $tourImage = TourImage::findOrFail($image_id);
-    
-        // Check if a new file was uploaded
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            $oldImagePath = public_path('images/tourtrips/' . $tourImage->image);
-            if (file_exists($oldImagePath) && !is_dir($oldImagePath)) {
-                unlink($oldImagePath);
-            }
-    
-            // Upload the new image
-            $image = $request->file('image');
-            $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/tourtrips'), $imageName);
-    
-            // Update the image record
-            $tourImage->update(['image' => $imageName]);
-        }
-    
-        return redirect()->route('tourtripshow', $tourImage->tourtrip_id)->with('success', 'Image updated successfully.');
-    }
-    
+
     public function deleteImage($image_id)
     {
         $tourImage = TourImage::findOrFail($image_id);

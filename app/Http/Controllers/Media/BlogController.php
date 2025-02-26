@@ -41,15 +41,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+
         $rules = [
             'title' => 'required|min:3|max:255|string',
             'author' => 'required|string|max:100',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'description' => 'required|string|min:10|max:1000',
             'content' => 'required|string|min:10',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -115,6 +119,12 @@ class BlogController extends Controller
       
         $blog=Blog::findOrFail($id);
 
+        
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+
+
         $rules = [
             'title' => 'required|min:3|max:255|string',
             'author' => 'required|string|max:100',
@@ -123,7 +133,7 @@ class BlogController extends Controller
             'content' => 'required|string|min:10',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

@@ -22,35 +22,56 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="name">mountain Name</label>
                 <input type="text" id="name" name="name" value="{{ $mountain->name }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                @error('name')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror
+           
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="description">Description</label>
                 <textarea id="description" name="description" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none">{{ $mountain->description }}</textarea>
+                @error('description')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror
+            
             </div>
 
             <!-- Price -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="price">Price ($)</label>
-                <input type="number" id="price" name="price" value="{{ $mountain->price }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                <input type="text" id="price" name="price" value="{{ $mountain->price }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+            
+                @error('proce')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Duration -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="duration">Duration (days)</label>
-                <input type="number" id="duration" name="duration" value="{{ $mountain->duration }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                <input type="text" id="duration" name="duration" value="{{ $mountain->duration }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                @error('duration')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Distance -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="distance">Distance (km/day)</label>
-                <input type="number" step="0.1" id="distance" name="distance" value="{{ $mountain->distance }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                <input type="text" step="0.1" id="distance" name="distance" value="{{ $mountain->distance }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                @error('distance')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror  
             </div>
 
             <!-- Ascent -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2" for="ascent">Ascent (meters/day)</label>
-                <input type="number" id="ascent" name="ascent" value="{{ $mountain->ascent }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                <input type="text" id="ascent" name="ascent" value="{{ $mountain->ascent }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
+                @error('distance')
+                <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -79,6 +100,9 @@
                         </div>
                         <input type="file" name="image" id="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
                     </div>
+                    @error('image')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 
                 <div id="newPreview" class="mt-6 hidden">

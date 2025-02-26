@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('expedition_id'); // Foreign key for region
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->integer('duration');
-            $table->float('distance');
-            $table->integer('ascent');
+            $table->string('price');
+            $table->string('duration');
+            $table->string('distance');
+            $table->string('ascent');
             $table->string('image')->nullable();
             $table->foreign('expedition_id')->references('id')->on('expeditions')->onDelete('cascade');
         

@@ -29,6 +29,9 @@
                 <input type="text" name="name" id="name" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip name">
+                    @error('name')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Description -->
@@ -37,6 +40,9 @@
                 <textarea name="description" id="description" rows="4" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip description"></textarea>
+                    @error('description')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Price -->
@@ -45,6 +51,9 @@
                 <input type="text" name="price" id="price" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip price">
+                    @error('price')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Duration -->
@@ -53,6 +62,9 @@
                 <input type="text" name="duration" id="duration" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter trip duration">
+                    @error('duration')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
             <!-- Distance -->
@@ -61,6 +73,9 @@
                 <input type="text"  name="distance" id="distance" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter daily distance">
+                    @error('distance')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
             </div>
 
            
@@ -84,6 +99,9 @@
                         </div>
                         <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" required accept="image/*">
                     </div>
+                    @error('image')
+                    <p class="text-red-500 text-md mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Preview Container -->

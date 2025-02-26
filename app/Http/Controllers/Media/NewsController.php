@@ -44,13 +44,19 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-    $rules = [
+
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+
+
+        $rules = [
         'title' => 'required',
         'description' => 'required',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
-    $validator = Validator::make($request->all(), $rules);
+    $validator = Validator::make($request->all(), $rules, $customMessages);
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
@@ -91,13 +97,18 @@ class NewsController extends Controller
     {
         // Find the news by slug
         $news = News::where('slug', $slug)->firstOrFail();
+
+         
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
         // Define validation rules
         $rules = [
             'title' => 'required',
             'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, $customMessages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }

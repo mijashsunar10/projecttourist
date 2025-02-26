@@ -34,7 +34,7 @@
 
 
     <div class="bg-gray-100 flex justify-center items-center min-h-screen">
-        <section class=" max-w-7xlgrid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-8">
+        <section class=" max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-8">
 
             @if($tour->tourtrips->isEmpty())
             <p class="text-gray-500 text-center col-span-full">No trips available for this region.</p>

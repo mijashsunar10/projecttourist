@@ -22,6 +22,10 @@ class TourtripsController extends Controller
     }
     public function tourtripsstore(Request $request, $tour_id)
     {
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -30,8 +34,8 @@ class TourtripsController extends Controller
             'duration' => 'required|string|max:255',
             'distance' => 'required|string|max:255',
           
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
 
         $imageName = null;
         if ($request->hasFile('image')) {
@@ -81,6 +85,10 @@ class TourtripsController extends Controller
     {
         $tourtrip = Tourtrips::findOrFail($id);
 
+        $customMessages = [
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+        ];
+    
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -88,8 +96,8 @@ class TourtripsController extends Controller
             'duration' => 'required|string|max:255',
             'distance' => 'required|string|max:255',
            
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ],$customMessages);
 
         // Store existing image if no new image is uploaded
         $imageName = $tourtrip->image;
