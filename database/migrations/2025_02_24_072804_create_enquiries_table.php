@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trip_id')->constrained()->onDelete('cascade');
+           
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
             $table->string('entity_type'); // e.g., 'trip', 'tourtrip', 'mountain'
             $table->unsignedBigInteger('entity_id'); 
+            // $table->foreignId('trip_id')->nullable()->constrained()->onDelete('cascade');
+            // $table->foreignId('tourtrip_id')->nullable()->constrained()->onDelete('cascade');
+            // $table->foreignId('mountain_id')->nullable()->constrained()->onDelete('cascade');
             $table->text('message')->nullable();
             $table->boolean('is_read')->default(false);
             $table->timestamps();

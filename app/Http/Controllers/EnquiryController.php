@@ -181,14 +181,14 @@ class EnquiryController extends Controller
 
         if ($entity_type === 'trip') {
             $validatedData['trip_id'] = $entity_id;
-        }
-        if ($entity_type === 'tourtrip') {
+        } 
+        elseif ($entity_type === 'tourtrip') {
             $validatedData['tourtrip_id'] = $entity_id;
         }
-        if ($entity_type === 'mountain') {
+         elseif ($entity_type === 'mountain') {
             $validatedData['mountain_id'] = $entity_id;
         }
-    
+        
 
         // Save enquiry to the database
         Enquiry::create($validatedData);

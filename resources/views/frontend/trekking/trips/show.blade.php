@@ -344,7 +344,7 @@
           
             <!-- Right Line -->
             <div class=" hidden lg:block xl:hidden xlg:block flex-1 border-t-2 border-[#0b3e85]"></div>
-          </div>
+        </div>
           
             
 
@@ -895,7 +895,7 @@
 
     <div class="bg-gray-50 p-10 mt-6" id="reviews">
         <div class="">
-            <h2 class="text-3xl font-bold mb-4 text-blue-900" style="font-family: 'Times New Roman', Times, serif">Latest Reviews of {{$trip->name}}</h2>
+            <h2 class="sm:text-3xl text-2xl font-bold mb-4 text-blue-900" style="font-family: 'Times New Roman', Times, serif">Latest Reviews of {{$trip->name}}</h2>
             
             <!-- Check if there are reviews -->
             @if ($reviews->isEmpty())
@@ -979,7 +979,7 @@
     
     <!-- Review Form -->
     <div id="reviewFormContainer" class="container py-8 px-4 bg-gray-100 rounded-lg shadow-lg mt-10" style="display: none;">
-        <h2 class="text-3xl px-8 py-3 font-bold mb-4 text-blue-900" style="font-family: 'Times New Roman', Times, serif">Give your Review for {{$trip->name}}</h2>
+        <h2 class="sm:text-3xl text-2xl px-8 py-3 font-bold mb-4 text-blue-900" style="font-family: 'Times New Roman', Times, serif">Give your Review for {{$trip->name}}</h2>
         <form action="{{ route('reviews.store', $trip->id) }}" method="POST" enctype="multipart/form-data" class="bg-white mx-auto p-8 rounded-lg shadow-md" style="max-width:95%">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1174,7 +1174,7 @@ body.modal-open {
                 </h2>
 
                 <!-- Enquiry Form -->
-                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', [$entity_type, $trip->id]) }}">
+                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', [$entity_type, $mountain->id]) }}">
                     @csrf
                     <!-- Full Name -->
                     <div>

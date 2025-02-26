@@ -11,7 +11,21 @@
     <p class="text-lg"><strong>Phone:</strong> {{ $data['phone'] }}</p>
     <p class="text-lg"><strong>Passport:</strong> {{ $data['passport_no'] }}</p>
     <p class="text-lg"><strong>Arrival Date:</strong> {{ $data['date'] }}</p>
-    <p class="text-lg"><strong>Trip:</strong> {{ $data['trip_id'] }}</p>
+    
+    {{-- Display the appropriate entity based on type --}}
+    <p class="text-lg">
+        <strong>{{ ucfirst($data['entity_type']) }}:</strong>
+        @if($data['entity_type'] === 'trip')
+            {{ $data['trip_id'] }}
+        @elseif($data['entity_type'] === 'tourtrip')
+            {{ $data['tourtrip_id'] }}
+        @elseif($data['entity_type'] === 'mountain')
+            {{ $data['mountain_id'] }}
+        @else
+            Not specified
+        @endif
+    </p>
+    
     <p class="text-lg"><strong>People:</strong> {{ $data['people'] }}</p>
     <p class="text-lg"><strong>Message:</strong> {{ $data['message'] }}</p>
 </body>

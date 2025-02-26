@@ -135,6 +135,7 @@ class TourtripsController extends Controller
             ->latest()  // Get the latest reviews
             ->take(4)   // Limit to 3 reviews
             ->get();
-        return view('frontend.tours.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs','tourreviews','tourtrip_id'));
+            $entity_type = 'tourtrip';
+        return view('frontend.tours.tourtrips.show', compact('tourtrip','tourFacts','highlights','itineraries','tourfaqs','tourreviews','tourtrip_id','entity_type'));
     }
 }

@@ -131,6 +131,7 @@ class BookingController extends Controller
     // Send an email notification
     Mail::to('sunaranamol@gmail.com')->send(new BookingFormMail($validatedData));
 
+    
     // Determine the redirect route based on the entity type
     switch ($entity_type) {
         case 'trip':

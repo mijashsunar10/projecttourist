@@ -134,7 +134,8 @@ class MountainController extends Controller
             ->latest()  // Get the latest reviews
             ->take(3)   // Limit to 3 reviews
             ->get();
-            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts','highlights','itineraries','mountainfaqs','mountainreviews','mountain_id'));
+            $entity_type = 'mountain';
+            return view('frontend.expeditions.mountain.show',compact('mountain','mountainFacts','highlights','itineraries','mountainfaqs','mountainreviews','mountain_id','entity_type'));
          
 
          
