@@ -58,6 +58,7 @@ use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\TermsandCondition;
 use App\Http\Controllers\TermsandConditionController;
 
@@ -559,8 +560,8 @@ Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('
 Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
 Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
 // Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
-Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
-Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
+
+// Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
 // routes/web.php
 
 
@@ -587,6 +588,19 @@ Route::controller(TermsandConditionController::class)->group(function () {
         
         Route::delete('/terms/delete/{slug}', 'delete')->name('delete');
         
+});
+
+Route::controller(TeamsController::class)->group(function () {
+    
+  
+    Route::get('/teams', 'index')->name('ourteam'); // Public
+    Route::get('/teams/create', 'create')->name('teamcreate');
+    Route::get('/teams/edit/{id}', 'edit')->name('teamedit');     
+    Route::post('/teams/add', 'store')->name('teamstore');
+    Route::put('/teams/update/{id}', 'update')->name('teamupdate');
+    
+    Route::delete('/teams/delete/{id}', 'destroy')->name('teamdelete');
+    
 });
 
 require __DIR__.'/auth.php';

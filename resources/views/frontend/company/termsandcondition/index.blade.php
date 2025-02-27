@@ -2,37 +2,11 @@
 
 @section('pagecontent')
 <!-- subheading section for terms and condition -->
-<style>
-    @keyframes sparkle {
-        0% {
-            transform: scale(1);
-            opacity: 0;
-        }
 
-        50% {
-            transform: scale(1.2);
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(1);
-            opacity: 0;
-        }
-    }
-
-    .sparkle {
-        animation: sparkle 2s infinite;
-    }
-</style>
 
 
 <div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen pt-8">
-    <!-- Animated Sparkles -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="sparkle absolute text-2xl" style="top:15%; left:20%">✨</div>
-        <div class="sparkle absolute text-2xl" style="top:35%; left:85%">✈️</div>
-        <div class="sparkle absolute text-2xl" style="top:75%; left:10%">🌴</div>
-    </div>
+   
 
     <!-- Main Content -->
     <div class="relative z-10 max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -116,11 +90,7 @@
     </div>
 </div>
 
-<!-- Floating Elements -->
-<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-    <div class="absolute animate-float" style="top:10%; left:80%">🌤️</div>
-    <div class="absolute animate-float-delayed" style="top:65%; left:5%">🗺️</div>
-</div>
+
 
 <script>
             function confirmDelete() {
