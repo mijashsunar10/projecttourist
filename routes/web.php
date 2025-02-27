@@ -594,5 +594,7 @@ Route::get('/documents/edit/{id}', [DocumentController::class, 'edit'])->name('d
 Route::post('/documents/update/{id}', [DocumentController::class, 'update'])->name('documents.update'); // Update document
 Route::delete('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('documents.destroy'); // Delete document
 
+Route::get('/all-reviews', [ReviewController::class, 'allCombinedReviews'])->name('all.combined.reviews');
+
 
 require __DIR__.'/auth.php';

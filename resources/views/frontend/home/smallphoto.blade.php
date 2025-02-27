@@ -388,7 +388,7 @@
     });
     </script> --}}
 
-    <style>
+    {{-- <style>
       * {
           font-family: 'Poppins', sans-serif;
       }
@@ -534,7 +534,7 @@
                                   </div>
                                   
                                   <!-- Popular Badge -->
-                                  <div class="absolute top-4 right-4 bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold popular-badge">
+                                  {{-- <div class="absolute top-4 right-4 bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold popular-badge">
                                       POPULAR!
                                   </div>
                               </div>
@@ -574,4 +574,172 @@
             carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
         });
     });
+</script> --}} 
+
+<section class="bg-gray-100 py-12">
+  <div class="container mx-auto px-4 w-[90%]">
+      <!-- Heading -->
+      <h1 class="text-center text-4xl font-bold text-gray-800 mb-12">
+          Travel Nepal Your Way
+      </h1>
+
+      <!-- Carousel Section -->
+      <div class="carousel-container">
+          <p class="text-xl font-[550] text-gray-800 pb-4">Expeditions</p>
+          <div class="relative flex items-center">
+              <!-- Left Button -->
+              <button id="carousel-left-btn" class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-2xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-left"></i>
+              </button>
+
+              <!-- Carousel Wrapper -->
+              <div class="carousel overflow-hidden w-full">
+                  <div id="carousel-inner" class="carousel-inner flex space-x-4 transition-transform duration-300">
+                      <!-- Cards -->
+                      @foreach ($expeditions as $expedition)
+                      <div class="card-container flex-shrink-0 w-[calc(20%-16px)]">
+                          <div class="font-open-sans text-base">
+                              <div class="relative group">
+                                  <!-- Image Section -->
+                                  <div class="relative overflow-hidden rounded-xl">
+                                      <img 
+                                          src="{{ asset('images/expeditions/' . $expedition->image) }}" 
+                                          alt="{{ $expedition->name }}" 
+                                          class="h-[150px] w-full object-cover transition-transform duration-500 group-hover:scale-105 border-2 border-gray-200"
+                                      />
+                                  </div>
+
+                                  <!-- Name Section -->
+                                  <div class="mt-2 text-center">
+                                      <h2 class="text-lg font-semibold text-gray-800">
+                                          {{ $expedition->name }}
+                                      </h2>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                  </div>
+              </div>
+
+              <!-- Right Button -->
+              <button id="carousel-right-btn" class="carousel-right-btn absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-right"></i>
+              </button>
+          </div>
+      </div>
+      <div class="carousel-container">
+          <p class="text-xl font-[550] text-gray-800 pb-4">Tour and Advemture</p>
+          <div class="relative flex items-center">
+              <!-- Left Button -->
+              <button id="carousel-left-btn" class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-2xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-left"></i>
+              </button>
+
+              <!-- Carousel Wrapper -->
+              <div class="carousel overflow-hidden w-full">
+                  <div id="carousel-inner" class="carousel-inner flex space-x-4 transition-transform duration-300">
+                      <!-- Cards -->
+                      @foreach ($tours as $tour)
+                      <div class="card-container flex-shrink-0 w-[calc(20%-16px)]">
+                          <div class="font-open-sans text-base">
+                              <div class="relative group">
+                                  <!-- Image Section -->
+                                  <div class="relative overflow-hidden rounded-xl">
+                                      <img 
+                                          src="{{ asset('images/tours/' . $tour->image) }}" 
+                                          alt="{{ $tour->name }}" 
+                                          class="h-[150px] w-full object-cover transition-transform duration-500 group-hover:scale-105 border-2 border-gray-200"
+                                      />
+                                  </div>
+
+                                  <!-- Name Section -->
+                                  <div class="mt-2 text-center">
+                                      <h2 class="text-lg font-semibold text-gray-800">
+                                          {{ $tour->name }}
+                                      </h2>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                  </div>
+              </div>
+
+              <!-- Right Button -->
+              <button id="carousel-right-btn" class="carousel-right-btn absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-right"></i>
+              </button>
+          </div>
+      </div>
+      <div class="carousel-container">
+          <p class="text-xl font-[550] text-gray-800 pb-4">Trekking</p>
+          <div class="relative flex items-center">
+              <!-- Left Button -->
+              <button id="carousel-left-btn" class="carousel-left-btn absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-2xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-left"></i>
+              </button>
+
+              <!-- Carousel Wrapper -->
+              <div class="carousel overflow-hidden w-full">
+                  <div id="carousel-inner" class="carousel-inner flex space-x-4 transition-transform duration-300">
+                      <!-- Cards -->
+                      @foreach ($regions as $region)
+                      <div class="card-container flex-shrink-0 w-[calc(20%-16px)]">
+                          <div class="font-open-sans text-base">
+                              <div class="relative group">
+                                  <!-- Image Section -->
+                                  <div class="relative overflow-hidden rounded-xl">
+                                      <img 
+                                          src="{{ asset('images/regions/' . $region->image) }}" 
+                                          alt="{{ $region->name }}" 
+                                          class="h-[150px] w-full object-cover transition-transform duration-500 group-hover:scale-105 border-2 border-gray-200"
+                                      />
+                                  </div>
+
+                                  <!-- Name Section -->
+                                  <div class="mt-2 text-center">
+                                      <h2 class="text-lg font-semibold text-gray-800">
+                                          {{ $region->name }}
+                                      </h2>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                  </div>
+              </div>
+
+              <!-- Right Button -->
+              <button id="carousel-right-btn" class="carousel-right-btn absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-2 shadow-lg hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-lg sm:text-xl">
+                  <i class="fa-solid fa-arrow-right"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const carouselInner = document.getElementById('carousel-inner');
+      const carouselLeftBtn = document.getElementById('carousel-left-btn');
+      const carouselRightBtn = document.getElementById('carousel-right-btn');
+      const cardWidth = document.querySelector('.card-container').offsetWidth;
+      const gap = 16; // Gap between cards (16px as per your CSS)
+      const cardsToScroll = 5; // Number of cards to scroll at a time
+      let scrollPosition = 0;
+
+      // Function to scroll left
+      carouselLeftBtn.addEventListener('click', () => {
+          scrollPosition = Math.max(scrollPosition - (cardWidth + gap) * cardsToScroll, 0);
+          carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
+      });
+
+      // Function to scroll right
+      carouselRightBtn.addEventListener('click', () => {
+          const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+          scrollPosition = Math.min(scrollPosition + (cardWidth + gap) * cardsToScroll, maxScroll);
+          carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
+      });
+  });
 </script>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('photo')->nullable();
-            $table->string('youtube_url')->nullable();
             $table->integer('rating');
             $table->text('review');
             $table->timestamps();

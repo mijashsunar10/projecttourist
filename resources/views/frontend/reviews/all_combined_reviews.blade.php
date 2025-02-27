@@ -2,17 +2,17 @@
 
 @section('pagecontent')
 {{-- <div class="container mx-auto py-8 px-4 bg-gray-100 mt-10" style="max-width: 90%">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">All Reviews for {{ $mountain->name }}</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">All Reviews</h2>
     
-    @if ($reviews->count() > 0)
+    @if ($combinedReviews->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach ($reviews as $review)
+            @foreach ($combinedReviews as $review)
                 <div class="bg-white p-6 rounded shadow-md flex flex-col justify-between h-full">
                     <div>
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold overflow-hidden bg-gray-300">
-                                @if ($review->photo)
-                                    <img src="{{ asset('images/mountains/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
+                                @if (isset($review->photo))
+                                    <img src="{{ asset('images/trips/reviews/' . $review->photo) }}" alt="User Image" class="w-full h-full object-cover">
                                 @else
                                     <span>{{ strtoupper(substr($review->name, 0, 1)) }}</span>
                                 @endif
@@ -35,7 +35,7 @@
 
                         <p class="text-gray-600">{{ $review->review }}</p>
 
-                        @if ($review->youtube_url)
+                        @if (isset($review->youtube_url))
                             <div class="mt-4">
                                 <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 underline">Watch Video Review</a>
                             </div>
@@ -60,28 +60,29 @@
 
         <!-- Pagination Links -->
         <div class="mt-6">
-            {{ $reviews->links() }}
+            {{ $combinedReviews->links() }}
         </div>
 
     @else
-        <p class="text-gray-500">No reviews for this trip yet.</p>
+        <p class="text-gray-500">No reviews yet.</p>
     @endif
 </div> --}}
+
 
 
 <div class="bg-gray-100">
     <div class="p-5 mx-auto" style="max-width: 90%">
         <div class="my-10">
-            <h2 class="text-center text-4xl font-bold mb-6">All Reviews for {{ $mountain->name }}</h2>
+            <h2 class="text-center text-4xl font-bold mb-6">Latest Reviews</h2>
 
-            @if ($reviews->count() > 0)
+            @if ($combinedReviews->count() > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
-                    @foreach ($reviews as $review)
+                    @foreach ($combinedReviews as $review)
                         <div class="card-flip w-full h-80">
                             <div class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d shadow-xl border-2 border-gray-200">
                                 <!-- Front Side -->
                                 <div class="card-front absolute w-full h-full bg-cover bg-center rounded-lg shadow-lg overflow-hidden" 
-                                    style="background-image: url('{{ asset('images/mountains/reviews/' . $review->photo) }}');">
+                                    style="background-image: url('{{ asset('images/' . $review->type . '/reviews/' . ($review->photo ?? 'default.png')) }}');">
                                     
                                     <!-- Overlay -->
                                     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -110,7 +111,6 @@
                                         "{{ $review->review }}"
                                     </blockquote>
 
-                                    <!-- YouTube URL -->
                                    
 
                                     <!-- Delete Button -->
@@ -141,4 +141,5 @@
         </div>
     </div>
 </div>
+
 @endsection

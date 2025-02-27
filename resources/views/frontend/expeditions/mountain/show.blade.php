@@ -23,22 +23,13 @@
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 2.3rem;
         font-weight: bold;
         color: #0B6285;
         margin-bottom: 2rem;
         position: relative;
-    }
-
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 60px;
-        height: 4px;
-        background: #2563eb;
-        border-radius: 2px;
+        align-items: center;
+        text-align: center;
     }
 
     .hover-scale {
@@ -955,13 +946,7 @@
                         </blockquote>
 
                         <!-- YouTube URL -->
-                        @if ($review->youtube_url)
-                            <div class="mt-2">
-                                <a href="{{ $review->youtube_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 underline transition-colors duration-200">
-                                    Watch Video Review
-                                </a>
-                            </div>
-                        @endif
+                    
 
                         <!-- Delete Button -->
                         <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" 
@@ -1008,19 +993,21 @@
             </div>
         </div>
 
-        <div class="mt-6">
-            <label class="block text-gray-700 font-medium mb-2">Your Photo</label>
-            <input type="file" name="photo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+             <!-- Image Preview Container -->
+    <div id="imagePreviewContainer" class="mt-4" style="display: none;">
+        <div class="relative inline-block items-center"> <!-- Wrap the image and button in a relative container -->
+            <img id="imagePreview" src="#" alt="Image Preview" class="w-56 h-56 object-cover rounded-lg shadow-md">
+            <button type="button" onclick="removeImage()" class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 px-2 text-md hover:bg-red-600 transition duration-200 transform translate-x-1/2 -translate-y-1/2">
+                &times; <!-- Cancel cross -->
+            </button>
         </div>
+    </div>
 
-        <div class="mt-6">
-            <label class="block text-gray-700 font-medium mb-2">YouTube Video URL</label>
-            <input type="url" name="youtube_url" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
+
 
         <div class="mt-6">
             <label class="block text-gray-700 font-medium mb-2">Rating</label>
-            <div class="flex space-x-2 text-yellow-500 text-3xl cursor-pointer" id="ratingStars">
+            <div class="flex space-x-2 text-gray-300 text-3xl cursor-pointer" id="ratingStars">
                 <span onclick="setRating(1)" class="hover:text-yellow-600 transition-colors duration-200">&#9733;</span>
                 <span onclick="setRating(2)" class="hover:text-yellow-600 transition-colors duration-200">&#9733;</span>
                 <span onclick="setRating(3)" class="hover:text-yellow-600 transition-colors duration-200">&#9733;</span>
@@ -1045,6 +1032,34 @@
 
 
 <script>
+     // Function to preview the selected image
+     function previewImage(event) {
+        const input = event.target;
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Function to remove the selected image
+    function removeImage() {
+        const input = document.getElementById('photoInput');
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('imagePreview');
+
+        input.value = ''; // Clear the file input
+        previewImage.src = '#'; // Clear the image preview
+        previewContainer.style.display = 'none'; // Hide the preview container
+    }
     // Function to toggle the visibility of the review form
     function toggleReviewForm() {
         const reviewFormContainer = document.getElementById('reviewFormContainer');
