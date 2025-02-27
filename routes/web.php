@@ -56,8 +56,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\CustomizeAdminController;
+use App\Http\Controllers\BankDetailController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\TermsandCondition;
 use App\Http\Controllers\TermsandConditionController;
@@ -557,7 +559,7 @@ Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm
 Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
 
 
-Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
+
 Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
 // Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
 
@@ -602,5 +604,34 @@ Route::controller(TeamsController::class)->group(function () {
     Route::delete('/teams/delete/{id}', 'destroy')->name('teamdelete');
     
 });
+
+Route::controller(BankDetailController::class)->group(function () {
+    
+  
+    Route::get('/paymentmethod', 'index')->name('payment'); // Public
+    Route::get('/payment/create', 'create')->name('paymentcreate');
+    Route::get('/payment/edit/{id}', 'edit')->name('paymentedit');     
+    Route::post('/payment/add', 'store')->name('paymentstore');
+    Route::put('/payment/update/{id}', 'update')->name('paymentupdate');
+    
+    Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
+    
+});
+
+Route::controller(NoteController::class)->group(function () {
+    
+  
+    
+    Route::get('/note/create', 'create')->name('notecreate');
+    Route::post('/note/add', 'store')->name('notestore');
+    Route::get('/note/edit/{id}', 'edit')->name('noteedit');
+    Route::put('/note/update/{id}', 'update')->name('noteupdate');
+    Route::delete('/note/delete/{id}', 'destroy')->name('notedelete');
+    
+    // Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
+    
+});
+
+
 
 require __DIR__.'/auth.php';
