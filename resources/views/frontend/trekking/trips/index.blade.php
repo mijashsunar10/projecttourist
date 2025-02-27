@@ -70,7 +70,7 @@
             <div class="group bg-white rounded-3xl shadow-xl hover:shadow-lg transition-all duration-300 overflow-hidden border-6 border-white hover:border-blue-100/30 relative transform hover:-translate-y-2 hover:rotate-[0.5deg]">
                 <!-- Gloss Effect Container -->
                 <div class="gloss-effect relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/30 to-blue-900/50 z-10"></div>
+                    <div class="absolute inset-0  z-10"></div>
                     @if($trip->image)
                     <img class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500" 
                          src="{{ asset('images/trips/' . $trip->image) }}" 
@@ -80,7 +80,6 @@
     
                 <!-- Animated Price Badge -->
                 <div class="absolute top-56 left-1/2 -translate-x-1/2 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white px-6 py-2.5 rounded-full text-base font-bold shadow-lg flex items-center gap-2 transform -translate-y-1/2 z-30 border-2 border-blue-200/30 hover:scale-105 transition-transform duration-300 hover:rotate-2">
-                    <span class="material-symbols-outlined text-sm animate-pulse">flight_class</span>
                     ${{ $trip->price }}<span class="font-medium text-blue-100 ml-1 text-sm">/person</span>
                 </div>
     

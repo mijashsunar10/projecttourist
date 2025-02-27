@@ -58,7 +58,7 @@
                                     <input 
                                         type="{{ $field['type'] }}" 
                                         name="{{ $field['name'] }}" 
-                                        class="w-full px-4 py-3 border-2 border-blue-50 rounded-xl focus:border-blue-600 focus:ring-2 ring-blue-100 transition-all duration-200
+                                        class="w-full px-4 py-3 border-2  rounded-xl focus:border-blue-600 focus:ring-2 ring-blue-100 transition-all duration-200
                                                @error($field['name']) border-red-300 @enderror"
                                         @foreach($field as $key => $value)
                                             @if(!in_array($key, ['label', 'name', 'type']))
