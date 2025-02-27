@@ -11,18 +11,21 @@ use Illuminate\Queue\SerializesModels;
 
 class BookingFormMail extends Mailable implements ShouldQueue
 {
-    
     use Queueable, SerializesModels;
 
     public $data;
+    public $entity;
+
     /**
      * Create a new message instance.
      *
      * @param array $data
+     * @param mixed $entity
      */
-    public function __construct(array $data)
+    public function __construct(array $data, $entity)
     {
         $this->data = $data;
+        $this->entity = $entity;
     }
 
     /**
@@ -43,7 +46,8 @@ class BookingFormMail extends Mailable implements ShouldQueue
         return new Content(
             view: 'emails.booking_form',
             with: [
-                'data' => $this->data,
+                'data'   => $this->data,
+                'entity' => $this->entity,
             ]
         );
     }

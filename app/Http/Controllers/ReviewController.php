@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\ExpeditionReview;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Review;
+use App\Models\TourReview;
 use App\Models\Trip;
 
 use Illuminate\Http\Request;
@@ -64,6 +67,35 @@ class ReviewController extends Controller
 
         return redirect()->back()->with('success', 'Review deleted successfully.');
     }
+
+    public function allCombinedReviews()
+{
+    // Fetch all reviews for trips
+    $tripReviews = Review::latest()->paginate(10, ['*'], 'trip_page');
+
+    // Fetch all reviews for tour trips
+    $tourtripReviews = TourReview::latest()->paginate(10, ['*'], 'tourtrip_page');
+
+    // Fetch all reviews for mountains
+    $mountainReviews = ExpeditionReview::latest()->paginate(10, ['*'], 'mountain_page');
+
+    // Combine all reviews into a single collection
+    $allReviews = collect([])
+        ->merge($tripReviews->items())
+        ->merge($tourtripReviews->items())
+        ->merge($mountainReviews->items());
+
+    // Paginate the combined collection
+    $combinedReviews = new \Illuminate\Pagination\LengthAwarePaginator(
+        $allReviews,
+        $tripReviews->total() + $tourtripReviews->total() + $mountainReviews->total(),
+        10, // Items per page
+        null, // Current page
+        ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    );
+
+    return view('frontend.reviews.all_combined_reviews', compact('combinedReviews'));
+}
 
     
 }

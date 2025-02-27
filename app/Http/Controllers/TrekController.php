@@ -2,18 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExpeditionReview;
 use App\Models\Review;
 use App\Models\Tour;
+use App\Models\TourReview;
 use Illuminate\Http\Request;
 
 class TrekController extends Controller
 {
     public function index()
     {
-        $latestReviews = Review::latest()->take(4)->get(); // Fetch the latest 3 reviews
+       // Fetch latest 4 reviews for trips
+    $tripReviews = Review::latest()->take(4)->get();
+
+    // Fetch latest 4 reviews for tour trips
+    $tourtripReviews = TourReview::latest()->take(4)->get();
+
+    // Fetch latest 4 reviews for mountains
+    $mountainReviews = ExpeditionReview::latest()->take(4)->get();
+
+    // Combine all reviews into a single collection
+    $allReviews = collect([])
+        ->merge($tripReviews)
+        ->merge($tourtripReviews)
+        ->merge($mountainReviews);
+
+    // Sort the combined collection by created_at in descending order
+    $sortedReviews = $allReviews->sortByDesc('created_at');
+
+    // Take only the latest 4 reviews for the "Latest Reviews" section
+    $latestReviews = $sortedReviews->take(4);
+
+    // Paginate the combined collection for the "View All Reviews" page
+    $combinedReviews = new \Illuminate\Pagination\LengthAwarePaginator(
+        $sortedReviews,
+        $sortedReviews->count(),
+        10, // Items per page
+        null, // Current page
+        ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    );
+
+    // return view('frontend.reviews.all_combined_reviews', compact('latestReviews', 'combinedReviews')); // Fetch the latest 3 reviews
 
         $tours = Tour::with('tourtrips')->get();
-        return view('frontend.home.homepage', compact('latestReviews','tours'));
+        return view('frontend.home.homepage', compact('latestReviews','tours', 'combinedReviews'));
     }
     public function contact()
     {

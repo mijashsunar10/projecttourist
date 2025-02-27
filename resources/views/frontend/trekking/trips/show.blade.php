@@ -1174,7 +1174,7 @@ body.modal-open {
                 </h2>
 
                 <!-- Enquiry Form -->
-                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', [$entity_type, $mountain->id]) }}">
+                <form id="enquiryform" class="space-y-6" method="POST" action="{{ route('enquiry.submit', [$entity_type, $trip->id]) }}">
                     @csrf
                     <!-- Full Name -->
                     <div>
