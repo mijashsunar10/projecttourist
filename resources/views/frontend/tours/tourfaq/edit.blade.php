@@ -2,20 +2,36 @@
 
 @section('pagecontent')
 
-<div class="container mx-auto mt-6">
-    <h1 class="text-2xl font-bold mb-4">Edit tourfaq for "{{ $tourtrip->name }}"</h1>
+<div class="container mx-auto mt-20 px-6 md:px-8 relative">
+    <!-- Close Button (Back to tour trip show page) -->
+    <a href="{{ route('tourtripshow', $tourtrip->id) }}" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 transition text-3xl">
+        ❌
+    </a>
 
-    <form action="{{ route('tourfaqupdate', [$tourtrip->id, $tourfaq->id]) }}" method="POST">
+    <h1 class="text-xl sm:text-3xl font-bold text-gray-800 mb-8 text-center">Edit FAQ for "{{ $tourtrip->name }}"</h1>
+
+    <form action="{{ route('tourfaqupdate', [$tourtrip->id, $tourfaq->id]) }}" method="POST" class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
         @csrf
-        <div>
-            <label for="question">Question</label>
-            <input type="text" name="question" id="question" class="block w-full border p-2" value="{{ $tourfaq->question }}">
+        @method('PUT')
+        
+        <!-- Question Field -->
+        <div class="mb-6">
+            <label for="question" class="block text-lg font-semibold text-gray-700 mb-2">Question</label>
+            <input type="text" name="question" id="question" class="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500" value="{{ $tourfaq->question }}" required>
         </div>
-        <div>
-            <label for="answer">Answer</label>
-            <textarea name="answer" id="answer" class="block w-full border p-2">{{ $tourfaq->answer }}</textarea>
+
+        <!-- Answer Field -->
+        <div class="mb-6">
+            <label for="answer" class="block text-lg font-semibold text-gray-700 mb-2">Answer</label>
+            <textarea name="answer" id="answer" class="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500" rows="6" required>{{ $tourfaq->answer }}</textarea>
         </div>
-        <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300">
+                Update FAQ
+            </button>
+        </div>
     </form>
 </div>
 

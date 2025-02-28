@@ -3,8 +3,8 @@
 @section('pagecontent')
 
 
-<div class="container mx-auto py-8 px-16 bg-white shadow-md rounded-lg">
-    <h2 class="text-3xl font-bold text-blue-700 mb-6">Add Required Items</h2>
+<div class="container mx-auto mt-16  py-8 px-16 bg-white shadow-md rounded-lg max-w-7xl">
+    <h2 class="text-3xl font-bold text-blue-700 mb-6">Add Required Items for {{$tourtrip->name}}</h2>
     
     <form action="{{ route('tourrequireditemsstore', $tourtrip->id) }}" method="POST">
         @csrf

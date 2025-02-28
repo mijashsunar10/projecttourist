@@ -807,12 +807,12 @@
             <div class="w-full">
                 <div class="bg-blue-900 text-white text-center p-6 rounded-t-lg mb-2 sm:mb-4">
                     {{-- <h1 class="text-4xl font-bold">TOurs in Nepal – TOur Faq Overview</h1> --}}
-                    <h2 class="text-2xl md:text-3xl font-bold" style=" font-family: 'Times New Roman', Times, serif">Tours in Nepal – TOur Faq Overview</h2>
-                    <p class="mt-2 text-lg">A detail description of TOur Faq</p>
+                    <h2 class="text-2xl md:text-3xl font-bold" style=" font-family: 'Times New Roman', Times, serif">Tours in Nepal – Tour Faq Overview</h2>
+                    <p class="mt-2 text-lg">A detail description of Tour Faq</p>
 
                     @auth
                         <a href="{{ route('tourfaqcreate', $tourtrip->id) }}">
-                            <button class="text-white font-bold mt-2 px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-800 transition">Add Iterinary</button>
+                            <button class="text-white font-bold mt-2 px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-800 transition">Add FAQ</button>
                         </a>
                     @endauth
                 </div>
@@ -843,7 +843,7 @@
                                     <form action="{{ route('tourfaqdestroy', $tourfaq->id) }}" method="POST"  onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                        <button type="submit" class="text-white font-bold  ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
                                     </form>
                                 </div>
                             @endauth

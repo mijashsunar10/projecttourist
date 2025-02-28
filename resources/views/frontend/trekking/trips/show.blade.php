@@ -859,7 +859,7 @@
                                                 <form action="{{ route('tripfaqdestroy', $tripfaq->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                                    <button type="submit" class="text-white font-bold  ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
                                                 </form>
                                             </div>
                                         @endauth
@@ -986,7 +986,11 @@
                     <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
                 </div>
             </div>
-
+            <div class="mt-6">
+                <label class="block text-gray-700 font-medium mb-2">Your Photo</label>
+                <input type="file" name="photo" id="photoInput" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="previewImage(event)">
+            </div>
+            
           <!-- Image Preview Container -->
           <div id="imagePreviewContainer" class="mt-4" style="display: none;">
             <div class="relative inline-block items-center"> <!-- Wrap the image and button in a relative container -->

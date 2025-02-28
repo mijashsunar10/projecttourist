@@ -350,7 +350,7 @@
         <div id="tripfacts" class="container   py-8 px-16 bg-white shadow-xl rounded-lg  mt-8 " >
                     
                 {{-- <h2 class="section-title">Expedition Facts</h2> --}}
-                <h2class="text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">Expedition Facts</h2class=>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">Expedition Facts</h2>
                 @auth
                 @if(!$mountain->mountainfacts) 
                     <a href="{{ route('mountainfactcreate', $mountain->id) }}">
@@ -458,7 +458,7 @@
                         </div>
                     </div>
                     @auth
-                    <div class="mt-2">
+                    <div class="mt-2  w-full">
                     
                         <a href="{{ route('mountainfactedit', [$mountain->id, $fact->id]) }}">
                             <button class="bg-yellow-500 text-white px-4 py-2 rounded mb-2">Edit mountain Facts</button>
@@ -627,7 +627,7 @@
                                             <form action="{{ route('mountainitinerarydestroy', $itinerary->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                                <button type="submit" class="text-white font-bold  ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
                                             </form>
                                         </div>
                                     @endauth
@@ -638,8 +638,6 @@
                 </div>
             </div>
         </div>
-        </section>
-
         <script>
             function toggleAnswer(answerId) {
                 const answer = document.getElementById(answerId);
@@ -654,6 +652,9 @@
                 }
             }
         </script>
+        </section>
+
+       
 
 
     </div>
@@ -761,7 +762,7 @@
                 </div>
 
                 <!-- Price Does Not Include -->
-                < <div class="p-4 sm:p-6 bg-white rounded-lg shadow-md">
+                <div class="p-4 sm:p-6 bg-white rounded-lg shadow-md">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4">Price Does Not Include</h3>
                     @php
                         $exclusions = $mountain->expeditioninclusionExclusions->where('type', 'exclusion');
@@ -854,7 +855,7 @@
                                      <form action="{{ route('mountainfaqdestroy', $mountainfaq->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this iterinary?');">
                                          @csrf
                                          @method('DELETE')
-                                         <button type="submit" class="text-white font-bold mt-2 ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
+                                         <button type="submit" class="text-white font-bold ml-2 px-3 py-1 bg-[#ff0000] rounded-lg">Delete</button>
                                      </form>
                                  </div>
                              @endauth
@@ -864,31 +865,32 @@
                  </div>
              </div>
          </div>
+         <script>
+            function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(`icon${answerId.replace('answer', '').replace('mountainfaq-', '').replace('itinerary-', '')}`);
+
+            if (!answer || !icon) {
+                console.log("Element not found: " + answerId);
+                return;
+            }
+
+            if (answer.classList.contains("hidden") || answer.style.display === "none") {
+                answer.classList.remove("hidden");
+                answer.style.display = "block";
+                icon.classList.add("rotate-180");
+            } else {
+                answer.classList.add("hidden");
+                answer.style.display = "none";
+                icon.classList.remove("rotate-180");
+            }
+        }
+
+   </script>
      </div>
     </section>
  
-    <script>
-             function toggleAnswer(answerId) {
-             const answer = document.getElementById(answerId);
-             const icon = document.getElementById(`icon${answerId.replace('answer', '').replace('mountainfaq-', '').replace('itinerary-', '')}`);
- 
-             if (!answer || !icon) {
-                 console.log("Element not found: " + answerId);
-                 return;
-             }
- 
-             if (answer.classList.contains("hidden") || answer.style.display === "none") {
-                 answer.classList.remove("hidden");
-                 answer.style.display = "block";
-                 icon.classList.add("rotate-180");
-             } else {
-                 answer.classList.add("hidden");
-                 answer.style.display = "none";
-                 icon.classList.remove("rotate-180");
-             }
-         }
- 
-     </script>
+    
  
  
  </div>

@@ -286,7 +286,7 @@ Route::controller(TourController::class)->group(function () {
         Route::get('/tour/create', 'tourcreate')->name('tourcreate');
         Route::post('/tour', 'tourstore')->name('tourstore');
         Route::get('/tour/{id}/edit', 'touredit')->name('touredit');
-        Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate');
+        Route::post('/tour/{id}/update', 'tourupdate')->name('tourupdate'); 
         Route::post('/tour/{id}/delete', 'tourdestroy')->name('tourdestroy');
     });
     Route::get('/tour/{id}', 'tourshow')->name('tourshow');
