@@ -60,6 +60,7 @@ use App\Http\Controllers\BankDetailController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PayimageController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\TermsandCondition;
 use App\Http\Controllers\TermsandConditionController;
@@ -629,6 +630,19 @@ Route::controller(NoteController::class)->group(function () {
     Route::delete('/note/delete/{id}', 'destroy')->name('notedelete');
     
     // Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
+    
+});
+
+Route::controller(PayimageController::class)->group(function () {
+    
+  
+    
+    Route::post('/payimage/add', 'store')->name('payimagestore');
+    // Route::get('/payimage/edit/{id}', 'edit')->name('payimageedit');
+    // Route::put('/payimage/update/{id}', 'update')->name('payimageupdate');
+    Route::delete('/payimage/delete/{id}', 'destroy')->name('payimagedelete');
+    
+    
     
 });
 

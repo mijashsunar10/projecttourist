@@ -130,14 +130,14 @@
                         </div>
                     </div>
                     @empty
-                    <div class="p-6 text-center bg-yellow-50 rounded-lg">
+                    <div class="p-6 text-center bg-yellow-50 rounded-s-lg">
                         <p class="text-yellow-600">No important notes found. Click "Add New Note" to create one!</p>
                     </div>
                     @endforelse
                 </div>
             </div>
             @else
-            <div class="p-6 text-left bg-yellow-50 rounded-lg">
+            <div class="p-6 text-left bg-yellow-50 rounded-s-lg">
                 @foreach($notes as $note)
                 <p class="text-gray-600 capitalize"><i class="fa-solid fa-circle text-xs px-2"></i>{{ $note->note }}</p>
                 @endforeach
@@ -146,26 +146,31 @@
 
 
 
-            <div class="pt-8  text-gray-600">
-                <p class="capitalize text-xl">For further details image is given</p>
-                <form action="" class="pt-4 px-4">
+            <div class="pt-8  text-gray-600 bg-white rounded-lg mt-4">
+                <p class="capitalize text-xl px-3">For further details image is given</p>
+                @auth()
+                <form action="{{ route('payimagestore') }}" class="pt-4 px-4" enctype="multipart/form-data" method="POST">
+                    @csrf
                     <!-- File Upload -->
-                    <div>
+                    <div class="p-4">
                         <label class="block text-md font-medium text-gray-700 mb-2 ">Upload Image</label>
                         <div class="relative group">
                             <div id="dropzone"
                                 class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center transition-all duration-300 group-hover:border-blue-400 group-hover:bg-blue-50 cursor-pointer">
                                 <div class="space-y-3">
                                     <div class="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-blue-200">
-                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                                        </svg>
+                                        <i class="fa-solid fa-arrow-up-from-bracket text-blue-600 text-xl"></i>
                                     </div>
                                     <p class="text-gray-600">
                                         <span class="text-blue-600 font-medium">Click to upload</span> or drag and drop
                                     </p>
                                 </div>
                                 <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" required accept="image/*">
+                                <span>
+                                    @error('image')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                    @enderror
+                                </span>
                             </div>
                         </div>
 
@@ -179,45 +184,120 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mt-6 px-4 pb-4">
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                <i class="fa-solid fa-cloud-arrow-up mr-2"></i>
+                                Upload Payment Image
+                            </button>
+                        </div>
                     </div>
                 </form>
+                @endauth
             </div>
+
+
+
+            <!-- Image Grid -->
+            <div class="container mx-auto px-6 py-8 bg-white rounded-b-lg">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Image Cards -->
+                    @foreach($images as $image)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <!-- Image -->
+                        <div class="cursor-pointer" onclick="openLightbox('{{ asset('images/payimages/' . $image->image) }}')">
+                            <img src="{{ asset('images/payimages/' . $image->image) }}" class="w-full h-48 object-cover">
+                        </div>
+
+                        <!-- Edit and Delete Buttons (Visible only to authenticated users) -->
+                        @auth()
+                        <div class="flex justify-around p-4">
+                            <!-- Edit Button -->
+                            <!-- <a href="" class="flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105">
+                                <i class="fas fa-edit mr-2"></i> Edit
+                            </a> -->
+
+                            <!-- Delete Button -->
+                            <form action="{{ route('payimagedelete',$image->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="flex items-center bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all transform hover:scale-105">
+                                    <i class="fas fa-trash mr-2"></i> Delete
+                                </button>
+                            </form>
+                        </div>
+                        @endauth
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="lightbox-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+                <div class="relative">
+                    <!-- Close Button -->
+                    <button onclick="closeLightbox()" class="absolute -top-4 -right-4 bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-600 transition-all shadow-sm hover:shadow-md">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <!-- Image -->
+                    <img id="lightbox-image" class="max-w-full max-h-[90vh] object-contain" alt="Lightbox Image">
+                </div>
+            </div>
+
+
+
         </div>
 
     </div>
 </div>
 
 <script>
+    // Open Lightbox
+    function openLightbox(imageSrc) {
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+
+        lightboxImage.src = imageSrc; // Set the image source
+        lightboxModal.classList.remove('hidden'); // Show the lightbox
+    }
+
+    // Close Lightbox
+    function closeLightbox() {
+        const lightboxModal = document.getElementById('lightbox-modal');
+        lightboxModal.classList.add('hidden'); // Hide the lightbox
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const dropzone = document.getElementById('dropzone');
         const fileInput = document.getElementById('image');
         const previewContainer = document.getElementById('preview-container');
         const imagePreview = document.getElementById('image-preview');
-        
+
         dropzone.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropzone.classList.add('border-blue-500', 'bg-blue-50');
         });
-        
+
         dropzone.addEventListener('dragleave', () => {
             dropzone.classList.remove('border-blue-500', 'bg-blue-50');
         });
-        
+
         dropzone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropzone.classList.remove('border-blue-500', 'bg-blue-50');
             fileInput.files = e.dataTransfer.files;
             handleFile(e.dataTransfer.files[0]);
         });
-        
+
         fileInput.addEventListener('change', (e) => {
             if (e.target.files.length) handleFile(e.target.files[0]);
         });
-        
+
         function handleFile(file) {
             previewContainer.classList.remove('hidden');
             const reader = new FileReader();
-            
+
             if (file.type.startsWith('image/')) {
                 reader.onload = (e) => {
                     imagePreview.src = e.target.result;
@@ -226,7 +306,7 @@
                 reader.readAsDataURL(file);
             }
         }
-        
+
         document.getElementById('remove-preview').addEventListener('click', () => {
             fileInput.value = '';
             previewContainer.classList.add('hidden');

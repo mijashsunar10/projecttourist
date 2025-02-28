@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BankDetail;
 use App\Models\Note;
+use App\Models\Payimage;
 use Illuminate\Http\Request;
 
 
@@ -12,9 +13,11 @@ class BankDetailController extends Controller
 {
     public function index()
     {
+        
+        $images = Payimage::latest()->limit(4)->get();
         $notes = Note::latest()->get();
         $bankDetails = BankDetail::all();
-        return view('frontend.company.payment.index', compact('bankDetails', 'notes'));
+        return view('frontend.company.payment.index', compact('bankDetails', 'notes', 'images'));
     }
 
     public function create()

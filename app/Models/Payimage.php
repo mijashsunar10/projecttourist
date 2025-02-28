@@ -9,4 +9,9 @@ class Payimage extends Model
 {
     /** @use HasFactory<\Database\Factories\PayimageFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'image',
+        'slug',
+    ];
 }
