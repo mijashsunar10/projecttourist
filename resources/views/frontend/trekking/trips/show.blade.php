@@ -1090,8 +1090,8 @@
 </div>
 
 <!-- Right Section: Booking & Inquiry (Fixed) -->
-    <div class="w-full lg:w-1/5 mx-auto sticky top-40 h-max">
-        <div class="bg-white p-6 rounded-lg shadow-xl">
+    <div class="w-full lg:w-1/5 mx-auto sticky top-40 h-max max-w-3xl ">
+        <div class="bg-white p-6 rounded-lg shadow-xl ">
             <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Trip Cost</h2>
             <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
             <div class="space-y-3 mt-4">
@@ -1103,7 +1103,7 @@
                 </a>
             
                 <button onclick="openModal()"
-                class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold px-7">
+                class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold px-2 w-full">
                 Enquiry Now
                 <span class="ml-3 text-sm bg-white text-green-700 rounded-full px-2 py-1 shadow-md">
                     <i class="fas fa-arrow-right"></i>

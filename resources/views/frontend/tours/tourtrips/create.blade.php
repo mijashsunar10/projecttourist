@@ -69,7 +69,7 @@
 
             <!-- Distance -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Distance (km/day)</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Start-End</label>
                 <input type="text"  name="distance" id="distance" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Enter daily distance">

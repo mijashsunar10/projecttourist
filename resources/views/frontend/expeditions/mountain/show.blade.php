@@ -1111,7 +1111,7 @@
             </a>
         
             <button onclick="openModal()"
-                class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold px-7">
+                class="block bg-green-800 text-white text-center py-3 rounded-md hover:bg-green-600 transition font-bold px-7 w-full">
                 Enquiry Now
                 <span class="ml-3 text-sm bg-white text-green-700 rounded-full px-2 py-1 shadow-md">
                     <i class="fas fa-arrow-right"></i>
@@ -1147,7 +1147,7 @@
         </ul>
     </div>
     </div>
-    </div>
+</div>
     <style>
         /* Modal Backdrop */
 #modalBackdrop {

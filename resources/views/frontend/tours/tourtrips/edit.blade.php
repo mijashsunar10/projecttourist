@@ -57,7 +57,7 @@
 
             <!-- Distance -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2" for="distance">Distance (km/day)</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="distance">Start-End</label>
                 <input type="text" step="0.1" id="distance" name="distance" value="{{ $tourtrip->distance }}" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none" required>
            
                 @error('distance')
