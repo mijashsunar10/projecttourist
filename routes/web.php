@@ -60,7 +60,9 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Admin\EnquiryAdminController;
 use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\TermsandConditionController;
 use App\Models\Enquiry;
+use App\Models\TermsandCondition;
 
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
@@ -597,4 +599,16 @@ Route::delete('/documents/delete/{id}', [DocumentController::class, 'destroy'])-
 Route::get('/all-reviews', [ReviewController::class, 'allCombinedReviews'])->name('all.combined.reviews');
 
 
+Route::controller(TermsandConditionController::class)->group(function () {
+    
+  
+    Route::get('/termsandcondition', 'index')->name('termsandconditionindex'); // Public
+    Route::get('/termsandcondition/create', 'create')->name('termsandconditioncreate');
+    Route::get('/terms/edit/{slug}', 'edit')->name('termsandconditionedit'); // Public    
+    Route::post('/terms/add', 'store')->name('termsandconditionstore');
+    Route::put('/terms/update/{slug}', 'update')->name('termsandconditionupdate');
+    
+    Route::delete('/terms/delete/{slug}', 'delete')->name('delete');
+    
+});
 require __DIR__.'/auth.php';
