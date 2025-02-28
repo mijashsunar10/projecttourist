@@ -15,14 +15,16 @@ class EnquiryFormMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $data;
+    public $entity;
     /**
      * Create a new message instance.
      *
      * @param array $data
      */
-    public function __construct(array $data)
+    public function __construct(array $data,$entity)
     {
         $this->data = $data;
+        $this->entity = $entity;
     }
 
     /**
@@ -44,6 +46,7 @@ class EnquiryFormMail extends Mailable implements ShouldQueue
             view: 'emails.enquiry_form',
             with: [
                 'data' => $this->data,
+                'entity' => $this->entity,
             ]
         );
     }

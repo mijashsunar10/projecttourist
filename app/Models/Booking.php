@@ -30,6 +30,6 @@ class Booking extends Model
     } 
 
     public function tourtrip() {
-        return $this->belongsTo(Tourtrips::class.'tourtrip_id');
+        return $this->belongsTo(Tourtrips::class,'tourtrip_id');
     }
 }

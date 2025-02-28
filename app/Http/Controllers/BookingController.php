@@ -108,48 +108,63 @@ class BookingController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function submitBookingForm(Request $request, $entity_type, $entity_id)
-{
-    // Validate the form data
-    $validatedData = $request->validate([
-        'name'        => 'required|string|max:255',
-        'email'      => 'required|email|max:255',
-        'phone'      => 'required|string|max:20',
-        'country'    => 'required|string',
-        'passport_no' => 'required|string',
-        'date'        => 'required|date',
-        'people'      => 'required|integer|min:1',
-        'message'     => 'nullable|string',
-    ]);
-
-    // Add entity type and ID to the validated data
-    $validatedData['entity_type'] = $entity_type;
-    $validatedData['entity_id'] = $entity_id;
-
-    // Save booking to the database
-    Booking::create($validatedData);
-
-    // Send an email notification
-    Mail::to('sunaranamol@gmail.com')->send(new BookingFormMail($validatedData));
-
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'name'        => 'required|string|max:255',
+            'email'       => 'required|email|max:255',
+            'phone'       => 'required|string|max:20',
+            'country'     => 'required|string',
+            'passport_no' => 'required|string',
+            'date'        => 'required|date',
+            'people'      => 'required|integer|min:1',
+            'message'     => 'nullable|string',
+        ]);
     
-    // Determine the redirect route based on the entity type
-    switch ($entity_type) {
-        case 'trip':
-            $redirectRoute = 'tripshow';
-            break;
-        case 'tourtrip':
-            $redirectRoute = 'tourtripshow';
-            break;
-        case 'mountain':
-            $redirectRoute = 'mountainshow';
-            break;
-        default:
-            abort(404, 'Invalid entity type');
+        // Add entity type and ID to the validated data
+        $validatedData['entity_type'] = $entity_type;
+        $validatedData['entity_id'] = $entity_id;
+    
+        // Save booking to the database
+        Booking::create($validatedData);
+    
+        // Retrieve the entity instance based on the type
+        switch ($entity_type) {
+            case 'trip':
+                $entity = Trip::findOrFail($entity_id);
+                break;
+            case 'tourtrip':
+                $entity = Tourtrips::findOrFail($entity_id);
+                break;
+            case 'mountain':
+                $entity = Mountain::findOrFail($entity_id);
+                break;
+            default:
+                abort(404, 'Entity not found');
+        }
+    
+        // Send an email notification, passing both the validated data and the entity instance
+        Mail::to('sunaranamol@gmail.com')->send(new BookingFormMail($validatedData, $entity));
+    
+        // Determine the redirect route based on the entity type
+        switch ($entity_type) {
+            case 'trip':
+                $redirectRoute = 'tripshow';
+                break;
+            case 'tourtrip':
+                $redirectRoute = 'tourtripshow';
+                break;
+            case 'mountain':
+                $redirectRoute = 'mountainshow';
+                break;
+            default:
+                abort(404, 'Invalid entity type');
+        }
+    
+        // Redirect back to the appropriate show page with a success message
+        return redirect()->route($redirectRoute, $entity_id)
+                         ->with('success', 'Your booking has been submitted successfully!');
     }
-
-    // Redirect back to the appropriate show page with a success message
-    return redirect()->route($redirectRoute, $entity_id)
-                     ->with('success', 'Your booking has been submitted successfully!');
-}
+    
 }
     

@@ -9,8 +9,9 @@
     <h2>Dawn in Nepal Adventures Pvt Ltd</h2>
     <p class="text-lg"><strong>Name:</strong> {{ $data['name'] }}</p>
     <p class="text-lg"><strong>Email:</strong> {{ $data['email'] }}</p>
-    <p class="text-lg"><strong>Trip:</strong> {{ $data['trip_id'] }}</p>
-
+    <p class="text-lg">
+        <strong>{{ ucfirst($data['entity_type']) }}:</strong> {{ $entity->name }}
+    </p>
     @if(!empty($data['country']))
     <p class="text-lg"><strong>Country:</strong> {{ $data['country'] }}</p>
     @endif

@@ -174,27 +174,44 @@ class EnquiryController extends Controller
             'people'      => 'required|integer|min:1',
             'message'     => 'nullable|string',
         ]);
+       
 
         // Add entity type and ID to the validated data
         $validatedData['entity_type'] = $entity_type;
         $validatedData['entity_id'] = $entity_id;
 
-        if ($entity_type === 'trip') {
-            $validatedData['trip_id'] = $entity_id;
-        } 
-        elseif ($entity_type === 'tourtrip') {
-            $validatedData['tourtrip_id'] = $entity_id;
-        }
-         elseif ($entity_type === 'mountain') {
-            $validatedData['mountain_id'] = $entity_id;
+        Enquiry::create($validatedData);
+
+        // if ($entity_type === 'trip') {
+        //     $validatedData['trip_id'] = $entity_id;
+        // } 
+        // elseif ($entity_type === 'tourtrip') {
+        //     $validatedData['tourtrip_id'] = $entity_id;
+        // }
+        //  elseif ($entity_type === 'mountain') {
+        //     $validatedData['mountain_id'] = $entity_id;
+        // }
+
+        switch ($entity_type) {
+            case 'trip':
+                $entity = Trip::findOrFail($entity_id);
+                break;
+            case 'tourtrip':
+                $entity = Tourtrips::findOrFail($entity_id);
+                break;
+            case 'mountain':
+                $entity = Mountain::findOrFail($entity_id);
+                break;
+            default:
+                abort(404, 'Entity not found');
         }
         
 
         // Save enquiry to the database
-        Enquiry::create($validatedData);
+        
 
         // Send an email notification
-        Mail::to('sunaranamol@gmail.com')->send(new EnquiryFormMail($validatedData));
+        Mail::to('sunaranamol@gmail.com')->send(new EnquiryFormMail($validatedData, $entity));
 
         // Determine the redirect route based on the entity type
         switch ($entity_type) {
