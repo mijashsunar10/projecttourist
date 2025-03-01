@@ -5,7 +5,7 @@
     <div class="text-center  animate-fade-in-down">
         <h1 class="text-4xl font-bold text-gray-800 mb-2">
             <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-                🏔️ Add Trip to {{ $region->name }}
+                 Add Trip to {{ $region->name }}
             </span>
         </h1>
         <p class="text-gray-600 text-lg">Add a new trip with its details and an image</p>

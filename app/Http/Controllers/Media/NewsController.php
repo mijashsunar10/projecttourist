@@ -13,11 +13,7 @@ use Psy\VersionUpdater\Checker;
 
 class NewsController extends Controller
 {
-    // public function index()
-    // {
-    //     $news = News::latest()->paginate(12);
-    //     return view('frontend.media.news.index', ['news' => $news]);
-    // }
+    
 
     public function index()
     {

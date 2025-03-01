@@ -46,11 +46,7 @@ use App\Http\Controllers\Trekking\InclusionExclusionController;
 use App\Http\Controllers\Trekking\ItineraryController;
 use App\Http\Controllers\Trekking\RegionController;
 use App\Http\Controllers\Trekking\RequiredItemController;
-use App\Models\ExpeditionInclusionExclusion;
-use App\Models\TourHighlight;
-use App\Models\TourRequiredItem;
-use App\Models\Tourtrips;
-use App\Models\TripDescription;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -62,16 +58,11 @@ use App\Http\Controllers\Admin\EnquiryAdminController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\TermsandConditionController;
-use App\Models\Enquiry;
-use App\Models\TermsandCondition;
 
 use App\Http\Controllers\BankDetailController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PayimageController;
 
-// Route::get('/', function () {
-//     return view('frontend.home.homepage');
-// })->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -84,17 +75,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/admindashboard',[AdminController::class,'dashboard'])->middleware(['auth', 'verified'])->name('admindashboard');
-
-Route::get('/new', function () {
-    return view('frontend.home.new');
-});
-Route::get('/new2', function () {
-    return view('frontend.home.new2');
-});
-
-Route::get('/new1', function () {
-    return view('frontend.media.news');
-});
 
 
 
@@ -112,15 +92,6 @@ Route::get('/trekinfo',[TrekController::class,'trekinfo'])->name('trekinfo');
 
 Route::get('/trek/main',[TrekController::class,'trekmain'])->name('trekmain');
 Route::get('/trek/main1',[TrekController::class,'trekmain1'])->name('trekmain1');
-
-
-
-
-
-// Route::get('/regions/create', [RegionController::class, 'regionscreate'])->name('regionscreate');
-
-// Route::post('/regionsstore', [RegionController::class, 'regionsstore'])->name('regionsstore');
-// // TrekCOntroller
 
 
 Route::controller(RegionController::class)->group(function () {
@@ -240,8 +211,6 @@ Route::controller(TripController::class)->group(function () {
             Route::delete('faqs/{faq:slug}', 'destroy')->name('faqs.destroy');
         });
     });
-    
-
 
     Route::get('/customize',[TrekController::class,'customize'])->name('customize');    
     Route::post('/customize/send', [CustomizeController::class, 'submitCustomizeForm'])->name('customize.send');
@@ -265,6 +234,7 @@ Route::controller(TripController::class)->group(function () {
                 
     });
     Route::get('/blogs/{slug}/{id}/show', 'show')->name('blogs.show');
+    
 
     });  
     
@@ -314,10 +284,6 @@ Route::controller(TourtripsController::class)->group(function () {
     Route::get('/tourtrips/{id}', 'tourtripshow')->name('tourtripshow');
 });
 
-
-        // })
-   ;
-
    Route::middleware(['auth', 'verified'])->controller(TourImageController::class)->group(function () {
     Route::post('/tourtrips/{id}/add-images', 'addImages')->name('addtourimages');
     Route::post('/tourimages/{id}/update', 'updateImage')->name('updatetourimage');
@@ -359,19 +325,15 @@ Route::middleware(['auth', 'verified'])->prefix('tourtrips/{trip_id}/itinerary')
 
 
 Route::middleware(['auth', 'verified'])->prefix('trips/{trip}/inclusions-exclusions')->controller(InclusionExclusionController::class)->group(function () {
-    // Show Create Form for Inclusions & Exclusions
+
     Route::get('create', 'create')->name('trips.inclusions-exclusions.create');
-    
-    // Store Inclusions & Exclusions
+
     Route::post('/', 'store')->name('trips.inclusions-exclusions.store');
-    
-    // Edit Inclusion/Exclusion
+
     Route::get('{inclusionExclusion}/edit', 'edit')->name('trips.inclusions-exclusions.edit');
-    
-    // Update Inclusion/Exclusion
+
     Route::put('{inclusionExclusion}', 'update')->name('trips.inclusions-exclusions.update');
-    
-    // Delete Inclusion/Exclusion
+
     Route::delete('{inclusionExclusion}', 'destroy')->name('trips.inclusions-exclusions.destroy');
 });
 
@@ -399,16 +361,12 @@ Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip}/tourinclus
     // Show Create Form for Inclusions & Exclusions
     Route::get('create', 'create')->name('tourtrips.inclusions-exclusions.create');
     
-    // Store Inclusions & Exclusions
     Route::post('/', 'store')->name('tourtrips.inclusions-exclusions.store');
     
-    // Edit Inclusion/Exclusion
     Route::get('{inclusionExclusion}/edit', 'edit')->name('tourtrips.inclusions-exclusions.edit');
     
-    // Update Inclusion/Exclusion
     Route::put('{inclusionExclusion}', 'update')->name('tourtrips.inclusions-exclusions.update');
     
-    // Delete Inclusion/Exclusion
     Route::delete('{inclusionExclusion}', 'destroy')->name('tourtrips.inclusions-exclusions.destroy');
 });
 
@@ -424,9 +382,7 @@ Route::middleware(['auth', 'verified'])->prefix('tourtrips/{tourtrip_id}/tourfaq
 
 Route::controller(ExpeditionController::class)->group(function () {
     Route::get('/expeditions', 'index')->name('expeditionsindex'); // Public
-    // Route::get('/header', 'header')->name('header'); // Public
-    
-
+ 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('expeditions/create', 'expeditionscreate')->name('expeditionscreate');
         Route::post('/expeditionsstore', 'expeditionsstore')->name('expeditionsstore');
@@ -455,7 +411,6 @@ Route::controller(MountainController::class)->group(function () {
   
 
 });
-
 
 Route::controller(ExpeditionImageController::class)->middleware(['auth', 'verified'])->group(function()
 {
@@ -497,17 +452,9 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/itinera
 Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain}/mountaininclusions-exclusions')->controller(ExpeditionInclusionExcluionController::class)->group(function () {
     // Show Create Form for Inclusions & Exclusions
     Route::get('create', 'create')->name('mountains.inclusions-exclusions.create');
-    
-    // Store Inclusions & Exclusions
     Route::post('/', 'store')->name('mountains.inclusions-exclusions.store');
-    
-    // Edit Inclusion/Exclusion
     Route::get('{inclusionExclusion}/edit', 'edit')->name('mountains.inclusions-exclusions.edit');
-    
-    // Update Inclusion/Exclusion
     Route::put('{inclusionExclusion}', 'update')->name('mountains.inclusions-exclusions.update');
-    
-    // Delete Inclusion/Exclusion
     Route::delete('{inclusionExclusion}', 'destroy')->name('mountains.inclusions-exclusions.destroy');
 });
 
@@ -530,7 +477,6 @@ Route::middleware(['auth', 'verified'])->prefix('mountains/{mountain_id}/mountai
 });
 
 Route::post('/trips/{trip}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-// Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::get('trip/{trip_id}/reviews', [ReviewController::class, 'allReviews'])->name('reviews.index');
 
@@ -540,14 +486,13 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 Route::post('/tourtrips/{tourtrip}/tourreviews', [TourReviewController::class, 'store'])->name('tourreviews.store');
-// Route::delete('/reviews/{id}', [TourReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::delete('/tourreviews/{id}', [TourReviewController::class, 'destroy'])->name('tourreviews.destroy');
 Route::get('tourtrip/{tourtrip_id}/tourreviews', [TourReviewController::class, 'allReviews'])->name('tourreviews.index');
 
 
 
 Route::post('/mountains/{mountain}/expeditionreviews', [ExpeditionReviewController::class, 'store'])->name('mountainreviews.store');
-// Route::delete('/revi ews/{id}', [ExpeditionReviewController::class, 'destroy'])->name('reviews.destroy');
+
 Route::delete('/mountainreviews/{id}', [ExpeditionReviewController::class, 'destroy'])->name('mountainreviews.destroy');
 Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewController::class, 'allReviews'])->name('mountainreviews.index');
 
@@ -561,18 +506,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
     // You can add more resource controllers for Customize, Trekking, etc.
 });
 
-// Route::post('/bookings/{trip_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
-
-// Route::post('/enquiry/entity_type}/entity_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit');
-// Route::get('/{entity_type}/{entity_id}/enquiry', [EnquiryController::class, 'index'])->name('enquiry');
-
-// Route::get('/trip/{trip_id}/booking',[BookingController::class,'index'])->name('booking');
-
 
 Route::post('/enquiry/{entity_type}/{entity_id}', [EnquiryController::class, 'submitEnquiryForm'])->name('enquiry.submit'); 
-
-
-// routes/web.php
 
 // Route for displaying the booking form
 Route::get('/{entity_type}/{entity_id}/booking', [BookingController::class, 'index'])->name('booking');
@@ -582,15 +517,9 @@ Route::post('/bookings/{entity_type}/{entity_id}', [BookingController::class, 's
 
 
 Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
-// Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
+
 Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
-// Route::get('/ourteam', [TrekController::class, 'ourteam'])->name('ourteam');
-// routes/web.php
 
-
-// Route::get('/booking', function () {
-//     return view('frontend.booking.booking');
-// });
 
 Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index'); // List documents
 Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create'); // Show form
@@ -632,7 +561,6 @@ Route::controller(TeamsController::class)->group(function () {
 
 Route::controller(BankDetailController::class)->group(function () {
     
-  
     Route::get('/paymentmethod', 'index')->name('payment'); // Public
     Route::get('/payment/create', 'create')->name('paymentcreate');
     Route::get('/payment/edit/{id}', 'edit')->name('paymentedit');     
@@ -644,30 +572,20 @@ Route::controller(BankDetailController::class)->group(function () {
 });
 
 Route::controller(NoteController::class)->group(function () {
-    
-  
-    
+
     Route::get('/note/create', 'create')->name('notecreate');
     Route::post('/note/add', 'store')->name('notestore');
     Route::get('/note/edit/{id}', 'edit')->name('noteedit');
     Route::put('/note/update/{id}', 'update')->name('noteupdate');
     Route::delete('/note/delete/{id}', 'destroy')->name('notedelete');
-    
-    // Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
-    
+
 });
 
 Route::controller(PayimageController::class)->group(function () {
-    
   
-    
     Route::post('/payimage/add', 'store')->name('payimagestore');
-    // Route::get('/payimage/edit/{id}', 'edit')->name('payimageedit');
-    // Route::put('/payimage/update/{id}', 'update')->name('payimageupdate');
     Route::delete('/payimage/delete/{id}', 'destroy')->name('payimagedelete');
-    
-    
-    
+ 
 });
 require __DIR__.'/auth.php';
 

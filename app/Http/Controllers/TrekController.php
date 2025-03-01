@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\ExpeditionReview;
 use App\Models\Review;
 use App\Models\Tour;
@@ -43,8 +44,15 @@ class TrekController extends Controller
    
     // return view('frontend.reviews.all_combined_reviews', compact('latestReviews', 'combinedReviews')); // Fetch the latest 3 reviews
 
+    
+    $recentBlogs = Blog::where('is_approved', true)
+            ->latest()
+            ->take(3)
+            ->get();
+
         $tours = Tour::with('tourtrips')->get();
-        return view('frontend.home.homepage', compact('latestReviews','tours'));
+        return view('frontend.home.homepage', compact('latestReviews','tours','recentBlogs'));
+    
     }
     public function contact()
     {

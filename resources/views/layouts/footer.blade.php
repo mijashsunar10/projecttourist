@@ -20,10 +20,11 @@
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Tours</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Adventures</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Trekking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tours and Adventures</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
                     </ul>
                 </div>
 

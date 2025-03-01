@@ -42,33 +42,33 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $customMessages = [
-            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif or webp',
+            'image.uploaded' => 'Image must be less than 2MB / Image must be of jpg, jpeg, png, gif, or webp',
         ];
-
+    
         $rules = [
             'title' => 'required|min:3|max:255|string',
             'author' => 'required|string|max:100',
-             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'description' => 'required|string|min:10|max:1000',
             'content' => 'required|string|min:10',
         ];
-
+    
         $validator = Validator::make($request->all(), $rules, $customMessages);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
         $blog = new Blog();
         $blog->title = $request->title;
-        $blog->author = $request->author;
+        $blog->author = auth()->check() ? auth()->user()->name : 'Guest'; // Automatically assign author
         $blog->description = $request->description;
         $blog->content = $request->content;
-        $blog->slug = Str::slug($request->title);
-
-        // Set is_approved based on user role
-        $blog->is_approved = auth()->check() && auth()->user()->is_admin ? true : false;
-
+        $blog->slug = Str::slug($request->title . '-' . time());
+    
+        // **Make blog approved if the user is logged in, like News**
+        $blog->is_approved = auth()->check() ? true : false;
+    
         if ($request->hasFile('image')) {
             if ($request->file('image')->getSize() > 2048000) {  // 2MB limit
                 return back()->withErrors(['image' => 'Image size should not exceed 2MB.']);
@@ -76,15 +76,15 @@ class BlogController extends Controller
             $image = $request->image;
             $image_name = time() . '.' . $image->getClientOriginalExtension();
             $blog->image = $image_name;
-
+    
             $image->move(public_path('uploads/blogs/images'), $image_name);
         }
-
+    
         $blog->save();
-
-        return redirect()->route('blogs.index')->with('success', 'Blog submitted successfully. It will be reviewed by an admin.');
+    
+        return redirect()->route('blogs.index')->with('success', 'Blog submitted successfully.');
     }
-
+    
 
     /**
      * Display the specified resource.

@@ -41,7 +41,7 @@
         @foreach($news as $new)
         @if($new->is_approved)
         <article 
-            class="border-2 border-gray-600 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
+            class="border-2 border-gray-300 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
             x-show="'{{ Str::lower($new->title) }}'.includes(search.toLowerCase())"
         >
             <img src="{{ asset('images/news/'.$new->image) }}" alt="{{ $new->title }}" class="w-full h-48 object-cover">

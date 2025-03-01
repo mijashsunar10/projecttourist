@@ -32,7 +32,7 @@
     }
     </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<section class="bg-gray-100 mt-20 min-h-screen w-full">
+<section class="bg-gray-100 mt-16 xl:mt-20 min-h-screen w-full">
    
     
     <div class="flex flex-col items-center justify-center mt-6 px-10">

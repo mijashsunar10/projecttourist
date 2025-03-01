@@ -188,35 +188,10 @@
         @include('layouts.footer')
     </section>
 
+ 
 
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById("preloader").style.display = "none";
-            },500); // Adjust the timeout if needed
-        });
-    </script> --}}
 
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById("preloader").style.display = "none";
-            }); // Adjust the timeout if needed
-        });
-    </script>
-     --}}
-
-     {{-- <script>
-        // Wait for the page to fully load
-        window.addEventListener('load', function () {
-            const preloader = document.getElementById('preloader');
-            
-            // Add a delay to ensure the preloader is visible for at least 1 second
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-            },100); // Adjust the delay as needed
-        });
-    </script> --}}
+   
 
     <script>
         // Wait for the page to fully load
@@ -232,7 +207,7 @@
     
     <script src="{{asset('frontend/js/indexbody.js')}}"></script>
     <script src="{{asset('frontend/js/gt.min.js')}}" data-gt-widget-id="43217984"></script>
-
+    <script src="{{asset('frontend/js/scrollreveal.min.js')}}"></script>
     
 
 

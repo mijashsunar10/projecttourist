@@ -58,9 +58,7 @@
                 Add Mountain
             </a>
             @endauth
-            {{-- <a href="{{ route('regionsindex') }}" class="bg-blue-800 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition duration-300 shadow-md">
-                Return to Regions
-            </a> --}}
+        
         </div>
     </div>
 

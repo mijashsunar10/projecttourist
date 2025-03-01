@@ -71,6 +71,11 @@
                         <div class="flex items-center text-sm text-gray-500">
                             <span>Published {{ $recent->created_at->diffForHumans() }}</span>
                         </div>
+                        @guest
+                        <a href="{{ route('blogs.show', [$blog->id, $blog->slug]) }}" class="inline-block mt-4 text-white bg-[#0B6285] hover:bg-purple-700 px-4 py-2 rounded-full font-medium shadow-md transition-all">
+                            Read More
+                        </a>
+                        @endguest
                     </div>
                 </div>
                 @endforeach

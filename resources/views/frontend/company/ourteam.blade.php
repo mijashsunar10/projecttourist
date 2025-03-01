@@ -81,58 +81,7 @@
                 </div>
                 @endforeach
 
-                <!-- Team Member 2 -->
-                <!-- <div
-                    class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="overflow-hidden rounded-t-2xl relative">
-                        <img
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb"
-                            alt="Team Member"
-                            class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500" />
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
-                    </div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                            Sarah Miller
-                        </h3>
-                        <p class="text-purple-600 font-medium mb-4">
-                            Creative Director
-                        </p>
-                        
-                    </div>
-                    <div
-                        class="absolute top-4 right-4 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm">
-                        Design
-                    </div>
-                </div> -->
-
-                <!-- Team Member 3 -->
-                <!-- <div
-                    class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="overflow-hidden rounded-t-2xl relative">
-                        <img
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
-                            alt="Team Member"
-                            class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500" />
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
-                    </div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                            Michael Chen
-                        </h3>
-                        <p class="text-purple-600 font-medium mb-4">Tech Lead</p>
-                        <div
-                            class="flex justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            icons here
-                        </div>
-                    </div>
-                    <div
-                        class="absolute top-4 right-4 bg-pink-600 text-white px-4 py-1 rounded-full text-sm">
-                        Development
-                    </div>
-                </div> -->
+              
             </div>
         </div>
     </section>

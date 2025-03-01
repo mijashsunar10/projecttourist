@@ -38,10 +38,10 @@
     </div>
   
     <!-- Blog Cards Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[90%] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[85%] mx-auto">
         @foreach($blogs as $blog)
         <article 
-            class="border-2 border-gray-600 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
+            class="border-2 border-gray-300 rounded-xl overflow-hidden bg-white shadow-lg transform hover:scale-105 transition-all duration-300"
             x-show="'{{ Str::lower($blog->title) }}'.includes(search.toLowerCase())"
         >
             <img src="{{ asset('uploads/blogs/images/'.$blog->image )}}" alt="{{ $blog->title }}" class="w-full h-48 object-cover">

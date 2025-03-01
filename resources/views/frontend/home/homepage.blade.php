@@ -15,7 +15,7 @@
 
 {{-- @include('frontend.home.featurecard') --}}
 
-<div class="flex flex-col items-center justify-center bg-gray-100">
+{{-- <div class="flex flex-col items-center justify-center bg-gray-100">
     <!-- Region Name with Straight Horizontal Lines -->
     <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
         <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
@@ -85,7 +85,7 @@
         @endif
 
     </section>
-</div>
+</div> --}}
 
 
 
@@ -96,6 +96,10 @@
 
 
 @include('frontend.home.review')
+
+@include('frontend.home.blog')
+
+
 
 @include('frontend.home.accrediation')
 
