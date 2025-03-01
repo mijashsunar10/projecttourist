@@ -629,7 +629,6 @@ Route::controller(NoteController::class)->group(function () {
     Route::put('/note/update/{id}', 'update')->name('noteupdate');
     Route::delete('/note/delete/{id}', 'destroy')->name('notedelete');
     
-    // Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
     
 });
 
@@ -638,8 +637,6 @@ Route::controller(PayimageController::class)->group(function () {
   
     
     Route::post('/payimage/add', 'store')->name('payimagestore');
-    // Route::get('/payimage/edit/{id}', 'edit')->name('payimageedit');
-    // Route::put('/payimage/update/{id}', 'update')->name('payimageupdate');
     Route::delete('/payimage/delete/{id}', 'destroy')->name('payimagedelete');
     
     

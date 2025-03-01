@@ -6,18 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Admin Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script>
+    // JavaScript to toggle the sidebar on smaller screens
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('-translate-x-full');
+    }
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const hamburger = document.querySelector('.lg\\:hidden'); // Hamburger button
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+
+        // If the click is outside the sidebar and not on the hamburger button, close the sidebar
+        if (!isClickInsideSidebar && !isClickOnHamburger && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+        }
+    });
+</script>
 </head>
 
 <body class="bg-gray-100">
-    <div class="min-h-screen flex">
+<div class="min-h-screen flex">
+        <!-- Hamburger Menu (Visible on small screens) -->
+        <button class="lg:hidden fixed top-4 left-4 p-2 bg-gray-800 text-white rounded z-50" onclick="toggleSidebar()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+
         <!-- Sidebar -->
-        <aside class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 fixed h-full">
+        <aside id="sidebar" class="bg-gray-800 text-white sm:w-64 w-full space-y-6 py-7 px-2 fixed h-full transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-40">
+             <!-- Close Button (Visible on small screens) -->
+             <button class="lg:hidden absolute top-4 right-4 p-2 text-white hover:text-gray-300" onclick="toggleSidebar()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <!-- Sidebar content -->
             <div class="text-xl font-bold text-center mb-8">
                 <span class="text-orange-400">Trek</span>Admin
             </div>
 
             <nav>
-
                 <a href="{{route('index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,9 +65,6 @@
                     </svg>
                     <span>Dashboard</span>
                 </a>
-               
-
-
                 <a href="{{route('regionsindex')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -42,14 +72,6 @@
                     </svg>
                     <span>Trekking</span>
                 </a>
-
-               
-                
-
-                
-                
-                
-                
                 <a href="{{route('tourindex')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,7 +81,6 @@
                     </svg>
                     <span>Tours</span>
                 </a>
-
                 <a href="{{route('expeditionsindex')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -68,7 +89,6 @@
                     </svg>
                     <span>Expedition</span>
                 </a>
-                
                 <a href="{{route('admin.customizes.index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,27 +96,26 @@
                     </svg>
                     <span>Customize</span>
                     @isset($unreadCustomizeCount)
-                        @if ($unreadCustomizeCount > 0)
-                            <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
-                                {{ $unreadCustomizeCount }}
-                            </span>
-                        @endif
+                    @if ($unreadCustomizeCount > 0)
+                    <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
+                        {{ $unreadCustomizeCount }}
+                    </span>
+                    @endif
                     @endisset
                 </a>
                 <a href="{{ route('admin.contacts.index') }}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
-                    <svg  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A10.001 10.001 0 0112 2a10.001 10.001 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                       <span>Contacts</span>
-                      @isset($unreadContactCount)
-                        @if ($unreadContactCount > 0)
-                            <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
-                                {{ $unreadContactCount }}
-                            </span>
-                        @endif
+                    </svg>
+                    <span>Contacts</span>
+                    @isset($unreadContactCount)
+                    @if ($unreadContactCount > 0)
+                    <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
+                        {{ $unreadContactCount }}
+                    </span>
+                    @endif
                     @endisset
                 </a>
-
                 <a href="{{route('admin.booking.index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -105,59 +124,50 @@
                     <span>Bookings</span>
                     @isset($unreadBookingCount)
                     @if ($unreadBookingCount > 0)
-                        <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
-                            {{ $unreadBookingCount }}
-                        </span>
+                    <span class="bg-red-500 text-white text-sm rounded-full px-2 py-1 ml-2">
+                        {{ $unreadBookingCount }}
+                    </span>
                     @endif
-                @endisset
+                    @endisset
                 </a>
-
                 <a href="{{route('news')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 4h16v16H4zM16 2v20M8 6h4M8 10h4M8 14h4">
                         </path>
                     </svg>
+                    <span>News</span>
                     @if(isset($pendingNewsCount) && $pendingNewsCount > 0)
-                    <span>News  @if($pendingNewsCount > 0)
-                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute  transform translate-x-2 ">
-                            {{ $pendingNewsCount }}
-                        </span>
-                        @endif</span>
+                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                        {{ $pendingNewsCount }}
+                    </span>
                     @endif
-                   
                 </a>
-
-        <a href="{{route('blogs.index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
+                <a href="{{route('blogs.index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16.5 3.5l4 4M4 20h4l10-10-4-4L4 16v4zM13.5 6.5L17 10">
                         </path>
                     </svg>
+                    <span>Blogs</span>
                     @if(isset($pendingBlogsCount) && $pendingBlogsCount > 0)
-                    <span>Blogs   @if($pendingBlogsCount > 0)
-                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute  transform translate-x-2 ">
-                            {{ $pendingBlogsCount }}
-                        </span>
-                        @endif</span>
-                        
-                        @endif
+                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                        {{ $pendingBlogsCount }}
+                    </span>
+                    @endif
                 </a>
-                
-                <!-- Add more navigation items as needed -->
             </nav>
         </aside>
+    
+
+        
 
         <!-- Main Content -->
-        <div class="ml-64 flex-1">
+        <div class="flex-1 lg:ml-64">
             <!-- Header -->
             <header class="bg-white shadow-sm">
-                <div class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center">
-                        <input type="search" placeholder="Search..."
-                            class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    </div>
-                    <div class="flex items-center space-x-4">
+                <div class="flex items-center justify-end px-6 py-4">
+                    <div class="flex items-center space-x-4 ">
                         <button class="text-gray-600 hover:text-gray-800">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -174,8 +184,56 @@
                 </div>
             </header>
 
-            <!-- Page Content -->
             <main class="p-6">
+                <!-- Box for Counts -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Customize Box -->
+                    <div class="bg-orange-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-orange-800">Customize</h3>
+                        <p class="text-4xl font-bold text-orange-600">{{ $unreadCustomizeCount ?? 0 }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('admin.customizes.index') }}" class="text-sm text-orange-600 hover:text-orange-800 underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Contacts Box -->
+                    <div class="bg-blue-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Contacts</h3>
+                        <p class="text-4xl font-bold text-blue-600">{{ $unreadContactCount ?? 0 }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('admin.contacts.index') }}" class="text-sm text-blue-600 hover:text-blue-800 underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Bookings Box -->
+                    <div class="bg-green-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-green-800">Bookings</h3>
+                        <p class="text-4xl font-bold text-green-600">{{ $unreadBookingCount ?? 0 }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('admin.booking.index') }}" class="text-sm text-green-600 hover:text-green-800 underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- News Box -->
+                    <div class="bg-purple-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-purple-800">News</h3>
+                        <p class="text-4xl font-bold text-purple-600">{{ $pendingNewsCount ?? 0 }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('news') }}" class="text-sm text-purple-600 hover:text-purple-800 underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Blogs Box -->
+                    <div class="bg-pink-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-pink-800">Blogs</h3>
+                        <p class="text-4xl font-bold text-pink-600">{{ $pendingBlogsCount ?? 0 }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('blogs.index') }}" class="text-sm text-pink-600 hover:text-pink-800 underline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
                 @yield('content')
             </main>
         </div>

@@ -139,7 +139,10 @@
             @else
             <div class="p-6 text-left bg-yellow-50 rounded-s-lg">
                 @foreach($notes as $note)
+                
                 <p class="text-gray-600 capitalize"><i class="fa-solid fa-circle text-xs px-2"></i>{{ $note->note }}</p>
+                
+
                 @endforeach
             </div>
             @endif
