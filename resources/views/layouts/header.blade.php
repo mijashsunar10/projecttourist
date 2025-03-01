@@ -2,19 +2,7 @@
   <div class="mx-auto px-0 xl:px-8">
       <div class="flex justify-between h-22 items-center">
           <!-- Logo and Name -->
-          {{-- <div class="flex items-center ">
-              <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
-                  class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-0 xl:ml-10 mr-3">
-              <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;">
-                  <!-- <span class="text-amber-900 text-xl font-bold block">DAWN IN NEPAL</span> -->
-                  <!-- <span class="text-yellow-500 text-md font-bold block">ADVENTURES P.LTD</span> -->
-                  <a href="{{ route('index') }}">
-
-                      <span class="notranslate text-white xl:text-2xl md:text-xl text-lg font-bold block">DAWN IN NEPAL</span>
-                      <span class="notranslate text-white xl:text-lg md:text-md text-sm font-bold block">ADVENTURES P.LTD</span>
-                  </a>
-              </div>
-          </div> --}}
+         
 
           <div class="flex items-center ">
             <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
@@ -43,6 +31,9 @@
                   </a>
 
               </li>
+
+              {{-- Trekking --}}
+
               <!-- Navbar Item 1 -->
               <li class="relative group">
 
@@ -124,182 +115,15 @@
                           </ul> -->
                       </li>
                       @endforeach 
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-56">
-                                  Ganesh Himal Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ganesh Himal Base Camp
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ruby Valley Trek</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sing La Pass Trek</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pangsang Pass Trek</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Everest Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Base Camp
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Three Passes Trek</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Everest Panorama
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Jiri to Everest Base
-                                      Camp Trek</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Langtang Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Valley
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Gosainkunda
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage
-                                      Trail</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Langtang Circuit
-                                      Trek</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Mansalu Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Circuit
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tsum Valley Trek</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu Base Camp
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Manaslu and Annapurna
-                                      Circuit Trek</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  West Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dolpo Region Treks</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Rara Lake Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Khaptad National Park
-                                      Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Api and Saipal Himal
-                                      Trek </a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="{{ route('trekinfo') }}"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Rural Region
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Chepang Hill Trek</a>
-                              </li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dhorpatan Trek</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tamang Heritage
-                                      Trail</a></li>
-                              <li><a href="{{ route('trekmain') }}"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ghale Gaun Trek</a>
-                              </li>
-                          </ul>
-                      </li>
-
-
+ 
                   </ul>
               </li>
+
+              {{-- Trekking --}}
+
+
+              {{-- Tour and Adventure --}}
+
               <li class="relative group">
                 <a href="{{route('tourindex')}}">
                   <button
@@ -343,142 +167,14 @@
                           </ul>
                       </li>
                       @endforeach
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">One Day Tours</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
-                                      Valley Sightseeing</a></li>
-                              <li><a href="#"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Valley
-                                      Sightseeing</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
-                                      Day Tour</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-56">Multi Day Tours</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Nepal
-                                      Golden Triangle Tour</a></li>
-                              <li><a href="#"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Valley
-                                      Cultural Tour</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lumbini
-                                      and Buddhist Circuit Tour</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">Day Hikes</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
-                                      Day Hikes</a></li>
-                              <li><a href="#"
-                                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kathmandu Day Hikes</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">Wildlife Reserve</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Bardia
-                                      National Park</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Chitwan
-                                      National Park</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Koshi
-                                      Tappu Wildlife Reserve</a></li>
-                          </ul>
-                      </li>
-
-                      <!-- Adventures Section -->
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-56">Rafting</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Trisuli
-                                      River Rafting</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kali
-                                      Gandaki River Rafting</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Karnali
-                                      River Rafting</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lower
-                                      Seti River Rafting</a></li>
-                          </ul>
-                      </li>
-                      <li class="relative group">
-                          <a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-56">Bungee</div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-                          <ul class="nested-dropdown-menu absolute left-full top-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300"
-                              style="border-top:3px solid brown;">
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kushma
-                                      Bungee Jump</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">The Last
-                                      Resort</a></li>
-                              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pokhara
-                                      Bungee Jump</a></li>
-                          </ul>
-                      </li>
-                      <li><a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Paragliding
-                              in Pokhara</a></li>
-                      <li><a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">ZeepFlyer</a>
-                      </li>
-                      <li><a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Ultralight
-                              Flight</a></li>
-                      <li><a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Heli
-                              Ride Tour</a></li>
-                      <li><a href="#"
-                              class="font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline block">Hot
-                              Air Balloon Ride</a></li>
+                      
                   </ul>
               </li>
+
+               {{-- Tour and Adventure --}}
+
+
+               {{-- Expediton --}}
 
 
 
@@ -525,38 +221,7 @@
                           </ul>
                       </li>
                       @endforeach
-                      <li class="relative group">
-                          <a href="#"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-56">
-                                  Mount Everest
-                              </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5 font-bold" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                          </a>
-
-                          <!-- Submenu -->
-
-                      </li>
-
-                      <li class="relative group">
-                          <a href="#"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Heli Ride Tour
-                              </div>
-                          </a>
-                      </li>
-                      <li class="relative group">
-                          <a href="#"
-                              class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
-                              <div class="w-52">
-                                  Hot Air Baloon Ride
-                              </div>
-                          </a>
-                      </li>
+                    
 
                   </ul>
               </li>
@@ -694,26 +359,7 @@
                   </a>
 
               </li>
-              {{-- <li class="relative group">
-                  <a href="">
-                      <button
-                          class="flex items-center text-white font-bold px-3 py-2 hover:text-orange-400 focus:outline-none">
-                          Login
-                          <div class="px-1">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
-                                  height="20" fill="currentColor">
-                                  <!-- Head -->
-                                  <circle cx="12" cy="8" r="4" />
-                                  <!-- Body -->
-                                  <path d="M12 14c-5 0-8 3-8 6v1h16v-1c0-3-3-6-8-6z" />
-                              </svg>
-                          </div>
-
-
-                      </button>
-                  </a>
-
-              </li> --}}
+             
 
               <li class="relative group mr-2">
                   <div class="language-selector text-gray-800 pl-1 py-3 rounded-md text-sm">
@@ -789,19 +435,24 @@
 
   <ul class="mt-4 space-y-2">
 
-      <li><a href="#" class="block px-4 py-2 font-bold hover:bg-blue-800">Home</a></li>
+      <li><a href="{{ route('index') }}" class="block px-4 py-2 font-bold hover:bg-blue-800">Home</a></li>
       <!-- First Trekking Dropdown -->
       <li>
+
+        
+        
+
           <button class="w-full flex justify-between items-center px-4 py-2 font-bold hover:bg-blue-800"
-              onclick="toggleDropdown('trekkingDropdown')">
+              onclick="toggleDropdown('trekkingDropdown')"> 
               Trekking
 
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
-
           </button>
+
+   
           <ul id="trekkingDropdown" class="hidden pl-6 space-y-1">
               <li>
                   <button

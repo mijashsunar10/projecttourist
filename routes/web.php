@@ -65,6 +65,10 @@ use App\Http\Controllers\TermsandConditionController;
 use App\Models\Enquiry;
 use App\Models\TermsandCondition;
 
+use App\Http\Controllers\BankDetailController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PayimageController;
+
 // Route::get('/', function () {
 //     return view('frontend.home.homepage');
 // })->name('index');
@@ -577,8 +581,6 @@ Route::get('/{entity_type}/{entity_id}/booking', [BookingController::class, 'ind
 Route::post('/bookings/{entity_type}/{entity_id}', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
 
 
-
-Route::get('/payment', [TrekController::class, 'payment'])->name('payment');
 Route::get('/aboutus', [TrekController::class, 'aboutus'])->name('aboutus');
 // Route::get('/documents', [TrekController::class, 'documents'])->name('documents');
 Route::get('/terms', [TrekController::class, 'terms'])->name('terms');
@@ -625,4 +627,47 @@ Route::controller(TeamsController::class)->group(function () {
     Route::delete('/teams/delete/{id}', 'destroy')->name('teamdelete');
     
 });
+
+
+
+Route::controller(BankDetailController::class)->group(function () {
+    
+  
+    Route::get('/paymentmethod', 'index')->name('payment'); // Public
+    Route::get('/payment/create', 'create')->name('paymentcreate');
+    Route::get('/payment/edit/{id}', 'edit')->name('paymentedit');     
+    Route::post('/payment/add', 'store')->name('paymentstore');
+    Route::put('/payment/update/{id}', 'update')->name('paymentupdate');
+    
+    Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
+    
+});
+
+Route::controller(NoteController::class)->group(function () {
+    
+  
+    
+    Route::get('/note/create', 'create')->name('notecreate');
+    Route::post('/note/add', 'store')->name('notestore');
+    Route::get('/note/edit/{id}', 'edit')->name('noteedit');
+    Route::put('/note/update/{id}', 'update')->name('noteupdate');
+    Route::delete('/note/delete/{id}', 'destroy')->name('notedelete');
+    
+    // Route::delete('/payment/delete/{id}', 'destroy')->name('paymentdelete');
+    
+});
+
+Route::controller(PayimageController::class)->group(function () {
+    
+  
+    
+    Route::post('/payimage/add', 'store')->name('payimagestore');
+    // Route::get('/payimage/edit/{id}', 'edit')->name('payimageedit');
+    // Route::put('/payimage/update/{id}', 'update')->name('payimageupdate');
+    Route::delete('/payimage/delete/{id}', 'destroy')->name('payimagedelete');
+    
+    
+    
+});
 require __DIR__.'/auth.php';
+

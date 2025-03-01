@@ -127,7 +127,7 @@
             <div class="absolute top-3 mt-4 right-4 flex gap-2">
             
                 <!-- Add Button -->
-                <a href="#" onclick="openModal()" 
+                <a href="#" onclick="openModall()" 
                 class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow">
                     Add
                 </a>    
@@ -138,7 +138,7 @@
                     <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg relative">
                         
                         <!-- Close Button -->
-                        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">
+                        <button onclick="closeModall()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">
                             &times;
                         </button>
 
@@ -169,7 +169,7 @@
 
                             <!-- Modal Footer -->
                             <div class="flex justify-end space-x-2">
-                                <button type="button" onclick="closeModal()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
+                                <button type="button" onclick="closeModall()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
                                     Cancel
                                 </button>
                                 <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
@@ -185,17 +185,17 @@
                                @if ($errors->any())
                                     <script>
                                         document.addEventListener("DOMContentLoaded", function() {
-                                            openModal();
+                                            openModall();
                                         });
                                     </script>
                              @endif
                 <!-- JavaScript for Modal and Image Preview -->
                 <script>
-                    function openModal() {
+                    function openModall() {
                         document.getElementById('addImageModal').classList.remove('hidden');
                     }
 
-                    function closeModal() {
+                    function closeModall() {
                         document.getElementById('addImageModal').classList.add('hidden');
                         document.getElementById('imagePreview').innerHTML = ''; // Clear previews on close
                     }
@@ -234,14 +234,14 @@
                     window.onclick = function(event) {
                         const modal = document.getElementById('addImageModal');
                         if (event.target === modal) {
-                            closeModal();
+                            closeModall();
                         }
                     }
 
                     // Close modal when pressing ESC
                     document.addEventListener('keydown', function(event) {
                         if (event.key === "Escape") {
-                            closeModal();
+                            closeModall();
                         }
                     });
                 </script>
