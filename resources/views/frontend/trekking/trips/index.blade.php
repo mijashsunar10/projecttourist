@@ -80,7 +80,7 @@
     
                 <!-- Animated Price Badge -->
                 <div class="absolute top-56 left-1/2 -translate-x-1/2 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white px-6 py-2.5 rounded-full text-base font-bold shadow-lg flex items-center gap-2 transform -translate-y-1/2 z-30 border-2 border-blue-200/30 hover:scale-105 transition-transform duration-300 hover:rotate-2">
-                    ${{ $trip->price }}<span class="font-medium text-blue-100 ml-1 text-sm">/person</span>
+                    {{ $trip->price }}
                 </div>
     
                 <!-- Content Section -->

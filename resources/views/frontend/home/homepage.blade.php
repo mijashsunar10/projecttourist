@@ -11,7 +11,7 @@
 
 
 
-{{-- @include('frontend.home.smallphoto') --}}
+@include('frontend.home.smallphoto')
 
 {{-- @include('frontend.home.featurecard') --}}
 
