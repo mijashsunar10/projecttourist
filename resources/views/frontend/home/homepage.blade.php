@@ -13,6 +13,8 @@
 
 @include('frontend.home.smallphoto')
 
+
+
 {{-- @include('frontend.home.featurecard') --}}
 
 <div class="flex flex-col items-center justify-center bg-gray-100">
@@ -98,6 +100,9 @@
 @include('frontend.home.review')
 
 @include('frontend.home.accrediation')
+
+@include('frontend.home.tripadvisor')
+
 
 
 
