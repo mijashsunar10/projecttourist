@@ -32,7 +32,7 @@
     <section class="bg-[#283655] text-black font-sans mt-16 xl:mt-20 ">
 
 
-        <div class="mt-10 flex flex-col lg:flex-row items-center justify-center px-6 py-12 lg:py-18 max-w-7xl mx-auto">
+        {{-- <div class="mt-10 flex flex-col lg:flex-row items-center justify-center px-6 py-12 lg:py-18 max-w-7xl mx-auto">
             <!-- Photo Section -->
             <div class="w-full lg:w-1/2 flex lg:items-center justify-center lg:justify-start mb-8 lg:mb-0">
                 <div class="w-[500px] h-[500px] rounded-full overflow-hidden shadow-lg animate-image ml-[-1rem]">
@@ -93,95 +93,141 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class=" bg-blue-50 py-10 ">
-            <div class="text-center  mx-auto">
-                <h3 class="text-gray-700 font-bold text-4xl mb-2 ">Contact Us</h3>
-                <p class="text-gray-500 mb-6 text-balance">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam quis nostrud exercitation ullamco.
-                </p>
-
-            </div>
-            <div class="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Left Section -->
-                <div>
-                    <h1 class="text-3xl lg:text-3xl font-bold text-gray-700 mb-6 text-center lg:text-left">Get In Touch With
-                        Us</h1>
-                    <p class="text-gray-500 mb-6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam quis nostrud exercitation ullamco.
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 py-16 px-4 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header Section -->
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-extrabold text-gray-900 mb-4 relative inline-block">
+                        <span class="relative z-10">Contact Us</span>
+                        <div class="absolute bottom-0 left-1/2 w-24 h-2 bg-blue-200 transform -translate-x-1/2"></div>
+                    </h3>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        Let's start a conversation! Whether you have questions, suggestions, or just want to connect,
+                        we're here to listen and help you with anything you need.
                     </p>
-                    <!-- Your existing contact details here -->
-
-                    <div class="space-y-6">
-                        <!-- Location -->
-                        <div class="flex items-center">
-                            <div class="bg-blue-500 text-white p-3 rounded-full">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Our Location</h4>
-                                <p class="text-gray-500 text-sm">Lakeside-6, Pokhara</p>
-                            </div>
-                        </div>
-                        <!-- Phone -->
-                        <div class="flex items-center">
-                            <div class="bg-blue-500 text-white p-3 rounded-full">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Phone Number</h4>
-                                <p class="text-gray-500 text-sm">(+977)9826115361</p>
-                            </div>
-                        </div>
-                        <!-- Email -->
-                        <div class="flex items-center">
-                            <div class="bg-blue-500 text-white p-3 rounded-full">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Email Address</h4>
-                                <p class="text-gray-500 text-sm">admin@gmail.com</p>
-                            </div>
-                        </div>
-                        <!-- website -->
-                        <div class="flex items-center">
-                            <div class="bg-blue-500 text-white p-3 rounded-full">
-                                <i class="fa-solid fa-globe"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Website</h4>
-                                <p class="text-gray-500 text-sm">www.google.com</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Right Section -->
-                <div class="flex flex-col items-center justify-center">
-                    <div>
-                        <h1 class="text-3xl lg:text-3xl font-bold text-gray-700 mb-6 text-center">Send Us a Message</h1>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Left Section -->
+                    <div class="space-y-10">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
+
+                            <!-- Contact Items -->
+                            <div class="space-y-8">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 p-4 rounded-2xl shadow-md flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-6">
+                                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Our Office</h4>
+                                        <p class="text-gray-600">Lakeside-6, Pokhara</p>
+                                        <p class="text-gray-500 text-sm mt-2">Visit our office between 9 AM - 9 PM</p>
+                                        <p class="text-gray-500 text-sm ">We are Open throught the week.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 p-4 rounded-2xl shadow-md flex-shrink-0">
+                                        <i class="fas fa-headset text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-6">
+                                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Contact Support</h4>
+                                        <p class="text-gray-600">(+977) 9846069924 </p>
+                                        <p class="text-gray-500 text-sm ">Feel Free to call us at anytime.</p>
+                                        <p class="text-blue-500 hover:text-blue-600 text-sm mt-2">
+                                            <a href="tel:+9779846069924">Click to call →</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 p-4 rounded-2xl shadow-md flex-shrink-0">
+                                        <i class="fas fa-envelope-open-text text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-6">
+                                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Email Us</h4>
+                                        <p class="text-gray-600">dawninnepal3@gmail.com</p>
+                                        <p class="text-gray-500 text-sm">We will get back to you shortly.</p>
+
+                                        <p class="text-blue-500 hover:text-blue-600 text-sm mt-2">
+                                            <a href="mailto:dawninnepal3@gmail.com">Send email →</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Connect With Us</h3>
+                            <div class="flex space-x-6">
+                                <!-- Email -->
+                                <a href="mailto:dawninnepal3@gmail.com" title="Email"
+                                    class="bg-gray-100 p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-300 transition flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                    <img width="32" alt="Gmail"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png?20221017173631">
+                                </a>
+                                <!-- Facebook -->
+                                <a href="https://www.facebook.com/people/Dawn-In-Nepal-Adventure-Pvt-Ltd/100071845182957/"
+                                    target="_blank" title="Facebook"
+                                    class="bg-blue-700 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-100 hover:text-blue-700 transition flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                    <i class="fab fa-facebook text-2xl sm:text-3xl"></i>
+                                </a>
+
+                                <!-- WhatsApp -->
+                                <a href="https://wa.me/+9779846069924" target="_blank" title="WhatsApp"
+                                    class="bg-green-600 p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-100 hover:text-green-600 transition flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                    <i class="fab fa-whatsapp text-2xl sm:text-3xl"></i>
+                                </a>
+                                <!-- Trip Advisor -->
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g293890-d10089624-Reviews-Dawn_In_Nepal_Adventures_Pvt_Ltd-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central.html"
+                                    target="_blank" title="TripAdvisor"
+                                    class="bg-[#00af87] p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-100 transition flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                    <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg"
+                                        alt="TripAdvisor" class="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-blue-500 rounded-lg p-8 shadow-lg w-[80%]">
+
+                    <!-- Right Section - Contact Form -->
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-blue-50">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8">Send Us a Message</h2>
                         <form id="contactForm" class="space-y-6">
                             @csrf
-                            <input type="text" name="name" placeholder="Name"
-                                class="w-full p-4 text-sm bg-white rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                                required />
-                            <input type="email" name="email" placeholder="Email"
-                                class="w-full p-4 text-sm bg-white rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                                required />
-                            <input type="text" name="whatsapp" placeholder="WhatsApp Number (optional)"
-                                class="w-full p-4 text-sm bg-white rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-                            <textarea name="message" placeholder="Your Message" rows="4"
-                                class="w-full p-4 text-sm bg-white rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                                required></textarea>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" name="name"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                                    required placeholder="Your Name">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" name="email"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none "
+                                    required placeholder="john@example.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" name="whatsapp"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                                    placeholder="Your Number with country code">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                                <textarea rows="5" name="message"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                                    placeholder="Write your message here..."></textarea>
+                            </div>
+
                             <button type="submit"
-                                class="w-full bg-[#374151] text-white font-bold py-3 rounded-lg hover:bg-pink-500 transition">
+                                class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
                                 Send Message
                             </button>
                         </form>
@@ -189,7 +235,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Embed Map -->
         <div class="bg-[#F5F5F5] py-12">
             <div class="text-center">
