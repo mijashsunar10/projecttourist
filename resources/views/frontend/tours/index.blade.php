@@ -13,12 +13,18 @@
     @auth
         <div class="flex flex-col items-center justify-center  mt-6">
             <!-- Region Name with Straight Horizontal Lines -->
-            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
+           
+            <div class="flex items-center justify-center w-full max-w-4xl mx-auto xs:mb-4 mt-8">
+                <!-- Left Line -->
+                <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+        
+                <!-- Title -->
+                <h1 class=" text-xl  xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] xs:mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
                     Add Tours and Adventure Region
                 </h1>
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
+        
+                <!-- Right Line -->
+                <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
             </div>
         </div>
     @endauth
@@ -29,13 +35,17 @@
 
         <div class="flex flex-col items-center justify-center mt-8 ">
             <!-- Region Name with Straight Horizontal Lines -->
-            <div class="flex items-center w-full max-w-4xl mx-auto mt-6">
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-                <h1 class="text-4xl font-bold text-[#0b3e85] mx-8 text-center uppercase whitespace-nowrap" style="font-family:'Times New Roman', Times, serif">
-                   Tours and Adventure Region
+            
+            <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+        
+                <!-- Title -->
+                <h1 class=" text-xl  xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b3e85] xs:mx-4 sm:mx-8 text-center uppercase whitespace-nowrap" >
+                    Tours and Adventure Region
                 </h1>
-                <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
-            </div>
+        
+                <!-- Right Line -->
+                <div class="hidden sm:block flex-1 border-t-2 border-[#0b3e85]"></div>
+            
         </div>
 
     @endguest

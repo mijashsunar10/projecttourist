@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('frontend/css/home/specialist.css')}}">
 
-<section class="specialist bg-gradient-to-br from-blue-50 to-indigo-50  service_card">
+<section class="home__data specialist bg-gradient-to-br from-blue-50 to-indigo-50  service_card">
 
 
 

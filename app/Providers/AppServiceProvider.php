@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
 use App\Models\Contact;
 use App\Models\Expedition;
 use App\Models\Region;
@@ -12,6 +13,7 @@ use App\Models\Booking;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Enquiry;
+use App\Models\News;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,12 +41,17 @@ class AppServiceProvider extends ServiceProvider
             $unreadCustomizeCount = Customize::where('is_read', false)->count();
             $unreadBookingCount = Booking::where('is_read', false)->count();
             $unreadEnquiryCount = Enquiry::where('is_read', false)->count();
+            $pendingNewsCount = News::where('is_approved', false)->count();
+            $pendingBlogsCount = Blog::where('is_approved', false)->count();
            
             $view->with([
                 'unreadContactCount' => $unreadContactCount,
                 'unreadCustomizeCount' => $unreadCustomizeCount,
                 'unreadBookingCount' => $unreadBookingCount,
                 'unreadEnquiryCount' => $unreadEnquiryCount,
+                'pendingNewsCount'=> $pendingNewsCount,
+                'pendingBlogsCount'=> $pendingBlogsCount,
+
                 
             ]);
         });

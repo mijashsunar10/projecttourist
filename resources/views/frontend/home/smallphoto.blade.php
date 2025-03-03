@@ -261,6 +261,7 @@
                                 <div class="font-open-sans text-base">
                                     <div class="relative group">
                                         <!-- Image Section -->
+                                        <a href="{{ route('expeditionsshow', $expedition->id) }}">
                                         <div class="relative overflow-hidden rounded-2xl shadow-lg">
                                             <img 
                                                 src="{{ asset('images/expeditions/' . $expedition->image) }}" 
@@ -272,6 +273,7 @@
                                                 {{ $expedition->name }}
                                             </div>
                                         </div>
+                                    </a>
                                     </div>
                                 </div>
                             </div>
@@ -307,6 +309,7 @@
                                 <div class="font-open-sans text-base">
                                     <div class="relative group">
                                         <!-- Image Section -->
+                                        <a href="{{ route('tourshow', $tour->id) }}">
                                         <div class="relative overflow-hidden rounded-2xl shadow-lg">
                                             <img 
                                                 src="{{ asset('images/tours/' . $tour->image) }}" 
@@ -318,6 +321,7 @@
                                                 {{ $tour->name }}
                                             </div>
                                         </div>
+                                    </a>
                                     </div>
                                 </div>
                             </div>
@@ -353,6 +357,7 @@
                                 <div class="font-open-sans text-base">
                                     <div class="relative group">
                                         <!-- Image Section -->
+                                        <a href="{{ route('regionsshow', $region->id) }}">
                                         <div class="relative overflow-hidden rounded-2xl shadow-lg">
                                             <img 
                                                 src="{{ asset('images/regions/' . $region->image) }}" 
@@ -364,6 +369,7 @@
                                                 {{ $region->name }}
                                             </div>
                                         </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

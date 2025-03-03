@@ -1,4 +1,4 @@
-@extends('frontend.template.template')
+@extends('layouts.template')
 
 @section('pagecontent')
 
@@ -102,6 +102,8 @@
 
 
 @include('frontend.home.accrediation')
+
+@include('frontend.home.tripadvisor')
 
 
 

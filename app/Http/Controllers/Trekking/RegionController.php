@@ -39,7 +39,7 @@ class RegionController extends Controller
 
     $request->validate([
         'name'  => 'required|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
     ], $customMessages);
 
     $imageName = null;
@@ -113,12 +113,7 @@ class RegionController extends Controller
         return view('frontend.trekking.trips.index', compact('region'));
     }
 
-    // public function userregionshow($id)
-    // {
-    //     $region = Region::with('trips')->findOrFail($id);
-    //     return view('frontend.trips.index1', compact('region'));
-
-    // }
+   
 
 
 }
