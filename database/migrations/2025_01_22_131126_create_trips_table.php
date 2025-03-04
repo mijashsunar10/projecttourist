@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('duration');
             $table->string('distance');
             $table->string('ascent');
-            $table->string('image')->nullable();
+            
             $table->timestamps();
         
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');

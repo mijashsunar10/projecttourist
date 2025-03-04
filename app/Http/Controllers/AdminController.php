@@ -16,4 +16,12 @@ class AdminController extends Controller
         $unreadCount = Contact::where('is_read', false)->count();
         return view('admin.dashboard', compact('unreadCount','pendingNewsCount','pendingBlogsCount'));
     }
+    public function dash()
+    {
+        
+        $pendingNewsCount = News::where('is_approved', false)->count();
+        $pendingBlogsCount = Blog::where('is_approved', false)->count();
+        $unreadCount = Contact::where('is_read', false)->count();
+        return view('admin.dashboard.dashboard',compact('unreadCount','pendingNewsCount','pendingBlogsCount'));
+    }
 }

@@ -368,7 +368,7 @@
                 
                 @auth
                 <a href="{{ route('tripfactcreate', $trip->id) }}">
-                    <button class="bg-tertiary text-white px-4 py-2 rounded mb-5">Add Trip Fact</button>
+                    <button class="bg-blue-900 text-white px-4 py-2 rounded mb-5">Add Trip Fact</button>
                 </a>
                 @endauth
             
@@ -753,7 +753,7 @@
                                             {{-- Edit and Delete Actions --}}
                                             @auth
                                                 <div class="mt-2 sm:mt-0 flex space-x-3">
-                                                    <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $inclusion->id]) }}" class="text-blue-500">Edit</a>
+                                                    {{-- <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $inclusion->id]) }}" class="text-blue-500">Edit</a> --}}
                                                     <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $inclusion->id]) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -784,7 +784,7 @@
                                             {{-- Edit and Delete Actions --}}
                                             @auth
                                                 <div class="mt-2 sm:mt-0 flex space-x-3">
-                                                    <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $exclusion->id]) }}" class="text-blue-500">Edit</a>
+                                                    {{-- <a href="{{ route('trips.inclusions-exclusions.edit', [$trip->id, $exclusion->id]) }}" class="text-blue-500">Edit</a> --}}
                                                     <form action="{{ route('trips.inclusions-exclusions.destroy', [$trip->id, $exclusion->id]) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -992,14 +992,14 @@
             </div>
             
           <!-- Image Preview Container -->
-          <div id="imagePreviewContainer" class="mt-4" style="display: none;">
+          {{-- <div id="imagePreviewContainer" class="mt-4" style="display: none;">
             <div class="relative inline-block items-center"> <!-- Wrap the image and button in a relative container -->
                 <img id="imagePreview" src="#" alt="Image Preview" class="w-56 h-56 object-cover rounded-lg shadow-md">
                 <button type="button" onclick="removeImage()" class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 px-2 text-md hover:bg-red-600 transition duration-200 transform translate-x-1/2 -translate-y-1/2">
                     &times; <!-- Cancel cross -->
                 </button>
             </div>
-        </div>
+        </div> --}}
     
 
     
@@ -1093,7 +1093,7 @@
     <div class="w-full lg:w-1/5 mx-auto sticky top-40 h-max max-w-3xl ">
         <div class="bg-white p-6 rounded-lg shadow-xl ">
             <h2 class="text-2xl font-bold  text-blue-1000" style=" font-family: 'Times New Roman', Times, serif">Trip Cost</h2>
-            <p class="text-lg font-bold text-red-600">USD 1,200 per person</p>
+            <p class="text-lg font-bold text-red-600">USD {{$trip->price}} per person</p>
             <div class="space-y-3 mt-4">
                 <a href="{{ route('booking', ['trip', $trip->id]) }}" class="block bg-blue-800 text-white text-center py-3 rounded-md hover:bg-blue-700 transition font-bold">
                     Book Now  

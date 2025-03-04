@@ -15,6 +15,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-500">
+            <div class="animate-spin rounded-full h-64 w-64 border-t-4 border-b-4 border-orange-500"></div>
+            <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo" class="absolute h-56 w-56">
+        </div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -32,5 +36,6 @@
                 {{ $slot }}
             </main>
         </div>
+        
     </body>
 </html>

@@ -498,7 +498,9 @@ Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewControll
 
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admindashboard', [AdminController::class, 'dash'])->name('admin.dash');
 Route::prefix('admin')->name('admin.')->group(function() {
+
     Route::resource('contacts', ContactAdminController::class);
     Route::resource('customizes', CustomizeAdminController::class);
     Route::resource('booking', BookingAdminController::class);

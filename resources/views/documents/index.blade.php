@@ -14,17 +14,15 @@
             
             <div class="flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
+        @auth
         <div class="text-center mb-6">
             <a href="{{ route('documents.create') }}" class="bg-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-700">➕ Add Document</a>
         </div>
+        @endauth
     </div>
 
     
-    @auth
-    <div class="text-center mb-6">
-        <a href="{{ route('documents.create') }}" class="bg-yellow-800 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-700"> Add Document</a>
-    </div>
-    @endauth
+   
     <div class="flex justify-center space-x-4 mb-8">
         <button class="category-btn px-5 py-2 rounded-full bg-blue-800 text-white hover:bg-white hover:text-blue-800 border border-blue-800 transition active:bg-white active:text-blue-800" data-category="legal_documents">Legal Documents</button>
         <button class="category-btn px-5 py-2 rounded-full bg-blue-800 text-white hover:bg-white hover:text-blue-800 border border-blue-800 transition active:bg-white active:text-blue-800" data-category="travel_association">Travel Associations</button>

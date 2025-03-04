@@ -1,7 +1,7 @@
 <section class="bg-gray-100 py-10">
   <div class="max-w-7xl mx-auto py-10 px-4">
       <!-- Section 1 -->
-      <div class="flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden">
+      <div class="home__data flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden">
           <!-- Image -->
           <div class="service_card1 w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden">
               <img src="{{ asset('frontend/images/description/image copy 5.png') }}" alt="Annapurna Region"
@@ -28,7 +28,7 @@
       </div>
 
       <!-- Section 2 -->
-      <div class="flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden ">
+      <div class="home__data flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden ">
           <!-- Content -->
           <div class="service_card1 w-full lg:w-1/2 p-6 order-2 lg:order-1">
               <h2 class="text-2xl font-bold mb-2">Tours and Adventure in Nepal</h2>
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Section 3 (Newly Added) -->
-      <div class="flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden ">
+      <div class="home__data flex flex-wrap lg:flex-nowrap bg-white shadow-md rounded-lg overflow-hidden ">
           <!-- Image -->
           <div class="service_card1 w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden">
               <img src="{{ asset('frontend/images/description/image copy 11.png') }}" alt="Langtang Region"

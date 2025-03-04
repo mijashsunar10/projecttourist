@@ -24,7 +24,7 @@
 
         <!-- Description Input Fields -->
         <div id="item-container">
-            @foreach ($inclusionExclusion->descriptions as $description)
+            @foreach ($inclusionExclusion->descriptions ?? [] as $description)
                 <div class="flex items-center space-x-4 mb-4">
                     <input type="text" name="descriptions[]" value="{{ $description }}" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Inclusion or Exclusion" required>
                     <button type="button" class="remove-item text-xl text-gray-500 hover:text-red-600 transition">❌</button>
