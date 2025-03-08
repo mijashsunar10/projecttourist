@@ -497,8 +497,8 @@ Route::delete('/mountainreviews/{id}', [ExpeditionReviewController::class, 'dest
 Route::get('mountain/{mountain_id}/expeditionreviews', [ExpeditionReviewController::class, 'allReviews'])->name('mountainreviews.index');
 
 
-Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admindashboard', [AdminController::class, 'dash'])->name('admin.dash');
+// Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'verified'])->get('/admindashboard', [AdminController::class, 'dash'])->name('admin.dash');
 Route::prefix('admin')->name('admin.')->group(function() {
 
     Route::resource('contacts', ContactAdminController::class);

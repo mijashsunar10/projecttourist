@@ -1,29 +1,20 @@
-<style>
-
-/* Initial colors for the homepage */
-#dawnInNepalText,
-#adventuresText {
-  color: white; /* White color before scrolling */
-}
-    </style> 
-
- 
- <nav id="navbar" class="bg-transparent fixed w-full z-20 shadow-sm top-0 transition-all duration-300">
+<nav id="navbar" class="bg-transparent fixed w-full z-20 shadow-sm top-0 transition-all duration-300">
     <div class="mx-auto px-0 xl:px-8">
         <div class="flex justify-between h-22 items-center">
             <!-- Logo and Name -->
-            
+          
   
-            <div class="flex items-center">
-                <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
-                     class="xl:h-20 xl:w-20 h-16 w-16 rounded-full sm:ml-10 lg:ml-5 ml-0 xxl:ml-10 mr-3">
-                <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;" class="hidden ss:block">
-                  <a href="{{ route('index') }}">
-                    <span id="dawnInNepalText" class="notranslate text-white xl:text-2xl md:text-xl text-lg ss:font-bold block">DAWN IN NEPAL</span>
-                    <span id="adventuresText" class="notranslate text-white xl:text-lg md:text-md text-sm ss:font-bold block">ADVENTURES P.LTD</span>
-                  </a>
-                </div>
-              </div>
+            <div class="flex items-center ">
+              <img src="{{ asset('frontend/images/logo/logo.png') }}" alt="Logo"
+                  class="xl:h-20 xl:w-20 h-16 w-16  rounded-full sm:ml-10 lg:ml-5 ml-0 xxl:ml-10 mr-3">
+                  <div id="logoName" style="font-family: 'Rubik Doodle Shadow', cursive;" class="hidden ss:block">
+                    <a href="{{ route('index') }}">
+                      <span class="notranslate text-white xl:text-2xl md:text-xl text-lg ss:font-bold block">DAWN IN NEPAL</span>
+                      <span class="notranslate text-white xl:text-lg md:text-md text-sm ss:font-bold block">ADVENTURES P.LTD</span>
+                    </a>
+                  </div>
+                  
+          </div>
   
   
   

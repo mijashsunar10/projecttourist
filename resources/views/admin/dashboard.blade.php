@@ -4,28 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Admin Dashboard</title>
+    <title>Nepalese Trekking</title>
+  <link rel="icon" type="image/png" href="{{asset('frontend/images/logo/logo.png')}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-gray-100">
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-0 invisible transition-opacity duration-200 z-40"></div>
+
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 fixed h-full">
-            <div class="text-xl font-bold text-center mb-8">
-                <span class="text-orange-400">Trek</span>Admin
+        <aside class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 fixed h-full transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out z-50">
+            <div class="text-xl font-bold text-center mb-8 flex items-center justify-between px-4">
+                <span class="text-orange-400"> Admin Dashboard</span>
+                <!-- Close button for mobile -->
+                <button id="closeSidebar" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
 
             <nav>
 
-                <a href="{{route('index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
+                <a href="{{route('admin.dash')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
+                    <span>Dashboard</span>
+                </a>
+                <!-- Navigation items (same as before) -->
+                <a href="{{route('index')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
+
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <!-- Home icon -->
                     <span>Home</span>
                 </a>
-                <a href={{route('admin.dash')}} class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
+
+
+                <a href="{{route('admin.dash')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -43,13 +65,7 @@
                     <span>Trekking</span>
                 </a>
 
-               
-                
-
-                
-                
-                
-                
+ 
                 <a href="{{route('tourindex')}}" class="flex items-center space-x-2 px-4 py-3 hover:bg-gray-700 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -173,21 +189,26 @@
                         
                         @endif
                     </span>
-                </a>
-                
-                <!-- Add more navigation items as needed -->
+        </a>
+                <!-- Other nav items -->
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <div class="ml-64 flex-1">
+        <div class="ml-0 md:ml-64 flex-1">
             <!-- Header -->
-            <header class="bg-white shadow-sm">
+            <header class="bg-white shadow-sm z-30 relative">
                 <div class="flex items-center justify-between px-6 py-4">
                     <div class="flex items-center">
-                        <input type="search" placeholder="Search..."
-                            class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <!-- Hamburger button for mobile -->
+                        <button id="menuBtn" class="md:hidden mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        
                     </div>
+                    <!-- Header right content -->
                     <div class="flex items-center space-x-4">
                         <button class="text-gray-600 hover:text-gray-800">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +221,7 @@
                                
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="text-sm text-gray-700 hover:text-gray-900">
+                                    <button type="submit" class="text-sm text-gray-700 font-bold hover:text-gray-900">
                                         Log Out
                                     </button>
                                 </form>
@@ -208,6 +229,8 @@
                             </button>
                         </div>
                     </div>
+
+
                 </div>
             </header>
 
@@ -217,6 +240,56 @@
             </main>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const closeSidebarBtn = document.getElementById('closeSidebar');
+            const sidebar = document.querySelector('aside');
+            const overlay = document.getElementById('overlay');
+
+            function openSidebar() {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('opacity-0', 'invisible');
+                overlay.classList.add('opacity-50', 'visible');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('opacity-0', 'invisible');
+                overlay.classList.remove('opacity-50', 'visible');
+            }
+
+            // Event listeners
+            menuBtn.addEventListener('click', openSidebar);
+            closeSidebarBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar when clicking nav links on mobile
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) closeSidebar();
+                });
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    // Reset desktop styles
+                    sidebar.classList.remove('-translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('translate-x-0');
+                    overlay.classList.add('opacity-0', 'invisible');
+                } else {
+                    // Ensure mobile state if resized smaller
+                    if (!sidebar.classList.contains('-translate-x-full')) {
+                        closeSidebar();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

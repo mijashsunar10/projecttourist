@@ -102,7 +102,7 @@
         </ul>
     </nav>
 
-    {{-- <div>
+    <div>
         @if(session('success'))
         <div id="success-message" class="bg-green-500 text-white p-3 rounded">
             {{ session('success') }}
@@ -114,7 +114,7 @@
             }, 4000); // 4 seconds
         </script>
         @endif
-    </div> --}}
+    </div>
 </div>
 
 
@@ -327,7 +327,7 @@
           
             <!-- Title -->
             <h1 class="text-2xl xs:text-3xl sm:text-3xl lg:text-3xl xlg:text-4xl font-bold text-[#0b3e85] xs:mx-4 sm:mx-8 text-center uppercase" style="font-family: 'Times New Roman', Times, serif">
-              Trips of {{ $tourtrip->name }}
+               {{ $tourtrip->name }}
             </h1>
           
             <!-- Right Line -->
@@ -341,13 +341,13 @@
             <h2 class=" text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">Trip Overview</h2>
             <div class="text-gray-800 space-y-4 text-md sm:text-lg font-semibold">
                 <p>{{ $tourtrip->description }}</p>
-                <p>
+                {{-- <p>
                     As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
                     including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
                     bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
                     the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
                     your body and soul, making every meal a moment to cherish.
-                </p>
+                </p> --}}
             </div>
         </div>
 
@@ -482,15 +482,6 @@
     </div>
 </div>
 
-    
-{{-- Trip Facts --}}
-
-{{-- Trip Overview --}}
-
-
-
-{{-- Trip Overview --}}
-
 
  <!-- TourHIghlights -->
  
@@ -501,7 +492,7 @@
         <!-- Centered Heading with Lines -->
 
         <div style="max-width: 98%" class="mx-auto">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">Tour & Adventure Highlights</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">{{$tourtrip->name}} Highlights</h2>
 
             <ul class="space-y-4">
                 @forelse ($highlights as $highlight)
@@ -538,7 +529,7 @@
         <div class="bg-gray-50 p-6 sm:p-8 md:p-10 xl:p-12 rounded-lg shadow-lg mt-8  mx-auto " id="highlight">
         <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 "
         style="font-family: 'Times New Roman', Times, serif">
-        Tour Highlights
+        {{$tourtrip->name}} Highlights
         </h2> 
         <ul class="space-y-4 text-gray-700 text-sm sm:text-md md:text-lg font-semibold">
         @forelse ($highlights as $highlight)
@@ -587,12 +578,12 @@
         <div class=" mx-auto">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 "
                 style="font-family: 'Times New Roman', Times, serif">
-                Tour Itinerary Overview
+                 Itinerary Overview
             </h2>
        
             <div class="w-full ">
                 <div class="bg-blue-800 text-white text-center my-6 p-6 rounded-t-lg">
-                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold" style="font-family: 'Times New Roman', Times, serif">TOurs in Nepal – Iterinanary Overview</h1>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold" style="font-family: 'Times New Roman', Times, serif">Tours and Adventure in Nepal – Iterinanary Overview</h1>
                     <p class="mt-2 text-sm sm:text-base">A detail description of Itirenary</p>
                     @auth
                         <a href="{{ route('touritinerarycreate', $tourtrip->id) }}" class="inline-block mt-3">
@@ -662,7 +653,7 @@
     <div class="container mx-auto py-16 px-6 bg-white rounded-lg shadow-lg mt-8 ">
                   
         <div class="w-full">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Required Items for This Tour</h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900" style=" font-family: 'Times New Roman', Times, serif">Required Items</h2>
             
             @foreach($tourtrip->tourrequiredItems as $item)
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b py-3">
@@ -807,7 +798,7 @@
             <div class="w-full">
                 <div class="bg-blue-900 text-white text-center p-6 rounded-t-lg mb-2 sm:mb-4">
                     {{-- <h1 class="text-4xl font-bold">TOurs in Nepal – TOur Faq Overview</h1> --}}
-                    <h2 class="text-2xl md:text-3xl font-bold" style=" font-family: 'Times New Roman', Times, serif">Tours in Nepal – Tour Faq Overview</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold" style=" font-family: 'Times New Roman', Times, serif">Tour and Adventure Faq Overview</h2>
                     <p class="mt-2 text-lg">A detail description of Tour Faq</p>
 
                     @auth

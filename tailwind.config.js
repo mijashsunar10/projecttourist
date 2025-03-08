@@ -33,7 +33,7 @@ export default {
                 'xs':'450px',
                 'ss': '370px',
                 'xxl': '1330px' ,
-                'xlg':'1150px'// Custom breakpoint
+                'xlg':'1160px'// Custom breakpoint
               },
 
               colors: {

@@ -87,13 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //    navbar
 
-
-
-// scrolling function 
-
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.getElementById("navbar");
-  const logoName = document.getElementById("logoName");
+  const dawnInNepalText = document.getElementById("dawnInNepalText");
+  const adventuresText = document.getElementById("adventuresText");
 
   // Check if the current URL is the homepage
   const isHomePage = window.location.pathname === "/";
@@ -105,50 +102,44 @@ document.addEventListener("DOMContentLoaded", () => {
         // Change navbar background and text on scroll
         navbar.classList.add("bg-white", "shadow-lg");
         navbar.classList.remove("bg-transparent");
-        navbar.querySelectorAll("button, a").forEach((el) => {
+
+        // Change text color for all buttons and links EXCEPT the logo text
+        navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
           el.classList.add("text-gray-900");
           el.classList.remove("text-white");
         });
 
         // Change logo name colors
-        logoName.innerHTML = `
-          <span class="notranslate text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-          <span class="notranslate text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
-        `;
+        dawnInNepalText.style.color = "#7c2d12"; // Brown color
+        adventuresText.style.color = "#eab308"; // Yellow color
       } else {
         // Revert navbar background and text
         navbar.classList.remove("bg-white", "shadow-lg");
         navbar.classList.add("bg-transparent");
-        navbar.querySelectorAll("button, a").forEach((el) => {
+
+        // Revert text color for all buttons and links EXCEPT the logo text
+        navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
           el.classList.add("text-white");
           el.classList.remove("text-gray-900");
         });
-        navbar.querySelectorAll("ul,li, a").forEach((el) => {
-          el.classList.add("text-gray-900");
-         el.classList.remove("text-white");
-        });
 
         // Revert logo name colors
-        logoName.innerHTML = `
-          <span class="notranslate text-white text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-          <span class="notranslate text-white text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
-        `;
+        dawnInNepalText.style.color = "white";
+        adventuresText.style.color = "white";
       }
     });
   } else {
     // For other pages, set navbar to white with black text by default
     navbar.classList.add("bg-white", "shadow-lg");
-    navbar.querySelectorAll("button, a").forEach((el) => {
+
+    // Set text color for all buttons and links EXCEPT the logo text
+    navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
       el.classList.add("text-gray-900");
       el.classList.remove("text-white");
     });
 
     // Set logo name colors for other pages
-    logoName.innerHTML = `
-      <span class="notranslate text-amber-900 text-xl xl:text-2xl font-bold block">DAWN IN NEPAL</span>
-      <span class="notranslate text-yellow-500 text-md xl:text-lg font-bold block">ADVENTURES P.LTD</span>
-    `;
+    dawnInNepalText.style.color = "#7c2d12"; // Brown color
+    adventuresText.style.color = "#eab308"; // Yellow color
   }
 });
-
-// scrolling function 

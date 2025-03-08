@@ -51,20 +51,24 @@
     </a>
 
 
-        <!-- Email -->
-        <a title="" href="mailto:dawninnepal3@gmail.com" class="bg-gray-100 p-1 sm:p-2 rounded-full text-white shadow-lg hover:bg-gray-300 transition text-center overflow-hidden">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png?20221017173631" 
-                class="w-6 sm:w-8" 
-                alt="Gmail icon">
-        </a>
-        
-        <!-- Trip Advisor -->
-        
-        <a href="https://www.tripadvisor.com/Attraction_Review-g293890-d10089624-Reviews-Dawn_In_Nepal_Adventures_Pvt_Ltd-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central.html" loading="lazy"
-        target="_blank" class="bg-green-600 p-1 sm:p-2 rounded-full shadow-lg hover:bg-gray-100 transition">
-        <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="TripAdvisor"
-            class="w-6 h-6 sm:w-8 sm:h-8 md:w-8 md:h-8" loading="lazy">
+       
+
+    <a title="" href="mailto:dawninnepal3@gmail.com" class="bg-gray-100 p-1 sm:p-2 rounded-full text-white shadow-lg hover:bg-gray-300 transition text-center overflow-hidden">
+        <img src="{{asset('images/gmail.png')}}" 
+            class="w-5 h-5 sm:w-8 sm:h-8 md:w-8 md:h-8" 
+            alt="Gmail icon"
+            id="gmailLogo"
+            style="display: none;"
+            loading="lazy">
     </a>
+    
+    <!-- Trip Advisor -->
+    
+    <a href="https://www.tripadvisor.com/Attraction_Review-g293890-d10089624-Reviews-Dawn_In_Nepal_Adventures_Pvt_Ltd-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central.html" loading="eager"
+    target="_blank" class="bg-green-600 p-1 sm:p-2 rounded-full shadow-lg hover:bg-gray-100 transition">
+    <img src="{{ asset('images/tripsadvisor.png') }}" alt="TripAdvisor"
+        class="w-5 h-5 sm:w-8 sm:h-8 md:w-8 md:h-8" loading="lazy">
+</a>
 
     </div>
 </div>
@@ -199,6 +203,17 @@
         // Default fallback
         return '#';
     }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Show the logo after the page has fully loaded
+        document.getElementById("gmailLogo").style.display = "block";
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Show the logo after the page has fully loaded
+        document.getElementById("searchButton").style.display = "block";
+    });
 </script>
 
 <script src="{{ asset('frontend/js/header.js') }}"></script>
