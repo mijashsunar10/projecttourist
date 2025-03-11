@@ -335,15 +335,15 @@
 
         <div class="flex flex-wrap items-center justify-center w-full max-w-4xl mx-auto xs:mb-4 mt-8">
             <!-- Left Line -->
-            <div class=" hidden lg:block xl:hidden xlg:block flex-1 border-t-2 border-[#0b3e85]"></div>
+            <div class=" hidden sm:block xlg:block flex-1 border-t-2 border-[#0b3e85]"></div>
           
             <!-- Title -->
             <h1 class="text-2xl xs:text-3xl sm:text-3xl lg:text-3xl xlg:text-4xl font-bold text-[#0b3e85] xs:mx-4 sm:mx-8 text-center uppercase" style="font-family: 'Times New Roman', Times, serif">
-              Trips of {{ $trip->name }}
+             {{ $trip->name }}
             </h1>
           
             <!-- Right Line -->
-            <div class=" hidden lg:block xl:hidden xlg:block flex-1 border-t-2 border-[#0b3e85]"></div>
+            <div class=" hidden sm:block xlg:block flex-1 border-t-2 border-[#0b3e85]"></div>
         </div>
           
             
@@ -352,13 +352,7 @@
                 <h2 class=" text-2xl sm:text-3xl font-bold mb-4 text-blue-900 " style=" font-family: 'Times New Roman', Times, serif">Trip Overview</h2>
                 <div class="text-gray-800 space-y-4 text-md sm:text-lg font-semibold">
                     <p>{{ $trip->description }}</p>
-                    <p>
-                        As you traverse ancient paths, you'll encounter breathtaking views of the world’s highest peaks,
-                        including the majestic Mount Everest. The trek leads you through vibrant forests, across suspension
-                        bridges, and into the heart of Sherpa villages, where the spirit of the mountains is as palpable as
-                        the warm welcome you’ll receive. The local cuisine, rich in flavors and made with love, will nourish
-                        your body and soul, making every meal a moment to cherish.
-                    </p>
+                   
                 </div>
             </div>
 
@@ -776,7 +770,7 @@
                             @if ($exclusions->isEmpty())
                                 <p class="text-gray-600">No exclusions added yet.</p>
                             @else
-                                <ul class="space-y-3 text-gray-700 text-sm sm:text-md font-semibold">
+                                <ul class="space-y-3 text-gray-700 text-md sm:text-md font-semibold">
                                     @foreach ($exclusions as $exclusion)
                                         <li class="flex flex-col sm:flex-row sm:items-center justify-between">
                                             <span>&#10148; {{ $exclusion->description }}</span>

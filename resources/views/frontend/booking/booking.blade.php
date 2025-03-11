@@ -166,7 +166,7 @@
                        
                     </div>
 
-                    <div class="space-y-4">
+                    {{-- <div class="space-y-4">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Base Price</span>
                             <span class="font-semibold">${{ number_format($entity->price, 2) }}</span>
@@ -179,7 +179,7 @@
                             <span class="text-lg font-bold text-blue-900">Total</span>
                             <span class="text-xl font-bold text-blue-600" id="totalPrice">${{ number_format($entity->price, 2) }}</span>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="p-4 bg-green-50 rounded-lg border border-green-100 mt-6">
                         <div class="flex items-center">
@@ -207,12 +207,12 @@
                 charCount.textContent = textarea.value.length;
             });
 
-            // Dynamic price calculation
-            peopleInput.addEventListener('input', () => {
-                const travelers = peopleInput.value || 1;
-                travelersCount.textContent = travelers;
-                totalPrice.textContent = `$${(basePrice * travelers).toFixed(2)}`;
-            });
+            // // Dynamic price calculation
+            // peopleInput.addEventListener('input', () => {
+            //     const travelers = peopleInput.value || 1;
+            //     travelersCount.textContent = travelers;
+            //     totalPrice.textContent = `$${(basePrice * travelers).toFixed(2)}`;
+            // });
 
             // Form submission handler
             document.getElementById('bookingForm').addEventListener('submit', (e) => {

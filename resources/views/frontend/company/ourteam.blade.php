@@ -7,7 +7,7 @@
             <div class="w-full lg:w-1/2 flex lg:items-center justify-center lg:justify-start mb-8 lg:mb-0">
                 <div class="w-[500px] h-[500px] rounded-full overflow-hidden shadow-lg animate-image ml-[-1rem]">
                     <img src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg"
-                        alt="Profile Image" class="w-full h-full object-cover ">
+                        alt="Profile Image" class="w-full h-full object-cover " loading="lazy">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                         target="_blank" title="TripAdvisor"
                         class="bg-[#00af87] p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-100 transition flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
                         <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="TripAdvisor"
-                            class="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+                            class="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                         <img
                             src="{{ asset('images/teams/' . $team->image) }}"
                             alt="Team Member"
-                            class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500" />
+                            class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500" loading="lazy" />
                         <div class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
                     </div>
                     <div class="p-8 text-center">

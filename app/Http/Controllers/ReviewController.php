@@ -19,7 +19,7 @@ class ReviewController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'youtube_url' => 'nullable|url',
+           
             'rating' => 'required|integer|min:1|max:5',
             'review' => 'required|string',
         ]);
@@ -36,7 +36,7 @@ class ReviewController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'photo' => $imageName,
-            'youtube_url' => $request->youtube_url,
+            
             'rating' => $request->rating,
             'review' => $request->review,
         ]);

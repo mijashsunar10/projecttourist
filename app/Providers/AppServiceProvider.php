@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(191);
         $regions = Region::with('trips')->get(); // Load regions with their trips
         $tours = Tour::with('tourtrips')->get();
         $expeditions = Expedition::with('mountains')->get();

@@ -67,7 +67,7 @@
             <p class="text-gray-500 text-center col-span-full">No trips available for this region.</p>
         @else
             @foreach ($region->trips as $trip)
-            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-lg transition-all duration-300 overflow-hidden border-6 border-white hover:border-blue-100/30 relative transform hover:-translate-y-2 hover:rotate-[0.5deg]">
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-lg transition-all duration-300 overflow-hidden border-6 border-white hover:border-blue-100/30 relative transform ">
                 <!-- Gloss Effect Container -->
                 <div class="gloss-effect relative overflow-hidden">
                     <div class="absolute inset-0  z-10"></div>
@@ -81,7 +81,7 @@
                 <!-- Animated Price Badge -->
                 <div class="absolute top-56 left-1/2 -translate-x-1/2 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white px-6 py-1.5 rounded-full text-base font-bold shadow-lg flex items-center gap-2 transform -translate-y-1/2 z-30 border-2 border-blue-200/30 hover:scale-105 transition-transform duration-300 hover:rotate-2">
                   
-                    ${{ $trip->price }}<span class="font-medium text-blue-100 ml-1 text-sm">/person</span>
+                $ {{ $trip->price }}<span class="font-medium text-blue-100 ml-1 text-sm"></span>
                 </div>
     
                 <!-- Content Section -->

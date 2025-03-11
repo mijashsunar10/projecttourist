@@ -240,40 +240,42 @@
 
         <!-- Carousel Sections -->
         <div class="space-y-20">
-            <!-- Expeditions Carousel -->
+
+
+            <!-- Trekking Carousel -->
             <div class="carousel-container animate-slide-up">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-blue-900 mb-2" style="font-family: 'Playfair Display', serif;">Expeditions</h2>
-                   
+                    <h2 class="text-4xl font-bold text-blue-900 mb-2" style="font-family: 'Playfair Display', serif;">Trekking</h2>
+                    
                 </div>
                 <div class="relative flex items-center">
                     <!-- Left Button -->
-                    <button id="expeditions-left-btn" class="carousel-btn absolute top-1/2 -left-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
+                    <button id="trekking-left-btn" class="carousel-btn absolute top-1/2 -left-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
                         <i class="fa-solid fa-arrow-left"></i>
                     </button>
 
                     <!-- Carousel Wrapper -->
                     <div class="carousel overflow-hidden w-full">
-                        <div id="expeditions-inner" class="carousel-inner flex space-x-8 transition-transform duration-500">
+                        <div id="trekking-inner" class="carousel-inner flex space-x-8 transition-transform duration-500">
                             <!-- Cards -->
-                            @foreach ($expeditions as $expedition)
+                            @foreach ($regions as $region)
                             <div class="card-container flex-shrink-0 w-64 transform transition-all duration-500 hover:scale-105">
                                 <div class="font-open-sans text-base">
                                     <div class="relative group">
                                         <!-- Image Section -->
-                                        <a href="{{ route('expeditionsshow', $expedition->id) }}">
+                                        <a href="{{ route('regionsshow', $region->id) }}">
                                         <div class="relative overflow-hidden rounded-2xl shadow-lg">
                                             <img 
-                                                src="{{ asset('images/expeditions/' . $expedition->image) }}" 
-                                                alt="{{ $expedition->name }}" 
+                                                src="{{ asset('images/regions/' . $region->image) }}" 
+                                                alt="{{ $region->name }}" 
                                                 class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                             <div class="absolute bottom-4 left-4 text-white text-xl font-semibold">
-                                                {{ $expedition->name }}
+                                                {{ $region->name }}
                                             </div>
                                         </div>
-                                    </a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -282,11 +284,12 @@
                     </div>
 
                     <!-- Right Button -->
-                    <button id="expeditions-right-btn" class="carousel-btn absolute top-1/2 -right-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
+                    <button id="trekking-right-btn" class="carousel-btn absolute top-1/2 -right-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
+           
 
             <!-- Tours and Adventure Carousel -->
             <div class="carousel-container animate-slide-up">
@@ -336,40 +339,41 @@
                 </div>
             </div>
 
-            <!-- Trekking Carousel -->
-            <div class="carousel-container animate-slide-up">
+
+             <!-- Expeditions Carousel -->
+             <div class="carousel-container animate-slide-up">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-blue-900 mb-2" style="font-family: 'Playfair Display', serif;">Trekking</h2>
-                    
+                    <h2 class="text-4xl font-bold text-blue-900 mb-2" style="font-family: 'Playfair Display', serif;">Expeditions</h2>
+                   
                 </div>
                 <div class="relative flex items-center">
                     <!-- Left Button -->
-                    <button id="trekking-left-btn" class="carousel-btn absolute top-1/2 -left-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
+                    <button id="expeditions-left-btn" class="carousel-btn absolute top-1/2 -left-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
                         <i class="fa-solid fa-arrow-left"></i>
                     </button>
 
                     <!-- Carousel Wrapper -->
                     <div class="carousel overflow-hidden w-full">
-                        <div id="trekking-inner" class="carousel-inner flex space-x-8 transition-transform duration-500">
+                        <div id="expeditions-inner" class="carousel-inner flex space-x-8 transition-transform duration-500">
                             <!-- Cards -->
-                            @foreach ($regions as $region)
+                            @foreach ($expeditions as $expedition)
                             <div class="card-container flex-shrink-0 w-64 transform transition-all duration-500 hover:scale-105">
                                 <div class="font-open-sans text-base">
                                     <div class="relative group">
                                         <!-- Image Section -->
-                                        <a href="{{ route('regionsshow', $region->id) }}">
+                                        <a href="{{ route('expeditionsshow', $expedition->id) }}">
                                         <div class="relative overflow-hidden rounded-2xl shadow-lg">
                                             <img 
-                                                src="{{ asset('images/regions/' . $region->image) }}" 
-                                                alt="{{ $region->name }}" 
+                                                src="{{ asset('images/expeditions/' . $expedition->image) }}" 
+                                                alt="{{ $expedition->name }}" 
                                                 class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                             <div class="absolute bottom-4 left-4 text-white text-xl font-semibold">
-                                                {{ $region->name }}
+                                                {{ $expedition->name }}
                                             </div>
                                         </div>
-                                        </a>
+                                    </a>
                                     </div>
                                 </div>
                             </div>
@@ -378,11 +382,13 @@
                     </div>
 
                     <!-- Right Button -->
-                    <button id="trekking-right-btn" class="carousel-btn absolute top-1/2 -right-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
+                    <button id="expeditions-right-btn" class="carousel-btn absolute top-1/2 -right-8 transform -translate-y-1/2 bg-white border-2 border-gray-300 rounded-full p-3 shadow-xl hover:scale-110 transition-all duration-300 z-10 flex items-center justify-center text-xl text-gray-700 hover:text-gray-900">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
+
+            
         </div>
     </div>
 </section>

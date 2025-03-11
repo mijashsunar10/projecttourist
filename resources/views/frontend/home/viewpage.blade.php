@@ -1,9 +1,10 @@
 
 <div class="relative h-screen ">
-    <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover opacity-100 overflow-hidden">
-        <source src="{{ asset('frontend/video/website.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover opacity-100 overflow-hidden"
+    preload="none" data-src="{{ asset('frontend/video/website.mp4') }}">
+    <source data-src="{{ asset('frontend/video/website.mp4') }}" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
 
     <div class="relative flex flex-col xs:items-center justify-center h-full  xs:text-center text-white">
         <div>
@@ -214,6 +215,30 @@
         // Show the logo after the page has fully loaded
         document.getElementById("searchButton").style.display = "block";
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const lazyVideos = document.querySelectorAll('video[data-src]');
+  
+    const lazyVideoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((video) => {
+        if (video.isIntersecting) {
+          for (const source in video.target.children) {
+            const videoSource = video.target.children[source];
+            if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
+              videoSource.src = videoSource.dataset.src;
+            }
+          }
+          video.target.load();
+          video.target.classList.remove('lazy');
+          lazyVideoObserver.unobserve(video.target);
+        }
+      });
+    });
+  
+    lazyVideos.forEach((lazyVideo) => {
+      lazyVideoObserver.observe(lazyVideo);
+    });
+  });
 </script>
 
 <script src="{{ asset('frontend/js/header.js') }}"></script>

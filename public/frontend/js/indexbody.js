@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
         navbar.classList.add("bg-white", "shadow-lg");
         navbar.classList.remove("bg-transparent");
 
-        // Change text color for all buttons and links EXCEPT the logo text
-        navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
+        // Change text color for all buttons and links EXCEPT the logo text and dropdown items
+        navbar.querySelectorAll("button, a:not(#logoName a):not(.dropdown-item)").forEach((el) => {
           el.classList.add("text-gray-900");
           el.classList.remove("text-white");
         });
@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
         navbar.classList.remove("bg-white", "shadow-lg");
         navbar.classList.add("bg-transparent");
 
-        // Revert text color for all buttons and links EXCEPT the logo text
-        navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
+        // Revert text color for all buttons and links EXCEPT the logo text and dropdown items
+        navbar.querySelectorAll("button, a:not(#logoName a):not(.dropdown-item)").forEach((el) => {
           el.classList.add("text-white");
           el.classList.remove("text-gray-900");
         });
@@ -132,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // For other pages, set navbar to white with black text by default
     navbar.classList.add("bg-white", "shadow-lg");
 
-    // Set text color for all buttons and links EXCEPT the logo text
-    navbar.querySelectorAll("button, a:not(#logoName a)").forEach((el) => {
+    // Set text color for all buttons and links EXCEPT the logo text and dropdown items
+    navbar.querySelectorAll("button, a:not(#logoName a):not(.dropdown-item)").forEach((el) => {
       el.classList.add("text-gray-900");
       el.classList.remove("text-white");
     });

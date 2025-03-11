@@ -180,7 +180,7 @@
                                 <button type="button" id="remove-preview"
                                     class="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hover:bg-red-600 transition-all shadow-sm hover:shadow-md">&times;</button>
                                 <div class="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                                    <img id="image-preview" class="hidden w-full object-contain max-h-96 bg-gray-50" alt="Preview">
+                                    <img id="image-preview" class="hidden w-full object-contain max-h-96 bg-gray-50" loading="lazy" alt="Preview">
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
                         <!-- Image -->
                         <div class="cursor-pointer" onclick="openLightbox('{{ asset('images/payimages/' . $image->image) }}')">
-                            <img src="{{ asset('images/payimages/' . $image->image) }}" class="w-full h-48 object-cover">
+                            <img src="{{ asset('images/payimages/' . $image->image) }}" class="w-full h-48 object-cover" loading="lazy">
                         </div>
 
                         <!-- Edit and Delete Buttons (Visible only to authenticated users) -->
@@ -241,7 +241,7 @@
                         <i class="fas fa-times"></i>
                     </button>
                     <!-- Image -->
-                    <img id="lightbox-image" class="max-w-full max-h-[90vh] object-contain" alt="Lightbox Image">
+                    <img id="lightbox-image" class="max-w-full max-h-[90vh] object-contain" loading="lazy" alt="Lightbox Image">
                 </div>
             </div>
 

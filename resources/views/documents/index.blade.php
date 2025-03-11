@@ -36,7 +36,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach ($docs as $document)
                     <div class="document-card p-4 shadow-lg rounded-lg bg-white border-2 border-gray-200" data-category="{{ $document->category }}">
-                        <img src="{{ asset('images/documents/' . $document->image) }}" class="w-full h-128 object-cover rounded-md" alt="{{ $document->title }}">
+                        <img src="{{ asset('images/documents/' . $document->image) }}" class="w-full h-128 object-cover rounded-md " loading="lazy" alt="{{ $document->title }}">
                         <div class="text-center mt-4">
                             <h5 class="text-lg font-bold text-gray-900">{{ $document->title }}</h5>
                           

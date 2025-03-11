@@ -1,11 +1,3 @@
-<style>
-
-/* Initial colors for the homepage */
-#dawnInNepalText,
-#adventuresText {
-  color: white; /* White color before scrolling */
-}
-    </style> 
 
  
  <nav id="navbar" class="bg-transparent fixed w-full z-20 shadow-sm top-0 transition-all duration-300">
@@ -200,7 +192,7 @@
                   <ul class="dropdown-menu absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md opacity-0 invisible transition-opacity duration-300" style="border-top: 4px solid orange;">
                     
                     <li class="relative group">
-                      <a href="{{route('blogs.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('blogs.index')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                          Blogs
                         </div>      
@@ -208,14 +200,14 @@
                     </li>
                     
                     <li class="relative group">
-                      <a href="{{route('news')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('news')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                          News
                         </div>      
                     </a>
                     </li>
                     <li class="relative group">
-                      <a href="{{route('all.combined.reviews')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('all.combined.reviews')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                          Testimonials
                         </div>      
@@ -223,7 +215,7 @@
                     </li>
                     
                     <li class="relative group">
-                      <a href="{{route('faqs.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('faqs.index')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                         Frequently Asked Questions
                         </div>      
@@ -232,14 +224,14 @@
                     
                    
                     <li class="relative group">
-                      <a href="{{route('gallery.index')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('gallery.index')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                          Gallery
                         </div>      
                     </a>
                     </li>
                     <li class="relative group">
-                      <a href="{{route('customize')}}" class=" font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
+                      <a href="{{route('customize')}}" class="dropdown-item  font-semibold px-4 py-2 text-gray-800 hover:bg-gray-100 hover:underline flex items-center">
                         <div class="w-52">
                          Customize Trek
                         </div>      
